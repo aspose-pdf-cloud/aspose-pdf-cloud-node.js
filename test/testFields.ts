@@ -1,0 +1,141 @@
+ /**
+ *
+ *   Copyright (c) 2018 Aspose.Pdf for Cloud
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
+import * as BaseTest from "./baseTestPdfApi";
+import "mocha";
+import { HttpStatusCode } from "../src/models/httpStatusCode";
+import { Field } from "../src/models/field";
+import { FieldType } from "../src/models/fieldType";
+var assert = require('assert');
+
+describe("Fields Tests", () => {
+
+    describe("GetField Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            const fieldName = "textField";
+            await BaseTest.uploadFile(name);
+
+            return BaseTest.getPdfApi().getField(name, fieldName, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+
+    describe("GetFields Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            const fieldName = "textField";
+            await BaseTest.uploadFile(name);
+
+            return BaseTest.getPdfApi().getFields(name, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+
+    describe("PostCreateField Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "Hello world.pdf";
+            await BaseTest.uploadFile(name);
+            
+            const pageNumber = 1;
+
+            let field = new Field();
+            field.name = "checkboxfield";
+            field.type = FieldType.Boolean;
+            field.values = ["1"];
+            field.rect = {
+                x: 50,
+                y: 200,
+                width: 150,
+                height: 20
+            };
+
+            return BaseTest.getPdfApi().postCreateField(name, pageNumber, field, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+
+    describe("PutUpdateField Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            await BaseTest.uploadFile(name);
+            
+            const fieldName = "textField";
+            
+            const field = {
+                name: fieldName,
+                type: FieldType.Text,
+                values: ["Text field updated value."],
+                selectedItems: null,
+                rect: null,
+                links: null
+            }
+
+            return BaseTest.getPdfApi().putUpdateField(name, fieldName, field, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+
+    describe("DeleteField Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            const fieldName = "textField";
+            await BaseTest.uploadFile(name);
+
+            return BaseTest.getPdfApi().deleteField(name, fieldName, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+
+    describe("PutFieldsFlatten Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            await BaseTest.uploadFile(name);
+
+            return BaseTest.getPdfApi().putFieldsFlatten(name, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+            });
+        });
+    });
+});

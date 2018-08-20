@@ -1,0 +1,44 @@
+{
+    "name": "asposepdfcloud",
+    "version": "18.7.0",
+    "description": "Aspose.PDF Cloud SDK",
+    "homepage": "https://products.aspose.cloud/pdf/cloud",
+    "author": {
+        "name": "Aspose PDF Cloud"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=4.8"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js"
+    },
+    "keywords": [
+        "Aspose",
+        "Cloud",
+        "PDF"
+    ],
+    "readmeFilename": "README.md",
+    "main": "dist/api/api.js",
+    "types": "dist/api/api.d.ts",
+    "scripts": {
+        "clean": "rm -Rf node_modules/ typings/ *.js",
+        "build": "tsc",
+        "test": "mocha -r ts-node/register test/test*.ts --timeout 60000"
+    },
+    "dependencies": {
+        "@types/bluebird": "*",
+        "@types/request": "*",
+        "bluebird": "^3.5.0",
+        "request": "^2.81.0",
+        "request-debug": "^0.2.0",
+        "superagent": "3.5.2"
+    },
+    "devDependencies": {
+        "@types/mocha": "^5.2.5",
+        "mocha": "^5.2.0",
+        "ts-node": "^7.0.0",
+        "typescript": "^2.4.2"
+    }
+}
