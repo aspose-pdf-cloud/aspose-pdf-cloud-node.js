@@ -20,7 +20,7 @@ $ npm install asposepdfcloud --save
 APIs of this SDK can be called as follows:
 ```javascript
 
-const { PdfApi } = require("asposewordscloud");
+const { PdfApi } = require("asposepdfcloud");
 
 let pdfApi = new PdfApi(AppSid, AppKey);
 
