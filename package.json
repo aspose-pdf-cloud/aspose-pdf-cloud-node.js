@@ -33,7 +33,7 @@
         "bluebird": "^3.5.0",
         "request": "^2.81.0",
         "request-debug": "^0.2.0",
-        "superagent": "3.5.2"
+        "superagent": "^3.7.0"
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
