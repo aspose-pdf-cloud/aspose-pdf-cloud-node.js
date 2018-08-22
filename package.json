@@ -1,6 +1,6 @@
 {
     "name": "asposepdfcloud",
-    "version": "18.7.0",
+    "version": "18.7.2",
     "description": "Aspose.PDF Cloud SDK",
     "homepage": "https://products.aspose.cloud/pdf/cloud",
     "author": {
@@ -20,8 +20,8 @@
         "PDF"
     ],
     "readmeFilename": "README.md",
-    "main": "dist/api/api.js",
-    "types": "dist/api/api.d.ts",
+    "main": "src/api/api.js",
+    "types": "src/api/api.d.ts",
     "scripts": {
         "clean": "rm -Rf node_modules/ typings/ *.js",
         "build": "tsc",

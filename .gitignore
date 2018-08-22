@@ -1,3 +1,5 @@
-wwwroot/*.js
+*.js
+*.d.ts
+*.js.map
 node_modules
 typings
