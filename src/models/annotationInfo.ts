@@ -19,27 +19,28 @@
  *
  */
 
+import { Annotation } from "./annotation";
 
 /**
-* Returns also a message.
+* Provides annotation.
 */
-export class SignatureVerifyResponse extends AsposeResponse {
+export class AnnotationInfo extends Annotation {
     /**
-    * Valid sign.
+    * Gets annotation type.
     */
-    'valid': boolean;
+    'annotationType': AnnotationType;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
+            "name": "annotationType",
+            "baseName": "AnnotationType",
+            "type": "AnnotationType"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(AnnotationInfo.attributeTypeMap);
     }
 }
 

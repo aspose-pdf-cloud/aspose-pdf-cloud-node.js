@@ -19,37 +19,21 @@
  *
  */
 
-import { HttpStatusCode } from "./httpStatusCode";
 
-/**
-* Base class for all responses.
-*/
-export class SaaSposeResponse {
-    /**
-    * Response status code.
-    */
-    'code': HttpStatusCode;
-    /**
-    * Response status.
-    */
-    'status': string;
+export class TextAnnotationResponse extends AsposeResponse {
+    'annotation': TextAnnotation;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "code",
-            "baseName": "Code",
-            "type": "HttpStatusCode"
-        },
-        {
-            "name": "status",
-            "baseName": "Status",
-            "type": "string"
+            "name": "annotation",
+            "baseName": "Annotation",
+            "type": "TextAnnotation"
         }    ];
 
     static getAttributeTypeMap() {
-        return SaaSposeResponse.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(TextAnnotationResponse.attributeTypeMap);
     }
 }
 

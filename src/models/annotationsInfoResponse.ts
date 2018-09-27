@@ -20,26 +20,20 @@
  */
 
 
-/**
-* Returns also a message.
-*/
-export class SignatureVerifyResponse extends AsposeResponse {
-    /**
-    * Valid sign.
-    */
-    'valid': boolean;
+export class AnnotationsInfoResponse extends AsposeResponse {
+    'annotations': AnnotationsInfo;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
+            "name": "annotations",
+            "baseName": "Annotations",
+            "type": "AnnotationsInfo"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(AnnotationsInfoResponse.attributeTypeMap);
     }
 }
 

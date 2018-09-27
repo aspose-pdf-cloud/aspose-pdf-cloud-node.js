@@ -19,27 +19,55 @@
  *
  */
 
+import { Color } from "./color";
 
 /**
-* Returns also a message.
+* Represents a text style of a text
 */
-export class SignatureVerifyResponse extends AsposeResponse {
+export class TextStyle {
     /**
-    * Valid sign.
+    * Gets or sets font size of the text.
     */
-    'valid': boolean;
+    'fontSize': number;
+    /**
+    * Gets or sets font of the text.
+    */
+    'font': string;
+    /**
+    * Gets or sets foreground color of the text.
+    */
+    'foregroundColor': Color;
+    /**
+    * Sets background color of the text.
+    */
+    'backgroundColor': Color;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
+            "name": "fontSize",
+            "baseName": "FontSize",
+            "type": "number"
+        },
+        {
+            "name": "font",
+            "baseName": "Font",
+            "type": "string"
+        },
+        {
+            "name": "foregroundColor",
+            "baseName": "ForegroundColor",
+            "type": "Color"
+        },
+        {
+            "name": "backgroundColor",
+            "baseName": "BackgroundColor",
+            "type": "Color"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return TextStyle.attributeTypeMap;
     }
 }
 

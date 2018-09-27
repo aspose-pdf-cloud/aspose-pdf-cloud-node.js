@@ -19,23 +19,21 @@
  *
  */
 
-import { Page } from "./page";
-import { TextReplaceResponse } from "./textReplaceResponse";
 
-export class PageTextReplaceResponse extends TextReplaceResponse {
-    'page': Page;
+export class FreeTextAnnotationResponse extends AsposeResponse {
+    'annotation': FreeTextAnnotation;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "Page",
-            "type": "Page"
+            "name": "annotation",
+            "baseName": "Annotation",
+            "type": "FreeTextAnnotation"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PageTextReplaceResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FreeTextAnnotationResponse.attributeTypeMap);
     }
 }
 

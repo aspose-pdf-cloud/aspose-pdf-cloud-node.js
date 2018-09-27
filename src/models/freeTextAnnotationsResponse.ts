@@ -19,23 +19,21 @@
  *
  */
 
-import { TextFormat } from "./textFormat";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class TextFormatResponse extends SaaSposeResponse {
-    'textFormat': TextFormat;
+export class FreeTextAnnotationsResponse extends AsposeResponse {
+    'annotations': FreeTextAnnotations;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "textFormat",
-            "baseName": "TextFormat",
-            "type": "TextFormat"
+            "name": "annotations",
+            "baseName": "Annotations",
+            "type": "FreeTextAnnotations"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextFormatResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FreeTextAnnotationsResponse.attributeTypeMap);
     }
 }
 

@@ -20,12 +20,11 @@
  */
 
 import { WordCount } from "./wordCount";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
 /**
 * Number of words per document pages.
 */
-export class WordCountResponse extends SaaSposeResponse {
+export class WordCountResponse extends AsposeResponse {
     /**
     * with words per page info.            
     */

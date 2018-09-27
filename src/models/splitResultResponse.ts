@@ -20,12 +20,11 @@
  */
 
 import { SplitResult } from "./splitResult";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
 /**
 * Represents split result object.
 */
-export class SplitResultResponse extends SaaSposeResponse {
+export class SplitResultResponse extends AsposeResponse {
     /**
     * Gets or sets the splitting result.
     */

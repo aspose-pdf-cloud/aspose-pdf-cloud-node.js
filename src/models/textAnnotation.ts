@@ -19,27 +19,55 @@
  *
  */
 
+import { Color } from "./color";
 
 /**
-* Create document from images request.
+* Provides TextAnnotation.
 */
-export class ImagesListRequest {
+export class TextAnnotation extends MarkupAnnotation {
     /**
-    * A list of paths for images.
+    * Gets or sets the state to which the original annotation should be set.
     */
-    'imagesList': Array<string>;
+    'state': AnnotationState;
+    /**
+    * Gets or sets is the annotation open.
+    */
+    'open': boolean;
+    /**
+    * Color of the annotation.
+    */
+    'color': Color;
+    /**
+    * Gets or sets an icon to be used in displaying the annotation.
+    */
+    'icon': TextIcon;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "imagesList",
-            "baseName": "ImagesList",
-            "type": "Array<string>"
+            "name": "state",
+            "baseName": "State",
+            "type": "AnnotationState"
+        },
+        {
+            "name": "open",
+            "baseName": "Open",
+            "type": "boolean"
+        },
+        {
+            "name": "color",
+            "baseName": "Color",
+            "type": "Color"
+        },
+        {
+            "name": "icon",
+            "baseName": "Icon",
+            "type": "TextIcon"
         }    ];
 
     static getAttributeTypeMap() {
-        return ImagesListRequest.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(TextAnnotation.attributeTypeMap);
     }
 }
 

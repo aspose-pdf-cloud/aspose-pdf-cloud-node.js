@@ -20,9 +20,8 @@
  */
 
 import { Document } from "./document";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class DocumentResponse extends SaaSposeResponse {
+export class DocumentResponse extends AsposeResponse {
     'document': Document;
     'messages': Array<string>;
 

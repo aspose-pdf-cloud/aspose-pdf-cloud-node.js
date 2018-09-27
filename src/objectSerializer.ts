@@ -19,8 +19,12 @@
  *
  */
 
+import { AnnotationFlags } from "./models/annotationFlags";
+import { AnnotationState } from "./models/annotationState";
+import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AppendDocument } from "./models/appendDocument";
+import { AsposeResponse } from "./models/asposeResponse";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
 import { CompressionType } from "./models/compressionType";
@@ -32,14 +36,14 @@ import { FieldType } from "./models/fieldType";
 import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
+import { FreeTextIntent } from "./models/freeTextIntent";
 import { HorizontalAlignment } from "./models/horizontalAlignment";
 import { HtmlDocumentType } from "./models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "./models/htmlMarkupGenerationModes";
-import { HttpStatusCode } from "./models/httpStatusCode";
 import { ImageSrcType } from "./models/imageSrcType";
 import { ImageTemplate } from "./models/imageTemplate";
 import { ImageTemplatesRequest } from "./models/imageTemplatesRequest";
-import { ImagesListRequest } from "./models/imagesListRequest";
+import { Justification } from "./models/justification";
 import { LettersPositioningMethods } from "./models/lettersPositioningMethods";
 import { LineSpacing } from "./models/lineSpacing";
 import { Link } from "./models/link";
@@ -54,9 +58,8 @@ import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
 import { PdfAType } from "./models/pdfAType";
 import { RasterImagesSavingModes } from "./models/rasterImagesSavingModes";
-import { Rectangle } from "./models/rectangle";
+import { RectanglePdf } from "./models/rectanglePdf";
 import { Rotation } from "./models/rotation";
-import { SaaSposeResponse } from "./models/saaSposeResponse";
 import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
 import { Signature } from "./models/signature";
@@ -65,25 +68,26 @@ import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
 import { StampType } from "./models/stampType";
 import { TextHorizontalAlignment } from "./models/textHorizontalAlignment";
+import { TextIcon } from "./models/textIcon";
 import { TextLine } from "./models/textLine";
 import { TextRect } from "./models/textRect";
 import { TextRects } from "./models/textRects";
 import { TextReplace } from "./models/textReplace";
 import { TextReplaceListRequest } from "./models/textReplaceListRequest";
 import { TextState } from "./models/textState";
-import { TiffExportOptions } from "./models/tiffExportOptions";
+import { TextStyle } from "./models/textStyle";
 import { VerticalAlignment } from "./models/verticalAlignment";
 import { WordCount } from "./models/wordCount";
 import { WrapMode } from "./models/wrapMode";
 import { Annotation } from "./models/annotation";
-import { AnnotationResponse } from "./models/annotationResponse";
-import { Annotations } from "./models/annotations";
-import { AnnotationsResponse } from "./models/annotationsResponse";
+import { AnnotationsInfo } from "./models/annotationsInfo";
+import { AnnotationsInfoResponse } from "./models/annotationsInfoResponse";
 import { Attachment } from "./models/attachment";
 import { AttachmentResponse } from "./models/attachmentResponse";
 import { Attachments } from "./models/attachments";
 import { AttachmentsResponse } from "./models/attachmentsResponse";
 import { Document } from "./models/document";
+import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
 import { DocumentProperties } from "./models/documentProperties";
 import { DocumentPropertiesResponse } from "./models/documentPropertiesResponse";
@@ -94,6 +98,9 @@ import { Field } from "./models/field";
 import { FieldResponse } from "./models/fieldResponse";
 import { Fields } from "./models/fields";
 import { FieldsResponse } from "./models/fieldsResponse";
+import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
+import { FreeTextAnnotations } from "./models/freeTextAnnotations";
+import { FreeTextAnnotationsResponse } from "./models/freeTextAnnotationsResponse";
 import { Image } from "./models/image";
 import { ImageResponse } from "./models/imageResponse";
 import { Images } from "./models/images";
@@ -107,18 +114,16 @@ import { Pages } from "./models/pages";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
 import { SplitResultDocument } from "./models/splitResultDocument";
 import { SplitResultResponse } from "./models/splitResultResponse";
-import { TextFormat } from "./models/textFormat";
-import { TextFormatResponse } from "./models/textFormatResponse";
-import { TextItem } from "./models/textItem";
-import { TextItemResponse } from "./models/textItemResponse";
-import { TextItems } from "./models/textItems";
-import { TextItemsResponse } from "./models/textItemsResponse";
+import { TextAnnotationResponse } from "./models/textAnnotationResponse";
+import { TextAnnotations } from "./models/textAnnotations";
+import { TextAnnotationsResponse } from "./models/textAnnotationsResponse";
 import { TextRectsResponse } from "./models/textRectsResponse";
-import { TextReplaceRequest } from "./models/textReplaceRequest";
 import { TextReplaceResponse } from "./models/textReplaceResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
-import { DocumentTextReplaceResponse } from "./models/documentTextReplaceResponse";
-import { PageTextReplaceResponse } from "./models/pageTextReplaceResponse";
+import { AnnotationInfo } from "./models/annotationInfo";
+import { MarkupAnnotation } from "./models/markupAnnotation";
+import { FreeTextAnnotation } from "./models/freeTextAnnotation";
+import { TextAnnotation } from "./models/textAnnotation";
 
 let enumsMap: {[index: string]: any} = {
     "AntialiasingProcessingType": AntialiasingProcessingType,
@@ -134,7 +139,6 @@ let enumsMap: {[index: string]: any} = {
     "HorizontalAlignment": HorizontalAlignment,
     "HtmlDocumentType": HtmlDocumentType,
     "HtmlMarkupGenerationModes": HtmlMarkupGenerationModes,
-    "HttpStatusCode": HttpStatusCode,
     "ImageSrcType": ImageSrcType,
     "LettersPositioningMethods": LettersPositioningMethods,
     "LineSpacing": LineSpacing,
@@ -153,12 +157,17 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "AnnotationFlags": AnnotationFlags,
+    "AnnotationState": AnnotationState,
+    "AnnotationType": AnnotationType,
     "AppendDocument": AppendDocument,
+    "AsposeResponse": AsposeResponse,
     "Color": Color,
     "DocumentPrivilege": DocumentPrivilege,
+    "FreeTextIntent": FreeTextIntent,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
-    "ImagesListRequest": ImagesListRequest,
+    "Justification": Justification,
     "Link": Link,
     "LinkElement": LinkElement,
     "MarginInfo": MarginInfo,
@@ -166,29 +175,29 @@ let typeMap: {[index: string]: any} = {
     "OptimizeOptions": OptimizeOptions,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
-    "Rectangle": Rectangle,
-    "SaaSposeResponse": SaaSposeResponse,
+    "RectanglePdf": RectanglePdf,
     "Segment": Segment,
     "Signature": Signature,
     "SplitResult": SplitResult,
     "Stamp": Stamp,
+    "TextIcon": TextIcon,
     "TextLine": TextLine,
     "TextRect": TextRect,
     "TextRects": TextRects,
     "TextReplace": TextReplace,
     "TextReplaceListRequest": TextReplaceListRequest,
     "TextState": TextState,
-    "TiffExportOptions": TiffExportOptions,
+    "TextStyle": TextStyle,
     "WordCount": WordCount,
     "Annotation": Annotation,
-    "AnnotationResponse": AnnotationResponse,
-    "Annotations": Annotations,
-    "AnnotationsResponse": AnnotationsResponse,
+    "AnnotationsInfo": AnnotationsInfo,
+    "AnnotationsInfoResponse": AnnotationsInfoResponse,
     "Attachment": Attachment,
     "AttachmentResponse": AttachmentResponse,
     "Attachments": Attachments,
     "AttachmentsResponse": AttachmentsResponse,
     "Document": Document,
+    "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
     "DocumentProperties": DocumentProperties,
     "DocumentPropertiesResponse": DocumentPropertiesResponse,
@@ -199,6 +208,9 @@ let typeMap: {[index: string]: any} = {
     "FieldResponse": FieldResponse,
     "Fields": Fields,
     "FieldsResponse": FieldsResponse,
+    "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
+    "FreeTextAnnotations": FreeTextAnnotations,
+    "FreeTextAnnotationsResponse": FreeTextAnnotationsResponse,
     "Image": Image,
     "ImageResponse": ImageResponse,
     "Images": Images,
@@ -212,18 +224,16 @@ let typeMap: {[index: string]: any} = {
     "SignatureVerifyResponse": SignatureVerifyResponse,
     "SplitResultDocument": SplitResultDocument,
     "SplitResultResponse": SplitResultResponse,
-    "TextFormat": TextFormat,
-    "TextFormatResponse": TextFormatResponse,
-    "TextItem": TextItem,
-    "TextItemResponse": TextItemResponse,
-    "TextItems": TextItems,
-    "TextItemsResponse": TextItemsResponse,
+    "TextAnnotationResponse": TextAnnotationResponse,
+    "TextAnnotations": TextAnnotations,
+    "TextAnnotationsResponse": TextAnnotationsResponse,
     "TextRectsResponse": TextRectsResponse,
-    "TextReplaceRequest": TextReplaceRequest,
     "TextReplaceResponse": TextReplaceResponse,
     "WordCountResponse": WordCountResponse,
-    "DocumentTextReplaceResponse": DocumentTextReplaceResponse,
-    "PageTextReplaceResponse": PageTextReplaceResponse,
+    "AnnotationInfo": AnnotationInfo,
+    "MarkupAnnotation": MarkupAnnotation,
+    "FreeTextAnnotation": FreeTextAnnotation,
+    "TextAnnotation": TextAnnotation,
 }
 
 let primitives = [

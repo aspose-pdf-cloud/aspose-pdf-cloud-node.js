@@ -19,13 +19,14 @@
  *
  */
 
+import { LinkAnnotation } from "./linkAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
 * List of LinkAnnotations.
 */
 export class LinkAnnotations extends LinkElement {
-    'list': Array<LinkElement>;
+    'list': Array<LinkAnnotation>;
 
     static discriminator = undefined;
 
@@ -33,7 +34,7 @@ export class LinkAnnotations extends LinkElement {
         {
             "name": "list",
             "baseName": "List",
-            "type": "Array<LinkElement>"
+            "type": "Array<LinkAnnotation>"
         }    ];
 
     static getAttributeTypeMap() {

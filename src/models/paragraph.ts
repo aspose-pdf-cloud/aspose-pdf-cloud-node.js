@@ -21,7 +21,6 @@
 
 import { TextLine } from "./textLine";
 import { VerticalAlignment } from "./verticalAlignment";
-import { Rectangle } from "./rectangle";
 import { TextHorizontalAlignment } from "./textHorizontalAlignment";
 import { WrapMode } from "./wrapMode";
 import { LineSpacing } from "./lineSpacing";
@@ -37,7 +36,7 @@ export class Paragraph {
     'rightMargin': number;
     'topMargin': number;
     'bottomMargin': number;
-    'rectangle': Rectangle;
+    'rectangle': RectanglePdf;
     'rotation': number;
     'subsequentLinesIndent': number;
     'verticalAlignment': VerticalAlignment;
@@ -84,7 +83,7 @@ export class Paragraph {
         {
             "name": "rectangle",
             "baseName": "Rectangle",
-            "type": "Rectangle"
+            "type": "RectanglePdf"
         },
         {
             "name": "rotation",

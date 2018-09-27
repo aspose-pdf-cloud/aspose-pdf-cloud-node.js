@@ -20,9 +20,8 @@
  */
 
 import { Pages } from "./pages";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class DocumentPagesResponse extends SaaSposeResponse {
+export class DocumentPagesResponse extends AsposeResponse {
     'pages': Pages;
 
     static discriminator = undefined;

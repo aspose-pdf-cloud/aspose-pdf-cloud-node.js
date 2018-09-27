@@ -19,7 +19,6 @@
  *
  */
 
-import { Rectangle } from "./rectangle";
 import { Images } from "./images";
 import { LinkElement } from "./linkElement";
 
@@ -32,7 +31,7 @@ export class Page extends LinkElement {
     */
     'id': number;
     'images': Images;
-    'rectangle': Rectangle;
+    'rectangle': RectanglePdf;
 
     static discriminator = undefined;
 
@@ -50,7 +49,7 @@ export class Page extends LinkElement {
         {
             "name": "rectangle",
             "baseName": "Rectangle",
-            "type": "Rectangle"
+            "type": "RectanglePdf"
         }    ];
 
     static getAttributeTypeMap() {

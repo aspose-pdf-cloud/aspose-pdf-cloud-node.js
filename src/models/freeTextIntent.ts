@@ -19,23 +19,19 @@
  *
  */
 
-import { Annotations } from "./annotations";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class AnnotationsResponse extends SaaSposeResponse {
-    'annotations': Annotations;
+/**
+* Enumerates the intents of the free text annotation.
+*/
+export class FreeTextIntent {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "Annotations"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(AnnotationsResponse.attributeTypeMap);
+        return FreeTextIntent.attributeTypeMap;
     }
 }
 

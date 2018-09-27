@@ -20,9 +20,8 @@
  */
 
 import { Attachment } from "./attachment";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class AttachmentResponse extends SaaSposeResponse {
+export class AttachmentResponse extends AsposeResponse {
     'attachment': Attachment;
 
     static discriminator = undefined;

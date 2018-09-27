@@ -19,27 +19,22 @@
  *
  */
 
+import { Page } from "./page";
 
-/**
-* Returns also a message.
-*/
-export class SignatureVerifyResponse extends AsposeResponse {
-    /**
-    * Valid sign.
-    */
-    'valid': boolean;
+export class DocumentPageResponse extends AsposeResponse {
+    'page': Page;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
+            "name": "page",
+            "baseName": "Page",
+            "type": "Page"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(DocumentPageResponse.attributeTypeMap);
     }
 }
 

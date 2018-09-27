@@ -19,23 +19,19 @@
  *
  */
 
-import { TextItems } from "./textItems";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class TextItemsResponse extends SaaSposeResponse {
-    'textItems': TextItems;
+/**
+* Enumerates the forms of quadding (justification) to be used in displaying the annotation?s text.
+*/
+export class Justification {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "textItems",
-            "baseName": "TextItems",
-            "type": "TextItems"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItemsResponse.attributeTypeMap);
+        return Justification.attributeTypeMap;
     }
 }
 

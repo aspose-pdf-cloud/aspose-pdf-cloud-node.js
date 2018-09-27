@@ -20,9 +20,8 @@
  */
 
 import { LinkAnnotations } from "./linkAnnotations";
-import { SaaSposeResponse } from "./saaSposeResponse";
 
-export class LinkAnnotationsResponse extends SaaSposeResponse {
+export class LinkAnnotationsResponse extends AsposeResponse {
     'links': LinkAnnotations;
 
     static discriminator = undefined;

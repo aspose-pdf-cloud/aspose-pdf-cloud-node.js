@@ -19,38 +19,21 @@
  *
  */
 
-import { Color } from "./color";
-import { LinkElement } from "./linkElement";
 
-/**
-* Represents text format DTO.
-*/
-export class TextFormat extends LinkElement {
-    'color': Color;
-    'fontSize': number;
-    'fontName': string;
+export class TextAnnotationsResponse extends AsposeResponse {
+    'annotations': TextAnnotations;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
-        {
-            "name": "fontSize",
-            "baseName": "FontSize",
-            "type": "number"
-        },
-        {
-            "name": "fontName",
-            "baseName": "FontName",
-            "type": "string"
+            "name": "annotations",
+            "baseName": "Annotations",
+            "type": "TextAnnotations"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextFormat.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(TextAnnotationsResponse.attributeTypeMap);
     }
 }
 

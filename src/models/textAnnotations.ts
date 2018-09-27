@@ -19,23 +19,25 @@
  *
  */
 
-import { TextItem } from "./textItem";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { LinkElement } from "./linkElement";
 
-export class TextItemResponse extends SaaSposeResponse {
-    'textItem': TextItem;
+/**
+* List of annotations.
+*/
+export class TextAnnotations extends LinkElement {
+    'list': Array<TextAnnotation>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "textItem",
-            "baseName": "TextItem",
-            "type": "TextItem"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<TextAnnotation>"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItemResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(TextAnnotations.attributeTypeMap);
     }
 }
 

@@ -21,25 +21,17 @@
 
 
 /**
-* Returns also a message.
+* The enumeration of states to which the original annotation can be set.
 */
-export class SignatureVerifyResponse extends AsposeResponse {
-    /**
-    * Valid sign.
-    */
-    'valid': boolean;
+export class AnnotationState {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return AnnotationState.attributeTypeMap;
     }
 }
 

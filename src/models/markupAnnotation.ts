@@ -19,25 +19,28 @@
  *
  */
 
-import { LinkElement } from "./linkElement";
+import { Annotation } from "./annotation";
 
 /**
-* List of annotations.
+* Provides MarkupAnnotation.
 */
-export class Annotations extends LinkElement {
-    'list': Array<LinkElement>;
+export class MarkupAnnotation extends Annotation {
+    /**
+    * Get the annotation RichText.
+    */
+    'richText': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "list",
-            "baseName": "List",
-            "type": "Array<LinkElement>"
+            "name": "richText",
+            "baseName": "RichText",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(Annotations.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(MarkupAnnotation.attributeTypeMap);
     }
 }
 

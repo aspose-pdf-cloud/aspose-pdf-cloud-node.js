@@ -19,7 +19,6 @@
  *
  */
 
-import { Rectangle } from "./rectangle";
 import { SignatureType } from "./signatureType";
 
 export class Signature {
@@ -58,7 +57,7 @@ export class Signature {
     /**
     * Gets or sets the visible rectangle of the signature. Supports only when signing particular page.
     */
-    'rectangle': Rectangle;
+    'rectangle': RectanglePdf;
     /**
     * Gets or sets the name of the signature field. Supports only when signing document with particular form field.
     */
@@ -122,7 +121,7 @@ export class Signature {
         {
             "name": "rectangle",
             "baseName": "Rectangle",
-            "type": "Rectangle"
+            "type": "RectanglePdf"
         },
         {
             "name": "formFieldName",

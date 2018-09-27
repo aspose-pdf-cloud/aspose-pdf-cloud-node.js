@@ -19,17 +19,14 @@
  *
  */
 
-import { Color } from "./color";
+import { VerticalAlignment } from "./verticalAlignment";
+import { HorizontalAlignment } from "./horizontalAlignment";
 import { LinkElement } from "./linkElement";
 
 /**
 * Provides annotation.
 */
 export class Annotation extends LinkElement {
-    /**
-    * Get the annotation color.
-    */
-    'color': Color;
     /**
     * Get the annotation content.
     */
@@ -50,15 +47,42 @@ export class Annotation extends LinkElement {
     * The date and time when the annotation was last modified.
     */
     'modified': string;
+    /**
+    * Gets ID of the annotation.
+    */
+    'id': string;
+    /**
+    * Gets Flags of the annotation.
+    */
+    'flags': Array<AnnotationFlags>;
+    /**
+    * Gets Name of the annotation.
+    */
+    'name': string;
+    /**
+    * Gets Rect of the annotation.
+    */
+    'rect': RectanglePdf;
+    /**
+    * Gets PageIndex of the annotation.
+    */
+    'pageIndex': number;
+    /**
+    * Gets ZIndex of the annotation.
+    */
+    'zIndex': number;
+    /**
+    * Gets HorizontalAlignment of the annotation.
+    */
+    'horizontalAlignment': HorizontalAlignment;
+    /**
+    * Gets VerticalAlignment of the annotation.
+    */
+    'verticalAlignment': VerticalAlignment;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
         {
             "name": "contents",
             "baseName": "Contents",
@@ -83,6 +107,46 @@ export class Annotation extends LinkElement {
             "name": "modified",
             "baseName": "Modified",
             "type": "string"
+        },
+        {
+            "name": "id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "flags",
+            "baseName": "Flags",
+            "type": "Array<AnnotationFlags>"
+        },
+        {
+            "name": "name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "rect",
+            "baseName": "Rect",
+            "type": "RectanglePdf"
+        },
+        {
+            "name": "pageIndex",
+            "baseName": "PageIndex",
+            "type": "number"
+        },
+        {
+            "name": "zIndex",
+            "baseName": "ZIndex",
+            "type": "number"
+        },
+        {
+            "name": "horizontalAlignment",
+            "baseName": "HorizontalAlignment",
+            "type": "HorizontalAlignment"
+        },
+        {
+            "name": "verticalAlignment",
+            "baseName": "VerticalAlignment",
+            "type": "VerticalAlignment"
         }    ];
 
     static getAttributeTypeMap() {

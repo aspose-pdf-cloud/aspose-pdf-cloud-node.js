@@ -19,25 +19,55 @@
  *
  */
 
-import { TextReplace } from "./textReplace";
+import { Rotation } from "./rotation";
 
 /**
-* Single text replacement request.
+* Provides FreeTextAnnotation.
 */
-export class TextReplaceRequest extends TextReplace {
-    'defaultFont': string;
+export class FreeTextAnnotation extends MarkupAnnotation {
+    /**
+    * Gets Justification of the annotation.
+    */
+    'justification': Justification;
+    /**
+    * Gets or sets the intent of the free text annotation.
+    */
+    'intent': FreeTextIntent;
+    /**
+    * Angle of annotation rotation.
+    */
+    'rotate': Rotation;
+    /**
+    * Text style of the annotation.
+    */
+    'textStyle': TextStyle;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "defaultFont",
-            "baseName": "DefaultFont",
-            "type": "string"
+            "name": "justification",
+            "baseName": "Justification",
+            "type": "Justification"
+        },
+        {
+            "name": "intent",
+            "baseName": "Intent",
+            "type": "FreeTextIntent"
+        },
+        {
+            "name": "rotate",
+            "baseName": "Rotate",
+            "type": "Rotation"
+        },
+        {
+            "name": "textStyle",
+            "baseName": "TextStyle",
+            "type": "TextStyle"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextReplaceRequest.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FreeTextAnnotation.attributeTypeMap);
     }
 }
 

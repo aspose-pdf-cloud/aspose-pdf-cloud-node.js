@@ -19,7 +19,6 @@
  *
  */
 
-import { Rectangle } from "./rectangle";
 import { FieldType } from "./fieldType";
 import { LinkElement } from "./linkElement";
 
@@ -32,21 +31,21 @@ export class Field extends LinkElement {
     */
     'name': string;
     /**
-    * Field type.
-    */
-    'type': FieldType;
-    /**
-    * Field values.
-    */
-    'values': Array<string>;
-    /**
     * Selected items.
     */
     'selectedItems': Array<number>;
     /**
+    * Field type.
+    */
+    'type': FieldType;
+    /**
     * Field rectangle.
     */
-    'rect': Rectangle;
+    'rect': RectanglePdf;
+    /**
+    * Field values.
+    */
+    'values': Array<string>;
 
     static discriminator = undefined;
 
@@ -57,24 +56,24 @@ export class Field extends LinkElement {
             "type": "string"
         },
         {
-            "name": "type",
-            "baseName": "Type",
-            "type": "FieldType"
-        },
-        {
-            "name": "values",
-            "baseName": "Values",
-            "type": "Array<string>"
-        },
-        {
             "name": "selectedItems",
             "baseName": "SelectedItems",
             "type": "Array<number>"
         },
         {
+            "name": "type",
+            "baseName": "Type",
+            "type": "FieldType"
+        },
+        {
             "name": "rect",
             "baseName": "Rect",
-            "type": "Rectangle"
+            "type": "RectanglePdf"
+        },
+        {
+            "name": "values",
+            "baseName": "Values",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -19,27 +19,25 @@
  *
  */
 
+import { LinkElement } from "./linkElement";
 
 /**
-* Returns also a message.
+* List of annotations.
 */
-export class SignatureVerifyResponse extends AsposeResponse {
-    /**
-    * Valid sign.
-    */
-    'valid': boolean;
+export class FreeTextAnnotations extends LinkElement {
+    'list': Array<FreeTextAnnotation>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "valid",
-            "baseName": "Valid",
-            "type": "boolean"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<FreeTextAnnotation>"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(SignatureVerifyResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FreeTextAnnotations.attributeTypeMap);
     }
 }
 

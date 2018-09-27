@@ -21,40 +21,17 @@
 
 
 /**
-* Represents rectangle DTO.
+* 
 */
-export class Rectangle {
-    'x': number;
-    'y': number;
-    'width': number;
-    'height': number;
+export class AnnotationType {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "x",
-            "baseName": "X",
-            "type": "number"
-        },
-        {
-            "name": "y",
-            "baseName": "Y",
-            "type": "number"
-        },
-        {
-            "name": "width",
-            "baseName": "Width",
-            "type": "number"
-        },
-        {
-            "name": "height",
-            "baseName": "Height",
-            "type": "number"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return Rectangle.attributeTypeMap;
+        return AnnotationType.attributeTypeMap;
     }
 }
 

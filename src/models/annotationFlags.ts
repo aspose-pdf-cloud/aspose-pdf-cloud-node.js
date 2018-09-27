@@ -19,23 +19,19 @@
  *
  */
 
-import { Document } from "./document";
-import { TextReplaceResponse } from "./textReplaceResponse";
 
-export class DocumentTextReplaceResponse extends TextReplaceResponse {
-    'document': Document;
+/**
+* A set of flags specifying various characteristics of the annotation.
+*/
+export class AnnotationFlags {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "document",
-            "baseName": "Document",
-            "type": "Document"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentTextReplaceResponse.attributeTypeMap);
+        return AnnotationFlags.attributeTypeMap;
     }
 }
 

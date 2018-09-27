@@ -19,26 +19,42 @@
  *
  */
 
-import { TextItem } from "./textItem";
-import { LinkElement } from "./linkElement";
 
 /**
-* Represents text items DTO.
+* Represents rectangle DTO.
 */
-export class TextItems extends LinkElement {
-    'list': Array<TextItem>;
+export class RectanglePdf {
+    'lLX': number;
+    'lLY': number;
+    'uRX': number;
+    'uRY': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "list",
-            "baseName": "List",
-            "type": "Array<TextItem>"
+            "name": "lLX",
+            "baseName": "LLX",
+            "type": "number"
+        },
+        {
+            "name": "lLY",
+            "baseName": "LLY",
+            "type": "number"
+        },
+        {
+            "name": "uRX",
+            "baseName": "URX",
+            "type": "number"
+        },
+        {
+            "name": "uRY",
+            "baseName": "URY",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItems.attributeTypeMap);
+        return RectanglePdf.attributeTypeMap;
     }
 }
 

@@ -19,32 +19,19 @@
  *
  */
 
-import { TextFormat } from "./textFormat";
-import { LinkElement } from "./linkElement";
 
 /**
-* Represents text DTO.
+* Enumerates the icons to be used in displaying the annotation.
 */
-export class TextItem extends LinkElement {
-    'text': string;
-    'format': TextFormat;
+export class TextIcon {
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "text",
-            "baseName": "Text",
-            "type": "string"
-        },
-        {
-            "name": "format",
-            "baseName": "Format",
-            "type": "TextFormat"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItem.attributeTypeMap);
+        return TextIcon.attributeTypeMap;
     }
 }
 
