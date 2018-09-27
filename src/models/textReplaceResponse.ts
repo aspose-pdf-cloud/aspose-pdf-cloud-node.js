@@ -19,6 +19,7 @@
  *
  */
 
+import { AsposeResponse } from "./asposeResponse";
 
 export class TextReplaceResponse extends AsposeResponse {
     'matches': number;

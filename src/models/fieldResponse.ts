@@ -20,6 +20,7 @@
  */
 
 import { Field } from "./field";
+import { AsposeResponse } from "./asposeResponse";
 
 export class FieldResponse extends AsposeResponse {
     'field': Field;

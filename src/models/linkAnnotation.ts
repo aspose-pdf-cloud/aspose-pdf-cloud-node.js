@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { Color } from "./color";
 import { LinkHighlightingMode } from "./linkHighlightingMode";
 import { LinkActionType } from "./linkActionType";

@@ -19,6 +19,8 @@
  *
  */
 
+import { TextAnnotations } from "./textAnnotations";
+import { AsposeResponse } from "./asposeResponse";
 
 export class TextAnnotationsResponse extends AsposeResponse {
     'annotations': TextAnnotations;

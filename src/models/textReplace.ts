@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { TextState } from "./textState";
 
 /**

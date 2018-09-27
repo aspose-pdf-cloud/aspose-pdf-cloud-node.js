@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { Images } from "./images";
 import { LinkElement } from "./linkElement";
 

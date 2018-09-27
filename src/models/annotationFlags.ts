@@ -19,20 +19,16 @@
  *
  */
 
-
-/**
-* A set of flags specifying various characteristics of the annotation.
-*/
-export class AnnotationFlags {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return AnnotationFlags.attributeTypeMap;
-    }
+export enum AnnotationFlags {
+    Default = 'Default',
+    Invisible = 'Invisible',
+    Hidden = 'Hidden',
+    Print = 'Print',
+    NoZoom = 'NoZoom',
+    NoRotate = 'NoRotate',
+    NoView = 'NoView',
+    ReadOnly = 'ReadOnly',
+    Locked = 'Locked',
+    ToggleNoView = 'ToggleNoView',
+    LockedContents = 'LockedContents',
 }
-
-

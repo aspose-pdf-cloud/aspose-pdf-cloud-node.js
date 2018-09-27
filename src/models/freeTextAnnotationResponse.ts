@@ -19,6 +19,8 @@
  *
  */
 
+import { FreeTextAnnotation } from "./freeTextAnnotation";
+import { AsposeResponse } from "./asposeResponse";
 
 export class FreeTextAnnotationResponse extends AsposeResponse {
     'annotation': FreeTextAnnotation;

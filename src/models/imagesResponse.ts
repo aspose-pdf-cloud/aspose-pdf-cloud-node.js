@@ -20,6 +20,7 @@
  */
 
 import { Images } from "./images";
+import { AsposeResponse } from "./asposeResponse";
 
 export class ImagesResponse extends AsposeResponse {
     'images': Images;

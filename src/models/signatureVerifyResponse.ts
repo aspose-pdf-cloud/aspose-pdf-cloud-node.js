@@ -19,6 +19,7 @@
  *
  */
 
+import { AsposeResponse } from "./asposeResponse";
 
 /**
 * Returns also a message.

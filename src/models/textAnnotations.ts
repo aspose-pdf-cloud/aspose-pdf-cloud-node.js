@@ -19,6 +19,7 @@
  *
  */
 
+import { TextAnnotation } from "./textAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**

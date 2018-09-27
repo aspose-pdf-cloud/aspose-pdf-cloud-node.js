@@ -21,6 +21,8 @@
 
 import { VerticalAlignment } from "./verticalAlignment";
 import { HorizontalAlignment } from "./horizontalAlignment";
+import { RectanglePdf } from "./rectanglePdf";
+import { AnnotationFlags } from "./annotationFlags";
 import { LinkElement } from "./linkElement";
 
 /**

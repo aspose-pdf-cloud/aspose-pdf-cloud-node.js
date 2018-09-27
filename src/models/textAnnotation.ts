@@ -19,7 +19,10 @@
  *
  */
 
+import { TextIcon } from "./textIcon";
 import { Color } from "./color";
+import { AnnotationState } from "./annotationState";
+import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
 * Provides TextAnnotation.

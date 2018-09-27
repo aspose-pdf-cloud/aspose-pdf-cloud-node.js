@@ -19,20 +19,13 @@
  *
  */
 
-
-/**
-* The enumeration of states to which the original annotation can be set.
-*/
-export class AnnotationState {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return AnnotationState.attributeTypeMap;
-    }
+export enum AnnotationState {
+    Undefined = 'Undefined',
+    Marked = 'Marked',
+    Unmarked = 'Unmarked',
+    Accepted = 'Accepted',
+    Rejected = 'Rejected',
+    Cancelled = 'Cancelled',
+    Completed = 'Completed',
+    None = 'None',
 }
-
-

@@ -19,6 +19,7 @@
  *
  */
 
+import { FreeTextAnnotation } from "./freeTextAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**

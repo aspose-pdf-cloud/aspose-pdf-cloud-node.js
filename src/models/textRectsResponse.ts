@@ -20,6 +20,7 @@
  */
 
 import { TextRects } from "./textRects";
+import { AsposeResponse } from "./asposeResponse";
 
 export class TextRectsResponse extends AsposeResponse {
     'textOccurences': TextRects;

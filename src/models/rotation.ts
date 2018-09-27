@@ -20,8 +20,8 @@
  */
 
 export enum Rotation {
-    None = 0,
-    on90 = 1,
-    on180 = 2,
-    on270 = 3,
+    None = 'None',
+    on90 = 'on90',
+    on180 = 'on180',
+    on270 = 'on270',
 }

@@ -19,20 +19,16 @@
  *
  */
 
-
-/**
-* Enumerates the icons to be used in displaying the annotation.
-*/
-export class TextIcon {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return TextIcon.attributeTypeMap;
-    }
+export enum TextIcon {
+    Note = 'Note',
+    Comment = 'Comment',
+    Key = 'Key',
+    Help = 'Help',
+    NewParagraph = 'NewParagraph',
+    Paragraph = 'Paragraph',
+    Insert = 'Insert',
+    Check = 'Check',
+    Cross = 'Cross',
+    Circle = 'Circle',
+    Star = 'Star',
 }
-
-

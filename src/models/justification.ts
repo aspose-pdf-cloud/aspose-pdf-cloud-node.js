@@ -19,20 +19,8 @@
  *
  */
 
-
-/**
-* Enumerates the forms of quadding (justification) to be used in displaying the annotation?s text.
-*/
-export class Justification {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return Justification.attributeTypeMap;
-    }
+export enum Justification {
+    Left = 'Left',
+    Center = 'Center',
+    Right = 'Right',
 }
-
-

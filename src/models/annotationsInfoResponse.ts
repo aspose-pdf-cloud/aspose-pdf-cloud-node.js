@@ -19,6 +19,8 @@
  *
  */
 
+import { AnnotationsInfo } from "./annotationsInfo";
+import { AsposeResponse } from "./asposeResponse";
 
 export class AnnotationsInfoResponse extends AsposeResponse {
     'annotations': AnnotationsInfo;

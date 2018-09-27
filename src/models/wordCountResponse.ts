@@ -20,6 +20,7 @@
  */
 
 import { WordCount } from "./wordCount";
+import { AsposeResponse } from "./asposeResponse";
 
 /**
 * Number of words per document pages.

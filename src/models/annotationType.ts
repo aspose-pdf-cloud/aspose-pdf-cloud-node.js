@@ -19,20 +19,33 @@
  *
  */
 
-
-/**
-* 
-*/
-export class AnnotationType {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return AnnotationType.attributeTypeMap;
-    }
+export enum AnnotationType {
+    Text = 'Text',
+    Circle = 'Circle',
+    Polygon = 'Polygon',
+    PolyLine = 'PolyLine',
+    Line = 'Line',
+    Square = 'Square',
+    FreeText = 'FreeText',
+    Highlight = 'Highlight',
+    Underline = 'Underline',
+    Squiggly = 'Squiggly',
+    StrikeOut = 'StrikeOut',
+    Caret = 'Caret',
+    Ink = 'Ink',
+    Link = 'Link',
+    Popup = 'Popup',
+    FileAttachment = 'FileAttachment',
+    Sound = 'Sound',
+    Movie = 'Movie',
+    Screen = 'Screen',
+    Widget = 'Widget',
+    Watermark = 'Watermark',
+    TrapNet = 'TrapNet',
+    PrinterMark = 'PrinterMark',
+    Redaction = 'Redaction',
+    Stamp = 'Stamp',
+    RichMedia = 'RichMedia',
+    Unknown = 'Unknown',
+    PDF3D = 'PDF3D',
 }
-
-

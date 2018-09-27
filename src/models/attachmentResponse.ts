@@ -20,6 +20,7 @@
  */
 
 import { Attachment } from "./attachment";
+import { AsposeResponse } from "./asposeResponse";
 
 export class AttachmentResponse extends AsposeResponse {
     'attachment': Attachment;

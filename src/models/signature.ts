@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { SignatureType } from "./signatureType";
 
 export class Signature {

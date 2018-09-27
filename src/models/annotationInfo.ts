@@ -19,6 +19,7 @@
  *
  */
 
+import { AnnotationType } from "./annotationType";
 import { Annotation } from "./annotation";
 
 /**

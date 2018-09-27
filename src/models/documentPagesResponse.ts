@@ -20,6 +20,7 @@
  */
 
 import { Pages } from "./pages";
+import { AsposeResponse } from "./asposeResponse";
 
 export class DocumentPagesResponse extends AsposeResponse {
     'pages': Pages;

@@ -19,20 +19,8 @@
  *
  */
 
-
-/**
-* Enumerates the intents of the free text annotation.
-*/
-export class FreeTextIntent {
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return FreeTextIntent.attributeTypeMap;
-    }
+export enum FreeTextIntent {
+    Undefined = 'Undefined',
+    FreeTextCallout = 'FreeTextCallout',
+    FreeTextTypeWriter = 'FreeTextTypeWriter',
 }
-
-

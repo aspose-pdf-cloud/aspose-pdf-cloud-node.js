@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { FieldType } from "./fieldType";
 import { LinkElement } from "./linkElement";
 

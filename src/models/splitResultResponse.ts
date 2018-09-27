@@ -20,6 +20,7 @@
  */
 
 import { SplitResult } from "./splitResult";
+import { AsposeResponse } from "./asposeResponse";
 
 /**
 * Represents split result object.

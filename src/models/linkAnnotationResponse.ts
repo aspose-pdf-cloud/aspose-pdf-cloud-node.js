@@ -20,6 +20,7 @@
  */
 
 import { LinkAnnotation } from "./linkAnnotation";
+import { AsposeResponse } from "./asposeResponse";
 
 export class LinkAnnotationResponse extends AsposeResponse {
     'link': LinkAnnotation;

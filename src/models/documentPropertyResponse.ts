@@ -20,6 +20,7 @@
  */
 
 import { DocumentProperty } from "./documentProperty";
+import { AsposeResponse } from "./asposeResponse";
 
 export class DocumentPropertyResponse extends AsposeResponse {
     'documentProperty': DocumentProperty;

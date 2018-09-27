@@ -21,6 +21,7 @@
 
 import { TextLine } from "./textLine";
 import { VerticalAlignment } from "./verticalAlignment";
+import { RectanglePdf } from "./rectanglePdf";
 import { TextHorizontalAlignment } from "./textHorizontalAlignment";
 import { WrapMode } from "./wrapMode";
 import { LineSpacing } from "./lineSpacing";

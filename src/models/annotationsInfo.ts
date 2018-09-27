@@ -19,6 +19,7 @@
  *
  */
 
+import { AnnotationInfo } from "./annotationInfo";
 import { LinkElement } from "./linkElement";
 
 /**

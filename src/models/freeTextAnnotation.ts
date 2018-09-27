@@ -19,7 +19,11 @@
  *
  */
 
+import { TextStyle } from "./textStyle";
 import { Rotation } from "./rotation";
+import { FreeTextIntent } from "./freeTextIntent";
+import { Justification } from "./justification";
+import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
 * Provides FreeTextAnnotation.
