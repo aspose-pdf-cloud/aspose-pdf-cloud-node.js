@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 var fs = require('fs');
 
@@ -38,7 +37,7 @@ describe("Storage Tests", () => {
 
             return BaseTest.getPdfApi().putCreate(path, data)
             .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -53,7 +52,7 @@ describe("Storage Tests", () => {
             
             return BaseTest.getPdfApi().getDownload(path)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

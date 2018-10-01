@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { Signature } from "../src/models/signature";
 import { SignatureType } from "../src/models/signatureType";
 var assert = require('assert');
@@ -38,7 +37,7 @@ describe("Sign Tests", () => {
     signature.formFieldName = "Signature1";
     signature.location = "Ukraine";
     signature.password = "test1234";
-    signature.rectangle = { x: 100, y: 100, width: 400, height: 100 };
+    signature.rectangle = { lLX: 100, lLY: 100, uRX: 500, uRY: 500 };
     signature.signaturePath = BaseTest.remoteTempFolder + "/" +signatureName;
     signature.signatureType = SignatureType.PKCS7;
     signature.visible = true;
@@ -55,7 +54,7 @@ describe("Sign Tests", () => {
 
             return BaseTest.getPdfApi().postSignDocument(name, signature, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -68,7 +67,7 @@ describe("Sign Tests", () => {
 
             return BaseTest.getPdfApi().postSignPage(name, pageNumber, signature, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -79,9 +78,9 @@ describe("Sign Tests", () => {
 
             await BaseTest.getPdfApi().postSignDocument(name, signature, null, BaseTest.remoteTempFolder);
 
-            return BaseTest.getPdfApi().getVerifySignature(name, signature.formFieldName, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().getVerifySignature(name, signature.formFieldName, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

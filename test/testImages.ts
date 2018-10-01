@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 var fs = require('fs');
 
@@ -29,10 +28,6 @@ describe("Images Tests", () => {
 
     const name = "PdfWithImages2.pdf";
     const pageNumber = 1;
-    const imageNumber = 1;
-    const format = "jpeg";
-    const height = 100;
-    const width = 100;
 
     beforeEach( async () => {
         await BaseTest.uploadFile(name);
@@ -40,22 +35,28 @@ describe("Images Tests", () => {
 
     describe("GetImage Test", () => {
         
-        it("should return response with code 200", () => {
+        it("should return response with code 200", async () => {
 
-            return BaseTest.getPdfApi().getImage(name, pageNumber, imageNumber, null, null, null, null, BaseTest.remoteTempFolder)
+            const result = await BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder);
+            const imageId = result.body.images.list[0].id;
+
+            return BaseTest.getPdfApi().getImage(name, imageId, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetImage With Format Test", () => {
+    describe("DeleteImage Test", () => {
         
-        it("should return response with code 200", () => {
+        it("should return response with code 200", async () => {
 
-            return BaseTest.getPdfApi().getImage(name, pageNumber, imageNumber, format, width, height, null, BaseTest.remoteTempFolder)
+            const result = await BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder);
+            const imageId = result.body.images.list[0].id;
+
+            return BaseTest.getPdfApi().deleteImage(name, imageId, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -66,12 +67,12 @@ describe("Images Tests", () => {
 
             return BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PostReplaceImage From Storage Test", () => {
+    describe("PutReplaceImage Test", () => {
         
         it("should return response with code 200", async () => {
 
@@ -79,23 +80,28 @@ describe("Images Tests", () => {
             await BaseTest.uploadFile(imageName);
             const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
 
-            return BaseTest.getPdfApi().postReplaceImage(name, pageNumber, imageNumber, imageFile, null, BaseTest.remoteTempFolder)
+            const result = await BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder);
+            const imageId = result.body.images.list[0].id;
+
+            return BaseTest.getPdfApi().putReplaceImage(name, imageId, imageFile, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PostReplaceImage From Request Test", () => {
+    describe("PostInsertImage Test", () => {
         
         it("should return response with code 200", async () => {
 
             const imageName = "Koala.jpg";
-            const image = fs.readFileSync(BaseTest.localTestDataFolder + "/" + imageName);
+            await BaseTest.uploadFile(imageName);
+            const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
 
-            return BaseTest.getPdfApi().postReplaceImage(name, pageNumber, imageNumber, null, null, BaseTest.remoteTempFolder, image)
+
+            return BaseTest.getPdfApi().postInsertImage(name, pageNumber, 10, 10, 100, 100, imageFile, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -108,9 +114,9 @@ describe("Images Tests", () => {
 
                 const destFolder = BaseTest.remoteTempFolder + "/extract_jpg";
 
-                return BaseTest.getPdfApi().putImagesExtractAsJpeg(name, pageNumber, null, null, BaseTest.remoteTempFolder, destFolder)
+                return BaseTest.getPdfApi().putImagesExtractAsJpeg(name, pageNumber, null, null, null, BaseTest.remoteTempFolder, destFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -121,9 +127,9 @@ describe("Images Tests", () => {
 
                 const destFolder = BaseTest.remoteTempFolder + "/extract_tiff";
 
-                return BaseTest.getPdfApi().putImagesExtractAsTiff(name, pageNumber, null, null, BaseTest.remoteTempFolder, destFolder)
+                return BaseTest.getPdfApi().putImagesExtractAsTiff(name, pageNumber, null, null, null, BaseTest.remoteTempFolder, destFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -134,9 +140,9 @@ describe("Images Tests", () => {
 
                 const destFolder = BaseTest.remoteTempFolder + "/extract_gif";
 
-                return BaseTest.getPdfApi().putImagesExtractAsGif(name, pageNumber, null, null, BaseTest.remoteTempFolder, destFolder)
+                return BaseTest.getPdfApi().putImagesExtractAsGif(name, pageNumber, null, null, null, BaseTest.remoteTempFolder, destFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -147,9 +153,115 @@ describe("Images Tests", () => {
 
                 const destFolder = BaseTest.remoteTempFolder + "/extract_png";
 
-                return BaseTest.getPdfApi().putImagesExtractAsPng(name, pageNumber, null, null, BaseTest.remoteTempFolder, destFolder)
+                return BaseTest.getPdfApi().putImagesExtractAsPng(name, pageNumber, null, null, null, BaseTest.remoteTempFolder, destFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+    describe("Image Extract Tests", () => {
+
+        let imageId = "";
+
+        before( async () => {
+            const result = await BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder);
+            imageId = result.body.images.list[0].id;
+        });
+
+        describe("PutImageExtractAsJpeg Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                const destFolder = BaseTest.remoteTempFolder + "/extract_jpg";
+
+                return BaseTest.getPdfApi().putImageExtractAsJpeg(name, imageId, null, null, null, BaseTest.remoteTempFolder, destFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetImageExtractAsJpeg Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getImageExtractAsJpeg(name, imageId, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutImageExtractAsTiff Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                const destFolder = BaseTest.remoteTempFolder + "/extract_tiff";
+
+                return BaseTest.getPdfApi().putImageExtractAsTiff(name, imageId, null, null, null, BaseTest.remoteTempFolder, destFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetImageExtractAsTiff Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getImageExtractAsTiff(name, imageId, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutImageExtractAsGif Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                const destFolder = BaseTest.remoteTempFolder + "/extract_gif";
+
+                return BaseTest.getPdfApi().putImageExtractAsGif(name, imageId, null, null, null, BaseTest.remoteTempFolder, destFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetImageExtractAsGif Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getImageExtractAsGif(name, imageId, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutImageExtractAsPng Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                const destFolder = BaseTest.remoteTempFolder + "/extract_png";
+
+                return BaseTest.getPdfApi().putImageExtractAsPng(name, imageId, null, null, null, BaseTest.remoteTempFolder, destFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetImageExtractAsPng Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getImageExtractAsPng(name, imageId, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });

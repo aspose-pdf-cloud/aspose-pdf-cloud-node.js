@@ -21,34 +21,20 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { beforeEach } from "mocha";
-import { TextReplaceRequest } from "../src/models/textReplaceRequest";
 import { TextReplaceListRequest } from "../src/models/textReplaceListRequest";
-import { Rectangle } from "../src/models/rectangle";
+import { RectanglePdf } from "../src/models/rectanglePdf";
 import { TextReplace } from "../src/models/textReplace";
 var assert = require('assert');
 
 describe("TextReplace Tests", () => {
 
-    const name = "4pages.pdf";
-    
-    const replaceRequest = new TextReplaceRequest();
-    replaceRequest.oldValue = "Page";
-    replaceRequest.newValue = "p_a_g_e";
-    replaceRequest.regex = false;
-
-    const replaceListRequest = new TextReplaceListRequest(); 
-    replaceListRequest.textReplaces = [
-        { oldValue: "First", newValue: "1", regex: false, textState: null, rect: null },
-        { oldValue: "Page", newValue: "p_a_g_e", regex: false, textState: null, rect: null }
-    ];
-
-    const rect: Rectangle = { x: 100, y: 700, width: 300, height: 300 };
+    const name = "marketing.pdf";
+    const rect: RectanglePdf = { lLX: 100, lLY: 100, uRX: 300, uRY: 300 };
     
     const textReplace: TextReplace = { 
-        oldValue: "Page", 
-        newValue: "p_a_g_e", 
+        oldValue: "market", 
+        newValue: "m_a_r_k_e_t", 
         regex: false, 
         textState: null, 
         rect: rect 
@@ -56,54 +42,6 @@ describe("TextReplace Tests", () => {
     
     beforeEach( async () => {
         await BaseTest.uploadFile(name);
-    });
-
-    describe("PostDocumentReplaceText Test", () => {
-        
-        it("should return response with code 200", () => {
-
-            return BaseTest.getPdfApi().postDocumentReplaceText(name, replaceRequest, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
-            });
-        });
-    });
-
-    describe("PostDocumentReplaceTextList Test", () => {
-        
-        it("should return response with code 200", () => {
-
-            return BaseTest.getPdfApi().postDocumentReplaceTextList(name, replaceListRequest, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
-            });
-        });
-    });
-
-    describe("PostPageReplaceText Test", () => {
-        
-        it("should return response with code 200", () => {
-
-            const pageNumber = 1;
-
-            return BaseTest.getPdfApi().postPageReplaceText(name, pageNumber, replaceRequest, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
-            });
-        });
-    });
-
-    describe("PostPageReplaceTextList Test", () => {
-        
-        it("should return response with code 200", () => {
-
-            const pageNumber = 1;
-
-            return BaseTest.getPdfApi().postPageReplaceTextList(name, pageNumber, replaceListRequest, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
-            });
-        });
     });
 
     describe("PostDocumentTextReplace Test", () => {
@@ -117,7 +55,7 @@ describe("TextReplace Tests", () => {
 
             return BaseTest.getPdfApi().postDocumentTextReplace(name, trr, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -135,7 +73,7 @@ describe("TextReplace Tests", () => {
 
             return BaseTest.getPdfApi().postPageTextReplace(name, pageNumber, trr, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

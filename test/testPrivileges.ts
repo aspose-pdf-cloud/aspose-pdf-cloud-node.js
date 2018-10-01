@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { DocumentPrivilege } from "../src/models/documentPrivilege";
 var assert = require('assert');
 
@@ -41,9 +40,9 @@ describe("Privileges Tests", () => {
             documentPrivilege.allowCopy = false;
             documentPrivilege.allowPrint = false;
 
-            return BaseTest.getPdfApi().putPrivileges(name, documentPrivilege, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().putPrivileges(name, documentPrivilege, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

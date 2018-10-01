@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { MergeDocuments } from "../src/models/mergeDocuments";
 var assert = require('assert');
 
@@ -47,7 +46,7 @@ describe("Merge Tests", () => {
 
             return BaseTest.getPdfApi().putMergeDocuments(resultName, mergeDocuments, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

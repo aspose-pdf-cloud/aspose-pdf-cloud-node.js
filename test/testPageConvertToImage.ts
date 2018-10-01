@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 
 describe("Page Convert To Image Tests", () => {
@@ -41,7 +40,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToTiff(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -55,7 +54,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToTiff(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -69,7 +68,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToJpeg(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -83,7 +82,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToJpeg(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -97,7 +96,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToPng(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -111,7 +110,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToPng(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -125,7 +124,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToEmf(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -139,7 +138,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToEmf(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -153,7 +152,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToBmp(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -167,7 +166,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToBmp(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -181,7 +180,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().getPageConvertToGif(name, pageNumber, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });
@@ -195,7 +194,7 @@ describe("Page Convert To Image Tests", () => {
 
                 return BaseTest.getPdfApi().putPageConvertToGif(name, pageNumber, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
-                        assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                        assert.equal(result.response.statusCode, 200);
                 });
             });
         });

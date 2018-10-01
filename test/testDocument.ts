@@ -21,9 +21,7 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { OptimizeOptions } from "../src/models/optimizeOptions";
-import { ImagesListRequest } from "../src/models/imagesListRequest";
 
 var assert = require('assert');
 
@@ -35,9 +33,9 @@ describe("Document Tests", () => {
       const name = "4pages.pdf";
       await BaseTest.uploadFile(name);
 
-      return BaseTest.getPdfApi().getDocument(name, null, null, BaseTest.remoteTempFolder)
+      return BaseTest.getPdfApi().getDocument(name, null, BaseTest.remoteTempFolder)
         .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
+          assert.equal(result.response.statusCode, 200);
         });
     });
   });
@@ -60,7 +58,7 @@ describe("Document Tests", () => {
 
       return BaseTest.getPdfApi().postOptimizeDocument(name, optimizeOptions, null, BaseTest.remoteTempFolder)
         .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
+          assert.equal(result.response.statusCode, 200);
         });
     });
   });
@@ -73,20 +71,7 @@ describe("Document Tests", () => {
 
       return BaseTest.getPdfApi().postSplitDocument(name, null, null, null, null, BaseTest.remoteTempFolder)
         .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
-        });
-    });
-  });
-
-  describe("PutConvertDocument Test", () => {
-    
-    it("should return response with code 200", () => {
-      const urlToFile = "http://pdf995.com/samples/pdf.pdf";
-      const format = "tiff";
-
-      return BaseTest.getPdfApi().putConvertDocument(format, urlToFile)
-        .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
+          assert.equal(result.response.statusCode, 200);
         });
     });
   });
@@ -97,50 +82,9 @@ describe("Document Tests", () => {
 
       const name = "empty_node.pdf";
 
-      return BaseTest.getPdfApi().putCreateDocument(name, null, null, null, null, BaseTest.remoteTempFolder, null, null)
+      return BaseTest.getPdfApi().putCreateDocument(name, null, BaseTest.remoteTempFolder)
         .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
-        });
-    });
-  });
-
-  describe("PutCreateDocument Test", () => {
-    
-    it("should return response with code 200", async () => {
-
-      const name = "HtmlExample1.pdf";
-      const templateName = "HtmlExample1.html";
-      const templateFile = BaseTest.remoteTempFolder + "/" + templateName;
-      const templateType = "html";
-      await BaseTest.uploadFile(templateName);
-
-      return BaseTest.getPdfApi().putCreateDocument(name, templateFile, null, templateType, null, BaseTest.remoteTempFolder)
-        .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
-        });
-    });
-  });
-
-  describe("PutCreateDocumentFromImages Test", () => {
-    
-    it("should return response with code 200", async () => {
-
-      const image1 = "33539.jpg";
-      await BaseTest.uploadFile(image1);
-
-      const image2 = "44781.jpg";
-      await BaseTest.uploadFile(image2);
-
-      const name = "pdffromimagesinquery_net.pdf";
-
-      let imagesListRequest = new ImagesListRequest();
-      imagesListRequest.imagesList = [ BaseTest.remoteTempFolder + "/" + image1, BaseTest.remoteTempFolder + "/" + image2];
-
-      const ocr = false;
-
-      return BaseTest.getPdfApi().putCreateDocumentFromImages(name, imagesListRequest, ocr, null, null, BaseTest.remoteTempFolder)
-        .then((result) => {
-          assert.equal(result.response.statusCode, HttpStatusCode.OK);
+          assert.equal(result.response.statusCode, 200);
         });
     });
   });

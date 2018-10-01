@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 var fs = require('fs');
 
@@ -40,7 +39,7 @@ describe("OCR Tests", () => {
 
             return BaseTest.getPdfApi().putSearchableDocument(name, null, BaseTest.remoteTempFolder, lang)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -51,7 +50,7 @@ describe("OCR Tests", () => {
 
             return BaseTest.getPdfApi().putSearchableDocument(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
