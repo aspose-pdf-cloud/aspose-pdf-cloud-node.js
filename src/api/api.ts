@@ -19,8 +19,12 @@
  *
  */
 
+import { AnnotationFlags } from "../models/annotationFlags";
+import { AnnotationState } from "../models/annotationState";
+import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
 import { AppendDocument } from "../models/appendDocument";
+import { AsposeResponse } from "../models/asposeResponse";
 import { Color } from "../models/color";
 import { ColorDepth } from "../models/colorDepth";
 import { CompressionType } from "../models/compressionType";
@@ -32,14 +36,14 @@ import { FieldType } from "../models/fieldType";
 import { FontEncodingRules } from "../models/fontEncodingRules";
 import { FontSavingModes } from "../models/fontSavingModes";
 import { FontStyles } from "../models/fontStyles";
+import { FreeTextIntent } from "../models/freeTextIntent";
 import { HorizontalAlignment } from "../models/horizontalAlignment";
 import { HtmlDocumentType } from "../models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "../models/htmlMarkupGenerationModes";
-import { HttpStatusCode } from "../models/httpStatusCode";
 import { ImageSrcType } from "../models/imageSrcType";
 import { ImageTemplate } from "../models/imageTemplate";
 import { ImageTemplatesRequest } from "../models/imageTemplatesRequest";
-import { ImagesListRequest } from "../models/imagesListRequest";
+import { Justification } from "../models/justification";
 import { LettersPositioningMethods } from "../models/lettersPositioningMethods";
 import { LineSpacing } from "../models/lineSpacing";
 import { Link } from "../models/link";
@@ -54,9 +58,8 @@ import { Paragraph } from "../models/paragraph";
 import { PartsEmbeddingModes } from "../models/partsEmbeddingModes";
 import { PdfAType } from "../models/pdfAType";
 import { RasterImagesSavingModes } from "../models/rasterImagesSavingModes";
-import { Rectangle } from "../models/rectangle";
+import { RectanglePdf } from "../models/rectanglePdf";
 import { Rotation } from "../models/rotation";
-import { SaaSposeResponse } from "../models/saaSposeResponse";
 import { Segment } from "../models/segment";
 import { ShapeType } from "../models/shapeType";
 import { Signature } from "../models/signature";
@@ -65,25 +68,26 @@ import { SplitResult } from "../models/splitResult";
 import { Stamp } from "../models/stamp";
 import { StampType } from "../models/stampType";
 import { TextHorizontalAlignment } from "../models/textHorizontalAlignment";
+import { TextIcon } from "../models/textIcon";
 import { TextLine } from "../models/textLine";
 import { TextRect } from "../models/textRect";
 import { TextRects } from "../models/textRects";
 import { TextReplace } from "../models/textReplace";
 import { TextReplaceListRequest } from "../models/textReplaceListRequest";
 import { TextState } from "../models/textState";
-import { TiffExportOptions } from "../models/tiffExportOptions";
+import { TextStyle } from "../models/textStyle";
 import { VerticalAlignment } from "../models/verticalAlignment";
 import { WordCount } from "../models/wordCount";
 import { WrapMode } from "../models/wrapMode";
 import { Annotation } from "../models/annotation";
-import { AnnotationResponse } from "../models/annotationResponse";
-import { Annotations } from "../models/annotations";
-import { AnnotationsResponse } from "../models/annotationsResponse";
+import { AnnotationsInfo } from "../models/annotationsInfo";
+import { AnnotationsInfoResponse } from "../models/annotationsInfoResponse";
 import { Attachment } from "../models/attachment";
 import { AttachmentResponse } from "../models/attachmentResponse";
 import { Attachments } from "../models/attachments";
 import { AttachmentsResponse } from "../models/attachmentsResponse";
 import { Document } from "../models/document";
+import { DocumentPageResponse } from "../models/documentPageResponse";
 import { DocumentPagesResponse } from "../models/documentPagesResponse";
 import { DocumentProperties } from "../models/documentProperties";
 import { DocumentPropertiesResponse } from "../models/documentPropertiesResponse";
@@ -94,6 +98,9 @@ import { Field } from "../models/field";
 import { FieldResponse } from "../models/fieldResponse";
 import { Fields } from "../models/fields";
 import { FieldsResponse } from "../models/fieldsResponse";
+import { FreeTextAnnotationResponse } from "../models/freeTextAnnotationResponse";
+import { FreeTextAnnotations } from "../models/freeTextAnnotations";
+import { FreeTextAnnotationsResponse } from "../models/freeTextAnnotationsResponse";
 import { Image } from "../models/image";
 import { ImageResponse } from "../models/imageResponse";
 import { Images } from "../models/images";
@@ -107,18 +114,16 @@ import { Pages } from "../models/pages";
 import { SignatureVerifyResponse } from "../models/signatureVerifyResponse";
 import { SplitResultDocument } from "../models/splitResultDocument";
 import { SplitResultResponse } from "../models/splitResultResponse";
-import { TextFormat } from "../models/textFormat";
-import { TextFormatResponse } from "../models/textFormatResponse";
-import { TextItem } from "../models/textItem";
-import { TextItemResponse } from "../models/textItemResponse";
-import { TextItems } from "../models/textItems";
-import { TextItemsResponse } from "../models/textItemsResponse";
+import { TextAnnotationResponse } from "../models/textAnnotationResponse";
+import { TextAnnotations } from "../models/textAnnotations";
+import { TextAnnotationsResponse } from "../models/textAnnotationsResponse";
 import { TextRectsResponse } from "../models/textRectsResponse";
-import { TextReplaceRequest } from "../models/textReplaceRequest";
 import { TextReplaceResponse } from "../models/textReplaceResponse";
 import { WordCountResponse } from "../models/wordCountResponse";
-import { DocumentTextReplaceResponse } from "../models/documentTextReplaceResponse";
-import { PageTextReplaceResponse } from "../models/pageTextReplaceResponse";
+import { AnnotationInfo } from "../models/annotationInfo";
+import { MarkupAnnotation } from "../models/markupAnnotation";
+import { FreeTextAnnotation } from "../models/freeTextAnnotation";
+import { TextAnnotation } from "../models/textAnnotation";
 
 import { ObjectSerializer } from "../objectSerializer";
 import { Configuration } from "../configuration";
@@ -127,7 +132,7 @@ import localVarRequest = require('request');
 import http = require('http');
 import { invokeApiMethod } from "../requestHelper";
 
-let defaultBasePath = 'https://api.aspose.cloud/v1.1';
+let defaultBasePath = 'https://api.aspose.cloud/v2.0';
 
 
 
@@ -171,13 +176,176 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Delete document annotation by ID
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deleteAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling deleteAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete all annotations from the document
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deleteDocumentAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteDocumentAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete all link annotations from the document
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deleteDocumentLinkAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/links'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteDocumentLinkAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Delete document field by name.
      * @param name The document name.
      * @param fieldName The field name/
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async deleteField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async deleteField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/{fieldName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
@@ -223,7 +391,125 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete image from document page.
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deleteImage (name: string, imageId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteImage.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling deleteImage.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete document page link annotation by ID
+     * @param name The document name.
+     * @param linkId The link ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deleteLinkAnnotation (name: string, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteLinkAnnotation.');
+        }
+
+        // verify required parameter 'linkId' is not null or undefined
+        if (linkId === null || linkId === undefined) {
+            throw new Error('Required parameter linkId was null or undefined when calling deleteLinkAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -236,7 +522,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async deletePage (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async deletePage (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -282,7 +568,125 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete all annotations from the page
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deletePageAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deletePageAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling deletePageAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete all link annotations from the page
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async deletePageLinkAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deletePageLinkAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling deletePageLinkAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -294,7 +698,7 @@ export class PdfApi {
      * @param storage 
      * @param folder 
      */
-    public async deleteProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async deleteProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -334,7 +738,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -347,7 +751,7 @@ export class PdfApi {
      * @param storage 
      * @param folder 
      */
-    public async deleteProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async deleteProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)));
@@ -393,21 +797,19 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Read common document info or convert to some format if the format specified.
+     * @summary Read common document info.
      * @param name The document name.
-     * @param format The format to convert.
      * @param storage The document storage.
      * @param folder The document folder.
-     * @param outPath Path to save result
      */
-    public async getDocument (name: string, format?: string, storage?: string, folder?: string, outPath?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getDocument (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -419,20 +821,12 @@ export class PdfApi {
             throw new Error('Required parameter name was null or undefined when calling getDocument.');
         }
 
-        if (format !== undefined && null !== format) {
-            localVarQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
-        }
-
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-        if (outPath !== undefined && null !== outPath) {
-            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
 
@@ -444,7 +838,7 @@ export class PdfApi {
             headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -455,7 +849,59 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AnnotationsInfoResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AnnotationsInfoResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -630,6 +1076,58 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document free text annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentFreeTextAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: FreeTextAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentFreeTextAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FreeTextAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document properties.
      * @param name 
      * @param storage 
@@ -735,6 +1233,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document text annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentTextAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/text'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentTextAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -857,8 +1407,9 @@ export class PdfApi {
      * 
      * @summary Convert EPUB file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.epub)
+     * @param storage The document storage.
      */
-    public async getEpubInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getEpubInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/epub';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -871,6 +1422,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -1011,40 +1566,28 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read page fragment.
-     * @param name 
-     * @param pageNumber 
-     * @param fragmentNumber 
-     * @param withEmpty 
-     * @param storage 
-     * @param folder 
+     * @summary Read document page free text annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
-    public async getFragment (name: string, pageNumber: number, fragmentNumber: number, withEmpty?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemsResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments/{fragmentNumber}'
+    public async getFreeTextAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: FreeTextAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext/{annotationId}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'fragmentNumber' + '}', encodeURIComponent(String(fragmentNumber)));
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getFragment.');
+            throw new Error('Required parameter name was null or undefined when calling getFreeTextAnnotation.');
         }
 
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getFragment.');
-        }
-
-        // verify required parameter 'fragmentNumber' is not null or undefined
-        if (fragmentNumber === null || fragmentNumber === undefined) {
-            throw new Error('Required parameter fragmentNumber was null or undefined when calling getFragment.');
-        }
-
-        if (withEmpty !== undefined && null !== withEmpty) {
-            localVarQueryParameters['withEmpty'] = ObjectSerializer.serialize(withEmpty, "string");
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getFreeTextAnnotation.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -1075,137 +1618,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Read page fragment text format.
-     * @param name 
-     * @param pageNumber 
-     * @param fragmentNumber 
-     * @param storage 
-     * @param folder 
-     */
-    public async getFragmentTextFormat (name: string, pageNumber: number, fragmentNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextFormatResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments/{fragmentNumber}/textFormat'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'fragmentNumber' + '}', encodeURIComponent(String(fragmentNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getFragmentTextFormat.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getFragmentTextFormat.');
-        }
-
-        // verify required parameter 'fragmentNumber' is not null or undefined
-        if (fragmentNumber === null || fragmentNumber === undefined) {
-            throw new Error('Required parameter fragmentNumber was null or undefined when calling getFragmentTextFormat.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextFormatResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Read page fragments.
-     * @param name 
-     * @param pageNumber 
-     * @param withEmpty 
-     * @param storage 
-     * @param folder 
-     */
-    public async getFragments (name: string, pageNumber: number, withEmpty?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemsResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getFragments.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getFragments.');
-        }
-
-        if (withEmpty !== undefined && null !== withEmpty) {
-            localVarQueryParameters['withEmpty'] = ObjectSerializer.serialize(withEmpty, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "FreeTextAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -1222,8 +1635,9 @@ export class PdfApi {
      * @param marginBottom Page margin bottom
      * @param marginRight Page margin right
      * @param marginTop Page margin top
+     * @param storage The document storage.
      */
-    public async getHtmlInStorageToPdf (srcPath: string, htmlFileName: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getHtmlInStorageToPdf (srcPath: string, htmlFileName: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/html';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1275,6 +1689,10 @@ export class PdfApi {
             localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1302,21 +1720,16 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Extract document image in format specified.
+     * @summary Read document image by ID.
      * @param name The document name.
-     * @param pageNumber The page number.
-     * @param imageNumber The image format.
-     * @param format Image format to convert, if not specified the common image data is read.
-     * @param width The converted image width.
-     * @param height The converted image height.
+     * @param imageId Image ID.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async getImage (name: string, pageNumber: number, imageNumber: number, format?: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/{imageNumber}'
+    public async getImage (name: string, imageId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: ImageResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'imageNumber' + '}', encodeURIComponent(String(imageNumber)));
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1326,18 +1739,277 @@ export class PdfApi {
             throw new Error('Required parameter name was null or undefined when calling getImage.');
         }
 
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getImage.');
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling getImage.');
         }
 
-        // verify required parameter 'imageNumber' is not null or undefined
-        if (imageNumber === null || imageNumber === undefined) {
-            throw new Error('Required parameter imageNumber was null or undefined when calling getImage.');
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
-        if (format !== undefined && null !== format) {
-            localVarQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ImageResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in GIF format
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImageExtractAsGif (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/gif'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImageExtractAsGif.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling getImageExtractAsGif.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in JPEG format
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImageExtractAsJpeg (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/jpeg'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImageExtractAsJpeg.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling getImageExtractAsJpeg.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in PNG format
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImageExtractAsPng (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/png'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImageExtractAsPng.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling getImageExtractAsPng.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in TIFF format
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImageExtractAsTiff (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/tiff'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImageExtractAsTiff.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling getImageExtractAsTiff.');
         }
 
         if (width !== undefined && null !== width) {
@@ -1444,8 +2116,9 @@ export class PdfApi {
      * 
      * @summary Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
+     * @param storage The document storage.
      */
-    public async getLaTeXInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getLaTeXInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/latex';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -1460,125 +2133,10 @@ export class PdfApi {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
         }
 
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Convert MHT file (located on storage) to PDF format and return resulting file in response. 
-     * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
-     */
-    public async getMhtInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/create/mht';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'srcPath' is not null or undefined
-        if (srcPath === null || srcPath === undefined) {
-            throw new Error('Required parameter srcPath was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        if (srcPath !== undefined && null !== srcPath) {
-            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Convert document page to format specified.
-     * @param name The document name.
-     * @param pageNumber The page number.
-     * @param format The format to convert if specified.
-     * @param width The converted image width.
-     * @param height The converted image height.
-     * @param storage The document storage.
-     * @param folder The document folder.
-     */
-    public async getPage (name: string, pageNumber: number, format?: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getPage.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getPage.');
-        }
-
-        if (format !== undefined && null !== format) {
-            localVarQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
-        }
-
-        if (width !== undefined && null !== width) {
-            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
-        }
-
-        if (height !== undefined && null !== height) {
-            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
-        }
-
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1606,35 +2164,28 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read document page annotation by its number.
+     * @summary Read document link annotation by ID.
      * @param name The document name.
-     * @param pageNumber The page number.
-     * @param annotationNumber The annotation number.
+     * @param linkId The link ID.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async getPageAnnotation (name: string, pageNumber: number, annotationNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AnnotationResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/{annotationNumber}'
+    public async getLinkAnnotation (name: string, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LinkAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'annotationNumber' + '}', encodeURIComponent(String(annotationNumber)));
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getPageAnnotation.');
+            throw new Error('Required parameter name was null or undefined when calling getLinkAnnotation.');
         }
 
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getPageAnnotation.');
-        }
-
-        // verify required parameter 'annotationNumber' is not null or undefined
-        if (annotationNumber === null || annotationNumber === undefined) {
-            throw new Error('Required parameter annotationNumber was null or undefined when calling getPageAnnotation.');
+        // verify required parameter 'linkId' is not null or undefined
+        if (linkId === null || linkId === undefined) {
+            throw new Error('Required parameter linkId was null or undefined when calling getLinkAnnotation.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -1665,20 +2216,129 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AnnotationResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Read documant page annotations.
+     * @summary Convert MHT file (located on storage) to PDF format and return resulting file in response. 
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
+     * @param storage The document storage.
+     */
+    public async getMhtInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/create/mht';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling getMhtInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page info.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async getPageAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AnnotationsResponse;  }> {
+    public async getPage (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentPageResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPage.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPage.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "DocumentPageResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AnnotationsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -1724,21 +2384,22 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AnnotationsResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AnnotationsInfoResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to Bmp image.
+     * @summary Convert document page to Bmp image and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToBmp (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToBmp (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -1768,6 +2429,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1795,14 +2460,15 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert document page to Emf image.
+     * @summary Convert document page to Emf image and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToEmf (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToEmf (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -1832,6 +2498,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1859,14 +2529,15 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert document page to Gif image.
+     * @summary Convert document page to Gif image and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -1896,6 +2567,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1923,14 +2598,15 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert document page to Jpeg image.
+     * @summary Convert document page to Jpeg image and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -1960,6 +2636,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -1987,14 +2667,15 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert document page to Png image.
+     * @summary Convert document page to Png image and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -2024,6 +2705,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -2051,14 +2736,15 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert document page to Tiff image.
+     * @summary Convert document page to Tiff image  and return resulting file in response.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageConvertToTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPageConvertToTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -2088,6 +2774,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -2115,35 +2805,94 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read document page link annotation by its index.
+     * @summary Read document page free text annotations.
      * @param name The document name.
      * @param pageNumber The page number.
-     * @param linkIndex The link index.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async getPageLinkAnnotationByIndex (name: string, pageNumber: number, linkIndex: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LinkAnnotationResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links/{linkIndex}'
+    public async getPageFreeTextAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: FreeTextAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/freetext'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'linkIndex' + '}', encodeURIComponent(String(linkIndex)));
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getPageLinkAnnotationByIndex.');
+            throw new Error('Required parameter name was null or undefined when calling getPageFreeTextAnnotations.');
         }
 
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getPageLinkAnnotationByIndex.');
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageFreeTextAnnotations.');
         }
 
-        // verify required parameter 'linkIndex' is not null or undefined
-        if (linkIndex === null || linkIndex === undefined) {
-            throw new Error('Required parameter linkIndex was null or undefined when calling getPageLinkAnnotationByIndex.');
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FreeTextAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page link annotation by ID.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param linkId The link ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageLinkAnnotation (name: string, pageNumber: number, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LinkAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links/{linkId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageLinkAnnotation.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageLinkAnnotation.');
+        }
+
+        // verify required parameter 'linkId' is not null or undefined
+        if (linkId === null || linkId === undefined) {
+            throw new Error('Required parameter linkId was null or undefined when calling getPageLinkAnnotation.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -2243,16 +2992,17 @@ export class PdfApi {
      * @summary Read page text items.
      * @param name The document name.
      * @param pageNumber Number of page (starting from 1).
-     * @param X 
-     * @param Y 
-     * @param width 
-     * @param height 
+     * @param LLX 
+     * @param LLY 
+     * @param URX 
+     * @param URY 
      * @param format List of formats for search.
      * @param regex Formats are specified as a regular expression.
      * @param splitRects Split result fragments (default is true).
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPageText (name: string, pageNumber: number, X: number, Y: number, width: number, height: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: TextRectsResponse;  }> {
+    public async getPageText (name: string, pageNumber: number, LLX: number, LLY: number, URX: number, URY: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: TextRectsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -2270,24 +3020,24 @@ export class PdfApi {
             throw new Error('Required parameter pageNumber was null or undefined when calling getPageText.');
         }
 
-        // verify required parameter 'X' is not null or undefined
-        if (X === null || X === undefined) {
-            throw new Error('Required parameter X was null or undefined when calling getPageText.');
+        // verify required parameter 'LLX' is not null or undefined
+        if (LLX === null || LLX === undefined) {
+            throw new Error('Required parameter LLX was null or undefined when calling getPageText.');
         }
 
-        // verify required parameter 'Y' is not null or undefined
-        if (Y === null || Y === undefined) {
-            throw new Error('Required parameter Y was null or undefined when calling getPageText.');
+        // verify required parameter 'LLY' is not null or undefined
+        if (LLY === null || LLY === undefined) {
+            throw new Error('Required parameter LLY was null or undefined when calling getPageText.');
         }
 
-        // verify required parameter 'width' is not null or undefined
-        if (width === null || width === undefined) {
-            throw new Error('Required parameter width was null or undefined when calling getPageText.');
+        // verify required parameter 'URX' is not null or undefined
+        if (URX === null || URX === undefined) {
+            throw new Error('Required parameter URX was null or undefined when calling getPageText.');
         }
 
-        // verify required parameter 'height' is not null or undefined
-        if (height === null || height === undefined) {
-            throw new Error('Required parameter height was null or undefined when calling getPageText.');
+        // verify required parameter 'URY' is not null or undefined
+        if (URY === null || URY === undefined) {
+            throw new Error('Required parameter URY was null or undefined when calling getPageText.');
         }
 
         if (format !== undefined && null !== format) {
@@ -2298,28 +3048,32 @@ export class PdfApi {
             localVarQueryParameters['regex'] = ObjectSerializer.serialize(regex, "string");
         }
 
-        if (X !== undefined && null !== X) {
-            localVarQueryParameters['X'] = ObjectSerializer.serialize(X, "number");
-        }
-
-        if (Y !== undefined && null !== Y) {
-            localVarQueryParameters['Y'] = ObjectSerializer.serialize(Y, "number");
-        }
-
-        if (width !== undefined && null !== width) {
-            localVarQueryParameters['Width'] = ObjectSerializer.serialize(width, "number");
-        }
-
-        if (height !== undefined && null !== height) {
-            localVarQueryParameters['Height'] = ObjectSerializer.serialize(height, "number");
-        }
-
         if (splitRects !== undefined && null !== splitRects) {
             localVarQueryParameters['splitRects'] = ObjectSerializer.serialize(splitRects, "boolean");
         }
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (LLX !== undefined && null !== LLX) {
+            localVarQueryParameters['LLX'] = ObjectSerializer.serialize(LLX, "number");
+        }
+
+        if (LLY !== undefined && null !== LLY) {
+            localVarQueryParameters['LLY'] = ObjectSerializer.serialize(LLY, "number");
+        }
+
+        if (URX !== undefined && null !== URX) {
+            localVarQueryParameters['URX'] = ObjectSerializer.serialize(URX, "number");
+        }
+
+        if (URY !== undefined && null !== URY) {
+            localVarQueryParameters['URY'] = ObjectSerializer.serialize(URY, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2349,15 +3103,14 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read page text items.
-     * @param name 
-     * @param pageNumber 
-     * @param withEmpty 
-     * @param storage 
-     * @param folder 
+     * @summary Read document page text annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
-    public async getPageTextItems (name: string, pageNumber: number, withEmpty?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemsResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/textItems'
+    public async getPageTextAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
         let localVarQueryParameters: any = {};
@@ -2366,16 +3119,12 @@ export class PdfApi {
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getPageTextItems.');
+            throw new Error('Required parameter name was null or undefined when calling getPageTextAnnotations.');
         }
 
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getPageTextItems.');
-        }
-
-        if (withEmpty !== undefined && null !== withEmpty) {
-            localVarQueryParameters['withEmpty'] = ObjectSerializer.serialize(withEmpty, "string");
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageTextAnnotations.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -2406,7 +3155,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -2467,8 +3216,9 @@ export class PdfApi {
      * 
      * @summary Convert PCL file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pcl)
+     * @param storage The document storage.
      */
-    public async getPclInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPclInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/pcl';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -2481,6 +3231,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2521,8 +3275,9 @@ export class PdfApi {
      * @param recognizeBullets Recognize bullets.
      * @param relativeHorizontalProximity Relative horizontal proximity.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToDoc (name: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToDoc (name: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2570,6 +3325,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -2599,10 +3358,11 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (located on storage) to EPUB format and returns resulting file in response content
      * @param name The document name.
-     * @param contentRecognitionMode ??roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToEpub (name: string, contentRecognitionMode?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToEpub (name: string, contentRecognitionMode?: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/epub'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2620,6 +3380,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2680,8 +3444,9 @@ export class PdfApi {
      * @param specialFolderForSvgImages The path to directory to which must be saved only SVG-images if they are encountered during saving of document as HTML. If parameter is empty or null then SVG files(if any) wil be saved together with other image-files (near to output file) or in special folder for images (if it specified in SpecialImagesFolderIfAny option). It does not affect anything if CustomImageSavingStrategy property was successfully used to process relevant image file.
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToHtml (name: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToHtml (name: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2809,6 +3574,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -2840,8 +3609,9 @@ export class PdfApi {
      * @param name The document name.
      * @param pagesCount Pages count.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToLaTeX (name: string, pagesCount?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToLaTeX (name: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2859,6 +3629,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2891,8 +3665,9 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to MOBIXML format and returns resulting file in response content
      * @param name The document name.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToMobiXml (name: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToMobiXml (name: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/mobixml'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2906,6 +3681,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2939,8 +3718,9 @@ export class PdfApi {
      * @param name The document name.
      * @param type Type of PdfA format.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToPdfA (name: string, type: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToPdfA (name: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -2963,6 +3743,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -2997,8 +3781,9 @@ export class PdfApi {
      * @param separateImages Separate images.
      * @param slidesAsImages Slides as images.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToPptx (name: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToPptx (name: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3020,6 +3805,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3053,8 +3842,9 @@ export class PdfApi {
      * @param name The document name.
      * @param compressOutputToZipArchive Specifies whether output will be created as one zip-archive.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToSvg (name: string, compressOutputToZipArchive?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToSvg (name: string, compressOutputToZipArchive?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3072,6 +3862,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3119,8 +3913,9 @@ export class PdfApi {
      * @param pageIndex Start page to export.
      * @param pageCount Number of pages to export.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToTiff (name: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToTiff (name: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3196,6 +3991,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -3230,8 +4029,9 @@ export class PdfApi {
      * @param scaleFactor Scale factor
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToXls (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToXls (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3261,6 +4061,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3293,8 +4097,9 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to XML format and returns resulting file in response content
      * @param name The document name.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToXml (name: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToXml (name: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xml'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3308,6 +4113,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3340,8 +4149,9 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to XPS format and returns resulting file in response content
      * @param name The document name.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getPdfInStorageToXps (name: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPdfInStorageToXps (name: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3355,6 +4165,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3386,8 +4200,9 @@ export class PdfApi {
      * 
      * @summary Convert PS file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.ps)
+     * @param storage The document storage.
      */
-    public async getPsInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getPsInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/ps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3400,6 +4215,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3429,223 +4248,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read segment.
-     * @param name 
-     * @param pageNumber 
-     * @param fragmentNumber 
-     * @param segmentNumber 
-     * @param storage 
-     * @param folder 
-     */
-    public async getSegment (name: string, pageNumber: number, fragmentNumber: number, segmentNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments/{fragmentNumber}/segments/{segmentNumber}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'fragmentNumber' + '}', encodeURIComponent(String(fragmentNumber)))
-            .replace('{' + 'segmentNumber' + '}', encodeURIComponent(String(segmentNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getSegment.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getSegment.');
-        }
-
-        // verify required parameter 'fragmentNumber' is not null or undefined
-        if (fragmentNumber === null || fragmentNumber === undefined) {
-            throw new Error('Required parameter fragmentNumber was null or undefined when calling getSegment.');
-        }
-
-        // verify required parameter 'segmentNumber' is not null or undefined
-        if (segmentNumber === null || segmentNumber === undefined) {
-            throw new Error('Required parameter segmentNumber was null or undefined when calling getSegment.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Read segment text format.
-     * @param name 
-     * @param pageNumber 
-     * @param fragmentNumber 
-     * @param segmentNumber 
-     * @param storage 
-     * @param folder 
-     */
-    public async getSegmentTextFormat (name: string, pageNumber: number, fragmentNumber: number, segmentNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextFormatResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments/{fragmentNumber}/segments/{segmentNumber}/textformat'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'fragmentNumber' + '}', encodeURIComponent(String(fragmentNumber)))
-            .replace('{' + 'segmentNumber' + '}', encodeURIComponent(String(segmentNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getSegmentTextFormat.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getSegmentTextFormat.');
-        }
-
-        // verify required parameter 'fragmentNumber' is not null or undefined
-        if (fragmentNumber === null || fragmentNumber === undefined) {
-            throw new Error('Required parameter fragmentNumber was null or undefined when calling getSegmentTextFormat.');
-        }
-
-        // verify required parameter 'segmentNumber' is not null or undefined
-        if (segmentNumber === null || segmentNumber === undefined) {
-            throw new Error('Required parameter segmentNumber was null or undefined when calling getSegmentTextFormat.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextFormatResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Read fragment segments.
-     * @param name 
-     * @param pageNumber 
-     * @param fragmentNumber 
-     * @param withEmpty 
-     * @param storage 
-     * @param folder 
-     */
-    public async getSegments (name: string, pageNumber: number, fragmentNumber: number, withEmpty?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemsResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/fragments/{fragmentNumber}/segments'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'fragmentNumber' + '}', encodeURIComponent(String(fragmentNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getSegments.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling getSegments.');
-        }
-
-        // verify required parameter 'fragmentNumber' is not null or undefined
-        if (fragmentNumber === null || fragmentNumber === undefined) {
-            throw new Error('Required parameter fragmentNumber was null or undefined when calling getSegments.');
-        }
-
-        if (withEmpty !== undefined && null !== withEmpty) {
-            localVarQueryParameters['withEmpty'] = ObjectSerializer.serialize(withEmpty, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Convert SVG file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.svg)
      * @param adjustPageSize Adjust page size
@@ -3656,8 +4258,9 @@ export class PdfApi {
      * @param marginBottom Page margin bottom
      * @param marginRight Page margin right
      * @param marginTop Page margin top
+     * @param storage The document storage.
      */
-    public async getSvgInStorageToPdf (srcPath: string, adjustPageSize?: boolean, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getSvgInStorageToPdf (srcPath: string, adjustPageSize?: boolean, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/svg';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3704,6 +4307,10 @@ export class PdfApi {
             localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -3733,16 +4340,17 @@ export class PdfApi {
      * 
      * @summary Read document text.
      * @param name The document name.
-     * @param X 
-     * @param Y 
-     * @param width 
-     * @param height 
+     * @param LLX 
+     * @param LLY 
+     * @param URX 
+     * @param URY 
      * @param format List of formats for search.
      * @param regex Formats are specified as a regular expression.
      * @param splitRects Split result fragments (default is true).
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getText (name: string, X: number, Y: number, width: number, height: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: TextRectsResponse;  }> {
+    public async getText (name: string, LLX: number, LLY: number, URX: number, URY: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: TextRectsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3754,24 +4362,24 @@ export class PdfApi {
             throw new Error('Required parameter name was null or undefined when calling getText.');
         }
 
-        // verify required parameter 'X' is not null or undefined
-        if (X === null || X === undefined) {
-            throw new Error('Required parameter X was null or undefined when calling getText.');
+        // verify required parameter 'LLX' is not null or undefined
+        if (LLX === null || LLX === undefined) {
+            throw new Error('Required parameter LLX was null or undefined when calling getText.');
         }
 
-        // verify required parameter 'Y' is not null or undefined
-        if (Y === null || Y === undefined) {
-            throw new Error('Required parameter Y was null or undefined when calling getText.');
+        // verify required parameter 'LLY' is not null or undefined
+        if (LLY === null || LLY === undefined) {
+            throw new Error('Required parameter LLY was null or undefined when calling getText.');
         }
 
-        // verify required parameter 'width' is not null or undefined
-        if (width === null || width === undefined) {
-            throw new Error('Required parameter width was null or undefined when calling getText.');
+        // verify required parameter 'URX' is not null or undefined
+        if (URX === null || URX === undefined) {
+            throw new Error('Required parameter URX was null or undefined when calling getText.');
         }
 
-        // verify required parameter 'height' is not null or undefined
-        if (height === null || height === undefined) {
-            throw new Error('Required parameter height was null or undefined when calling getText.');
+        // verify required parameter 'URY' is not null or undefined
+        if (URY === null || URY === undefined) {
+            throw new Error('Required parameter URY was null or undefined when calling getText.');
         }
 
         if (format !== undefined && null !== format) {
@@ -3782,28 +4390,32 @@ export class PdfApi {
             localVarQueryParameters['regex'] = ObjectSerializer.serialize(regex, "string");
         }
 
-        if (X !== undefined && null !== X) {
-            localVarQueryParameters['X'] = ObjectSerializer.serialize(X, "number");
-        }
-
-        if (Y !== undefined && null !== Y) {
-            localVarQueryParameters['Y'] = ObjectSerializer.serialize(Y, "number");
-        }
-
-        if (width !== undefined && null !== width) {
-            localVarQueryParameters['Width'] = ObjectSerializer.serialize(width, "number");
-        }
-
-        if (height !== undefined && null !== height) {
-            localVarQueryParameters['Height'] = ObjectSerializer.serialize(height, "number");
-        }
-
         if (splitRects !== undefined && null !== splitRects) {
             localVarQueryParameters['splitRects'] = ObjectSerializer.serialize(splitRects, "boolean");
         }
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (LLX !== undefined && null !== LLX) {
+            localVarQueryParameters['LLX'] = ObjectSerializer.serialize(LLX, "number");
+        }
+
+        if (LLY !== undefined && null !== LLY) {
+            localVarQueryParameters['LLY'] = ObjectSerializer.serialize(LLY, "number");
+        }
+
+        if (URX !== undefined && null !== URX) {
+            localVarQueryParameters['URX'] = ObjectSerializer.serialize(URX, "number");
+        }
+
+        if (URY !== undefined && null !== URY) {
+            localVarQueryParameters['URY'] = ObjectSerializer.serialize(URY, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -3833,26 +4445,28 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read document text items.
-     * @param name 
-     * @param withEmpty 
-     * @param storage 
-     * @param folder 
+     * @summary Read document page text annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
-    public async getTextItems (name: string, withEmpty?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextItemsResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/textItems'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+    public async getTextAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/text/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getTextItems.');
+            throw new Error('Required parameter name was null or undefined when calling getTextAnnotation.');
         }
 
-        if (withEmpty !== undefined && null !== withEmpty) {
-            localVarQueryParameters['withEmpty'] = ObjectSerializer.serialize(withEmpty, "string");
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getTextAnnotation.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -3883,7 +4497,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "TextItemsResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -3893,9 +4507,10 @@ export class PdfApi {
      * @summary Verify signature document.
      * @param name The document name.
      * @param signName Sign name.
+     * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async getVerifySignature (name: string, signName: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SignatureVerifyResponse;  }> {
+    public async getVerifySignature (name: string, signName: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SignatureVerifyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/verifySignature'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -3914,6 +4529,10 @@ export class PdfApi {
 
         if (signName !== undefined && null !== signName) {
             localVarQueryParameters['signName'] = ObjectSerializer.serialize(signName, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
         if (folder !== undefined && null !== folder) {
@@ -3956,8 +4575,9 @@ export class PdfApi {
      * @param marginBottom Page margin bottom
      * @param marginRight Page margin right
      * @param marginTop Page margin top
+     * @param storage The document storage.
      */
-    public async getWebInStorageToPdf (url: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getWebInStorageToPdf (url: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/web';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -3998,6 +4618,10 @@ export class PdfApi {
 
         if (marginTop !== undefined && null !== marginTop) {
             localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -4082,8 +4706,9 @@ export class PdfApi {
      * @summary Converts PDF document which contatins XFA form (located on storage) to PDF with AcroForm and returns resulting file response content
      * @param name The document name.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async getXfaPdfInStorageToAcroForm (name: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getXfaPdfInStorageToAcroForm (name: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xfatoacroform'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -4097,6 +4722,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -4129,8 +4758,9 @@ export class PdfApi {
      * @summary Convert XML file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xml)
      * @param xslFilePath Full XSL source filename (ex. /folder1/folder2/template.xsl)
+     * @param storage The document storage.
      */
-    public async getXmlInStorageToPdf (srcPath: string, xslFilePath?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getXmlInStorageToPdf (srcPath: string, xslFilePath?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/xml';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4147,6 +4777,10 @@ export class PdfApi {
 
         if (xslFilePath !== undefined && null !== xslFilePath) {
             localVarQueryParameters['xslFilePath'] = ObjectSerializer.serialize(xslFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -4178,8 +4812,9 @@ export class PdfApi {
      * 
      * @summary Convert XPS file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
+     * @param storage The document storage.
      */
-    public async getXpsInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getXpsInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/xps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4192,6 +4827,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -4223,8 +4862,9 @@ export class PdfApi {
      * 
      * @summary Convert XslFo file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xslfo)
+     * @param storage The document storage.
      */
-    public async getXslFoInStorageToPdf (srcPath: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
+    public async getXslFoInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/xslfo';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -4237,6 +4877,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -4342,7 +4986,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postCreateField (name: string, page: number, field?: Field, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async postCreateField (name: string, page: number, field?: Field, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -4392,125 +5036,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Document's replace text method. Deprecated
-     * @param name 
-     * @param textReplace 
-     * @param storage 
-     * @param folder 
-     */
-    public async postDocumentReplaceText (name: string, textReplace: TextReplaceRequest, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentTextReplaceResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/replaceText'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling postDocumentReplaceText.');
-        }
-
-        // verify required parameter 'textReplace' is not null or undefined
-        if (textReplace === null || textReplace === undefined) {
-            throw new Error('Required parameter textReplace was null or undefined when calling postDocumentReplaceText.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(textReplace, "TextReplaceRequest")
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentTextReplaceResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Document's replace text method. Deprecated
-     * @param name 
-     * @param textReplaceListRequest 
-     * @param storage 
-     * @param folder 
-     */
-    public async postDocumentReplaceTextList (name: string, textReplaceListRequest: TextReplaceListRequest, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentTextReplaceResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/replaceTextList'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling postDocumentReplaceTextList.');
-        }
-
-        // verify required parameter 'textReplaceListRequest' is not null or undefined
-        if (textReplaceListRequest === null || textReplaceListRequest === undefined) {
-            throw new Error('Required parameter textReplaceListRequest was null or undefined when calling postDocumentReplaceTextList.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(textReplaceListRequest, "TextReplaceListRequest")
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentTextReplaceResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -4576,6 +5102,118 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Insert image to document page.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param llx Coordinate lower left X.
+     * @param lly Coordinate lower left Y.
+     * @param urx Coordinate upper right X.
+     * @param ury Coordinate upper right Y.
+     * @param imageFilePath Path to image file if specified. Request content is used otherwise.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param image Image file.
+     */
+    public async postInsertImage (name: string, pageNumber: number, llx: number, lly: number, urx: number, ury: number, imageFilePath?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postInsertImage.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postInsertImage.');
+        }
+
+        // verify required parameter 'llx' is not null or undefined
+        if (llx === null || llx === undefined) {
+            throw new Error('Required parameter llx was null or undefined when calling postInsertImage.');
+        }
+
+        // verify required parameter 'lly' is not null or undefined
+        if (lly === null || lly === undefined) {
+            throw new Error('Required parameter lly was null or undefined when calling postInsertImage.');
+        }
+
+        // verify required parameter 'urx' is not null or undefined
+        if (urx === null || urx === undefined) {
+            throw new Error('Required parameter urx was null or undefined when calling postInsertImage.');
+        }
+
+        // verify required parameter 'ury' is not null or undefined
+        if (ury === null || ury === undefined) {
+            throw new Error('Required parameter ury was null or undefined when calling postInsertImage.');
+        }
+
+        if (llx !== undefined && null !== llx) {
+            localVarQueryParameters['llx'] = ObjectSerializer.serialize(llx, "number");
+        }
+
+        if (lly !== undefined && null !== lly) {
+            localVarQueryParameters['lly'] = ObjectSerializer.serialize(lly, "number");
+        }
+
+        if (urx !== undefined && null !== urx) {
+            localVarQueryParameters['urx'] = ObjectSerializer.serialize(urx, "number");
+        }
+
+        if (ury !== undefined && null !== ury) {
+            localVarQueryParameters['ury'] = ObjectSerializer.serialize(ury, "number");
+        }
+
+        if (imageFilePath !== undefined && null !== imageFilePath) {
+            localVarQueryParameters['imageFilePath'] = ObjectSerializer.serialize(imageFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (image !== undefined) {
+            localVarFormParams['image'] = image;
+            fileData = image;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Move page to new position.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -4583,7 +5221,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postMovePage (name: string, pageNumber: number, newIndex: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async postMovePage (name: string, pageNumber: number, newIndex: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/movePage'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -4638,7 +5276,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -4651,7 +5289,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postOptimizeDocument (name: string, options?: OptimizeOptions, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async postOptimizeDocument (name: string, options?: OptimizeOptions, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/optimize'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -4692,22 +5330,22 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Page's replace text method. Deprecated
-     * @param name 
-     * @param pageNumber 
-     * @param textReplace 
-     * @param storage 
-     * @param folder 
+     * @summary Add document page free text annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
-    public async postPageReplaceText (name: string, pageNumber: number, textReplace: TextReplaceRequest, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PageTextReplaceResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/replaceText'
+    public async postPageFreeTextAnnotations (name: string, pageNumber: number, annotations: Array<FreeTextAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/freetext'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
         let localVarQueryParameters: any = {};
@@ -4716,17 +5354,17 @@ export class PdfApi {
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling postPageReplaceText.');
+            throw new Error('Required parameter name was null or undefined when calling postPageFreeTextAnnotations.');
         }
 
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling postPageReplaceText.');
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageFreeTextAnnotations.');
         }
 
-        // verify required parameter 'textReplace' is not null or undefined
-        if (textReplace === null || textReplace === undefined) {
-            throw new Error('Required parameter textReplace was null or undefined when calling postPageReplaceText.');
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPageFreeTextAnnotations.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -4747,7 +5385,7 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(textReplace, "TextReplaceRequest")
+            body: ObjectSerializer.serialize(annotations, "Array<FreeTextAnnotation>")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -4758,22 +5396,22 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "PageTextReplaceResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Page's replace text method. Deprecated
-     * @param name 
-     * @param pageNumber 
-     * @param textReplaceListRequest 
-     * @param storage 
-     * @param folder 
+     * @summary Add document page link annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param links Array of link anotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
-    public async postPageReplaceTextList (name: string, pageNumber: number, textReplaceListRequest: TextReplaceListRequest, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PageTextReplaceResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/replaceTextList'
+    public async postPageLinkAnnotations (name: string, pageNumber: number, links: Array<LinkAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
         let localVarQueryParameters: any = {};
@@ -4782,17 +5420,17 @@ export class PdfApi {
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling postPageReplaceTextList.');
+            throw new Error('Required parameter name was null or undefined when calling postPageLinkAnnotations.');
         }
 
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling postPageReplaceTextList.');
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageLinkAnnotations.');
         }
 
-        // verify required parameter 'textReplaceListRequest' is not null or undefined
-        if (textReplaceListRequest === null || textReplaceListRequest === undefined) {
-            throw new Error('Required parameter textReplaceListRequest was null or undefined when calling postPageReplaceTextList.');
+        // verify required parameter 'links' is not null or undefined
+        if (links === null || links === undefined) {
+            throw new Error('Required parameter links was null or undefined when calling postPageLinkAnnotations.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -4813,7 +5451,7 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(textReplaceListRequest, "TextReplaceListRequest")
+            body: ObjectSerializer.serialize(links, "Array<LinkAnnotation>")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -4824,7 +5462,73 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "PageTextReplaceResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document page text annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPageTextAnnotations (name: string, pageNumber: number, annotations: Array<TextAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/text'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPageTextAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageTextAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPageTextAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<TextAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -4897,92 +5601,13 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Replace document image.
-     * @param name The document name.
-     * @param pageNumber The page number.
-     * @param imageNumber The image number.
-     * @param imageFile Path to image file if specified. Request content is used otherwise.
-     * @param storage The document storage.
-     * @param folder The document folder.
-     * @param image Image file.
-     */
-    public async postReplaceImage (name: string, pageNumber: number, imageNumber: number, imageFile?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.ClientResponse; body: ImageResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/{imageNumber}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'imageNumber' + '}', encodeURIComponent(String(imageNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling postReplaceImage.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling postReplaceImage.');
-        }
-
-        // verify required parameter 'imageNumber' is not null or undefined
-        if (imageNumber === null || imageNumber === undefined) {
-            throw new Error('Required parameter imageNumber was null or undefined when calling postReplaceImage.');
-        }
-
-        if (imageFile !== undefined && null !== imageFile) {
-            localVarQueryParameters['imageFile'] = ObjectSerializer.serialize(imageFile, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        if (image !== undefined) {
-            localVarFormParams['image'] = image;
-            fileData = image;
-        }
-        localVarUseFormData = true;
-        
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "ImageResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Sign document.
      * @param name The document name.
      * @param signature Signature object containing signature data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postSignDocument (name: string, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async postSignDocument (name: string, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/sign'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5023,7 +5648,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5037,7 +5662,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postSignPage (name: string, pageNumber: number, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async postSignPage (name: string, pageNumber: number, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/sign'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -5084,7 +5709,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5210,74 +5835,14 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Add text to PDF document page. Deprecated
-     * @param name Name of the document to which text should be added.
-     * @param pageNumber Number of page (starting with 1) to which text should be added.
-     * @param paragraph Paragraph data.
-     * @param storage File storage to be used.
-     * @param folder Document folder.
-     */
-    public async putAddParagraph (name: string, pageNumber: number, paragraph?: Paragraph, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/paragraph'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling putAddParagraph.');
-        }
-
-        // verify required parameter 'pageNumber' is not null or undefined
-        if (pageNumber === null || pageNumber === undefined) {
-            throw new Error('Required parameter pageNumber was null or undefined when calling putAddParagraph.');
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(paragraph, "Paragraph")
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Add text to PDF document page.
      * @param name The document name.
      * @param pageNumber Number of page (starting from 1).
      * @param paragraph Paragraph data.
      * @param folder Document folder.
+     * @param storage The document storage.
      */
-    public async putAddText (name: string, pageNumber: number, paragraph?: Paragraph, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putAddText (name: string, pageNumber: number, paragraph?: Paragraph, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -5299,6 +5864,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -5320,65 +5889,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Convert document from request content to format specified.
-     * @param format The format to convert.
-     * @param url 
-     * @param outPath Path to save result
-     * @param file A file to be converted.
-     */
-    public async putConvertDocument (format?: string, url?: string, outPath?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/convert';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        if (format !== undefined && null !== format) {
-            localVarQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
-        }
-
-        if (url !== undefined && null !== url) {
-            localVarQueryParameters['url'] = ObjectSerializer.serialize(url, "string");
-        }
-
-        if (outPath !== undefined && null !== outPath) {
-            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        if (file !== undefined) {
-            localVarFormParams['file'] = file;
-            fileData = file;
-        }
-        localVarUseFormData = true;
-        
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5391,7 +5902,7 @@ export class PdfApi {
      * @param versionId Source file&#39;s version
      * @param storage User&#39;s storage name
      */
-    public async putCreate (path: string, file: Buffer, versionId?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putCreate (path: string, file: Buffer, versionId?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/storage/file';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -5446,24 +5957,19 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Create new document.
+     * @summary Create empty document.
      * @param name The new document name.
-     * @param templateFile The template file server path if defined.
-     * @param dataFile The data file path (for xml template only).
-     * @param templateType The template type, can be xml, html, bmp, jpg, png, tiff, emf, cgm, tex.
      * @param storage The document storage.
      * @param folder The new document folder.
-     * @param url The url of web page if defined.
-     * @param fitSize Draw a margin around content in resulting pdf.
      */
-    public async putCreateDocument (name: string, templateFile?: string, dataFile?: string, templateType?: string, storage?: string, folder?: string, url?: string, fitSize?: boolean) : Promise<{ response: http.ClientResponse; body: DocumentResponse;  }> {
+    public async putCreateDocument (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5475,32 +5981,12 @@ export class PdfApi {
             throw new Error('Required parameter name was null or undefined when calling putCreateDocument.');
         }
 
-        if (templateFile !== undefined && null !== templateFile) {
-            localVarQueryParameters['templateFile'] = ObjectSerializer.serialize(templateFile, "string");
-        }
-
-        if (dataFile !== undefined && null !== dataFile) {
-            localVarQueryParameters['dataFile'] = ObjectSerializer.serialize(dataFile, "string");
-        }
-
-        if (templateType !== undefined && null !== templateType) {
-            localVarQueryParameters['templateType'] = ObjectSerializer.serialize(templateType, "string");
-        }
-
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-        if (url !== undefined && null !== url) {
-            localVarQueryParameters['url'] = ObjectSerializer.serialize(url, "string");
-        }
-
-        if (fitSize !== undefined && null !== fitSize) {
-            localVarQueryParameters['fitSize'] = ObjectSerializer.serialize(fitSize, "boolean");
         }
 
 
@@ -5524,204 +6010,6 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Create new document from images.
-     * @param name The new document name.
-     * @param images The images file paths set.  
-     * @param ocr To create OCR layer for image or not.
-     * @param ocrLang The language which is defined for OCR engine. Default is eng.
-     * @param storage The document storage.
-     * @param folder The new document folder.
-     */
-    public async putCreateDocumentFromImages (name: string, images?: ImagesListRequest, ocr?: boolean, ocrLang?: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/fromimages'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling putCreateDocumentFromImages.');
-        }
-
-        if (ocr !== undefined && null !== ocr) {
-            localVarQueryParameters['ocr'] = ObjectSerializer.serialize(ocr, "boolean");
-        }
-
-        if (ocrLang !== undefined && null !== ocrLang) {
-            localVarQueryParameters['ocrLang'] = ObjectSerializer.serialize(ocrLang, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(images, "ImagesListRequest")
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Save document as Tiff image.
-     * @param name The document name.
-     * @param exportOptions with tiff export options.
-     * @param resultFile The resulting file.
-     * @param brightness The image brightness.
-     * @param compression Tiff compression. Possible values are: LZW, CCITT4, CCITT3, RLE, None.
-     * @param colorDepth Image color depth. Possible valuse are: Default, Format8bpp, Format4bpp, Format1bpp.
-     * @param leftMargin Left image margin.
-     * @param rightMargin Right image margin.
-     * @param topMargin Top image margin.
-     * @param bottomMargin Bottom image margin.
-     * @param orientation Image orientation. Possible values are: None, Landscape, Portait.
-     * @param skipBlankPages Skip blank pages flag.
-     * @param width Image width.
-     * @param height Image height.
-     * @param xResolution Horizontal resolution.
-     * @param yResolution Vertical resolution.
-     * @param pageIndex Start page to export.
-     * @param pageCount Number of pages to export.
-     * @param storage The document storage.
-     * @param folder The document folder.
-     */
-    public async putDocumentSaveAsTiff (name: string, exportOptions?: TiffExportOptions, resultFile?: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/SaveAs/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling putDocumentSaveAsTiff.');
-        }
-
-        if (resultFile !== undefined && null !== resultFile) {
-            localVarQueryParameters['resultFile'] = ObjectSerializer.serialize(resultFile, "string");
-        }
-
-        if (brightness !== undefined && null !== brightness) {
-            localVarQueryParameters['brightness'] = ObjectSerializer.serialize(brightness, "number");
-        }
-
-        if (compression !== undefined && null !== compression) {
-            localVarQueryParameters['compression'] = ObjectSerializer.serialize(compression, "string");
-        }
-
-        if (colorDepth !== undefined && null !== colorDepth) {
-            localVarQueryParameters['colorDepth'] = ObjectSerializer.serialize(colorDepth, "string");
-        }
-
-        if (leftMargin !== undefined && null !== leftMargin) {
-            localVarQueryParameters['leftMargin'] = ObjectSerializer.serialize(leftMargin, "number");
-        }
-
-        if (rightMargin !== undefined && null !== rightMargin) {
-            localVarQueryParameters['rightMargin'] = ObjectSerializer.serialize(rightMargin, "number");
-        }
-
-        if (topMargin !== undefined && null !== topMargin) {
-            localVarQueryParameters['topMargin'] = ObjectSerializer.serialize(topMargin, "number");
-        }
-
-        if (bottomMargin !== undefined && null !== bottomMargin) {
-            localVarQueryParameters['bottomMargin'] = ObjectSerializer.serialize(bottomMargin, "number");
-        }
-
-        if (orientation !== undefined && null !== orientation) {
-            localVarQueryParameters['orientation'] = ObjectSerializer.serialize(orientation, "string");
-        }
-
-        if (skipBlankPages !== undefined && null !== skipBlankPages) {
-            localVarQueryParameters['skipBlankPages'] = ObjectSerializer.serialize(skipBlankPages, "boolean");
-        }
-
-        if (width !== undefined && null !== width) {
-            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
-        }
-
-        if (height !== undefined && null !== height) {
-            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
-        }
-
-        if (xResolution !== undefined && null !== xResolution) {
-            localVarQueryParameters['xResolution'] = ObjectSerializer.serialize(xResolution, "number");
-        }
-
-        if (yResolution !== undefined && null !== yResolution) {
-            localVarQueryParameters['yResolution'] = ObjectSerializer.serialize(yResolution, "number");
-        }
-
-        if (pageIndex !== undefined && null !== pageIndex) {
-            localVarQueryParameters['pageIndex'] = ObjectSerializer.serialize(pageIndex, "number");
-        }
-
-        if (pageCount !== undefined && null !== pageCount) {
-            localVarQueryParameters['pageCount'] = ObjectSerializer.serialize(pageCount, "number");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-            body: ObjectSerializer.serialize(exportOptions, "TiffExportOptions")
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5731,9 +6019,10 @@ export class PdfApi {
      * @summary Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.epub)
+     * @param storage The document storage.
      * @param dstFolder The destination document folder.
      */
-    public async putEpubInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putEpubInStorageToPdf (name: string, srcPath: string, storage?: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/epub'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5752,6 +6041,10 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
         if (dstFolder !== undefined && null !== dstFolder) {
@@ -5778,7 +6071,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5790,7 +6083,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putFieldsFlatten (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putFieldsFlatten (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/flatten'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5830,7 +6123,73 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document free text annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putFreeTextAnnotation (name: string, annotationId: string, annotation: FreeTextAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: FreeTextAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putFreeTextAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putFreeTextAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putFreeTextAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "FreeTextAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FreeTextAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5849,8 +6208,9 @@ export class PdfApi {
      * @param marginRight Page margin right
      * @param marginTop Page margin top
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putHtmlInStorageToPdf (name: string, srcPath: string, htmlFileName: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putHtmlInStorageToPdf (name: string, srcPath: string, htmlFileName: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5912,6 +6272,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -5932,7 +6296,303 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in GIF format to folder
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param destFolder The document folder.
+     */
+    public async putImageExtractAsGif (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/gif'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImageExtractAsGif.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling putImageExtractAsGif.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (destFolder !== undefined && null !== destFolder) {
+            localVarQueryParameters['destFolder'] = ObjectSerializer.serialize(destFolder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in JPEG format to folder
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param destFolder The document folder.
+     */
+    public async putImageExtractAsJpeg (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/jpeg'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImageExtractAsJpeg.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling putImageExtractAsJpeg.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (destFolder !== undefined && null !== destFolder) {
+            localVarQueryParameters['destFolder'] = ObjectSerializer.serialize(destFolder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in PNG format to folder
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param destFolder The document folder.
+     */
+    public async putImageExtractAsPng (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/png'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImageExtractAsPng.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling putImageExtractAsPng.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (destFolder !== undefined && null !== destFolder) {
+            localVarQueryParameters['destFolder'] = ObjectSerializer.serialize(destFolder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract document image in TIFF format to folder
+     * @param name The document name.
+     * @param imageId Image ID.
+     * @param width The converted image width.
+     * @param height The converted image height.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param destFolder The document folder.
+     */
+    public async putImageExtractAsTiff (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/tiff'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImageExtractAsTiff.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling putImageExtractAsTiff.');
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (destFolder !== undefined && null !== destFolder) {
+            localVarQueryParameters['destFolder'] = ObjectSerializer.serialize(destFolder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5943,8 +6603,9 @@ export class PdfApi {
      * @param name The document name.
      * @param imageTemplates Image templates
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putImageInStorageToPdf (name: string, imageTemplates: ImageTemplatesRequest, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putImageInStorageToPdf (name: string, imageTemplates: ImageTemplatesRequest, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/images'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -5963,6 +6624,10 @@ export class PdfApi {
 
         if (dstFolder !== undefined && null !== dstFolder) {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -5986,22 +6651,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Extract document images in format specified to folder.
+     * @summary Extract document images in GIF format to folder.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
+     * @param storage The document storage.
      * @param folder The document folder.
      * @param destFolder The document folder.
      */
-    public async putImagesExtractAsGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putImagesExtractAsGif (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/gif'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6027,6 +6693,10 @@ export class PdfApi {
             localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
@@ -6055,22 +6725,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Extract document images in format specified to folder.
+     * @summary Extract document images in JPEG format to folder.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
+     * @param storage 
      * @param folder The document folder.
      * @param destFolder The document folder.
      */
-    public async putImagesExtractAsJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putImagesExtractAsJpeg (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/jpeg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6096,6 +6767,10 @@ export class PdfApi {
             localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
@@ -6124,22 +6799,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Extract document images in format specified to folder.
+     * @summary Extract document images in PNG format to folder.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
+     * @param storage The document storage.
      * @param folder The document folder.
      * @param destFolder The document folder.
      */
-    public async putImagesExtractAsPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putImagesExtractAsPng (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/png'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6165,6 +6841,10 @@ export class PdfApi {
             localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
@@ -6193,22 +6873,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Extract document images in format specified to folder.
+     * @summary Extract document images in TIFF format to folder.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
+     * @param storage The document storage.
      * @param folder The document folder.
      * @param destFolder The document folder.
      */
-    public async putImagesExtractAsTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putImagesExtractAsTiff (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6234,6 +6915,10 @@ export class PdfApi {
             localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
@@ -6262,7 +6947,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -6273,8 +6958,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putLaTeXInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putLaTeXInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/latex'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -6299,6 +6985,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6319,7 +7009,73 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document page link annotations
+     * @param name The document name.
+     * @param linkId The link ID.
+     * @param link Link anotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putLinkAnnotation (name: string, linkId: string, link: LinkAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LinkAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putLinkAnnotation.');
+        }
+
+        // verify required parameter 'linkId' is not null or undefined
+        if (linkId === null || linkId === undefined) {
+            throw new Error('Required parameter linkId was null or undefined when calling putLinkAnnotation.');
+        }
+
+        // verify required parameter 'link' is not null or undefined
+        if (link === null || link === undefined) {
+            throw new Error('Required parameter link was null or undefined when calling putLinkAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(link, "LinkAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -6332,7 +7088,7 @@ export class PdfApi {
      * @param storage Resulting document storage.
      * @param folder Resulting document folder.
      */
-    public async putMergeDocuments (name: string, mergeDocuments?: MergeDocuments, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentResponse;  }> {
+    public async putMergeDocuments (name: string, mergeDocuments?: MergeDocuments, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/merge'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -6361,7 +7117,7 @@ export class PdfApi {
             headers: localVarHeaderParams,
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
-            json: true,
+            encoding: null,
             body: ObjectSerializer.serialize(mergeDocuments, "MergeDocuments")
         };
 
@@ -6373,7 +7129,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
     }
 
@@ -6384,8 +7140,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putMhtInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putMhtInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/mht'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -6410,6 +7167,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6430,7 +7191,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -6444,7 +7205,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putPageAddStamp (name: string, pageNumber: number, stamp: Stamp, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageAddStamp (name: string, pageNumber: number, stamp: Stamp, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamp'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6496,22 +7257,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to bmp image and save in storage.
+     * @summary Convert document page to bmp image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToBmp (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToBmp (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6550,6 +7312,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6570,22 +7336,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to emf image and save in storage.
+     * @summary Convert document page to emf image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToEmf (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToEmf (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6624,6 +7391,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6644,22 +7415,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to gif image and save in storage.
+     * @summary Convert document page to gif image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToGif (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToGif (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6698,6 +7470,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6718,22 +7494,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to Jpeg image and save in storage.
+     * @summary Convert document page to Jpeg image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToJpeg (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToJpeg (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6772,6 +7549,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6792,22 +7573,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to png image and save in storage.
+     * @summary Convert document page to png image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToPng (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToPng (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6846,6 +7628,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6866,22 +7652,23 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Convert document page to Tiff image and save in storage.
+     * @summary Convert document page to Tiff image and upload resulting file to storage.
      * @param name The document name.
      * @param pageNumber The page number.
      * @param outPath The out path of result image.
      * @param width The converted image width.
      * @param height The converted image height.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPageConvertToTiff (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPageConvertToTiff (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -6920,6 +7707,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6940,7 +7731,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -6951,8 +7742,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pcl)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putPclInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPclInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/pcl'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -6977,6 +7769,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -6997,7 +7793,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7014,9 +7810,10 @@ export class PdfApi {
      * @param mode Allows to control how a PDF document is converted into a word processing document.
      * @param recognizeBullets Recognize bullets.
      * @param relativeHorizontalProximity Relative horizontal proximity.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToDoc (outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToDoc (outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/doc';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7063,6 +7860,10 @@ export class PdfApi {
             localVarQueryParameters['relativeHorizontalProximity'] = ObjectSerializer.serialize(relativeHorizontalProximity, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7090,7 +7891,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7099,10 +7900,11 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to EPUB format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.epub)
-     * @param contentRecognitionMode ??roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToEpub (outPath: string, contentRecognitionMode?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToEpub (outPath: string, contentRecognitionMode?: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/epub';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7121,6 +7923,10 @@ export class PdfApi {
             localVarQueryParameters['contentRecognitionMode'] = ObjectSerializer.serialize(contentRecognitionMode, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7148,7 +7954,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7185,9 +7991,10 @@ export class PdfApi {
      * @param specialFolderForAllImages The path to directory to which must be saved any images if they are encountered during saving of document as HTML. If parameter is empty or null then image files(if any) wil be saved together with other files linked to HTML It does not affect anything if CustomImageSavingStrategy property was successfully used to process relevant image file.
      * @param specialFolderForSvgImages The path to directory to which must be saved only SVG-images if they are encountered during saving of document as HTML. If parameter is empty or null then SVG files(if any) wil be saved together with other image-files (near to output file) or in special folder for images (if it specified in SpecialImagesFolderIfAny option). It does not affect anything if CustomImageSavingStrategy property was successfully used to process relevant image file.
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/html';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7314,6 +8121,10 @@ export class PdfApi {
             localVarQueryParameters['trySaveTextUnderliningAndStrikeoutingInCss'] = ObjectSerializer.serialize(trySaveTextUnderliningAndStrikeoutingInCss, "boolean");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7341,7 +8152,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7351,9 +8162,10 @@ export class PdfApi {
      * @summary Converts PDF document (in request content) to LaTeX format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
      * @param pagesCount Pages count.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToLaTeX (outPath: string, pagesCount?: number, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToLaTeX (outPath: string, pagesCount?: number, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/latex';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7372,6 +8184,10 @@ export class PdfApi {
             localVarQueryParameters['pagesCount'] = ObjectSerializer.serialize(pagesCount, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7399,7 +8215,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7408,9 +8224,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to MOBIXML format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.mobixml)
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToMobiXml (outPath: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToMobiXml (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/mobixml';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7425,6 +8242,10 @@ export class PdfApi {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7452,7 +8273,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7462,9 +8283,10 @@ export class PdfApi {
      * @summary Converts PDF document (in request content) to PdfA format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param type Type of PdfA format.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToPdfA (outPath: string, type: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToPdfA (outPath: string, type: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/pdfa';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7488,6 +8310,10 @@ export class PdfApi {
             localVarQueryParameters['type'] = ObjectSerializer.serialize(type, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7515,7 +8341,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7526,9 +8352,10 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pptx)
      * @param separateImages Separate images.
      * @param slidesAsImages Slides as images.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToPptx (outPath: string, separateImages?: boolean, slidesAsImages?: boolean, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToPptx (outPath: string, separateImages?: boolean, slidesAsImages?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/pptx';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7551,6 +8378,10 @@ export class PdfApi {
             localVarQueryParameters['slidesAsImages'] = ObjectSerializer.serialize(slidesAsImages, "boolean");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7578,7 +8409,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7587,10 +8418,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to SVG format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.svg)
-     * @param compressOutputToZipArchive Specifies whether output will be created as one zip-archive.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToSvg (outPath: string, compressOutputToZipArchive?: boolean, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToSvg (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/svg';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7605,8 +8436,8 @@ export class PdfApi {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
-        if (compressOutputToZipArchive !== undefined && null !== compressOutputToZipArchive) {
-            localVarQueryParameters['compressOutputToZipArchive'] = ObjectSerializer.serialize(compressOutputToZipArchive, "boolean");
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -7636,7 +8467,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7660,9 +8491,10 @@ export class PdfApi {
      * @param yResolution Vertical resolution.
      * @param pageIndex Start page to export.
      * @param pageCount Number of pages to export.
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToTiff (outPath: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToTiff (outPath: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/tiff';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7737,6 +8569,10 @@ export class PdfApi {
             localVarQueryParameters['pageCount'] = ObjectSerializer.serialize(pageCount, "number");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7764,7 +8600,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7777,9 +8613,10 @@ export class PdfApi {
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
      * @param scaleFactor Scale factor
      * @param uniformWorksheets Uniform worksheets
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToXls (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToXls (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xls';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7810,6 +8647,10 @@ export class PdfApi {
             localVarQueryParameters['uniformWorksheets'] = ObjectSerializer.serialize(uniformWorksheets, "boolean");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7837,7 +8678,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7846,9 +8687,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to XML format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xml)
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToXml (outPath: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToXml (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xml';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7863,6 +8705,10 @@ export class PdfApi {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7890,7 +8736,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7899,9 +8745,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to XPS format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xps)
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToXps (outPath: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInRequestToXps (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -7916,6 +8763,10 @@ export class PdfApi {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -7943,7 +8794,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7962,8 +8813,9 @@ export class PdfApi {
      * @param recognizeBullets Recognize bullets.
      * @param relativeHorizontalProximity Relative horizontal proximity.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToDoc (name: string, outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToDoc (name: string, outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8020,6 +8872,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8040,7 +8896,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8050,10 +8906,11 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to EPUB format and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.epub)
-     * @param contentRecognitionMode ??roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToEpub (name: string, outPath: string, contentRecognitionMode?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToEpub (name: string, outPath: string, contentRecognitionMode?: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/epub'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8082,6 +8939,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8102,7 +8963,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8141,8 +9002,9 @@ export class PdfApi {
      * @param specialFolderForSvgImages The path to directory to which must be saved only SVG-images if they are encountered during saving of document as HTML. If parameter is empty or null then SVG files(if any) wil be saved together with other image-files (near to output file) or in special folder for images (if it specified in SpecialImagesFolderIfAny option). It does not affect anything if CustomImageSavingStrategy property was successfully used to process relevant image file.
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8279,6 +9141,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8299,7 +9165,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8311,8 +9177,9 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
      * @param pagesCount Pages count.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToLaTeX (name: string, outPath: string, pagesCount?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToLaTeX (name: string, outPath: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8341,6 +9208,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8361,7 +9232,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8372,8 +9243,9 @@ export class PdfApi {
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.mobixml)
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToMobiXml (name: string, outPath: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToMobiXml (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/mobixml'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8398,6 +9270,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8418,7 +9294,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8430,8 +9306,9 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param type Type of PdfA format.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToPdfA (name: string, outPath: string, type: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToPdfA (name: string, outPath: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8465,6 +9342,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8485,7 +9366,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8498,8 +9379,9 @@ export class PdfApi {
      * @param separateImages Separate images.
      * @param slidesAsImages Slides as images.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToPptx (name: string, outPath: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToPptx (name: string, outPath: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8532,6 +9414,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8552,7 +9438,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8562,10 +9448,10 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to SVG format and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.svg)
-     * @param compressOutputToZipArchive Specifies whether output will be created as one zip-archive.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToSvg (name: string, outPath: string, compressOutputToZipArchive?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToSvg (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8586,12 +9472,12 @@ export class PdfApi {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
         }
 
-        if (compressOutputToZipArchive !== undefined && null !== compressOutputToZipArchive) {
-            localVarQueryParameters['compressOutputToZipArchive'] = ObjectSerializer.serialize(compressOutputToZipArchive, "boolean");
-        }
-
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -8614,7 +9500,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8640,8 +9526,9 @@ export class PdfApi {
      * @param pageIndex Start page to export.
      * @param pageCount Number of pages to export.
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToTiff (name: string, outPath: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToTiff (name: string, outPath: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8726,6 +9613,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8746,7 +9637,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8761,8 +9652,9 @@ export class PdfApi {
      * @param scaleFactor Scale factor
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToXls (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToXls (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8803,6 +9695,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8823,7 +9719,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8834,8 +9730,9 @@ export class PdfApi {
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xml)
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToXml (name: string, outPath: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToXml (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xml'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8860,6 +9757,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8880,7 +9781,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8891,8 +9792,9 @@ export class PdfApi {
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xps)
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putPdfInStorageToXps (name: string, outPath: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPdfInStorageToXps (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8917,6 +9819,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -8937,7 +9843,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8947,9 +9853,10 @@ export class PdfApi {
      * @summary Update privilege document.
      * @param name The document name.
      * @param privileges Document privileges. 
+     * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putPrivileges (name: string, privileges?: DocumentPrivilege, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPrivileges (name: string, privileges?: DocumentPrivilege, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/privileges'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -8959,6 +9866,10 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling putPrivileges.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
         if (folder !== undefined && null !== folder) {
@@ -8986,7 +9897,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8997,8 +9908,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.ps)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putPsInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putPsInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/ps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9023,6 +9935,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9043,7 +9959,79 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document image.
+     * @param name The document name.
+     * @param imageId The image ID.
+     * @param imageFilePath Path to image file if specified. Request content is used otherwise.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param image Image file.
+     */
+    public async putReplaceImage (name: string, imageId: string, imageFilePath?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.ClientResponse; body: ImageResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putReplaceImage.');
+        }
+
+        // verify required parameter 'imageId' is not null or undefined
+        if (imageId === null || imageId === undefined) {
+            throw new Error('Required parameter imageId was null or undefined when calling putReplaceImage.');
+        }
+
+        if (imageFilePath !== undefined && null !== imageFilePath) {
+            localVarQueryParameters['imageFilePath'] = ObjectSerializer.serialize(imageFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (image !== undefined) {
+            localVarFormParams['image'] = image;
+            fileData = image;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ImageResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9056,7 +10044,7 @@ export class PdfApi {
      * @param folder The document folder.
      * @param lang language for OCR engine. Possible values: eng, ara, bel, ben, bul, ces, dan, deu, ell, fin, fra, heb, hin, ind, isl, ita, jpn, kor, nld, nor, pol, por, ron, rus, spa, swe, tha, tur, ukr, vie, chi_sim, chi_tra or thier combination e.g. eng,rus 
      */
-    public async putSearchableDocument (name: string, storage?: string, folder?: string, lang?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putSearchableDocument (name: string, storage?: string, folder?: string, lang?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/ocr'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9100,7 +10088,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9110,11 +10098,11 @@ export class PdfApi {
      * @summary Add/update document property.
      * @param name 
      * @param propertyName 
-     * @param property 
+     * @param value 
      * @param storage 
      * @param folder 
      */
-    public async putSetProperty (name: string, propertyName: string, property?: DocumentProperty, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentPropertyResponse;  }> {
+    public async putSetProperty (name: string, propertyName: string, value: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: DocumentPropertyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)));
@@ -9130,6 +10118,15 @@ export class PdfApi {
         // verify required parameter 'propertyName' is not null or undefined
         if (propertyName === null || propertyName === undefined) {
             throw new Error('Required parameter propertyName was null or undefined when calling putSetProperty.');
+        }
+
+        // verify required parameter 'value' is not null or undefined
+        if (value === null || value === undefined) {
+            throw new Error('Required parameter value was null or undefined when calling putSetProperty.');
+        }
+
+        if (value !== undefined && null !== value) {
+            localVarQueryParameters['value'] = ObjectSerializer.serialize(value, "string");
         }
 
         if (storage !== undefined && null !== storage) {
@@ -9150,7 +10147,6 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(property, "DocumentProperty")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -9180,8 +10176,9 @@ export class PdfApi {
      * @param marginRight Page margin right
      * @param marginTop Page margin top
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putSvgInStorageToPdf (name: string, srcPath: string, adjustPageSize?: boolean, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putSvgInStorageToPdf (name: string, srcPath: string, adjustPageSize?: boolean, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/svg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9238,6 +10235,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9258,7 +10259,73 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document text annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putTextAnnotation (name: string, annotationId: string, annotation: TextAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: TextAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/text/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putTextAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putTextAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putTextAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "TextAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9391,8 +10458,9 @@ export class PdfApi {
      * @param marginRight Page margin right
      * @param marginTop Page margin top
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putWebInStorageToPdf (name: string, url: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putWebInStorageToPdf (name: string, url: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/web'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9445,6 +10513,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9465,7 +10537,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9474,9 +10546,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document which contatins XFA form (in request content) to PDF with AcroForm and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
+     * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putXfaPdfInRequestToAcroForm (outPath: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putXfaPdfInRequestToAcroForm (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xfatoacroform';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -9489,6 +10562,10 @@ export class PdfApi {
 
         if (outPath !== undefined && null !== outPath) {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -9518,7 +10595,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9529,8 +10606,9 @@ export class PdfApi {
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param folder The document folder.
+     * @param storage The document storage.
      */
-    public async putXfaPdfInStorageToAcroForm (name: string, outPath: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putXfaPdfInStorageToAcroForm (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xfatoacroform'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9555,6 +10633,10 @@ export class PdfApi {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9575,7 +10657,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9587,8 +10669,9 @@ export class PdfApi {
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xml)
      * @param xslFilePath Full XSL source filename (ex. /folder1/folder2/template.xsl)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putXmlInStorageToPdf (name: string, srcPath: string, xslFilePath?: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putXmlInStorageToPdf (name: string, srcPath: string, xslFilePath?: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xml'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9617,6 +10700,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9637,7 +10724,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9648,8 +10735,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putXpsInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putXpsInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9674,6 +10762,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9694,7 +10786,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9705,8 +10797,9 @@ export class PdfApi {
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xpsfo)
      * @param dstFolder The destination document folder.
+     * @param storage The document storage.
      */
-    public async putXslFoInStorageToPdf (name: string, srcPath: string, dstFolder?: string) : Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }> {
+    public async putXslFoInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xslfo'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9731,6 +10824,10 @@ export class PdfApi {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
         }
 
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -9751,7 +10848,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "SaaSposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 }

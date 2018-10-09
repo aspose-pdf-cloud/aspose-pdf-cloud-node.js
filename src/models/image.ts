@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { LinkElement } from "./linkElement";
 
 /**
@@ -33,6 +34,18 @@ export class Image extends LinkElement {
     * Gets height of the image.
     */
     'height': number;
+    /**
+    * Gets ID of the image.
+    */
+    'id': string;
+    /**
+    * Gets rectangle of the image.
+    */
+    'rectangle': RectanglePdf;
+    /**
+    * Gets page number.
+    */
+    'pageNumber': number;
 
     static discriminator = undefined;
 
@@ -45,6 +58,21 @@ export class Image extends LinkElement {
         {
             "name": "height",
             "baseName": "Height",
+            "type": "number"
+        },
+        {
+            "name": "id",
+            "baseName": "Id",
+            "type": "string"
+        },
+        {
+            "name": "rectangle",
+            "baseName": "Rectangle",
+            "type": "RectanglePdf"
+        },
+        {
+            "name": "pageNumber",
+            "baseName": "PageNumber",
             "type": "number"
         }    ];
 

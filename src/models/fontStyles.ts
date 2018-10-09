@@ -20,7 +20,8 @@
  */
 
 export enum FontStyles {
-    Regular = 0,
-    Bold = 1,
-    Italic = 2,
+    Regular = 'Regular',
+    Bold = 'Bold',
+    Italic = 'Italic',
+    BoldItalic = 'BoldItalic',
 }

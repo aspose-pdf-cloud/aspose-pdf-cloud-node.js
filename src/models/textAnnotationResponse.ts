@@ -19,27 +19,23 @@
  *
  */
 
+import { TextAnnotation } from "./textAnnotation";
+import { AsposeResponse } from "./asposeResponse";
 
-/**
-* Create document from images request.
-*/
-export class ImagesListRequest {
-    /**
-    * A list of paths for images.
-    */
-    'imagesList': Array<string>;
+export class TextAnnotationResponse extends AsposeResponse {
+    'annotation': TextAnnotation;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "imagesList",
-            "baseName": "ImagesList",
-            "type": "Array<string>"
+            "name": "annotation",
+            "baseName": "Annotation",
+            "type": "TextAnnotation"
         }    ];
 
     static getAttributeTypeMap() {
-        return ImagesListRequest.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(TextAnnotationResponse.attributeTypeMap);
     }
 }
 

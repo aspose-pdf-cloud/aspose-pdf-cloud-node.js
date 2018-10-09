@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { Field } from "../src/models/field";
 import { FieldType } from "../src/models/fieldType";
 var assert = require('assert');
@@ -38,7 +37,7 @@ describe("Fields Tests", () => {
 
             return BaseTest.getPdfApi().getField(name, fieldName, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -53,7 +52,7 @@ describe("Fields Tests", () => {
 
             return BaseTest.getPdfApi().getFields(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -72,15 +71,15 @@ describe("Fields Tests", () => {
             field.type = FieldType.Boolean;
             field.values = ["1"];
             field.rect = {
-                x: 50,
-                y: 200,
-                width: 150,
-                height: 20
+                lLX: 50,
+                lLY: 200,
+                uRX: 200,
+                uRY: 400
             };
 
             return BaseTest.getPdfApi().postCreateField(name, pageNumber, field, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -105,7 +104,34 @@ describe("Fields Tests", () => {
 
             return BaseTest.getPdfApi().putUpdateField(name, fieldName, field, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("PutUpdateFields Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            await BaseTest.uploadFile(name);
+            
+            const fieldName = "textField";
+            
+            const field = {
+                name: fieldName,
+                type: FieldType.Text,
+                values: ["Text field updated value."],
+                selectedItems: null,
+                rect: null,
+                links: null
+            }
+
+            const fields = {links: null, list: [field]}
+
+            return BaseTest.getPdfApi().putUpdateFields(name, fields, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -120,7 +146,7 @@ describe("Fields Tests", () => {
 
             return BaseTest.getPdfApi().deleteField(name, fieldName, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -134,7 +160,7 @@ describe("Fields Tests", () => {
 
             return BaseTest.getPdfApi().putFieldsFlatten(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

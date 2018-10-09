@@ -19,12 +19,12 @@
  *
  */
 
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
 /**
 * Returns also a message.
 */
-export class SignatureVerifyResponse extends SaaSposeResponse {
+export class SignatureVerifyResponse extends AsposeResponse {
     /**
     * Valid sign.
     */

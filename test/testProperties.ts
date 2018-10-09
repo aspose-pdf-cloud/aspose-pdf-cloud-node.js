@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { DocumentProperty } from "../src/models/documentProperty";
 var assert = require('assert');
 
@@ -49,12 +48,12 @@ describe("Properties Tests", () => {
         
         it("should return response with code 200", async () => {
 
-            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1, null, BaseTest.remoteTempFolder);
-            await BaseTest.getPdfApi().putSetProperty(name, property2.name, property2, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1.value, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property2.name, property2.value, null, BaseTest.remoteTempFolder);
 
             return BaseTest.getPdfApi().deleteProperties(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -63,11 +62,11 @@ describe("Properties Tests", () => {
         
         it("should return response with code 200", async () => {
 
-            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1.value, null, BaseTest.remoteTempFolder);
             
             return BaseTest.getPdfApi().deleteProperty(name, property1.name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -76,12 +75,12 @@ describe("Properties Tests", () => {
         
         it("should return response with code 200", async () => {
 
-            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1, null, BaseTest.remoteTempFolder);
-            await BaseTest.getPdfApi().putSetProperty(name, property2.name, property2, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1.value, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property2.name, property2.value, null, BaseTest.remoteTempFolder);
 
             return BaseTest.getPdfApi().getDocumentProperties(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -90,11 +89,11 @@ describe("Properties Tests", () => {
         
         it("should return response with code 200", async () => {
 
-            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1, null, BaseTest.remoteTempFolder);
+            await BaseTest.getPdfApi().putSetProperty(name, property1.name, property1.value, null, BaseTest.remoteTempFolder);
            
             return BaseTest.getPdfApi().getDocumentProperty(name, property1.name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -103,9 +102,9 @@ describe("Properties Tests", () => {
         
         it("should return response with code 200", () => {
 
-            return BaseTest.getPdfApi().putSetProperty(name, property1.name, property1, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().putSetProperty(name, property1.name, property1.value, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

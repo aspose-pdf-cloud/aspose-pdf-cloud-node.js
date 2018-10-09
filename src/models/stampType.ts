@@ -20,8 +20,8 @@
  */
 
 export enum StampType {
-    Text = 0,
-    Image = 1,
-    Page = 2,
-    PageNumber = 3,
+    Text = 'Text',
+    Image = 'Image',
+    Page = 'Page',
+    PageNumber = 'PageNumber',
 }

@@ -19,29 +19,58 @@
  *
  */
 
-import { WordCount } from "./wordCount";
-import { AsposeResponse } from "./asposeResponse";
+import { TextIcon } from "./textIcon";
+import { Color } from "./color";
+import { AnnotationState } from "./annotationState";
+import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
-* Number of words per document pages.
+* Provides TextAnnotation.
 */
-export class WordCountResponse extends AsposeResponse {
+export class TextAnnotation extends MarkupAnnotation {
     /**
-    * with words per page info.            
+    * Gets or sets the state to which the original annotation should be set.
     */
-    'wordsPerPage': WordCount;
+    'state': AnnotationState;
+    /**
+    * Gets or sets is the annotation open.
+    */
+    'open': boolean;
+    /**
+    * Color of the annotation.
+    */
+    'color': Color;
+    /**
+    * Gets or sets an icon to be used in displaying the annotation.
+    */
+    'icon': TextIcon;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "wordsPerPage",
-            "baseName": "WordsPerPage",
-            "type": "WordCount"
+            "name": "state",
+            "baseName": "State",
+            "type": "AnnotationState"
+        },
+        {
+            "name": "open",
+            "baseName": "Open",
+            "type": "boolean"
+        },
+        {
+            "name": "color",
+            "baseName": "Color",
+            "type": "Color"
+        },
+        {
+            "name": "icon",
+            "baseName": "Icon",
+            "type": "TextIcon"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordCountResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(TextAnnotation.attributeTypeMap);
     }
 }
 

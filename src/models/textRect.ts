@@ -19,7 +19,7 @@
  *
  */
 
-import { Rectangle } from "./rectangle";
+import { RectanglePdf } from "./rectanglePdf";
 
 /**
 * Represents text DTO.
@@ -27,7 +27,7 @@ import { Rectangle } from "./rectangle";
 export class TextRect {
     'text': string;
     'page': number;
-    'rect': Rectangle;
+    'rect': RectanglePdf;
 
     static discriminator = undefined;
 
@@ -45,7 +45,7 @@ export class TextRect {
         {
             "name": "rect",
             "baseName": "Rect",
-            "type": "Rectangle"
+            "type": "RectanglePdf"
         }    ];
 
     static getAttributeTypeMap() {

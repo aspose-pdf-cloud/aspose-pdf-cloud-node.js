@@ -20,7 +20,7 @@
  */
 import http = require('http');
 import { PdfApi } from "../src/api/api";
-import { SaaSposeResponse } from "../src/models/saaSposeResponse"
+import { AsposeResponse } from "../src/models/AsposeResponse"
 var fs = require('fs');
 
 let pdfApi: PdfApi;
@@ -31,10 +31,11 @@ let pdfApi: PdfApi;
 export function getPdfApi() {
   if (!pdfApi) {
 
-    //Get App key and App SID from https://cloud.aspose.com
+    //Get App key and App SID from https://aspose.cloud
     pdfApi = new PdfApi(
-      "AppSID", 
-      "AppKey"
+      "AppSID",
+      "AppKey",
+      "https://billing.cloud.saltov.dynabic.com/v2.0"
     )
     pdfApi.configuration.debugMode = true;
   }
@@ -48,7 +49,7 @@ export const localTestDataFolder = "testData";
 /**
  * Upload file
  */
-export function uploadFile(name: string): Promise<{ response: http.ClientResponse; body: SaaSposeResponse;  }>
+export function uploadFile(name: string): Promise<{ response: http.ClientResponse; body: AsposeResponse;  }>
 {
   const path: string = remoteTempFolder + "/" + name;
   var data = fs.readFileSync(this.localTestDataFolder + "/" + name);

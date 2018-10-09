@@ -19,29 +19,55 @@
  *
  */
 
-import { WordCount } from "./wordCount";
-import { AsposeResponse } from "./asposeResponse";
+import { Color } from "./color";
 
 /**
-* Number of words per document pages.
+* Represents a text style of a text
 */
-export class WordCountResponse extends AsposeResponse {
+export class TextStyle {
     /**
-    * with words per page info.            
+    * Gets or sets font size of the text.
     */
-    'wordsPerPage': WordCount;
+    'fontSize': number;
+    /**
+    * Gets or sets font of the text.
+    */
+    'font': string;
+    /**
+    * Gets or sets foreground color of the text.
+    */
+    'foregroundColor': Color;
+    /**
+    * Sets background color of the text.
+    */
+    'backgroundColor': Color;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "wordsPerPage",
-            "baseName": "WordsPerPage",
-            "type": "WordCount"
+            "name": "fontSize",
+            "baseName": "FontSize",
+            "type": "number"
+        },
+        {
+            "name": "font",
+            "baseName": "Font",
+            "type": "string"
+        },
+        {
+            "name": "foregroundColor",
+            "baseName": "ForegroundColor",
+            "type": "Color"
+        },
+        {
+            "name": "backgroundColor",
+            "baseName": "BackgroundColor",
+            "type": "Color"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordCountResponse.attributeTypeMap);
+        return TextStyle.attributeTypeMap;
     }
 }
 

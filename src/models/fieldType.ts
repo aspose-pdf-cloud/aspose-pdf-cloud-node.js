@@ -20,8 +20,8 @@
  */
 
 export enum FieldType {
-    Text = 0,
-    Integer = 1,
-    Boolean = 2,
-    List = 3,
+    Text = 'Text',
+    Integer = 'Integer',
+    Boolean = 'Boolean',
+    List = 'List',
 }

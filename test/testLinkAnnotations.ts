@@ -21,109 +21,118 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { Stamp } from "../src/models/stamp";
-import { StampType } from "../src/models/stampType";
+import { LinkAnnotation } from "../src/models/linkAnnotation";
+import { LinkActionType } from "../src/models/linkActionType";
 var assert = require('assert');
 
-describe("Pages Tests", () => {
+describe("Links Tests", () => {
 
-    const name = "4pages.pdf";
-    
+    const name = "PdfWithLinks.pdf";
+    const pageNumber = 1;
+    let linkId: string;
+
+    before( async () => {
+        await BaseTest.uploadFile(name);
+        const result = await BaseTest.getPdfApi().getPageLinkAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder);
+        linkId = result.body.links.list[0].id;
+    });
+
     beforeEach( async () => {
         await BaseTest.uploadFile(name);
     });
 
-    describe("DeletePage Test", () => {
+    describe("GetPageLinkAnnotation Test", () => {
         
         it("should return response with code 200", () => {
 
-            const pageNumber = 3;
-
-            return BaseTest.getPdfApi().deletePage(name, pageNumber, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().getPageLinkAnnotation(name, pageNumber, linkId, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetPage Test", () => {
+    describe("DeleteLinkAnnotation Test", () => {
         
         it("should return response with code 200", () => {
 
-            const pageNumber = 3;
-
-            return BaseTest.getPdfApi().getPage(name, pageNumber, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().deleteLinkAnnotation(name, linkId, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetPages Test", () => {
+    describe("GetPageLinkAnnotations Test", () => {
         
         it("should return response with code 200", () => {
 
-            return BaseTest.getPdfApi().getPages(name, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().getPageLinkAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetWordsPerPage Test", () => {
+    describe("PostPageLinkAnnotations Test", () => {
         
         it("should return response with code 200", () => {
 
-            return BaseTest.getPdfApi().getWordsPerPage(name, null, BaseTest.remoteTempFolder)
+            const linkAnnotation = new LinkAnnotation();
+            linkAnnotation.actionType = LinkActionType.GoToURIAction;
+            linkAnnotation.action = "https://products.aspose.cloud/pdf";
+            linkAnnotation.rect = {lLX: 100, lLY: 100, uRX: 500, uRY: 500 };
+
+            return BaseTest.getPdfApi().postPageLinkAnnotations(name, pageNumber, [linkAnnotation], null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PostMovePage Test", () => {
+    describe("PutLinkAnnotation Test", () => {
         
         it("should return response with code 200", () => {
-            const pageNumber = 3;
-            const newIndex = 2;
 
-            return BaseTest.getPdfApi().postMovePage(name, pageNumber, newIndex, null, BaseTest.remoteTempFolder)
+            const linkAnnotation = new LinkAnnotation();
+            linkAnnotation.actionType = LinkActionType.GoToURIAction;
+            linkAnnotation.action = "https://products.aspose.cloud/pdf";
+            linkAnnotation.rect = {lLX: 100, lLY: 100, uRX: 500, uRY: 500 };
+
+            return BaseTest.getPdfApi().putLinkAnnotation(name, linkId, linkAnnotation, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PutAddNewPage Test", () => {
+    describe("DeletePageLinkAnnotations Test", () => {
         
         it("should return response with code 200", () => {
 
-            return BaseTest.getPdfApi().putAddNewPage(name, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().deletePageLinkAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PutPageAddStamp Test", () => {
+    describe("DeleteDocumentLinkAnnotations Test", () => {
         
-        it("should return response with code 200", async () => {
+        it("should return response with code 200", () => {
 
-            const stampFile = "Penguins.jpg";
-            await BaseTest.uploadFile(stampFile);
-            
-            const pageNumber = 1;
+            return BaseTest.getPdfApi().deleteDocumentLinkAnnotations(name, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
 
-            const stamp = new Stamp(); 
-            stamp.type = StampType.Image;
-            stamp.fileName = BaseTest.remoteTempFolder + "/" + stampFile;
-            stamp.background = true;
-            stamp.width = 200;
-            stamp.height = 200;
-            stamp.xIndent = 100;
-            stamp.yIndent = 100;
-            
-            return BaseTest.getPdfApi().putPageAddStamp(name, pageNumber, stamp, null, BaseTest.remoteTempFolder)
+    describe("GetLinkAnnotation Test", () => {
+        
+        it("should return response with code 200", () => {
+
+            return BaseTest.getPdfApi().getLinkAnnotation(name, linkId, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });

@@ -19,25 +19,23 @@
  *
  */
 
-import { LinkElement } from "./linkElement";
+import { AnnotationsInfo } from "./annotationsInfo";
+import { AsposeResponse } from "./asposeResponse";
 
-/**
-* List of annotations.
-*/
-export class Annotations extends LinkElement {
-    'list': Array<LinkElement>;
+export class AnnotationsInfoResponse extends AsposeResponse {
+    'annotations': AnnotationsInfo;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "list",
-            "baseName": "List",
-            "type": "Array<LinkElement>"
+            "name": "annotations",
+            "baseName": "Annotations",
+            "type": "AnnotationsInfo"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(Annotations.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(AnnotationsInfoResponse.attributeTypeMap);
     }
 }
 

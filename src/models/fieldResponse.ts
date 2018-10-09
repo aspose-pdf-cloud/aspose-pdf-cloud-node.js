@@ -20,9 +20,9 @@
  */
 
 import { Field } from "./field";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
-export class FieldResponse extends SaaSposeResponse {
+export class FieldResponse extends AsposeResponse {
     'field': Field;
 
     static discriminator = undefined;

@@ -19,26 +19,36 @@
  *
  */
 
-import { TextItem } from "./textItem";
-import { LinkElement } from "./linkElement";
 
 /**
-* Represents text items DTO.
+* Base class for all responses.
 */
-export class TextItems extends LinkElement {
-    'list': Array<TextItem>;
+export class AsposeResponse {
+    /**
+    * Response status code.
+    */
+    'code': number;
+    /**
+    * Response status.
+    */
+    'status': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "list",
-            "baseName": "List",
-            "type": "Array<TextItem>"
+            "name": "code",
+            "baseName": "Code",
+            "type": "number"
+        },
+        {
+            "name": "status",
+            "baseName": "Status",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItems.attributeTypeMap);
+        return AsposeResponse.attributeTypeMap;
     }
 }
 

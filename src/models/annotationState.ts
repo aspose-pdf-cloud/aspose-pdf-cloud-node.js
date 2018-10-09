@@ -19,24 +19,13 @@
  *
  */
 
-import { Document } from "./document";
-import { TextReplaceResponse } from "./textReplaceResponse";
-
-export class DocumentTextReplaceResponse extends TextReplaceResponse {
-    'document': Document;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "document",
-            "baseName": "Document",
-            "type": "Document"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentTextReplaceResponse.attributeTypeMap);
-    }
+export enum AnnotationState {
+    Undefined = 'Undefined',
+    Marked = 'Marked',
+    Unmarked = 'Unmarked',
+    Accepted = 'Accepted',
+    Rejected = 'Rejected',
+    Cancelled = 'Cancelled',
+    Completed = 'Completed',
+    None = 'None',
 }
-
-

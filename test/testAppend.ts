@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 import { AppendDocument } from "../src/models/appendDocument";
 var assert = require('assert');
 
@@ -33,16 +32,18 @@ describe("Append Tests", () => {
     const startPage = 2;
     const endPage = 4;
 
+    beforeEach( async ()=> {
+        await BaseTest.uploadFile(name);
+        await BaseTest.uploadFile(appendFile);
+    });
+
     describe("PostAppendDocument using query parameters Test", () => {
 
         it("should return response with code 200", async () => {
 
-            await BaseTest.uploadFile(name);
-            await BaseTest.uploadFile(appendFile);
-
             return BaseTest.getPdfApi().postAppendDocument(name, null, appendFilePath, startPage, endPage, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -51,18 +52,14 @@ describe("Append Tests", () => {
 
         it("should return response with code 200", async () => {
 
-            await BaseTest.uploadFile(name);
-            await BaseTest.uploadFile(appendFile);
-
             let appendDocument = new AppendDocument();
             appendDocument.document = appendFilePath;
             appendDocument.startPage = startPage;
             appendDocument.endPage = endPage;
 
-
             return BaseTest.getPdfApi().postAppendDocument(name, null, appendFilePath, startPage, endPage, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

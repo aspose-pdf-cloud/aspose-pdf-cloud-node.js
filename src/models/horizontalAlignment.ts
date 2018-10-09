@@ -20,8 +20,8 @@
  */
 
 export enum HorizontalAlignment {
-    None = 0,
-    Left = 1,
-    Center = 2,
-    Right = 3,
+    None = 'None',
+    Left = 'Left',
+    Center = 'Center',
+    Right = 'Right',
 }

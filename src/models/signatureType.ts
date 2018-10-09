@@ -20,7 +20,7 @@
  */
 
 export enum SignatureType {
-    PKCS1 = 0,
-    PKCS7 = 1,
-    PKCS7Detached = 2,
+    PKCS1 = 'PKCS1',
+    PKCS7 = 'PKCS7',
+    PKCS7Detached = 'PKCS7Detached',
 }

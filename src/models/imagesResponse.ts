@@ -20,9 +20,9 @@
  */
 
 import { Images } from "./images";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
-export class ImagesResponse extends SaaSposeResponse {
+export class ImagesResponse extends AsposeResponse {
     'images': Images;
 
     static discriminator = undefined;

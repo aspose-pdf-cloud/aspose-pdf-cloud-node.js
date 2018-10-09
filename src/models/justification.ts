@@ -19,33 +19,8 @@
  *
  */
 
-import { TextFormat } from "./textFormat";
-import { LinkElement } from "./linkElement";
-
-/**
-* Represents text DTO.
-*/
-export class TextItem extends LinkElement {
-    'text': string;
-    'format': TextFormat;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "text",
-            "baseName": "Text",
-            "type": "string"
-        },
-        {
-            "name": "format",
-            "baseName": "Format",
-            "type": "TextFormat"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItem.attributeTypeMap);
-    }
+export enum Justification {
+    Left = 'Left',
+    Center = 'Center',
+    Right = 'Right',
 }
-
-

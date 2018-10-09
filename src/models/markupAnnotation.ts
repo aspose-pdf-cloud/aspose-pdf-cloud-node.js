@@ -19,23 +19,28 @@
  *
  */
 
-import { Page } from "./page";
-import { TextReplaceResponse } from "./textReplaceResponse";
+import { Annotation } from "./annotation";
 
-export class PageTextReplaceResponse extends TextReplaceResponse {
-    'page': Page;
+/**
+* Provides MarkupAnnotation.
+*/
+export class MarkupAnnotation extends Annotation {
+    /**
+    * Get the annotation RichText.
+    */
+    'richText': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "page",
-            "baseName": "Page",
-            "type": "Page"
+            "name": "richText",
+            "baseName": "RichText",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(PageTextReplaceResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(MarkupAnnotation.attributeTypeMap);
     }
 }
 

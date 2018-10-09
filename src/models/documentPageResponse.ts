@@ -19,23 +19,23 @@
  *
  */
 
-import { Annotations } from "./annotations";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { Page } from "./page";
+import { AsposeResponse } from "./asposeResponse";
 
-export class AnnotationsResponse extends SaaSposeResponse {
-    'annotations': Annotations;
+export class DocumentPageResponse extends AsposeResponse {
+    'page': Page;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "Annotations"
+            "name": "page",
+            "baseName": "Page",
+            "type": "Page"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(AnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(DocumentPageResponse.attributeTypeMap);
     }
 }
 

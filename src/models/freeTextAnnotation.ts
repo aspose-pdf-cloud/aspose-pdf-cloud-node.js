@@ -19,23 +19,59 @@
  *
  */
 
-import { TextItem } from "./textItem";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { TextStyle } from "./textStyle";
+import { Rotation } from "./rotation";
+import { FreeTextIntent } from "./freeTextIntent";
+import { Justification } from "./justification";
+import { MarkupAnnotation } from "./markupAnnotation";
 
-export class TextItemResponse extends SaaSposeResponse {
-    'textItem': TextItem;
+/**
+* Provides FreeTextAnnotation.
+*/
+export class FreeTextAnnotation extends MarkupAnnotation {
+    /**
+    * Gets Justification of the annotation.
+    */
+    'justification': Justification;
+    /**
+    * Gets or sets the intent of the free text annotation.
+    */
+    'intent': FreeTextIntent;
+    /**
+    * Angle of annotation rotation.
+    */
+    'rotate': Rotation;
+    /**
+    * Text style of the annotation.
+    */
+    'textStyle': TextStyle;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "textItem",
-            "baseName": "TextItem",
-            "type": "TextItem"
+            "name": "justification",
+            "baseName": "Justification",
+            "type": "Justification"
+        },
+        {
+            "name": "intent",
+            "baseName": "Intent",
+            "type": "FreeTextIntent"
+        },
+        {
+            "name": "rotate",
+            "baseName": "Rotate",
+            "type": "Rotation"
+        },
+        {
+            "name": "textStyle",
+            "baseName": "TextStyle",
+            "type": "TextStyle"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextItemResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(FreeTextAnnotation.attributeTypeMap);
     }
 }
 

@@ -20,10 +20,10 @@
  */
 
 export enum LinkActionType {
-    GoToAction = 0,
-    GoToURIAction = 1,
-    JavascriptAction = 2,
-    LaunchAction = 3,
-    NamedAction = 4,
-    SubmitFormAction = 5,
+    GoToAction = 'GoToAction',
+    GoToURIAction = 'GoToURIAction',
+    JavascriptAction = 'JavascriptAction',
+    LaunchAction = 'LaunchAction',
+    NamedAction = 'NamedAction',
+    SubmitFormAction = 'SubmitFormAction',
 }

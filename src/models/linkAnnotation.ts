@@ -19,6 +19,7 @@
  *
  */
 
+import { RectanglePdf } from "./rectanglePdf";
 import { Color } from "./color";
 import { LinkHighlightingMode } from "./linkHighlightingMode";
 import { LinkActionType } from "./linkActionType";
@@ -32,6 +33,8 @@ export class LinkAnnotation extends LinkElement {
     'action': string;
     'highlighting': LinkHighlightingMode;
     'color': Color;
+    'rect': RectanglePdf;
+    'id': string;
 
     static discriminator = undefined;
 
@@ -55,6 +58,16 @@ export class LinkAnnotation extends LinkElement {
             "name": "color",
             "baseName": "Color",
             "type": "Color"
+        },
+        {
+            "name": "rect",
+            "baseName": "Rect",
+            "type": "RectanglePdf"
+        },
+        {
+            "name": "id",
+            "baseName": "Id",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

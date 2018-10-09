@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 
 describe("Bookmarks Tests", () => {
@@ -38,7 +37,7 @@ describe("Bookmarks Tests", () => {
 
             return BaseTest.getPdfApi().getDocumentBookmarks(name, null, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

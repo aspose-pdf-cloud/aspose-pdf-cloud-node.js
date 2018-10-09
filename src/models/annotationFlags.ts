@@ -19,38 +19,16 @@
  *
  */
 
-import { HttpStatusCode } from "./httpStatusCode";
-
-/**
-* Base class for all responses.
-*/
-export class SaaSposeResponse {
-    /**
-    * Response status code.
-    */
-    'code': HttpStatusCode;
-    /**
-    * Response status.
-    */
-    'status': string;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "code",
-            "baseName": "Code",
-            "type": "HttpStatusCode"
-        },
-        {
-            "name": "status",
-            "baseName": "Status",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return SaaSposeResponse.attributeTypeMap;
-    }
+export enum AnnotationFlags {
+    Default = 'Default',
+    Invisible = 'Invisible',
+    Hidden = 'Hidden',
+    Print = 'Print',
+    NoZoom = 'NoZoom',
+    NoRotate = 'NoRotate',
+    NoView = 'NoView',
+    ReadOnly = 'ReadOnly',
+    Locked = 'Locked',
+    ToggleNoView = 'ToggleNoView',
+    LockedContents = 'LockedContents',
 }
-
-

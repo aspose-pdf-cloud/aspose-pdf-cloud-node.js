@@ -20,9 +20,9 @@
  */
 
 import { TextRects } from "./textRects";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
-export class TextRectsResponse extends SaaSposeResponse {
+export class TextRectsResponse extends AsposeResponse {
     'textOccurences': TextRects;
 
     static discriminator = undefined;

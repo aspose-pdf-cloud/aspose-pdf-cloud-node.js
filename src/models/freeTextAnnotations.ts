@@ -19,42 +19,26 @@
  *
  */
 
+import { FreeTextAnnotation } from "./freeTextAnnotation";
+import { LinkElement } from "./linkElement";
 
 /**
-* Represents rectangle DTO.
+* List of annotations.
 */
-export class Rectangle {
-    'x': number;
-    'y': number;
-    'width': number;
-    'height': number;
+export class FreeTextAnnotations extends LinkElement {
+    'list': Array<FreeTextAnnotation>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "x",
-            "baseName": "X",
-            "type": "number"
-        },
-        {
-            "name": "y",
-            "baseName": "Y",
-            "type": "number"
-        },
-        {
-            "name": "width",
-            "baseName": "Width",
-            "type": "number"
-        },
-        {
-            "name": "height",
-            "baseName": "Height",
-            "type": "number"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<FreeTextAnnotation>"
         }    ];
 
     static getAttributeTypeMap() {
-        return Rectangle.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(FreeTextAnnotations.attributeTypeMap);
     }
 }
 

@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 
 describe("Attachments Tests", () => {
@@ -39,7 +38,7 @@ describe("Attachments Tests", () => {
 
             return BaseTest.getPdfApi().getDocumentAttachmentByIndex(name, attachmentIndex, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -50,7 +49,7 @@ describe("Attachments Tests", () => {
 
             return BaseTest.getPdfApi().getDocumentAttachments(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -61,7 +60,7 @@ describe("Attachments Tests", () => {
 
             return BaseTest.getPdfApi().getDownloadDocumentAttachmentByIndex(name, attachmentIndex, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

@@ -21,7 +21,6 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
 var assert = require('assert');
 
 describe("Annotations Tests", () => {
@@ -29,29 +28,65 @@ describe("Annotations Tests", () => {
     const name = "PdfWithAnnotations.pdf";
     const pageNumber = 2;
 
-    describe("Get Page Annotations Test", () => {
+
+    beforeEach( async ()=> {
+        await BaseTest.uploadFile(name);
+    });
+
+    describe("Get Document Annotations Test", () => {
 
         it("should return response with code 200", async () => {
-
-            await BaseTest.uploadFile(name);
-
-            return BaseTest.getPdfApi().getPageAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder)
+            
+            return BaseTest.getPdfApi().getDocumentAnnotations(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("Get Page Annotation Test", () => {
+    describe("Delete Document Annotations Test", () => {
 
         it("should return response with code 200", async () => {
             
-            const annotationNumber = 2;
-            await BaseTest.uploadFile(name);
-
-            return BaseTest.getPdfApi().getPageAnnotation(name, pageNumber, annotationNumber, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().deleteDocumentAnnotations(name, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Get Page Annotations Test", () => {
+
+        it("should return response with code 200", async () => {
+
+            return BaseTest.getPdfApi().getPageAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Delete Page Annotations Test", () => {
+
+        it("should return response with code 200", async () => {
+
+            return BaseTest.getPdfApi().deletePageAnnotations(name, pageNumber, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Delete Annotation Test", () => {
+
+        it("should return response with code 200", async () => {
+
+            const result = await BaseTest.getPdfApi().getDocumentAnnotations(name, null, BaseTest.remoteTempFolder)
+            const annotationId = result.body.annotations.list[0].id;
+
+            return BaseTest.getPdfApi().deleteAnnotation(name, annotationId, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

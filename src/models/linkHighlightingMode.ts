@@ -20,9 +20,9 @@
  */
 
 export enum LinkHighlightingMode {
-    None = 0,
-    Invert = 1,
-    Outline = 2,
-    Push = 3,
-    Toggle = 4,
+    None = 'None',
+    Invert = 'Invert',
+    Outline = 'Outline',
+    Push = 'Push',
+    Toggle = 'Toggle',
 }

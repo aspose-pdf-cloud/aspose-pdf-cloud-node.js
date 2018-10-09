@@ -19,24 +19,16 @@
  *
  */
 
-import { Annotation } from "./annotation";
-import { SaaSposeResponse } from "./saaSposeResponse";
-
-export class AnnotationResponse extends SaaSposeResponse {
-    'annotation': Annotation;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "annotation",
-            "baseName": "Annotation",
-            "type": "Annotation"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(AnnotationResponse.attributeTypeMap);
-    }
+export enum TextIcon {
+    Note = 'Note',
+    Comment = 'Comment',
+    Key = 'Key',
+    Help = 'Help',
+    NewParagraph = 'NewParagraph',
+    Paragraph = 'Paragraph',
+    Insert = 'Insert',
+    Check = 'Check',
+    Cross = 'Cross',
+    Circle = 'Circle',
+    Star = 'Star',
 }
-
-

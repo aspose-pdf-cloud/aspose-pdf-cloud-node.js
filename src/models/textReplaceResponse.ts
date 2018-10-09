@@ -19,9 +19,9 @@
  *
  */
 
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
-export class TextReplaceResponse extends SaaSposeResponse {
+export class TextReplaceResponse extends AsposeResponse {
     'matches': number;
 
     static discriminator = undefined;

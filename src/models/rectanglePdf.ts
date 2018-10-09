@@ -19,25 +19,42 @@
  *
  */
 
-import { TextReplace } from "./textReplace";
 
 /**
-* Single text replacement request.
+* Represents rectangle DTO.
 */
-export class TextReplaceRequest extends TextReplace {
-    'defaultFont': string;
+export class RectanglePdf {
+    'lLX': number;
+    'lLY': number;
+    'uRX': number;
+    'uRY': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "defaultFont",
-            "baseName": "DefaultFont",
-            "type": "string"
+            "name": "lLX",
+            "baseName": "LLX",
+            "type": "number"
+        },
+        {
+            "name": "lLY",
+            "baseName": "LLY",
+            "type": "number"
+        },
+        {
+            "name": "uRX",
+            "baseName": "URX",
+            "type": "number"
+        },
+        {
+            "name": "uRY",
+            "baseName": "URY",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(TextReplaceRequest.attributeTypeMap);
+        return RectanglePdf.attributeTypeMap;
     }
 }
 

@@ -19,29 +19,26 @@
  *
  */
 
-import { WordCount } from "./wordCount";
-import { AsposeResponse } from "./asposeResponse";
+import { AnnotationInfo } from "./annotationInfo";
+import { LinkElement } from "./linkElement";
 
 /**
-* Number of words per document pages.
+* List of annotations.
 */
-export class WordCountResponse extends AsposeResponse {
-    /**
-    * with words per page info.            
-    */
-    'wordsPerPage': WordCount;
+export class AnnotationsInfo extends LinkElement {
+    'list': Array<AnnotationInfo>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "wordsPerPage",
-            "baseName": "WordsPerPage",
-            "type": "WordCount"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<AnnotationInfo>"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordCountResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(AnnotationsInfo.attributeTypeMap);
     }
 }
 

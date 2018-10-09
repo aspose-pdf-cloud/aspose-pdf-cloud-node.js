@@ -21,7 +21,12 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
-import { HttpStatusCode } from "../src/models/httpStatusCode";
+import { Paragraph } from "../src/models/paragraph";
+import { TextHorizontalAlignment } from "../src/models/textHorizontalAlignment";
+import { LineSpacing } from "../src/models/lineSpacing";
+import { VerticalAlignment } from "../src/models/verticalAlignment";
+import { WrapMode } from "../src/models/wrapMode";
+import { FontStyles } from "../src/models/fontStyles";
 var assert = require('assert');
 
 describe("Text Tests", () => {
@@ -42,7 +47,7 @@ describe("Text Tests", () => {
 
             return BaseTest.getPdfApi().getText(name, x, y, width, height, null, null, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });
@@ -56,7 +61,51 @@ describe("Text Tests", () => {
 
             return BaseTest.getPdfApi().getPageText(name, pageNumber, x, y, width, height, format, null, null, BaseTest.remoteTempFolder)
                 .then((result) => {
-                    assert.equal(result.response.statusCode, HttpStatusCode.OK);
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("PutAddText Test", () => {
+        
+        it("should return response with code 200", () => {
+
+            const paragraph = new Paragraph();
+            paragraph.rectangle = { lLX: 100, lLY: 100, uRX: 200, uRY: 200};
+            paragraph.leftMargin = 10;
+            paragraph.rightMargin = 10;
+            paragraph.topMargin = 20;
+            paragraph.bottomMargin = 20;
+            paragraph.horizontalAlignment = TextHorizontalAlignment.FullJustify;
+            paragraph.lineSpacing = LineSpacing.FontSize;
+            paragraph.rotation = 10;
+            paragraph.subsequentLinesIndent = 20;
+            paragraph.verticalAlignment = VerticalAlignment.Center;
+            paragraph.wrapMode = WrapMode.ByWords;
+
+            paragraph.lines = [
+                {
+                    horizontalAlignment: TextHorizontalAlignment.Right,
+                    segments: [
+                        {
+                            value: "segment 1",
+                            textState: {
+                                font: "Arial",
+                                fontSize: 10,
+                                foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
+                                backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
+                                fontStyle: FontStyles.Bold
+                            }
+                        }
+                    ]
+                }
+            ];
+
+            const pageNumber = 3;
+
+            return BaseTest.getPdfApi().putAddText(name, pageNumber, paragraph, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
             });
         });
     });

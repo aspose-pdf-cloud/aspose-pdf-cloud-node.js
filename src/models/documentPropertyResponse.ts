@@ -20,9 +20,9 @@
  */
 
 import { DocumentProperty } from "./documentProperty";
-import { SaaSposeResponse } from "./saaSposeResponse";
+import { AsposeResponse } from "./asposeResponse";
 
-export class DocumentPropertyResponse extends SaaSposeResponse {
+export class DocumentPropertyResponse extends AsposeResponse {
     'documentProperty': DocumentProperty;
 
     static discriminator = undefined;

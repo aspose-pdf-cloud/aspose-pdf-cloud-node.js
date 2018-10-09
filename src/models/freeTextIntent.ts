@@ -19,30 +19,8 @@
  *
  */
 
-import { WordCount } from "./wordCount";
-import { AsposeResponse } from "./asposeResponse";
-
-/**
-* Number of words per document pages.
-*/
-export class WordCountResponse extends AsposeResponse {
-    /**
-    * with words per page info.            
-    */
-    'wordsPerPage': WordCount;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "wordsPerPage",
-            "baseName": "WordsPerPage",
-            "type": "WordCount"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(WordCountResponse.attributeTypeMap);
-    }
+export enum FreeTextIntent {
+    Undefined = 'Undefined',
+    FreeTextCallout = 'FreeTextCallout',
+    FreeTextTypeWriter = 'FreeTextTypeWriter',
 }
-
-
