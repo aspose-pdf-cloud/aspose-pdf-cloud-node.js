@@ -56,4 +56,16 @@ describe("Storage Tests", () => {
             });
         });
     });
+
+    describe("GetListFiles Test", () => {
+
+        it("should return file", async () => {
+    
+            return BaseTest.getPdfApi().getListFiles(BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+                    //console.log(JSON.stringify(result.body));
+            });
+        });
+    });
 });
