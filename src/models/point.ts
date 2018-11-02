@@ -1,6 +1,6 @@
  /**
  *
- *   Copyright (c) 2018 Aspose.Pdf for Cloud
+ *   Copyright (c) 2018 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,53 +19,37 @@
  *
  */
 
-import { IAuthentication, OAuth  } from "./auth";
 
 /**
- * Pdf API configuration
- */
-export class Configuration {
+* Represent point with fractional coordinates.
+*/
+export class Point {
     /**
-     * Authentication.
-     */
-    public authentication: IAuthentication;
-
+    * X coordinate value.
+    */
+    'x': number;
     /**
-     * App SID.
-     */
-    public appSID: string;
+    * Y coordinate value.
+    */
+    'y': number;
 
-    /**
-     * App key.
-     */
-    public appKey: string;
+    static discriminator = undefined;
 
-    /**
-     * Base Url.
-     */
-    public baseUrl: string;
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "x",
+            "baseName": "X",
+            "type": "number"
+        },
+        {
+            "name": "y",
+            "baseName": "Y",
+            "type": "number"
+        }    ];
 
-    /**
-     *  Gets or sets a value indicating whether debug mode. In debug mode all requests and responses are logged to console.
-     */
-    public debugMode: boolean;
-
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
-        if (baseUrl) {
-            this.baseUrl = baseUrl;
-        }
-
-        this.appSID = appSID;
-        this.appKey = appKey;
-        this.debugMode = debugMode;
-
-        this.authentication = new OAuth() as IAuthentication;
-    }
-
-    /**
-     * Returns api base url
-     */
-    public getApiBaseUrl(): string {
-        return this.baseUrl;
+    static getAttributeTypeMap() {
+        return Point.attributeTypeMap;
     }
 }
+
+

@@ -25,6 +25,7 @@ import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AppendDocument } from "./models/appendDocument";
 import { AsposeResponse } from "./models/asposeResponse";
+import { CaptionPosition } from "./models/captionPosition";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
 import { CompressionType } from "./models/compressionType";
@@ -33,6 +34,7 @@ import { DocRecognitionMode } from "./models/docRecognitionMode";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
 import { FieldType } from "./models/fieldType";
+import { File } from "./models/file";
 import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
@@ -45,6 +47,8 @@ import { ImageTemplate } from "./models/imageTemplate";
 import { ImageTemplatesRequest } from "./models/imageTemplatesRequest";
 import { Justification } from "./models/justification";
 import { LettersPositioningMethods } from "./models/lettersPositioningMethods";
+import { LineEnding } from "./models/lineEnding";
+import { LineIntent } from "./models/lineIntent";
 import { LineSpacing } from "./models/lineSpacing";
 import { Link } from "./models/link";
 import { LinkActionType } from "./models/linkActionType";
@@ -57,6 +61,8 @@ import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
 import { PdfAType } from "./models/pdfAType";
+import { Point } from "./models/point";
+import { PolyIntent } from "./models/polyIntent";
 import { RasterImagesSavingModes } from "./models/rasterImagesSavingModes";
 import { RectanglePdf } from "./models/rectanglePdf";
 import { Rotation } from "./models/rotation";
@@ -86,6 +92,9 @@ import { Attachment } from "./models/attachment";
 import { AttachmentResponse } from "./models/attachmentResponse";
 import { Attachments } from "./models/attachments";
 import { AttachmentsResponse } from "./models/attachmentsResponse";
+import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
+import { CircleAnnotations } from "./models/circleAnnotations";
+import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
 import { Document } from "./models/document";
 import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
@@ -98,6 +107,7 @@ import { Field } from "./models/field";
 import { FieldResponse } from "./models/fieldResponse";
 import { Fields } from "./models/fields";
 import { FieldsResponse } from "./models/fieldsResponse";
+import { FilesResponse } from "./models/filesResponse";
 import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "./models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "./models/freeTextAnnotationsResponse";
@@ -105,15 +115,27 @@ import { Image } from "./models/image";
 import { ImageResponse } from "./models/imageResponse";
 import { Images } from "./models/images";
 import { ImagesResponse } from "./models/imagesResponse";
+import { LineAnnotationResponse } from "./models/lineAnnotationResponse";
+import { LineAnnotations } from "./models/lineAnnotations";
+import { LineAnnotationsResponse } from "./models/lineAnnotationsResponse";
 import { LinkAnnotation } from "./models/linkAnnotation";
 import { LinkAnnotationResponse } from "./models/linkAnnotationResponse";
 import { LinkAnnotations } from "./models/linkAnnotations";
 import { LinkAnnotationsResponse } from "./models/linkAnnotationsResponse";
 import { Page } from "./models/page";
 import { Pages } from "./models/pages";
+import { PolyLineAnnotationResponse } from "./models/polyLineAnnotationResponse";
+import { PolyLineAnnotations } from "./models/polyLineAnnotations";
+import { PolyLineAnnotationsResponse } from "./models/polyLineAnnotationsResponse";
+import { PolygonAnnotationResponse } from "./models/polygonAnnotationResponse";
+import { PolygonAnnotations } from "./models/polygonAnnotations";
+import { PolygonAnnotationsResponse } from "./models/polygonAnnotationsResponse";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
 import { SplitResultDocument } from "./models/splitResultDocument";
 import { SplitResultResponse } from "./models/splitResultResponse";
+import { SquareAnnotationResponse } from "./models/squareAnnotationResponse";
+import { SquareAnnotations } from "./models/squareAnnotations";
+import { SquareAnnotationsResponse } from "./models/squareAnnotationsResponse";
 import { TextAnnotationResponse } from "./models/textAnnotationResponse";
 import { TextAnnotations } from "./models/textAnnotations";
 import { TextAnnotationsResponse } from "./models/textAnnotationsResponse";
@@ -122,14 +144,22 @@ import { TextReplaceResponse } from "./models/textReplaceResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
 import { MarkupAnnotation } from "./models/markupAnnotation";
+import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FreeTextAnnotation } from "./models/freeTextAnnotation";
+import { LineAnnotation } from "./models/lineAnnotation";
+import { PolyAnnotation } from "./models/polyAnnotation";
 import { TextAnnotation } from "./models/textAnnotation";
+import { CircleAnnotation } from "./models/circleAnnotation";
+import { PolyLineAnnotation } from "./models/polyLineAnnotation";
+import { PolygonAnnotation } from "./models/polygonAnnotation";
+import { SquareAnnotation } from "./models/squareAnnotation";
 
 let enumsMap: {[index: string]: any} = {
     "AnnotationFlags": AnnotationFlags,
     "AnnotationState": AnnotationState,
     "AnnotationType": AnnotationType,
     "AntialiasingProcessingType": AntialiasingProcessingType,
+    "CaptionPosition": CaptionPosition,
     "ColorDepth": ColorDepth,
     "CompressionType": CompressionType,
     "DocFormat": DocFormat,
@@ -146,11 +176,14 @@ let enumsMap: {[index: string]: any} = {
     "ImageSrcType": ImageSrcType,
     "Justification": Justification,
     "LettersPositioningMethods": LettersPositioningMethods,
+    "LineEnding": LineEnding,
+    "LineIntent": LineIntent,
     "LineSpacing": LineSpacing,
     "LinkActionType": LinkActionType,
     "LinkHighlightingMode": LinkHighlightingMode,
     "PartsEmbeddingModes": PartsEmbeddingModes,
     "PdfAType": PdfAType,
+    "PolyIntent": PolyIntent,
     "RasterImagesSavingModes": RasterImagesSavingModes,
     "Rotation": Rotation,
     "ShapeType": ShapeType,
@@ -167,6 +200,7 @@ let typeMap: {[index: string]: any} = {
     "AsposeResponse": AsposeResponse,
     "Color": Color,
     "DocumentPrivilege": DocumentPrivilege,
+    "File": File,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
     "Link": Link,
@@ -176,6 +210,7 @@ let typeMap: {[index: string]: any} = {
     "OptimizeOptions": OptimizeOptions,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
+    "Point": Point,
     "RectanglePdf": RectanglePdf,
     "Segment": Segment,
     "Signature": Signature,
@@ -196,6 +231,9 @@ let typeMap: {[index: string]: any} = {
     "AttachmentResponse": AttachmentResponse,
     "Attachments": Attachments,
     "AttachmentsResponse": AttachmentsResponse,
+    "CircleAnnotationResponse": CircleAnnotationResponse,
+    "CircleAnnotations": CircleAnnotations,
+    "CircleAnnotationsResponse": CircleAnnotationsResponse,
     "Document": Document,
     "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
@@ -208,6 +246,7 @@ let typeMap: {[index: string]: any} = {
     "FieldResponse": FieldResponse,
     "Fields": Fields,
     "FieldsResponse": FieldsResponse,
+    "FilesResponse": FilesResponse,
     "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
     "FreeTextAnnotations": FreeTextAnnotations,
     "FreeTextAnnotationsResponse": FreeTextAnnotationsResponse,
@@ -215,15 +254,27 @@ let typeMap: {[index: string]: any} = {
     "ImageResponse": ImageResponse,
     "Images": Images,
     "ImagesResponse": ImagesResponse,
+    "LineAnnotationResponse": LineAnnotationResponse,
+    "LineAnnotations": LineAnnotations,
+    "LineAnnotationsResponse": LineAnnotationsResponse,
     "LinkAnnotation": LinkAnnotation,
     "LinkAnnotationResponse": LinkAnnotationResponse,
     "LinkAnnotations": LinkAnnotations,
     "LinkAnnotationsResponse": LinkAnnotationsResponse,
     "Page": Page,
     "Pages": Pages,
+    "PolyLineAnnotationResponse": PolyLineAnnotationResponse,
+    "PolyLineAnnotations": PolyLineAnnotations,
+    "PolyLineAnnotationsResponse": PolyLineAnnotationsResponse,
+    "PolygonAnnotationResponse": PolygonAnnotationResponse,
+    "PolygonAnnotations": PolygonAnnotations,
+    "PolygonAnnotationsResponse": PolygonAnnotationsResponse,
     "SignatureVerifyResponse": SignatureVerifyResponse,
     "SplitResultDocument": SplitResultDocument,
     "SplitResultResponse": SplitResultResponse,
+    "SquareAnnotationResponse": SquareAnnotationResponse,
+    "SquareAnnotations": SquareAnnotations,
+    "SquareAnnotationsResponse": SquareAnnotationsResponse,
     "TextAnnotationResponse": TextAnnotationResponse,
     "TextAnnotations": TextAnnotations,
     "TextAnnotationsResponse": TextAnnotationsResponse,
@@ -232,8 +283,15 @@ let typeMap: {[index: string]: any} = {
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
     "MarkupAnnotation": MarkupAnnotation,
+    "CommonFigureAnnotation": CommonFigureAnnotation,
     "FreeTextAnnotation": FreeTextAnnotation,
+    "LineAnnotation": LineAnnotation,
+    "PolyAnnotation": PolyAnnotation,
     "TextAnnotation": TextAnnotation,
+    "CircleAnnotation": CircleAnnotation,
+    "PolyLineAnnotation": PolyLineAnnotation,
+    "PolygonAnnotation": PolygonAnnotation,
+    "SquareAnnotation": SquareAnnotation,
 }
 
 let primitives = [
@@ -331,7 +389,13 @@ export class ObjectSerializer {
             }
             return transformedData;
         } else if (type === "Date") {
-            return new Date(data);
+            let regEx = /\/Date\((\d+)\+0000\)\//;
+            var result = regEx.exec(data);
+            if (result) {
+                return new Date(parseInt(result[1]));
+            } else {
+                return null;
+            }
         } else {
             if (enumsMap[type]) {// is Enum
                 return data;
