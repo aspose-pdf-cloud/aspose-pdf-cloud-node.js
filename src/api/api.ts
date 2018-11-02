@@ -25,6 +25,7 @@ import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
 import { AppendDocument } from "../models/appendDocument";
 import { AsposeResponse } from "../models/asposeResponse";
+import { CaptionPosition } from "../models/captionPosition";
 import { Color } from "../models/color";
 import { ColorDepth } from "../models/colorDepth";
 import { CompressionType } from "../models/compressionType";
@@ -33,6 +34,7 @@ import { DocRecognitionMode } from "../models/docRecognitionMode";
 import { DocumentPrivilege } from "../models/documentPrivilege";
 import { EpubRecognitionMode } from "../models/epubRecognitionMode";
 import { FieldType } from "../models/fieldType";
+import { File } from "../models/file";
 import { FontEncodingRules } from "../models/fontEncodingRules";
 import { FontSavingModes } from "../models/fontSavingModes";
 import { FontStyles } from "../models/fontStyles";
@@ -45,6 +47,8 @@ import { ImageTemplate } from "../models/imageTemplate";
 import { ImageTemplatesRequest } from "../models/imageTemplatesRequest";
 import { Justification } from "../models/justification";
 import { LettersPositioningMethods } from "../models/lettersPositioningMethods";
+import { LineEnding } from "../models/lineEnding";
+import { LineIntent } from "../models/lineIntent";
 import { LineSpacing } from "../models/lineSpacing";
 import { Link } from "../models/link";
 import { LinkActionType } from "../models/linkActionType";
@@ -57,6 +61,8 @@ import { PageWordCount } from "../models/pageWordCount";
 import { Paragraph } from "../models/paragraph";
 import { PartsEmbeddingModes } from "../models/partsEmbeddingModes";
 import { PdfAType } from "../models/pdfAType";
+import { Point } from "../models/point";
+import { PolyIntent } from "../models/polyIntent";
 import { RasterImagesSavingModes } from "../models/rasterImagesSavingModes";
 import { RectanglePdf } from "../models/rectanglePdf";
 import { Rotation } from "../models/rotation";
@@ -86,6 +92,9 @@ import { Attachment } from "../models/attachment";
 import { AttachmentResponse } from "../models/attachmentResponse";
 import { Attachments } from "../models/attachments";
 import { AttachmentsResponse } from "../models/attachmentsResponse";
+import { CircleAnnotationResponse } from "../models/circleAnnotationResponse";
+import { CircleAnnotations } from "../models/circleAnnotations";
+import { CircleAnnotationsResponse } from "../models/circleAnnotationsResponse";
 import { Document } from "../models/document";
 import { DocumentPageResponse } from "../models/documentPageResponse";
 import { DocumentPagesResponse } from "../models/documentPagesResponse";
@@ -98,6 +107,7 @@ import { Field } from "../models/field";
 import { FieldResponse } from "../models/fieldResponse";
 import { Fields } from "../models/fields";
 import { FieldsResponse } from "../models/fieldsResponse";
+import { FilesResponse } from "../models/filesResponse";
 import { FreeTextAnnotationResponse } from "../models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "../models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "../models/freeTextAnnotationsResponse";
@@ -105,15 +115,27 @@ import { Image } from "../models/image";
 import { ImageResponse } from "../models/imageResponse";
 import { Images } from "../models/images";
 import { ImagesResponse } from "../models/imagesResponse";
+import { LineAnnotationResponse } from "../models/lineAnnotationResponse";
+import { LineAnnotations } from "../models/lineAnnotations";
+import { LineAnnotationsResponse } from "../models/lineAnnotationsResponse";
 import { LinkAnnotation } from "../models/linkAnnotation";
 import { LinkAnnotationResponse } from "../models/linkAnnotationResponse";
 import { LinkAnnotations } from "../models/linkAnnotations";
 import { LinkAnnotationsResponse } from "../models/linkAnnotationsResponse";
 import { Page } from "../models/page";
 import { Pages } from "../models/pages";
+import { PolyLineAnnotationResponse } from "../models/polyLineAnnotationResponse";
+import { PolyLineAnnotations } from "../models/polyLineAnnotations";
+import { PolyLineAnnotationsResponse } from "../models/polyLineAnnotationsResponse";
+import { PolygonAnnotationResponse } from "../models/polygonAnnotationResponse";
+import { PolygonAnnotations } from "../models/polygonAnnotations";
+import { PolygonAnnotationsResponse } from "../models/polygonAnnotationsResponse";
 import { SignatureVerifyResponse } from "../models/signatureVerifyResponse";
 import { SplitResultDocument } from "../models/splitResultDocument";
 import { SplitResultResponse } from "../models/splitResultResponse";
+import { SquareAnnotationResponse } from "../models/squareAnnotationResponse";
+import { SquareAnnotations } from "../models/squareAnnotations";
+import { SquareAnnotationsResponse } from "../models/squareAnnotationsResponse";
 import { TextAnnotationResponse } from "../models/textAnnotationResponse";
 import { TextAnnotations } from "../models/textAnnotations";
 import { TextAnnotationsResponse } from "../models/textAnnotationsResponse";
@@ -122,8 +144,15 @@ import { TextReplaceResponse } from "../models/textReplaceResponse";
 import { WordCountResponse } from "../models/wordCountResponse";
 import { AnnotationInfo } from "../models/annotationInfo";
 import { MarkupAnnotation } from "../models/markupAnnotation";
+import { CommonFigureAnnotation } from "../models/commonFigureAnnotation";
 import { FreeTextAnnotation } from "../models/freeTextAnnotation";
+import { LineAnnotation } from "../models/lineAnnotation";
+import { PolyAnnotation } from "../models/polyAnnotation";
 import { TextAnnotation } from "../models/textAnnotation";
+import { CircleAnnotation } from "../models/circleAnnotation";
+import { PolyLineAnnotation } from "../models/polyLineAnnotation";
+import { PolygonAnnotation } from "../models/polygonAnnotation";
+import { SquareAnnotation } from "../models/squareAnnotation";
 
 import { ObjectSerializer } from "../objectSerializer";
 import { Configuration } from "../configuration";
@@ -804,6 +833,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page circle annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getCircleAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: CircleAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/circle/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getCircleAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getCircleAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read common document info.
      * @param name The document name.
      * @param storage The document storage.
@@ -1076,6 +1164,58 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document circle annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentCircleAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: CircleAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/circle'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentCircleAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document free text annotations.
      * @param name The document name.
      * @param storage The document storage.
@@ -1122,6 +1262,162 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "FreeTextAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document line annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentLineAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LineAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/line'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "LineAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document polyline annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentPolyLineAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolyLineAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentPolyLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolyLineAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document polygon annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentPolygonAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolygonAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentPolygonAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolygonAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -1233,6 +1529,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document square annotations.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentSquareAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SquareAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/square'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentSquareAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SquareAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -2164,6 +2512,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page line annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getLineAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LineAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/line/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getLineAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getLineAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "LineAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document link annotation by ID.
      * @param name The document name.
      * @param linkId The link ID.
@@ -2217,6 +2624,51 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Get the file listing of a specific folder 
+     * @param path Start with name of storage e.g. root folder &#39;/&#39;or some folder &#39;/folder1/..&#39;
+     * @param storage User&#39;s storage name
+     */
+    public async getListFiles (path?: string, storage?: string) : Promise<{ response: http.ClientResponse; body: FilesResponse;  }> {
+        const localVarPath = this.basePath + '/storage/folder';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (path !== undefined && null !== path) {
+            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FilesResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -2385,6 +2837,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AnnotationsInfoResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page circle annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageCircleAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: CircleAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/circle'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageCircleAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageCircleAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -2864,6 +3375,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page line annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageLineAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LineAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/line'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageLineAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "LineAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page link annotation by ID.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -2983,6 +3553,183 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page polyline annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPagePolyLineAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolyLineAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polyline'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPagePolyLineAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPagePolyLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolyLineAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page polygon annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPagePolygonAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolygonAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polygon'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPagePolygonAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPagePolygonAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolygonAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page square annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageSquareAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SquareAnnotationsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/square'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageSquareAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageSquareAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SquareAnnotationsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -4198,6 +4945,124 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page polyline annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPolyLineAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolyLineAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPolyLineAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getPolyLineAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolyLineAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page polygon annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPolygonAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolygonAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPolygonAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getPolygonAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolygonAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Convert PS file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.ps)
      * @param storage The document storage.
@@ -4242,6 +5107,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page square annotation by ID.
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getSquareAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SquareAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/square/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getSquareAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling getSquareAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SquareAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5337,6 +6261,72 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Add document page circle annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPageCircleAnnotations (name: string, pageNumber: number, annotations: Array<CircleAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/circle'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPageCircleAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageCircleAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPageCircleAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<CircleAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Add document page free text annotations.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -5403,6 +6393,72 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Add document page line annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPageLineAnnotations (name: string, pageNumber: number, annotations: Array<LineAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/line'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPageLineAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageLineAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPageLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<LineAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Add document page link annotations.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -5452,6 +6508,204 @@ export class PdfApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(links, "Array<LinkAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document page polyline annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPagePolyLineAnnotations (name: string, pageNumber: number, annotations: Array<PolyLineAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polyline'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPagePolyLineAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPagePolyLineAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPagePolyLineAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<PolyLineAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document page polygon annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPagePolygonAnnotations (name: string, pageNumber: number, annotations: Array<PolygonAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polygon'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPagePolygonAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPagePolygonAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPagePolygonAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<PolygonAnnotation>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document page square annotations.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param annotations The array of annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postPageSquareAnnotations (name: string, pageNumber: number, annotations: Array<SquareAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/square'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postPageSquareAnnotations.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling postPageSquareAnnotations.');
+        }
+
+        // verify required parameter 'annotations' is not null or undefined
+        if (annotations === null || annotations === undefined) {
+            throw new Error('Required parameter annotations was null or undefined when calling postPageSquareAnnotations.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotations, "Array<SquareAnnotation>")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -5890,6 +7144,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document circle annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putCircleAnnotation (name: string, annotationId: string, annotation: CircleAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: CircleAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/circle/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putCircleAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putCircleAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putCircleAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "CircleAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7010,6 +8330,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document line annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putLineAnnotation (name: string, annotationId: string, annotation: LineAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: LineAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/line/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putLineAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putLineAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putLineAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "LineAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "LineAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9850,6 +11236,138 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Replace document polyline annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putPolyLineAnnotation (name: string, annotationId: string, annotation: PolyLineAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolyLineAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putPolyLineAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putPolyLineAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putPolyLineAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "PolyLineAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolyLineAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document polygon annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putPolygonAnnotation (name: string, annotationId: string, annotation: PolygonAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: PolygonAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putPolygonAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putPolygonAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putPolygonAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "PolygonAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "PolygonAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Update privilege document.
      * @param name The document name.
      * @param privileges Document privileges. 
@@ -10158,6 +11676,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document square annotation
+     * @param name The document name.
+     * @param annotationId The annotation ID.
+     * @param annotation Annotation.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putSquareAnnotation (name: string, annotationId: string, annotation: SquareAnnotation, storage?: string, folder?: string) : Promise<{ response: http.ClientResponse; body: SquareAnnotationResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/annotations/square/{annotationId}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putSquareAnnotation.');
+        }
+
+        // verify required parameter 'annotationId' is not null or undefined
+        if (annotationId === null || annotationId === undefined) {
+            throw new Error('Required parameter annotationId was null or undefined when calling putSquareAnnotation.');
+        }
+
+        // verify required parameter 'annotation' is not null or undefined
+        if (annotation === null || annotation === undefined) {
+            throw new Error('Required parameter annotation was null or undefined when calling putSquareAnnotation.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(annotation, "SquareAnnotation")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SquareAnnotationResponse");
         return Promise.resolve({body: result, response});
     }
 
