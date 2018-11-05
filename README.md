@@ -97,8 +97,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getPolyLineAnnotation**](docs/PdfApi.md#getPolyLineAnnotation) | **GET** /pdf/\{name}/annotations/polyline/\{annotationId} | Read document page polyline annotation by ID.
 *PdfApi* | [**putPolyLineAnnotation**](docs/PdfApi.md#putPolyLineAnnotation) | **PUT** /pdf/\{name}/annotations/polyline/\{annotationId} | Replace document polyline annotation
 *PdfApi* | [**deleteAnnotation**](docs/PdfApi.md#deleteAnnotation) | **DELETE** /pdf/\{name}/annotations/\{annotationId} | Delete document annotation by ID
-*PdfApi* | [**putSearchableDocument**](docs/PdfApi.md#putSearchableDocument) | **PUT** /pdf/\{name}/ocr | Create searchable PDF document.
-Generate OCR layer for images in input PDF document.
+*PdfApi* | [**putSearchableDocument**](docs/PdfApi.md#putSearchableDocument) | **PUT** /pdf/\{name}/ocr | Create searchable PDF document. Generate OCR layer for images in input PDF document.
 *PdfApi* | [**getDocumentAttachments**](docs/PdfApi.md#getDocumentAttachments) | **GET** /pdf/\{name}/attachments | Read document attachments info.
 *PdfApi* | [**getDocumentAttachmentByIndex**](docs/PdfApi.md#getDocumentAttachmentByIndex) | **GET** /pdf/\{name}/attachments/\{attachmentIndex} | Read document attachment info by its index.
 *PdfApi* | [**getDownloadDocumentAttachmentByIndex**](docs/PdfApi.md#getDownloadDocumentAttachmentByIndex) | **GET** /pdf/\{name}/attachments/\{attachmentIndex}/download | Download document attachment content by its index.
@@ -148,7 +147,7 @@ Generate OCR layer for images in input PDF document.
 *PdfApi* | [**getPage**](docs/PdfApi.md#getPage) | **GET** /pdf/\{name}/pages/\{pageNumber} | Read document page info.
 *PdfApi* | [**deletePage**](docs/PdfApi.md#deletePage) | **DELETE** /pdf/\{name}/pages/\{pageNumber} | Delete document page by its number.
 *PdfApi* | [**postSignPage**](docs/PdfApi.md#postSignPage) | **POST** /pdf/\{name}/pages/\{pageNumber}/sign | Sign page.
-*PdfApi* | [**getPageConvertToTiff**](docs/PdfApi.md#getPageConvertToTiff) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/tiff | Convert document page to Tiff image  and return resulting file in response.
+*PdfApi* | [**getPageConvertToTiff**](docs/PdfApi.md#getPageConvertToTiff) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/tiff | Convert document page to Tiff image and return resulting file in response.
 *PdfApi* | [**putPageConvertToTiff**](docs/PdfApi.md#putPageConvertToTiff) | **PUT** /pdf/\{name}/pages/\{pageNumber}/convert/tiff | Convert document page to Tiff image and upload resulting file to storage.
 *PdfApi* | [**getPageConvertToJpeg**](docs/PdfApi.md#getPageConvertToJpeg) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/jpeg | Convert document page to Jpeg image and return resulting file in response.
 *PdfApi* | [**putPageConvertToJpeg**](docs/PdfApi.md#putPageConvertToJpeg) | **PUT** /pdf/\{name}/pages/\{pageNumber}/convert/jpeg | Convert document page to Jpeg image and upload resulting file to storage.
@@ -241,140 +240,140 @@ Generate OCR layer for images in input PDF document.
 
 ## Documentation for Models
 
-Class | Type | Description
------ | ----- | ------
-[AppendDocument](docs/AppendDocument.md) |  | Class for appendDocument service request building.
-[DocumentResponse](docs/DocumentResponse.md) |  | 
-[Document](docs/Document.md) |  | Represents document DTO.
-[DocumentProperties](docs/DocumentProperties.md) |  | Pdf document properties.
-[DocumentProperty](docs/DocumentProperty.md) |  | Pdf document property.
-[LinkElement](docs/LinkElement.md) |  | Represents base DTO object.
-[Link](docs/Link.md) |  | Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
-[Pages](docs/Pages.md) |  | List of pages.
-[Page](docs/Page.md) |  | Provides link to page.
-[Images](docs/Images.md) |  | List of page images.
-[Image](docs/Image.md) |  | Represents image DTO.
-[RectanglePdf](docs/RectanglePdf.md) |  | Represents rectangle DTO.
-[AsposeResponse](docs/AsposeResponse.md) |  | Base class for all responses.
-[AnnotationsInfoResponse](docs/AnnotationsInfoResponse.md) |  | 
-[AnnotationsInfo](docs/AnnotationsInfo.md) |  | List of annotations.
-[AnnotationInfo](docs/AnnotationInfo.md) |  | Provides annotation.
-[AnnotationType](docs/AnnotationType.md) | Enum | 
-[Annotation](docs/Annotation.md) |  | Provides annotation.
-[AnnotationFlags](docs/AnnotationFlags.md) | Enum | A set of flags specifying various characteristics of the annotation.
-[HorizontalAlignment](docs/HorizontalAlignment.md) | Enum | 
-[VerticalAlignment](docs/VerticalAlignment.md) | Enum | Enumeration of possible vertical alignment values.
-[FreeTextAnnotationsResponse](docs/FreeTextAnnotationsResponse.md) |  | 
-[FreeTextAnnotations](docs/FreeTextAnnotations.md) |  | List of annotations.
-[FreeTextAnnotation](docs/FreeTextAnnotation.md) |  | Provides FreeTextAnnotation.
-[Justification](docs/Justification.md) | Enum | Enumerates the forms of quadding (justification) to be used in displaying the annotation?s text.
-[FreeTextIntent](docs/FreeTextIntent.md) | Enum | Enumerates the intents of the free text annotation.
-[Rotation](docs/Rotation.md) | Enum | Enumeration of possible rotation values.
-[TextStyle](docs/TextStyle.md) |  | Represents a text style of a text
-[Color](docs/Color.md) |  | Represents color DTO.
-[MarkupAnnotation](docs/MarkupAnnotation.md) |  | Provides MarkupAnnotation.
-[FreeTextAnnotationResponse](docs/FreeTextAnnotationResponse.md) |  | 
-[TextAnnotationsResponse](docs/TextAnnotationsResponse.md) |  | 
-[TextAnnotations](docs/TextAnnotations.md) |  | List of annotations.
-[TextAnnotation](docs/TextAnnotation.md) |  | Provides TextAnnotation.
-[AnnotationState](docs/AnnotationState.md) | Enum | The enumeration of states to which the original annotation can be set.
-[TextIcon](docs/TextIcon.md) | Enum | Enumerates the icons to be used in displaying the annotation.
-[TextAnnotationResponse](docs/TextAnnotationResponse.md) |  | 
-[LineAnnotationsResponse](docs/LineAnnotationsResponse.md) |  | 
-[LineAnnotations](docs/LineAnnotations.md) |  | List of annotations.
-[LineAnnotation](docs/LineAnnotation.md) |  | Provides LineAnnotation.
-[Point](docs/Point.md) |  | Represent point with fractional coordinates.
-[LineEnding](docs/LineEnding.md) | Enum | Enumerates the line ending styles to be used in drawing the line.
-[CaptionPosition](docs/CaptionPosition.md) | Enum | Enumeration of the annotation?s caption positioning.
-[LineIntent](docs/LineIntent.md) | Enum | Enumerates the intents of the line annotation.
-[LineAnnotationResponse](docs/LineAnnotationResponse.md) |  | 
-[SquareAnnotationsResponse](docs/SquareAnnotationsResponse.md) |  | 
-[SquareAnnotations](docs/SquareAnnotations.md) |  | List of annotations.
-[SquareAnnotation](docs/SquareAnnotation.md) |  | Provides SquareAnnotation.
-[CommonFigureAnnotation](docs/CommonFigureAnnotation.md) |  | Provides CommonFigureAnnotation.
-[SquareAnnotationResponse](docs/SquareAnnotationResponse.md) |  | 
-[CircleAnnotationsResponse](docs/CircleAnnotationsResponse.md) |  | 
-[CircleAnnotations](docs/CircleAnnotations.md) |  | List of annotations.
-[CircleAnnotation](docs/CircleAnnotation.md) |  | Provides CircleAnnotation.
-[CircleAnnotationResponse](docs/CircleAnnotationResponse.md) |  | 
-[PolygonAnnotationsResponse](docs/PolygonAnnotationsResponse.md) |  | 
-[PolygonAnnotations](docs/PolygonAnnotations.md) |  | List of annotations.
-[PolygonAnnotation](docs/PolygonAnnotation.md) |  | Provides PolygonAnnotation.
-[PolyAnnotation](docs/PolyAnnotation.md) |  | Provides PolyAnnotation.
-[PolyIntent](docs/PolyIntent.md) | Enum | Enumerates the intents of the polygon or polyline annotation.
-[PolygonAnnotationResponse](docs/PolygonAnnotationResponse.md) |  | 
-[PolyLineAnnotationsResponse](docs/PolyLineAnnotationsResponse.md) |  | 
-[PolyLineAnnotations](docs/PolyLineAnnotations.md) |  | List of annotations.
-[PolyLineAnnotation](docs/PolyLineAnnotation.md) |  | Provides PolyLineAnnotation.
-[PolyLineAnnotationResponse](docs/PolyLineAnnotationResponse.md) |  | 
-[AttachmentsResponse](docs/AttachmentsResponse.md) |  | 
-[Attachments](docs/Attachments.md) |  | List of attachment.
-[AttachmentResponse](docs/AttachmentResponse.md) |  | 
-[Attachment](docs/Attachment.md) |  | Provides link to attachment.
-[MergeDocuments](docs/MergeDocuments.md) |  | Documents for merging.
-[Signature](docs/Signature.md) |  | 
-[SignatureType](docs/SignatureType.md) | Enum | 
-[SignatureVerifyResponse](docs/SignatureVerifyResponse.md) |  | Returns also a message.
-[DocumentPrivilege](docs/DocumentPrivilege.md) |  | Represents the privileges for accessing Pdf file./>.
-[OptimizeOptions](docs/OptimizeOptions.md) |  | Represents Pdf optimize options.
-[SplitResultResponse](docs/SplitResultResponse.md) |  | Represents split result object.
-[SplitResult](docs/SplitResult.md) |  | Represents split result object.
-[SplitResultDocument](docs/SplitResultDocument.md) |  | Represents split result document,
-[Field](docs/Field.md) |  | Represents form field.
-[FieldType](docs/FieldType.md) | Enum | Represents an enumeration of available field types.
-[FieldResponse](docs/FieldResponse.md) |  | 
-[Fields](docs/Fields.md) |  | List of form fields.
-[FieldsResponse](docs/FieldsResponse.md) |  | 
-[ImagesResponse](docs/ImagesResponse.md) |  | 
-[ImageResponse](docs/ImageResponse.md) |  | 
-[LinkAnnotationsResponse](docs/LinkAnnotationsResponse.md) |  | 
-[LinkAnnotations](docs/LinkAnnotations.md) |  | List of LinkAnnotations.
-[LinkAnnotation](docs/LinkAnnotation.md) |  | Provides link to linkAnnotation.
-[LinkActionType](docs/LinkActionType.md) | Enum | Represents list of link action types.
-[LinkHighlightingMode](docs/LinkHighlightingMode.md) | Enum | Enumerates the annotation?s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
-[LinkAnnotationResponse](docs/LinkAnnotationResponse.md) |  | 
-[DocumentPagesResponse](docs/DocumentPagesResponse.md) |  | 
-[DocumentPageResponse](docs/DocumentPageResponse.md) |  | 
-[WordCountResponse](docs/WordCountResponse.md) |  | Number of words per document pages.
-[WordCount](docs/WordCount.md) |  | Number of words per document pages.
-[PageWordCount](docs/PageWordCount.md) |  | Page words count.
-[Stamp](docs/Stamp.md) |  | Represents Pdf stamps.
-[StampType](docs/StampType.md) | Enum | Represents enumeration of the stamp types.
-[TextState](docs/TextState.md) |  | Represents a text state of a text
-[FontStyles](docs/FontStyles.md) | Enum | Specifies style information applied to text.
-[DocumentPropertiesResponse](docs/DocumentPropertiesResponse.md) |  | 
-[DocumentPropertyResponse](docs/DocumentPropertyResponse.md) |  | 
-[TextRectsResponse](docs/TextRectsResponse.md) |  | 
-[TextRects](docs/TextRects.md) |  | Represents text items DTO.
-[TextRect](docs/TextRect.md) |  | Represents text DTO.
-[Paragraph](docs/Paragraph.md) |  | Paragraph DTO for add text functionality.
-[LineSpacing](docs/LineSpacing.md) | Enum | 
-[WrapMode](docs/WrapMode.md) | Enum | 
-[TextHorizontalAlignment](docs/TextHorizontalAlignment.md) | Enum | 
-[TextLine](docs/TextLine.md) |  | A line of text to be inserted into .
-[Segment](docs/Segment.md) |  | 
-[TextReplaceListRequest](docs/TextReplaceListRequest.md) |  | Multiple text replacements request.
-[TextReplace](docs/TextReplace.md) |  | Single text replacement setting.
-[TextReplaceResponse](docs/TextReplaceResponse.md) |  | 
-[ImageTemplatesRequest](docs/ImageTemplatesRequest.md) |  | Create document from images request.
-[ImageTemplate](docs/ImageTemplate.md) |  | Template of image.
-[ImageSrcType](docs/ImageSrcType.md) | Enum | Allows to specify image file format.
-[MarginInfo](docs/MarginInfo.md) |  | 
-[DocFormat](docs/DocFormat.md) | Enum | Allows to specify .doc or .docx file format.
-[DocRecognitionMode](docs/DocRecognitionMode.md) | Enum | Allows to control how a PDF document is converted into a word processing document.
-[HtmlDocumentType](docs/HtmlDocumentType.md) | Enum | Represents enumeration of the Html document types.
-[AntialiasingProcessingType](docs/AntialiasingProcessingType.md) | Enum | This enum describes possible antialiasing measures during conversion
-[FontEncodingRules](docs/FontEncodingRules.md) | Enum | This enumeration defines rules which tune encoding logic
-[FontSavingModes](docs/FontSavingModes.md) | Enum | Enumerates modes that can be used for saving of fonts referenced in saved PDF 
-[HtmlMarkupGenerationModes](docs/HtmlMarkupGenerationModes.md) | Enum | Sometimes specific reqirments to created HTML are present. This enum defines HTML preparing modes that can be used during conversion of PDF to HTML to match such specific requirments. 
-[LettersPositioningMethods](docs/LettersPositioningMethods.md) | Enum | It enumerates possible modes of positioning of letters in words in result HTML 
-[PartsEmbeddingModes](docs/PartsEmbeddingModes.md) | Enum | This enum enumerates possible modes of embedding of files referenced in HTML It allows to control whether referenced files (HTML, Fonts,Images, CSSes) will be embedded into main HTML file or will be generated as apart binary entities 
-[RasterImagesSavingModes](docs/RasterImagesSavingModes.md) | Enum | Converted PDF can contain raster images(.png, *.jpeg etc.) This enum defines methods of how raster images can be handled during conversion of PDF to HTML 
-[PdfAType](docs/PdfAType.md) | Enum | Allows to specify PdfA file format.
-[CompressionType](docs/CompressionType.md) | Enum | Used to specify the parameter value passed to a Tiff image device.
-[ColorDepth](docs/ColorDepth.md) | Enum | Used to specify the parameter value passed to a Tiff image device.
-[ShapeType](docs/ShapeType.md) | Enum | This enum represents shape type for the extracted images.
-[EpubRecognitionMode](docs/EpubRecognitionMode.md) | Enum | When PDF file (that usually has fixed layout) is being converted, the conversion engine tries to perform grouping and multi-level analysis to restore the original document author's intent and produce result in flow layout. This property tunes that conversion for this or that desirable method of recognition of content. 
-[File](docs/File.md) |  | 
-[FilesResponse](docs/FilesResponse.md) |  | 
+Class | Notes | Description
+----- | ----- | -----
+[**AppendDocument**](docs/AppendDocument.md) |  | Class for appendDocument service request building.
+[**DocumentResponse**](docs/DocumentResponse.md) |  | 
+[**Document**](docs/Document.md) |  | Represents document DTO.
+[**DocumentProperties**](docs/DocumentProperties.md) |  | Pdf document properties.
+[**DocumentProperty**](docs/DocumentProperty.md) |  | Pdf document property.
+[**LinkElement**](docs/LinkElement.md) |  | Represents base DTO object.
+[**Link**](docs/Link.md) |  | Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
+[**Pages**](docs/Pages.md) |  | List of pages.
+[**Page**](docs/Page.md) |  | Provides link to page.
+[**Images**](docs/Images.md) |  | List of page images.
+[**Image**](docs/Image.md) |  | Represents image DTO.
+[**RectanglePdf**](docs/RectanglePdf.md) |  | Represents rectangle DTO.
+[**AsposeResponse**](docs/AsposeResponse.md) |  | Base class for all responses.
+[**AnnotationsInfoResponse**](docs/AnnotationsInfoResponse.md) |  | 
+[**AnnotationsInfo**](docs/AnnotationsInfo.md) |  | List of annotations.
+[**AnnotationInfo**](docs/AnnotationInfo.md) |  | Provides annotation.
+[**AnnotationType**](docs/AnnotationType.md) | Enum | 
+[**Annotation**](docs/Annotation.md) |  | Provides annotation.
+[**AnnotationFlags**](docs/AnnotationFlags.md) | Enum | A set of flags specifying various characteristics of the annotation.
+[**HorizontalAlignment**](docs/HorizontalAlignment.md) | Enum | 
+[**VerticalAlignment**](docs/VerticalAlignment.md) | Enum | Enumeration of possible vertical alignment values.
+[**FreeTextAnnotationsResponse**](docs/FreeTextAnnotationsResponse.md) |  | 
+[**FreeTextAnnotations**](docs/FreeTextAnnotations.md) |  | List of annotations.
+[**FreeTextAnnotation**](docs/FreeTextAnnotation.md) |  | Provides FreeTextAnnotation.
+[**Justification**](docs/Justification.md) | Enum | Enumerates the forms of quadding (justification) to be used in displaying the annotation?s text.
+[**FreeTextIntent**](docs/FreeTextIntent.md) | Enum | Enumerates the intents of the free text annotation.
+[**Rotation**](docs/Rotation.md) | Enum | Enumeration of possible rotation values.
+[**TextStyle**](docs/TextStyle.md) |  | Represents a text style of a text
+[**Color**](docs/Color.md) |  | Represents color DTO.
+[**MarkupAnnotation**](docs/MarkupAnnotation.md) |  | Provides MarkupAnnotation.
+[**FreeTextAnnotationResponse**](docs/FreeTextAnnotationResponse.md) |  | 
+[**TextAnnotationsResponse**](docs/TextAnnotationsResponse.md) |  | 
+[**TextAnnotations**](docs/TextAnnotations.md) |  | List of annotations.
+[**TextAnnotation**](docs/TextAnnotation.md) |  | Provides TextAnnotation.
+[**AnnotationState**](docs/AnnotationState.md) | Enum | The enumeration of states to which the original annotation can be set.
+[**TextIcon**](docs/TextIcon.md) | Enum | Enumerates the icons to be used in displaying the annotation.
+[**TextAnnotationResponse**](docs/TextAnnotationResponse.md) |  | 
+[**LineAnnotationsResponse**](docs/LineAnnotationsResponse.md) |  | 
+[**LineAnnotations**](docs/LineAnnotations.md) |  | List of annotations.
+[**LineAnnotation**](docs/LineAnnotation.md) |  | Provides LineAnnotation.
+[**Point**](docs/Point.md) |  | Represent point with fractional coordinates.
+[**LineEnding**](docs/LineEnding.md) | Enum | Enumerates the line ending styles to be used in drawing the line.
+[**CaptionPosition**](docs/CaptionPosition.md) | Enum | Enumeration of the annotation?s caption positioning.
+[**LineIntent**](docs/LineIntent.md) | Enum | Enumerates the intents of the line annotation.
+[**LineAnnotationResponse**](docs/LineAnnotationResponse.md) |  | 
+[**SquareAnnotationsResponse**](docs/SquareAnnotationsResponse.md) |  | 
+[**SquareAnnotations**](docs/SquareAnnotations.md) |  | List of annotations.
+[**SquareAnnotation**](docs/SquareAnnotation.md) |  | Provides SquareAnnotation.
+[**CommonFigureAnnotation**](docs/CommonFigureAnnotation.md) |  | Provides CommonFigureAnnotation.
+[**SquareAnnotationResponse**](docs/SquareAnnotationResponse.md) |  | 
+[**CircleAnnotationsResponse**](docs/CircleAnnotationsResponse.md) |  | 
+[**CircleAnnotations**](docs/CircleAnnotations.md) |  | List of annotations.
+[**CircleAnnotation**](docs/CircleAnnotation.md) |  | Provides CircleAnnotation.
+[**CircleAnnotationResponse**](docs/CircleAnnotationResponse.md) |  | 
+[**PolygonAnnotationsResponse**](docs/PolygonAnnotationsResponse.md) |  | 
+[**PolygonAnnotations**](docs/PolygonAnnotations.md) |  | List of annotations.
+[**PolygonAnnotation**](docs/PolygonAnnotation.md) |  | Provides PolygonAnnotation.
+[**PolyAnnotation**](docs/PolyAnnotation.md) |  | Provides PolyAnnotation.
+[**PolyIntent**](docs/PolyIntent.md) | Enum | Enumerates the intents of the polygon or polyline annotation.
+[**PolygonAnnotationResponse**](docs/PolygonAnnotationResponse.md) |  | 
+[**PolyLineAnnotationsResponse**](docs/PolyLineAnnotationsResponse.md) |  | 
+[**PolyLineAnnotations**](docs/PolyLineAnnotations.md) |  | List of annotations.
+[**PolyLineAnnotation**](docs/PolyLineAnnotation.md) |  | Provides PolyLineAnnotation.
+[**PolyLineAnnotationResponse**](docs/PolyLineAnnotationResponse.md) |  | 
+[**AttachmentsResponse**](docs/AttachmentsResponse.md) |  | 
+[**Attachments**](docs/Attachments.md) |  | List of attachment.
+[**AttachmentResponse**](docs/AttachmentResponse.md) |  | 
+[**Attachment**](docs/Attachment.md) |  | Provides link to attachment.
+[**MergeDocuments**](docs/MergeDocuments.md) |  | Documents for merging.
+[**Signature**](docs/Signature.md) |  | 
+[**SignatureType**](docs/SignatureType.md) | Enum | 
+[**SignatureVerifyResponse**](docs/SignatureVerifyResponse.md) |  | Returns also a message.
+[**DocumentPrivilege**](docs/DocumentPrivilege.md) |  | Represents the privileges for accessing Pdf file./>.
+[**OptimizeOptions**](docs/OptimizeOptions.md) |  | Represents Pdf optimize options.
+[**SplitResultResponse**](docs/SplitResultResponse.md) |  | Represents split result object.
+[**SplitResult**](docs/SplitResult.md) |  | Represents split result object.
+[**SplitResultDocument**](docs/SplitResultDocument.md) |  | Represents split result document,
+[**Field**](docs/Field.md) |  | Represents form field.
+[**FieldType**](docs/FieldType.md) | Enum | Represents an enumeration of available field types.
+[**FieldResponse**](docs/FieldResponse.md) |  | 
+[**Fields**](docs/Fields.md) |  | List of form fields.
+[**FieldsResponse**](docs/FieldsResponse.md) |  | 
+[**ImagesResponse**](docs/ImagesResponse.md) |  | 
+[**ImageResponse**](docs/ImageResponse.md) |  | 
+[**LinkAnnotationsResponse**](docs/LinkAnnotationsResponse.md) |  | 
+[**LinkAnnotations**](docs/LinkAnnotations.md) |  | List of LinkAnnotations.
+[**LinkAnnotation**](docs/LinkAnnotation.md) |  | Provides link to linkAnnotation.
+[**LinkActionType**](docs/LinkActionType.md) | Enum | Represents list of link action types.
+[**LinkHighlightingMode**](docs/LinkHighlightingMode.md) | Enum | Enumerates the annotation?s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
+[**LinkAnnotationResponse**](docs/LinkAnnotationResponse.md) |  | 
+[**DocumentPagesResponse**](docs/DocumentPagesResponse.md) |  | 
+[**DocumentPageResponse**](docs/DocumentPageResponse.md) |  | 
+[**WordCountResponse**](docs/WordCountResponse.md) |  | Number of words per document pages.
+[**WordCount**](docs/WordCount.md) |  | Number of words per document pages.
+[**PageWordCount**](docs/PageWordCount.md) |  | Page words count.
+[**Stamp**](docs/Stamp.md) |  | Represents Pdf stamps.
+[**StampType**](docs/StampType.md) | Enum | Represents enumeration of the stamp types.
+[**TextState**](docs/TextState.md) |  | Represents a text state of a text
+[**FontStyles**](docs/FontStyles.md) | Enum | Specifies style information applied to text.
+[**DocumentPropertiesResponse**](docs/DocumentPropertiesResponse.md) |  | 
+[**DocumentPropertyResponse**](docs/DocumentPropertyResponse.md) |  | 
+[**TextRectsResponse**](docs/TextRectsResponse.md) |  | 
+[**TextRects**](docs/TextRects.md) |  | Represents text items DTO.
+[**TextRect**](docs/TextRect.md) |  | Represents text DTO.
+[**Paragraph**](docs/Paragraph.md) |  | Paragraph DTO for add text functionality.
+[**LineSpacing**](docs/LineSpacing.md) | Enum | 
+[**WrapMode**](docs/WrapMode.md) | Enum | 
+[**TextHorizontalAlignment**](docs/TextHorizontalAlignment.md) | Enum | 
+[**TextLine**](docs/TextLine.md) |  | A line of text to be inserted into .
+[**Segment**](docs/Segment.md) |  | 
+[**TextReplaceListRequest**](docs/TextReplaceListRequest.md) |  | Multiple text replacements request.
+[**TextReplace**](docs/TextReplace.md) |  | Single text replacement setting.
+[**TextReplaceResponse**](docs/TextReplaceResponse.md) |  | 
+[**ImageTemplatesRequest**](docs/ImageTemplatesRequest.md) |  | Create document from images request.
+[**ImageTemplate**](docs/ImageTemplate.md) |  | Template of image.
+[**ImageSrcType**](docs/ImageSrcType.md) | Enum | Allows to specify image file format.
+[**MarginInfo**](docs/MarginInfo.md) |  | 
+[**DocFormat**](docs/DocFormat.md) | Enum | Allows to specify .doc or .docx file format.
+[**DocRecognitionMode**](docs/DocRecognitionMode.md) | Enum | Allows to control how a PDF document is converted into a word processing document.
+[**HtmlDocumentType**](docs/HtmlDocumentType.md) | Enum | Represents enumeration of the Html document types.
+[**AntialiasingProcessingType**](docs/AntialiasingProcessingType.md) | Enum | This enum describes possible antialiasing measures during conversion
+[**FontEncodingRules**](docs/FontEncodingRules.md) | Enum | This enumeration defines rules which tune encoding logic
+[**FontSavingModes**](docs/FontSavingModes.md) | Enum | Enumerates modes that can be used for saving of fonts referenced in saved PDF 
+[**HtmlMarkupGenerationModes**](docs/HtmlMarkupGenerationModes.md) | Enum | Sometimes specific reqirments to created HTML are present. This enum defines HTML preparing modes that can be used during conversion of PDF to HTML to match such specific requirments. 
+[**LettersPositioningMethods**](docs/LettersPositioningMethods.md) | Enum | It enumerates possible modes of positioning of letters in words in result HTML 
+[**PartsEmbeddingModes**](docs/PartsEmbeddingModes.md) | Enum | This enum enumerates possible modes of embedding of files referenced in HTML It allows to control whether referenced files (HTML, Fonts,Images, CSSes) will be embedded into main HTML file or will be generated as apart binary entities 
+[**RasterImagesSavingModes**](docs/RasterImagesSavingModes.md) | Enum | Converted PDF can contain raster images(.png, *.jpeg etc.) This enum defines methods of how raster images can be handled during conversion of PDF to HTML 
+[**PdfAType**](docs/PdfAType.md) | Enum | Allows to specify PdfA file format.
+[**CompressionType**](docs/CompressionType.md) | Enum | Used to specify the parameter value passed to a Tiff image device.
+[**ColorDepth**](docs/ColorDepth.md) | Enum | Used to specify the parameter value passed to a Tiff image device.
+[**ShapeType**](docs/ShapeType.md) | Enum | This enum represents shape type for the extracted images.
+[**EpubRecognitionMode**](docs/EpubRecognitionMode.md) | Enum | When PDF file (that usually has fixed layout) is being converted, the conversion engine tries to perform grouping and multi-level analysis to restore the original document author's intent and produce result in flow layout. This property tunes that conversion for this or that desirable method of recognition of content. 
+[**File**](docs/File.md) |  | Represents file DTO.
+[**FilesResponse**](docs/FilesResponse.md) |  | 
 
