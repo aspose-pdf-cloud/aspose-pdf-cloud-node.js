@@ -7,7 +7,7 @@ These SDKs are now fully supported. If you have any questions, see any bugs or h
 
 ## Installation
 
-###NPM
+### NPM
 
 From the command line:
 
