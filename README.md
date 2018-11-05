@@ -242,6 +242,7 @@ Generate OCR layer for images in input PDF document.
 ## Documentation for Models
 
 Class | Type | Description
+----- | ----- | ------
 [AppendDocument](docs/AppendDocument.md) |  | Class for appendDocument service request building.
 [DocumentResponse](docs/DocumentResponse.md) |  | 
 [Document](docs/Document.md) |  | Represents document DTO.
