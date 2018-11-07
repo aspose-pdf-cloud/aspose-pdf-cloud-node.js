@@ -1,6 +1,6 @@
 # PdfApi
 
-All URIs are relative to *https://api.aspose.cloud/v2.0*
+All URIs are relative to *https://api.aspose.cloud/v2.0/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -245,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -360,7 +360,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleAnnotationResponse**](CircleAnnotationResponse)
+[**CircleAnnotationResponse**](CircleAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentResponse**](DocumentResponse)
+[**DocumentResponse**](DocumentResponse.md)
 
 ### HTTP request headers
 
@@ -495,7 +495,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnotationsInfoResponse**](AnnotationsInfoResponse)
+[**AnnotationsInfoResponse**](AnnotationsInfoResponse.md)
 
 ### HTTP request headers
 
@@ -518,7 +518,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AttachmentResponse**](AttachmentResponse)
+[**AttachmentResponse**](AttachmentResponse.md)
 
 ### HTTP request headers
 
@@ -540,7 +540,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AttachmentsResponse**](AttachmentsResponse)
+[**AttachmentsResponse**](AttachmentsResponse.md)
 
 ### HTTP request headers
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleAnnotationsResponse**](CircleAnnotationsResponse)
+[**CircleAnnotationsResponse**](CircleAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -607,7 +607,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FreeTextAnnotationsResponse**](FreeTextAnnotationsResponse)
+[**FreeTextAnnotationsResponse**](FreeTextAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -629,7 +629,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LineAnnotationsResponse**](LineAnnotationsResponse)
+[**LineAnnotationsResponse**](LineAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -651,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolygonAnnotationsResponse**](PolygonAnnotationsResponse)
+[**PolygonAnnotationsResponse**](PolygonAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -673,7 +673,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolyLineAnnotationsResponse**](PolyLineAnnotationsResponse)
+[**PolyLineAnnotationsResponse**](PolyLineAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPropertiesResponse**](DocumentPropertiesResponse)
+[**DocumentPropertiesResponse**](DocumentPropertiesResponse.md)
 
 ### HTTP request headers
 
@@ -718,7 +718,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPropertyResponse**](DocumentPropertyResponse)
+[**DocumentPropertyResponse**](DocumentPropertyResponse.md)
 
 ### HTTP request headers
 
@@ -740,7 +740,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SquareAnnotationsResponse**](SquareAnnotationsResponse)
+[**SquareAnnotationsResponse**](SquareAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -762,7 +762,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextAnnotationsResponse**](TextAnnotationsResponse)
+[**TextAnnotationsResponse**](TextAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -851,7 +851,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FieldResponse**](FieldResponse)
+[**FieldResponse**](FieldResponse.md)
 
 ### HTTP request headers
 
@@ -873,7 +873,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FieldsResponse**](FieldsResponse)
+[**FieldsResponse**](FieldsResponse.md)
 
 ### HTTP request headers
 
@@ -896,7 +896,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FreeTextAnnotationResponse**](FreeTextAnnotationResponse)
+[**FreeTextAnnotationResponse**](FreeTextAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -948,7 +948,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ImageResponse**](ImageResponse)
+[**ImageResponse**](ImageResponse.md)
 
 ### HTTP request headers
 
@@ -1071,7 +1071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ImagesResponse**](ImagesResponse)
+[**ImagesResponse**](ImagesResponse.md)
 
 ### HTTP request headers
 
@@ -1115,7 +1115,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LineAnnotationResponse**](LineAnnotationResponse)
+[**LineAnnotationResponse**](LineAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -1138,7 +1138,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkAnnotationResponse**](LinkAnnotationResponse)
+[**LinkAnnotationResponse**](LinkAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -1159,7 +1159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FilesResponse**](FilesResponse)
+[**FilesResponse**](FilesResponse.md)
 
 ### HTTP request headers
 
@@ -1203,7 +1203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPageResponse**](DocumentPageResponse)
+[**DocumentPageResponse**](DocumentPageResponse.md)
 
 ### HTTP request headers
 
@@ -1226,7 +1226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnnotationsInfoResponse**](AnnotationsInfoResponse)
+[**AnnotationsInfoResponse**](AnnotationsInfoResponse.md)
 
 ### HTTP request headers
 
@@ -1249,7 +1249,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleAnnotationsResponse**](CircleAnnotationsResponse)
+[**CircleAnnotationsResponse**](CircleAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1422,7 +1422,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FreeTextAnnotationsResponse**](FreeTextAnnotationsResponse)
+[**FreeTextAnnotationsResponse**](FreeTextAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1445,7 +1445,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LineAnnotationsResponse**](LineAnnotationsResponse)
+[**LineAnnotationsResponse**](LineAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1469,7 +1469,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkAnnotationResponse**](LinkAnnotationResponse)
+[**LinkAnnotationResponse**](LinkAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -1492,7 +1492,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkAnnotationsResponse**](LinkAnnotationsResponse)
+[**LinkAnnotationsResponse**](LinkAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1515,7 +1515,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolygonAnnotationsResponse**](PolygonAnnotationsResponse)
+[**PolygonAnnotationsResponse**](PolygonAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1538,7 +1538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolyLineAnnotationsResponse**](PolyLineAnnotationsResponse)
+[**PolyLineAnnotationsResponse**](PolyLineAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1560,7 +1560,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPagesResponse**](DocumentPagesResponse)
+[**DocumentPagesResponse**](DocumentPagesResponse.md)
 
 ### HTTP request headers
 
@@ -1583,7 +1583,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SquareAnnotationsResponse**](SquareAnnotationsResponse)
+[**SquareAnnotationsResponse**](SquareAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1613,7 +1613,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextRectsResponse**](TextRectsResponse)
+[**TextRectsResponse**](TextRectsResponse.md)
 
 ### HTTP request headers
 
@@ -1636,7 +1636,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextAnnotationsResponse**](TextAnnotationsResponse)
+[**TextAnnotationsResponse**](TextAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -2005,7 +2005,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolygonAnnotationResponse**](PolygonAnnotationResponse)
+[**PolygonAnnotationResponse**](PolygonAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2028,7 +2028,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolyLineAnnotationResponse**](PolyLineAnnotationResponse)
+[**PolyLineAnnotationResponse**](PolyLineAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2072,7 +2072,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SquareAnnotationResponse**](SquareAnnotationResponse)
+[**SquareAnnotationResponse**](SquareAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2130,7 +2130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextRectsResponse**](TextRectsResponse)
+[**TextRectsResponse**](TextRectsResponse.md)
 
 ### HTTP request headers
 
@@ -2153,7 +2153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextAnnotationResponse**](TextAnnotationResponse)
+[**TextAnnotationResponse**](TextAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2176,7 +2176,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SignatureVerifyResponse**](SignatureVerifyResponse)
+[**SignatureVerifyResponse**](SignatureVerifyResponse.md)
 
 ### HTTP request headers
 
@@ -2226,7 +2226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WordCountResponse**](WordCountResponse)
+[**WordCountResponse**](WordCountResponse.md)
 
 ### HTTP request headers
 
@@ -2338,7 +2338,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentResponse**](DocumentResponse)
+[**DocumentResponse**](DocumentResponse.md)
 
 ### HTTP request headers
 
@@ -2362,7 +2362,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2385,7 +2385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextReplaceResponse**](TextReplaceResponse)
+[**TextReplaceResponse**](TextReplaceResponse.md)
 
 ### HTTP request headers
 
@@ -2414,7 +2414,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2438,7 +2438,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2461,7 +2461,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2485,7 +2485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2509,7 +2509,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2533,7 +2533,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2557,7 +2557,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2581,7 +2581,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2605,7 +2605,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2629,7 +2629,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2653,7 +2653,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2677,7 +2677,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextReplaceResponse**](TextReplaceResponse)
+[**TextReplaceResponse**](TextReplaceResponse.md)
 
 ### HTTP request headers
 
@@ -2700,7 +2700,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2724,7 +2724,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2749,7 +2749,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SplitResultResponse**](SplitResultResponse)
+[**SplitResultResponse**](SplitResultResponse.md)
 
 ### HTTP request headers
 
@@ -2771,7 +2771,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPagesResponse**](DocumentPagesResponse)
+[**DocumentPagesResponse**](DocumentPagesResponse.md)
 
 ### HTTP request headers
 
@@ -2795,7 +2795,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2819,7 +2819,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CircleAnnotationResponse**](CircleAnnotationResponse)
+[**CircleAnnotationResponse**](CircleAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2842,7 +2842,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2864,7 +2864,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentResponse**](DocumentResponse)
+[**DocumentResponse**](DocumentResponse.md)
 
 ### HTTP request headers
 
@@ -2887,7 +2887,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2909,7 +2909,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2933,7 +2933,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FreeTextAnnotationResponse**](FreeTextAnnotationResponse)
+[**FreeTextAnnotationResponse**](FreeTextAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -2964,7 +2964,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -2990,7 +2990,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3016,7 +3016,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3042,7 +3042,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3068,7 +3068,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3091,7 +3091,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3117,7 +3117,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3143,7 +3143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3169,7 +3169,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3195,7 +3195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3218,7 +3218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3242,7 +3242,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LineAnnotationResponse**](LineAnnotationResponse)
+[**LineAnnotationResponse**](LineAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -3266,7 +3266,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LinkAnnotationResponse**](LinkAnnotationResponse)
+[**LinkAnnotationResponse**](LinkAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -3312,7 +3312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3336,7 +3336,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3362,7 +3362,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3388,7 +3388,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3414,7 +3414,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3440,7 +3440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3466,7 +3466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3492,7 +3492,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3515,7 +3515,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3545,7 +3545,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3568,7 +3568,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3618,7 +3618,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3641,7 +3641,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3663,7 +3663,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3686,7 +3686,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3710,7 +3710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3732,7 +3732,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3769,7 +3769,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3795,7 +3795,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3817,7 +3817,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3839,7 +3839,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3870,7 +3870,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3894,7 +3894,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3945,7 +3945,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3969,7 +3969,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -3992,7 +3992,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4016,7 +4016,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4041,7 +4041,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4064,7 +4064,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4102,7 +4102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4129,7 +4129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4152,7 +4152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4175,7 +4175,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4199,7 +4199,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolygonAnnotationResponse**](PolygonAnnotationResponse)
+[**PolygonAnnotationResponse**](PolygonAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -4223,7 +4223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PolyLineAnnotationResponse**](PolyLineAnnotationResponse)
+[**PolyLineAnnotationResponse**](PolyLineAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -4246,7 +4246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4269,7 +4269,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4294,7 +4294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ImageResponse**](ImageResponse)
+[**ImageResponse**](ImageResponse.md)
 
 ### HTTP request headers
 
@@ -4317,7 +4317,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4341,7 +4341,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DocumentPropertyResponse**](DocumentPropertyResponse)
+[**DocumentPropertyResponse**](DocumentPropertyResponse.md)
 
 ### HTTP request headers
 
@@ -4365,7 +4365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SquareAnnotationResponse**](SquareAnnotationResponse)
+[**SquareAnnotationResponse**](SquareAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -4396,7 +4396,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4420,7 +4420,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TextAnnotationResponse**](TextAnnotationResponse)
+[**TextAnnotationResponse**](TextAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -4444,7 +4444,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FieldResponse**](FieldResponse)
+[**FieldResponse**](FieldResponse.md)
 
 ### HTTP request headers
 
@@ -4467,7 +4467,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FieldsResponse**](FieldsResponse)
+[**FieldsResponse**](FieldsResponse.md)
 
 ### HTTP request headers
 
@@ -4497,7 +4497,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4519,7 +4519,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4542,7 +4542,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4566,7 +4566,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4589,7 +4589,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
@@ -4612,7 +4612,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsposeResponse**](AsposeResponse)
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
