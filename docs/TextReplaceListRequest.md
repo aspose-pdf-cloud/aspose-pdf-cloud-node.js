@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **defaultFont** | **string** |  | [optional]
 **startIndex** | **number** |  | [optional]
 **countReplace** | **number** |  | [optional]
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

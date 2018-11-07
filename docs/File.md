@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **modifiedDate** | **string** |  | [optional]
 **size** | **number** |  | 
 **path** | **string** |  | [optional]
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

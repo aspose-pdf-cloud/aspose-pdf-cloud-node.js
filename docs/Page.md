@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **images** | [**Images**](Images.md) |  | [optional]
 **rectangle** | [**RectanglePdf**](RectanglePdf.md) |  | [optional]
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document. (Inherited from **[LinkElement](LinkElement.md)**) | [optional]
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

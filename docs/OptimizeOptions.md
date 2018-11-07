@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **removeUnusedObjects** | **boolean** | If this flag is set to true, all document objects will be checked and unused objects (i.e. objects which does not have any reference) are removed from document. | 
 **removeUnusedStreams** | **boolean** | If this flag set to true, every resource is checked on it's usage. If resource is never used, then resources is removed. This may decrease document size for example when pages were extracted from document.  | 
 **unembedFonts** | **boolean** | Make fonts not embedded if set to true.  | 
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

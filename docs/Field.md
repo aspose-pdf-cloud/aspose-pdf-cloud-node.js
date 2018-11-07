@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **rect** | [**RectanglePdf**](RectanglePdf.md) | Field rectangle. | [optional]
 **values** | **Array&lt;string&gt;** | Field values. | 
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document. (Inherited from **[LinkElement](LinkElement.md)**) | [optional]
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

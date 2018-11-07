@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **right** | **number** |  | 
 **top** | **number** |  | 
 **bottom** | **number** |  | 
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

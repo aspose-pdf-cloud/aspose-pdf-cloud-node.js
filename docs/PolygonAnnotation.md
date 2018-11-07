@@ -26,5 +26,6 @@ Name | Type | Description | Notes
 **horizontalAlignment** | [**HorizontalAlignment**](HorizontalAlignment.md) | Gets HorizontalAlignment of the annotation. (Inherited from **[Annotation](Annotation.md)**) | [optional]
 **verticalAlignment** | [**VerticalAlignment**](VerticalAlignment.md) | Gets VerticalAlignment of the annotation. (Inherited from **[Annotation](Annotation.md)**) | [optional]
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document. (Inherited from **[LinkElement](LinkElement.md)**) | [optional]
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

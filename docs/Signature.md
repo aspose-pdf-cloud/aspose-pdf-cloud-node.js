@@ -17,5 +17,6 @@ Name | Type | Description | Notes
 **authority** | **string** | Gets or sets the name of the person or authority signing the document.. | [optional]
 **date** | **string** | Gets or sets the time of signing. | [optional]
 **showProperties** | **boolean** | Gets or sets the showproperties in signature field | 
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
