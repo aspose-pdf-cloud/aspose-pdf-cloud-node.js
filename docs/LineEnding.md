@@ -14,5 +14,6 @@ Name | Type | Value
 **ROpenArrow** | **string** | 'ROpenArrow'
 **Slash** | **string** | 'Slash'
 **Square** | **string** | 'Square'
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/lineEnding.ts)
 

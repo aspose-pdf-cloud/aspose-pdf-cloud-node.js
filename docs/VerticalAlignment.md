@@ -8,5 +8,6 @@ Name | Type | Value
 **Center** | **string** | 'Center'
 **None** | **string** | 'None'
 **Top** | **string** | 'Top'
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/verticalAlignment.ts)
 

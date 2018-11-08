@@ -15,5 +15,6 @@ Name | Type | Value
 **Print** | **string** | 'Print'
 **ReadOnly** | **string** | 'ReadOnly'
 **ToggleNoView** | **string** | 'ToggleNoView'
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/annotationFlags.ts)
 

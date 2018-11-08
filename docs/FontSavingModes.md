@@ -10,5 +10,6 @@ Name | Type | Value
 **AlwaysSaveAsTTF** | **string** | 'AlwaysSaveAsTTF'
 **AlwaysSaveAsWOFF** | **string** | 'AlwaysSaveAsWOFF'
 **SaveInAllFormats** | **string** | 'SaveInAllFormats'
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/fontSavingModes.ts)
 

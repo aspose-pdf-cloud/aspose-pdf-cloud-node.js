@@ -8,5 +8,6 @@ Name | Type | Value
 **BoldItalic** | **string** | 'BoldItalic'
 **Italic** | **string** | 'Italic'
 **Regular** | **string** | 'Regular'
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/fontStyles.ts)
 
