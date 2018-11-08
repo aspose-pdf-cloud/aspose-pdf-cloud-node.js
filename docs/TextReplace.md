@@ -10,5 +10,5 @@ Name | Type | Description | Notes
 **textState** | [**TextState**](TextState.md) | Text properties of a new text. | [optional]
 **rect** | [**RectanglePdf**](RectanglePdf.md) | Rectangle area where searched original text. | [optional]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/textReplace.ts)
 

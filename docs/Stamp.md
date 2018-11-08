@@ -27,5 +27,5 @@ Name | Type | Description | Notes
 **pageIndex** | **number** | Gets or sets the index of the page. | [optional]
 **startingNumber** | **number** | Gets or sets value of the number of starting page. Other pages will be numbered starting from this value. | [optional]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/stamp.ts)
 
