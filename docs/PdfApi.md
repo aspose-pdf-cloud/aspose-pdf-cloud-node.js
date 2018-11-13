@@ -187,7 +187,7 @@ Method | HTTP request | Description
 *PdfApi* | [**putXslFoInStorageToPdf**](PdfApi.md#putXslFoInStorageToPdf) | **PUT** /pdf/\{name}/create/xslfo | Convert XslFo file (located on storage) to PDF format and upload resulting file to storage. 
 <a name="deleteAnnotation"></a>
 ## **deleteAnnotation**
-> deleteAnnotation(name, annotationId, storage, folder) : AsposeResponse
+> deleteAnnotation(name, annotationId, storage, folder)
 
 Delete document annotation by ID
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteDocumentAnnotations"></a>
 ## **deleteDocumentAnnotations**
-> deleteDocumentAnnotations(name, storage, folder) : AsposeResponse
+> deleteDocumentAnnotations(name, storage, folder)
 
 Delete all annotations from the document
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteDocumentLinkAnnotations"></a>
 ## **deleteDocumentLinkAnnotations**
-> deleteDocumentLinkAnnotations(name, storage, folder) : AsposeResponse
+> deleteDocumentLinkAnnotations(name, storage, folder)
 
 Delete all link annotations from the document
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteField"></a>
 ## **deleteField**
-> deleteField(name, fieldName, storage, folder) : AsposeResponse
+> deleteField(name, fieldName, storage, folder)
 
 Delete document field by name.
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteImage"></a>
 ## **deleteImage**
-> deleteImage(name, imageId, storage, folder) : AsposeResponse
+> deleteImage(name, imageId, storage, folder)
 
 Delete image from document page.
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteLinkAnnotation"></a>
 ## **deleteLinkAnnotation**
-> deleteLinkAnnotation(name, linkId, storage, folder) : AsposeResponse
+> deleteLinkAnnotation(name, linkId, storage, folder)
 
 Delete document page link annotation by ID
 
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 <a name="deletePage"></a>
 ## **deletePage**
-> deletePage(name, pageNumber, storage, folder) : AsposeResponse
+> deletePage(name, pageNumber, storage, folder)
 
 Delete document page by its number.
 
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 
 <a name="deletePageAnnotations"></a>
 ## **deletePageAnnotations**
-> deletePageAnnotations(name, pageNumber, storage, folder) : AsposeResponse
+> deletePageAnnotations(name, pageNumber, storage, folder)
 
 Delete all annotations from the page
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 <a name="deletePageLinkAnnotations"></a>
 ## **deletePageLinkAnnotations**
-> deletePageLinkAnnotations(name, pageNumber, storage, folder) : AsposeResponse
+> deletePageLinkAnnotations(name, pageNumber, storage, folder)
 
 Delete all link annotations from the page
 
@@ -392,7 +392,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteProperties"></a>
 ## **deleteProperties**
-> deleteProperties(name, storage, folder) : AsposeResponse
+> deleteProperties(name, storage, folder)
 
 Delete custom document properties.
 
@@ -414,7 +414,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteProperty"></a>
 ## **deleteProperty**
-> deleteProperty(name, propertyName, storage, folder) : AsposeResponse
+> deleteProperty(name, propertyName, storage, folder)
 
 Delete document property.
 
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 
 <a name="getCircleAnnotation"></a>
 ## **getCircleAnnotation**
-> getCircleAnnotation(name, annotationId, storage, folder) : CircleAnnotationResponse
+> getCircleAnnotation(name, annotationId, storage, folder)
 
 Read document page circle annotation by ID.
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocument"></a>
 ## **getDocument**
-> getDocument(name, storage, folder) : DocumentResponse
+> getDocument(name, storage, folder)
 
 Read common document info.
 
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentAnnotations"></a>
 ## **getDocumentAnnotations**
-> getDocumentAnnotations(name, storage, folder) : AnnotationsInfoResponse
+> getDocumentAnnotations(name, storage, folder)
 
 Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
 
@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentAttachmentByIndex"></a>
 ## **getDocumentAttachmentByIndex**
-> getDocumentAttachmentByIndex(name, attachmentIndex, storage, folder) : AttachmentResponse
+> getDocumentAttachmentByIndex(name, attachmentIndex, storage, folder)
 
 Read document attachment info by its index.
 
@@ -527,7 +527,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentAttachments"></a>
 ## **getDocumentAttachments**
-> getDocumentAttachments(name, storage, folder) : AttachmentsResponse
+> getDocumentAttachments(name, storage, folder)
 
 Read document attachments info.
 
@@ -549,7 +549,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentBookmarks"></a>
 ## **getDocumentBookmarks**
-> getDocumentBookmarks(name, bookmarkPath, storage, folder) : file
+> getDocumentBookmarks(name, bookmarkPath, storage, folder)
 
 Read document bookmark/bookmarks (including children).
 
@@ -563,7 +563,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -572,7 +572,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentCircleAnnotations"></a>
 ## **getDocumentCircleAnnotations**
-> getDocumentCircleAnnotations(name, storage, folder) : CircleAnnotationsResponse
+> getDocumentCircleAnnotations(name, storage, folder)
 
 Read document circle annotations.
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentFreeTextAnnotations"></a>
 ## **getDocumentFreeTextAnnotations**
-> getDocumentFreeTextAnnotations(name, storage, folder) : FreeTextAnnotationsResponse
+> getDocumentFreeTextAnnotations(name, storage, folder)
 
 Read document free text annotations.
 
@@ -616,7 +616,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentLineAnnotations"></a>
 ## **getDocumentLineAnnotations**
-> getDocumentLineAnnotations(name, storage, folder) : LineAnnotationsResponse
+> getDocumentLineAnnotations(name, storage, folder)
 
 Read document line annotations.
 
@@ -638,7 +638,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentPolygonAnnotations"></a>
 ## **getDocumentPolygonAnnotations**
-> getDocumentPolygonAnnotations(name, storage, folder) : PolygonAnnotationsResponse
+> getDocumentPolygonAnnotations(name, storage, folder)
 
 Read document polygon annotations.
 
@@ -660,7 +660,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentPolyLineAnnotations"></a>
 ## **getDocumentPolyLineAnnotations**
-> getDocumentPolyLineAnnotations(name, storage, folder) : PolyLineAnnotationsResponse
+> getDocumentPolyLineAnnotations(name, storage, folder)
 
 Read document polyline annotations.
 
@@ -682,7 +682,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentProperties"></a>
 ## **getDocumentProperties**
-> getDocumentProperties(name, storage, folder) : DocumentPropertiesResponse
+> getDocumentProperties(name, storage, folder)
 
 Read document properties.
 
@@ -704,7 +704,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentProperty"></a>
 ## **getDocumentProperty**
-> getDocumentProperty(name, propertyName, storage, folder) : DocumentPropertyResponse
+> getDocumentProperty(name, propertyName, storage, folder)
 
 Read document property by name.
 
@@ -727,7 +727,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentSquareAnnotations"></a>
 ## **getDocumentSquareAnnotations**
-> getDocumentSquareAnnotations(name, storage, folder) : SquareAnnotationsResponse
+> getDocumentSquareAnnotations(name, storage, folder)
 
 Read document square annotations.
 
@@ -749,7 +749,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentTextAnnotations"></a>
 ## **getDocumentTextAnnotations**
-> getDocumentTextAnnotations(name, storage, folder) : TextAnnotationsResponse
+> getDocumentTextAnnotations(name, storage, folder)
 
 Read document text annotations.
 
@@ -771,7 +771,7 @@ Name | Type | Description  | Notes
 
 <a name="getDownload"></a>
 ## **getDownload**
-> getDownload(path, versionId, storage) : file
+> getDownload(path, versionId, storage)
 
 Download a specific file 
 
@@ -784,7 +784,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -793,7 +793,7 @@ Name | Type | Description  | Notes
 
 <a name="getDownloadDocumentAttachmentByIndex"></a>
 ## **getDownloadDocumentAttachmentByIndex**
-> getDownloadDocumentAttachmentByIndex(name, attachmentIndex, storage, folder) : file
+> getDownloadDocumentAttachmentByIndex(name, attachmentIndex, storage, folder)
 
 Download document attachment content by its index.
 
@@ -807,7 +807,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -816,7 +816,7 @@ Name | Type | Description  | Notes
 
 <a name="getEpubInStorageToPdf"></a>
 ## **getEpubInStorageToPdf**
-> getEpubInStorageToPdf(srcPath, storage) : file
+> getEpubInStorageToPdf(srcPath, storage)
 
 Convert EPUB file (located on storage) to PDF format and return resulting file in response. 
 
@@ -828,7 +828,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -837,7 +837,7 @@ Name | Type | Description  | Notes
 
 <a name="getField"></a>
 ## **getField**
-> getField(name, fieldName, storage, folder) : FieldResponse
+> getField(name, fieldName, storage, folder)
 
 Get document field by name.
 
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 
 <a name="getFields"></a>
 ## **getFields**
-> getFields(name, storage, folder) : FieldsResponse
+> getFields(name, storage, folder)
 
 Get document fields.
 
@@ -882,7 +882,7 @@ Name | Type | Description  | Notes
 
 <a name="getFreeTextAnnotation"></a>
 ## **getFreeTextAnnotation**
-> getFreeTextAnnotation(name, annotationId, storage, folder) : FreeTextAnnotationResponse
+> getFreeTextAnnotation(name, annotationId, storage, folder)
 
 Read document page free text annotation by ID.
 
@@ -905,7 +905,7 @@ Name | Type | Description  | Notes
 
 <a name="getHtmlInStorageToPdf"></a>
 ## **getHtmlInStorageToPdf**
-> getHtmlInStorageToPdf(srcPath, htmlFileName, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage) : file
+> getHtmlInStorageToPdf(srcPath, htmlFileName, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage)
 
 Convert HTML file (located on storage) to PDF format and return resulting file in response. 
 
@@ -925,7 +925,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -934,7 +934,7 @@ Name | Type | Description  | Notes
 
 <a name="getImage"></a>
 ## **getImage**
-> getImage(name, imageId, storage, folder) : ImageResponse
+> getImage(name, imageId, storage, folder)
 
 Read document image by ID.
 
@@ -957,7 +957,7 @@ Name | Type | Description  | Notes
 
 <a name="getImageExtractAsGif"></a>
 ## **getImageExtractAsGif**
-> getImageExtractAsGif(name, imageId, width, height, storage, folder) : file
+> getImageExtractAsGif(name, imageId, width, height, storage, folder)
 
 Extract document image in GIF format
 
@@ -973,7 +973,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -982,7 +982,7 @@ Name | Type | Description  | Notes
 
 <a name="getImageExtractAsJpeg"></a>
 ## **getImageExtractAsJpeg**
-> getImageExtractAsJpeg(name, imageId, width, height, storage, folder) : file
+> getImageExtractAsJpeg(name, imageId, width, height, storage, folder)
 
 Extract document image in JPEG format
 
@@ -998,7 +998,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1007,7 +1007,7 @@ Name | Type | Description  | Notes
 
 <a name="getImageExtractAsPng"></a>
 ## **getImageExtractAsPng**
-> getImageExtractAsPng(name, imageId, width, height, storage, folder) : file
+> getImageExtractAsPng(name, imageId, width, height, storage, folder)
 
 Extract document image in PNG format
 
@@ -1023,7 +1023,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1032,7 +1032,7 @@ Name | Type | Description  | Notes
 
 <a name="getImageExtractAsTiff"></a>
 ## **getImageExtractAsTiff**
-> getImageExtractAsTiff(name, imageId, width, height, storage, folder) : file
+> getImageExtractAsTiff(name, imageId, width, height, storage, folder)
 
 Extract document image in TIFF format
 
@@ -1048,7 +1048,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1057,7 +1057,7 @@ Name | Type | Description  | Notes
 
 <a name="getImages"></a>
 ## **getImages**
-> getImages(name, pageNumber, storage, folder) : ImagesResponse
+> getImages(name, pageNumber, storage, folder)
 
 Read document images.
 
@@ -1080,7 +1080,7 @@ Name | Type | Description  | Notes
 
 <a name="getLaTeXInStorageToPdf"></a>
 ## **getLaTeXInStorageToPdf**
-> getLaTeXInStorageToPdf(srcPath, storage) : file
+> getLaTeXInStorageToPdf(srcPath, storage)
 
 Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
 
@@ -1092,7 +1092,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1101,7 +1101,7 @@ Name | Type | Description  | Notes
 
 <a name="getLineAnnotation"></a>
 ## **getLineAnnotation**
-> getLineAnnotation(name, annotationId, storage, folder) : LineAnnotationResponse
+> getLineAnnotation(name, annotationId, storage, folder)
 
 Read document page line annotation by ID.
 
@@ -1124,7 +1124,7 @@ Name | Type | Description  | Notes
 
 <a name="getLinkAnnotation"></a>
 ## **getLinkAnnotation**
-> getLinkAnnotation(name, linkId, storage, folder) : LinkAnnotationResponse
+> getLinkAnnotation(name, linkId, storage, folder)
 
 Read document link annotation by ID.
 
@@ -1147,7 +1147,7 @@ Name | Type | Description  | Notes
 
 <a name="getListFiles"></a>
 ## **getListFiles**
-> getListFiles(path, storage) : FilesResponse
+> getListFiles(path, storage)
 
 Get the file listing of a specific folder 
 
@@ -1168,7 +1168,7 @@ Name | Type | Description  | Notes
 
 <a name="getMhtInStorageToPdf"></a>
 ## **getMhtInStorageToPdf**
-> getMhtInStorageToPdf(srcPath, storage) : file
+> getMhtInStorageToPdf(srcPath, storage)
 
 Convert MHT file (located on storage) to PDF format and return resulting file in response. 
 
@@ -1180,7 +1180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1189,7 +1189,7 @@ Name | Type | Description  | Notes
 
 <a name="getPage"></a>
 ## **getPage**
-> getPage(name, pageNumber, storage, folder) : DocumentPageResponse
+> getPage(name, pageNumber, storage, folder)
 
 Read document page info.
 
@@ -1212,7 +1212,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageAnnotations"></a>
 ## **getPageAnnotations**
-> getPageAnnotations(name, pageNumber, storage, folder) : AnnotationsInfoResponse
+> getPageAnnotations(name, pageNumber, storage, folder)
 
 Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
 
@@ -1235,7 +1235,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageCircleAnnotations"></a>
 ## **getPageCircleAnnotations**
-> getPageCircleAnnotations(name, pageNumber, storage, folder) : CircleAnnotationsResponse
+> getPageCircleAnnotations(name, pageNumber, storage, folder)
 
 Read document page circle annotations.
 
@@ -1258,7 +1258,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToBmp"></a>
 ## **getPageConvertToBmp**
-> getPageConvertToBmp(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToBmp(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Bmp image and return resulting file in response.
 
@@ -1274,7 +1274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1283,7 +1283,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToEmf"></a>
 ## **getPageConvertToEmf**
-> getPageConvertToEmf(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToEmf(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Emf image and return resulting file in response.
 
@@ -1299,7 +1299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1308,7 +1308,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToGif"></a>
 ## **getPageConvertToGif**
-> getPageConvertToGif(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToGif(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Gif image and return resulting file in response.
 
@@ -1324,7 +1324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1333,7 +1333,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToJpeg"></a>
 ## **getPageConvertToJpeg**
-> getPageConvertToJpeg(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToJpeg(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Jpeg image and return resulting file in response.
 
@@ -1349,7 +1349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1358,7 +1358,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToPng"></a>
 ## **getPageConvertToPng**
-> getPageConvertToPng(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToPng(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Png image and return resulting file in response.
 
@@ -1374,7 +1374,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1383,7 +1383,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToTiff"></a>
 ## **getPageConvertToTiff**
-> getPageConvertToTiff(name, pageNumber, width, height, folder, storage) : file
+> getPageConvertToTiff(name, pageNumber, width, height, folder, storage)
 
 Convert document page to Tiff image and return resulting file in response.
 
@@ -1399,7 +1399,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1408,7 +1408,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageFreeTextAnnotations"></a>
 ## **getPageFreeTextAnnotations**
-> getPageFreeTextAnnotations(name, pageNumber, storage, folder) : FreeTextAnnotationsResponse
+> getPageFreeTextAnnotations(name, pageNumber, storage, folder)
 
 Read document page free text annotations.
 
@@ -1431,7 +1431,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageLineAnnotations"></a>
 ## **getPageLineAnnotations**
-> getPageLineAnnotations(name, pageNumber, storage, folder) : LineAnnotationsResponse
+> getPageLineAnnotations(name, pageNumber, storage, folder)
 
 Read document page line annotations.
 
@@ -1454,7 +1454,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageLinkAnnotation"></a>
 ## **getPageLinkAnnotation**
-> getPageLinkAnnotation(name, pageNumber, linkId, storage, folder) : LinkAnnotationResponse
+> getPageLinkAnnotation(name, pageNumber, linkId, storage, folder)
 
 Read document page link annotation by ID.
 
@@ -1478,7 +1478,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageLinkAnnotations"></a>
 ## **getPageLinkAnnotations**
-> getPageLinkAnnotations(name, pageNumber, storage, folder) : LinkAnnotationsResponse
+> getPageLinkAnnotations(name, pageNumber, storage, folder)
 
 Read document page link annotations.
 
@@ -1501,7 +1501,7 @@ Name | Type | Description  | Notes
 
 <a name="getPagePolygonAnnotations"></a>
 ## **getPagePolygonAnnotations**
-> getPagePolygonAnnotations(name, pageNumber, storage, folder) : PolygonAnnotationsResponse
+> getPagePolygonAnnotations(name, pageNumber, storage, folder)
 
 Read document page polygon annotations.
 
@@ -1524,7 +1524,7 @@ Name | Type | Description  | Notes
 
 <a name="getPagePolyLineAnnotations"></a>
 ## **getPagePolyLineAnnotations**
-> getPagePolyLineAnnotations(name, pageNumber, storage, folder) : PolyLineAnnotationsResponse
+> getPagePolyLineAnnotations(name, pageNumber, storage, folder)
 
 Read document page polyline annotations.
 
@@ -1547,7 +1547,7 @@ Name | Type | Description  | Notes
 
 <a name="getPages"></a>
 ## **getPages**
-> getPages(name, storage, folder) : DocumentPagesResponse
+> getPages(name, storage, folder)
 
 Read document pages info.
 
@@ -1569,7 +1569,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageSquareAnnotations"></a>
 ## **getPageSquareAnnotations**
-> getPageSquareAnnotations(name, pageNumber, storage, folder) : SquareAnnotationsResponse
+> getPageSquareAnnotations(name, pageNumber, storage, folder)
 
 Read document page square annotations.
 
@@ -1592,7 +1592,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageText"></a>
 ## **getPageText**
-> getPageText(name, pageNumber, format, regex, splitRects, folder, LLX, LLY, URX, URY, storage) : TextRectsResponse
+> getPageText(name, pageNumber, LLX, LLY, URX, URY, format, regex, splitRects, folder, storage)
 
 Read page text items.
 
@@ -1601,14 +1601,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
 **pageNumber** | **number** | Number of page (starting from 1). | 
-**format** | **Array&lt;string&gt;** | List of formats for search. | [optional]
-**regex** | **string** | Formats are specified as a regular expression. | [optional]
-**splitRects** | **boolean** | Split result fragments (default is true). | [optional]
-**folder** | **string** | The document folder. | [optional]
 **LLX** | **number** |  | 
 **LLY** | **number** |  | 
 **URX** | **number** |  | 
 **URY** | **number** |  | 
+**format** | **Array&lt;string&gt;** | List of formats for search. | [optional]
+**regex** | **string** | Formats are specified as a regular expression. | [optional]
+**splitRects** | **boolean** | Split result fragments (default is true). | [optional]
+**folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 
 ### Return type
@@ -1622,7 +1622,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageTextAnnotations"></a>
 ## **getPageTextAnnotations**
-> getPageTextAnnotations(name, pageNumber, storage, folder) : TextAnnotationsResponse
+> getPageTextAnnotations(name, pageNumber, storage, folder)
 
 Read document page text annotations.
 
@@ -1645,7 +1645,7 @@ Name | Type | Description  | Notes
 
 <a name="getPclInStorageToPdf"></a>
 ## **getPclInStorageToPdf**
-> getPclInStorageToPdf(srcPath, storage) : file
+> getPclInStorageToPdf(srcPath, storage)
 
 Convert PCL file (located on storage) to PDF format and return resulting file in response. 
 
@@ -1657,7 +1657,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1666,7 +1666,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToDoc"></a>
 ## **getPdfInStorageToDoc**
-> getPdfInStorageToDoc(name, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage) : file
+> getPdfInStorageToDoc(name, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage)
 
 Converts PDF document (located on storage) to DOC format and returns resulting file in response content
 
@@ -1687,7 +1687,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1696,7 +1696,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToEpub"></a>
 ## **getPdfInStorageToEpub**
-> getPdfInStorageToEpub(name, contentRecognitionMode, folder, storage) : file
+> getPdfInStorageToEpub(name, contentRecognitionMode, folder, storage)
 
 Converts PDF document (located on storage) to EPUB format and returns resulting file in response content
 
@@ -1710,7 +1710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1719,7 +1719,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToHtml"></a>
 ## **getPdfInStorageToHtml**
-> getPdfInStorageToHtml(name, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, folder, storage) : file
+> getPdfInStorageToHtml(name, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, folder, storage)
 
 Converts PDF document (located on storage) to Html format and returns resulting file in response content
 
@@ -1760,7 +1760,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1769,7 +1769,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToLaTeX"></a>
 ## **getPdfInStorageToLaTeX**
-> getPdfInStorageToLaTeX(name, pagesCount, folder, storage) : file
+> getPdfInStorageToLaTeX(name, pagesCount, folder, storage)
 
 Converts PDF document (located on storage) to LaTeX format and returns resulting file in response content
 
@@ -1783,7 +1783,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1792,7 +1792,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToMobiXml"></a>
 ## **getPdfInStorageToMobiXml**
-> getPdfInStorageToMobiXml(name, folder, storage) : file
+> getPdfInStorageToMobiXml(name, folder, storage)
 
 Converts PDF document (located on storage) to MOBIXML format and returns resulting file in response content
 
@@ -1805,7 +1805,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1814,7 +1814,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToPdfA"></a>
 ## **getPdfInStorageToPdfA**
-> getPdfInStorageToPdfA(name, type, folder, storage) : file
+> getPdfInStorageToPdfA(name, type, folder, storage)
 
 Converts PDF document (located on storage) to PdfA format and returns resulting file in response content
 
@@ -1828,7 +1828,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1837,7 +1837,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToPptx"></a>
 ## **getPdfInStorageToPptx**
-> getPdfInStorageToPptx(name, separateImages, slidesAsImages, folder, storage) : file
+> getPdfInStorageToPptx(name, separateImages, slidesAsImages, folder, storage)
 
 Converts PDF document (located on storage) to PPTX format and returns resulting file in response content
 
@@ -1852,7 +1852,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1861,7 +1861,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToSvg"></a>
 ## **getPdfInStorageToSvg**
-> getPdfInStorageToSvg(name, compressOutputToZipArchive, folder, storage) : file
+> getPdfInStorageToSvg(name, compressOutputToZipArchive, folder, storage)
 
 Converts PDF document (located on storage) to SVG format and returns resulting file in response content
 
@@ -1875,7 +1875,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1884,7 +1884,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToTiff"></a>
 ## **getPdfInStorageToTiff**
-> getPdfInStorageToTiff(name, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, folder, storage) : file
+> getPdfInStorageToTiff(name, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, folder, storage)
 
 Converts PDF document (located on storage) to TIFF format and returns resulting file in response content
 
@@ -1912,7 +1912,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1921,7 +1921,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToXls"></a>
 ## **getPdfInStorageToXls**
-> getPdfInStorageToXls(name, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, folder, storage) : file
+> getPdfInStorageToXls(name, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, folder, storage)
 
 Converts PDF document (located on storage) to XLS format and returns resulting file in response content
 
@@ -1938,7 +1938,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1947,7 +1947,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToXml"></a>
 ## **getPdfInStorageToXml**
-> getPdfInStorageToXml(name, folder, storage) : file
+> getPdfInStorageToXml(name, folder, storage)
 
 Converts PDF document (located on storage) to XML format and returns resulting file in response content
 
@@ -1960,7 +1960,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1969,7 +1969,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToXps"></a>
 ## **getPdfInStorageToXps**
-> getPdfInStorageToXps(name, folder, storage) : file
+> getPdfInStorageToXps(name, folder, storage)
 
 Converts PDF document (located on storage) to XPS format and returns resulting file in response content
 
@@ -1982,7 +1982,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -1991,7 +1991,7 @@ Name | Type | Description  | Notes
 
 <a name="getPolygonAnnotation"></a>
 ## **getPolygonAnnotation**
-> getPolygonAnnotation(name, annotationId, storage, folder) : PolygonAnnotationResponse
+> getPolygonAnnotation(name, annotationId, storage, folder)
 
 Read document page polygon annotation by ID.
 
@@ -2014,7 +2014,7 @@ Name | Type | Description  | Notes
 
 <a name="getPolyLineAnnotation"></a>
 ## **getPolyLineAnnotation**
-> getPolyLineAnnotation(name, annotationId, storage, folder) : PolyLineAnnotationResponse
+> getPolyLineAnnotation(name, annotationId, storage, folder)
 
 Read document page polyline annotation by ID.
 
@@ -2037,7 +2037,7 @@ Name | Type | Description  | Notes
 
 <a name="getPsInStorageToPdf"></a>
 ## **getPsInStorageToPdf**
-> getPsInStorageToPdf(srcPath, storage) : file
+> getPsInStorageToPdf(srcPath, storage)
 
 Convert PS file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2049,7 +2049,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2058,7 +2058,7 @@ Name | Type | Description  | Notes
 
 <a name="getSquareAnnotation"></a>
 ## **getSquareAnnotation**
-> getSquareAnnotation(name, annotationId, storage, folder) : SquareAnnotationResponse
+> getSquareAnnotation(name, annotationId, storage, folder)
 
 Read document page square annotation by ID.
 
@@ -2081,7 +2081,7 @@ Name | Type | Description  | Notes
 
 <a name="getSvgInStorageToPdf"></a>
 ## **getSvgInStorageToPdf**
-> getSvgInStorageToPdf(srcPath, adjustPageSize, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage) : file
+> getSvgInStorageToPdf(srcPath, adjustPageSize, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage)
 
 Convert SVG file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2101,7 +2101,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2110,7 +2110,7 @@ Name | Type | Description  | Notes
 
 <a name="getText"></a>
 ## **getText**
-> getText(name, format, regex, splitRects, folder, LLX, LLY, URX, URY, storage) : TextRectsResponse
+> getText(name, LLX, LLY, URX, URY, format, regex, splitRects, folder, storage)
 
 Read document text.
 
@@ -2118,14 +2118,14 @@ Read document text.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
-**format** | **Array&lt;string&gt;** | List of formats for search. | [optional]
-**regex** | **string** | Formats are specified as a regular expression. | [optional]
-**splitRects** | **boolean** | Split result fragments (default is true). | [optional]
-**folder** | **string** | The document folder. | [optional]
 **LLX** | **number** |  | 
 **LLY** | **number** |  | 
 **URX** | **number** |  | 
 **URY** | **number** |  | 
+**format** | **Array&lt;string&gt;** | List of formats for search. | [optional]
+**regex** | **string** | Formats are specified as a regular expression. | [optional]
+**splitRects** | **boolean** | Split result fragments (default is true). | [optional]
+**folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 
 ### Return type
@@ -2139,7 +2139,7 @@ Name | Type | Description  | Notes
 
 <a name="getTextAnnotation"></a>
 ## **getTextAnnotation**
-> getTextAnnotation(name, annotationId, storage, folder) : TextAnnotationResponse
+> getTextAnnotation(name, annotationId, storage, folder)
 
 Read document page text annotation by ID.
 
@@ -2162,7 +2162,7 @@ Name | Type | Description  | Notes
 
 <a name="getVerifySignature"></a>
 ## **getVerifySignature**
-> getVerifySignature(name, signName, storage, folder) : SignatureVerifyResponse
+> getVerifySignature(name, signName, storage, folder)
 
 Verify signature document.
 
@@ -2185,7 +2185,7 @@ Name | Type | Description  | Notes
 
 <a name="getWebInStorageToPdf"></a>
 ## **getWebInStorageToPdf**
-> getWebInStorageToPdf(url, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage) : file
+> getWebInStorageToPdf(url, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, storage)
 
 Convert web page to PDF format and return resulting file in response. 
 
@@ -2204,7 +2204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2213,7 +2213,7 @@ Name | Type | Description  | Notes
 
 <a name="getWordsPerPage"></a>
 ## **getWordsPerPage**
-> getWordsPerPage(name, storage, folder) : WordCountResponse
+> getWordsPerPage(name, storage, folder)
 
 Get number of words per document page.
 
@@ -2235,7 +2235,7 @@ Name | Type | Description  | Notes
 
 <a name="getXfaPdfInStorageToAcroForm"></a>
 ## **getXfaPdfInStorageToAcroForm**
-> getXfaPdfInStorageToAcroForm(name, folder, storage) : file
+> getXfaPdfInStorageToAcroForm(name, folder, storage)
 
 Converts PDF document which contatins XFA form (located on storage) to PDF with AcroForm and returns resulting file response content
 
@@ -2248,7 +2248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2257,7 +2257,7 @@ Name | Type | Description  | Notes
 
 <a name="getXmlInStorageToPdf"></a>
 ## **getXmlInStorageToPdf**
-> getXmlInStorageToPdf(srcPath, xslFilePath, storage) : file
+> getXmlInStorageToPdf(srcPath, xslFilePath, storage)
 
 Convert XML file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2270,7 +2270,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2279,7 +2279,7 @@ Name | Type | Description  | Notes
 
 <a name="getXpsInStorageToPdf"></a>
 ## **getXpsInStorageToPdf**
-> getXpsInStorageToPdf(srcPath, storage) : file
+> getXpsInStorageToPdf(srcPath, storage)
 
 Convert XPS file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2291,7 +2291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2300,7 +2300,7 @@ Name | Type | Description  | Notes
 
 <a name="getXslFoInStorageToPdf"></a>
 ## **getXslFoInStorageToPdf**
-> getXslFoInStorageToPdf(srcPath, storage) : file
+> getXslFoInStorageToPdf(srcPath, storage)
 
 Convert XslFo file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2312,7 +2312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -2321,7 +2321,7 @@ Name | Type | Description  | Notes
 
 <a name="postAppendDocument"></a>
 ## **postAppendDocument**
-> postAppendDocument(name, appendDocument, appendFile, startPage, endPage, storage, folder) : DocumentResponse
+> postAppendDocument(name, appendDocument, appendFile, startPage, endPage, storage, folder)
 
 Append document to existing one.
 
@@ -2347,7 +2347,7 @@ Name | Type | Description  | Notes
 
 <a name="postCreateField"></a>
 ## **postCreateField**
-> postCreateField(name, page, field, storage, folder) : AsposeResponse
+> postCreateField(name, page, field, storage, folder)
 
 Create field.
 
@@ -2371,7 +2371,7 @@ Name | Type | Description  | Notes
 
 <a name="postDocumentTextReplace"></a>
 ## **postDocumentTextReplace**
-> postDocumentTextReplace(name, textReplace, storage, folder) : TextReplaceResponse
+> postDocumentTextReplace(name, textReplace, storage, folder)
 
 Document's replace text method.
 
@@ -2394,7 +2394,7 @@ Name | Type | Description  | Notes
 
 <a name="postInsertImage"></a>
 ## **postInsertImage**
-> postInsertImage(name, pageNumber, llx, lly, urx, ury, imageFilePath, storage, folder, image) : AsposeResponse
+> postInsertImage(name, pageNumber, llx, lly, urx, ury, imageFilePath, storage, folder, image)
 
 Insert image to document page.
 
@@ -2423,7 +2423,7 @@ Name | Type | Description  | Notes
 
 <a name="postMovePage"></a>
 ## **postMovePage**
-> postMovePage(name, pageNumber, newIndex, storage, folder) : AsposeResponse
+> postMovePage(name, pageNumber, newIndex, storage, folder)
 
 Move page to new position.
 
@@ -2447,7 +2447,7 @@ Name | Type | Description  | Notes
 
 <a name="postOptimizeDocument"></a>
 ## **postOptimizeDocument**
-> postOptimizeDocument(name, options, storage, folder) : AsposeResponse
+> postOptimizeDocument(name, options, storage, folder)
 
 Optimize document.
 
@@ -2470,7 +2470,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageCircleAnnotations"></a>
 ## **postPageCircleAnnotations**
-> postPageCircleAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPageCircleAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page circle annotations.
 
@@ -2494,7 +2494,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageFreeTextAnnotations"></a>
 ## **postPageFreeTextAnnotations**
-> postPageFreeTextAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPageFreeTextAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page free text annotations.
 
@@ -2518,7 +2518,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageLineAnnotations"></a>
 ## **postPageLineAnnotations**
-> postPageLineAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPageLineAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page line annotations.
 
@@ -2542,7 +2542,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageLinkAnnotations"></a>
 ## **postPageLinkAnnotations**
-> postPageLinkAnnotations(name, pageNumber, links, storage, folder) : AsposeResponse
+> postPageLinkAnnotations(name, pageNumber, links, storage, folder)
 
 Add document page link annotations.
 
@@ -2566,7 +2566,7 @@ Name | Type | Description  | Notes
 
 <a name="postPagePolygonAnnotations"></a>
 ## **postPagePolygonAnnotations**
-> postPagePolygonAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPagePolygonAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page polygon annotations.
 
@@ -2590,7 +2590,7 @@ Name | Type | Description  | Notes
 
 <a name="postPagePolyLineAnnotations"></a>
 ## **postPagePolyLineAnnotations**
-> postPagePolyLineAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPagePolyLineAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page polyline annotations.
 
@@ -2614,7 +2614,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageSquareAnnotations"></a>
 ## **postPageSquareAnnotations**
-> postPageSquareAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPageSquareAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page square annotations.
 
@@ -2638,7 +2638,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageTextAnnotations"></a>
 ## **postPageTextAnnotations**
-> postPageTextAnnotations(name, pageNumber, annotations, storage, folder) : AsposeResponse
+> postPageTextAnnotations(name, pageNumber, annotations, storage, folder)
 
 Add document page text annotations.
 
@@ -2662,7 +2662,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageTextReplace"></a>
 ## **postPageTextReplace**
-> postPageTextReplace(name, pageNumber, textReplaceListRequest, storage, folder) : TextReplaceResponse
+> postPageTextReplace(name, pageNumber, textReplaceListRequest, storage, folder)
 
 Page's replace text method.
 
@@ -2686,7 +2686,7 @@ Name | Type | Description  | Notes
 
 <a name="postSignDocument"></a>
 ## **postSignDocument**
-> postSignDocument(name, signature, storage, folder) : AsposeResponse
+> postSignDocument(name, signature, storage, folder)
 
 Sign document.
 
@@ -2709,7 +2709,7 @@ Name | Type | Description  | Notes
 
 <a name="postSignPage"></a>
 ## **postSignPage**
-> postSignPage(name, pageNumber, signature, storage, folder) : AsposeResponse
+> postSignPage(name, pageNumber, signature, storage, folder)
 
 Sign page.
 
@@ -2733,7 +2733,7 @@ Name | Type | Description  | Notes
 
 <a name="postSplitDocument"></a>
 ## **postSplitDocument**
-> postSplitDocument(name, format, from, to, storage, folder) : SplitResultResponse
+> postSplitDocument(name, format, from, to, storage, folder)
 
 Split document to parts.
 
@@ -2758,7 +2758,7 @@ Name | Type | Description  | Notes
 
 <a name="putAddNewPage"></a>
 ## **putAddNewPage**
-> putAddNewPage(name, storage, folder) : DocumentPagesResponse
+> putAddNewPage(name, storage, folder)
 
 Add new page to end of the document.
 
@@ -2780,7 +2780,7 @@ Name | Type | Description  | Notes
 
 <a name="putAddText"></a>
 ## **putAddText**
-> putAddText(name, pageNumber, paragraph, folder, storage) : AsposeResponse
+> putAddText(name, pageNumber, paragraph, folder, storage)
 
 Add text to PDF document page.
 
@@ -2804,7 +2804,7 @@ Name | Type | Description  | Notes
 
 <a name="putCircleAnnotation"></a>
 ## **putCircleAnnotation**
-> putCircleAnnotation(name, annotationId, annotation, storage, folder) : CircleAnnotationResponse
+> putCircleAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document circle annotation
 
@@ -2828,7 +2828,7 @@ Name | Type | Description  | Notes
 
 <a name="putCreate"></a>
 ## **putCreate**
-> putCreate(path, versionId, storage, File) : AsposeResponse
+> putCreate(path, File, versionId, storage)
 
 Upload a specific file 
 
@@ -2836,9 +2836,9 @@ Upload a specific file
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **path** | **string** | Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext | 
+**File** | **Buffer** | File to upload | 
 **versionId** | **string** | Source file's version | [optional]
 **storage** | **string** | User's storage name | [optional]
-**File** | **Buffer** | File to upload | 
 
 ### Return type
 
@@ -2851,7 +2851,7 @@ Name | Type | Description  | Notes
 
 <a name="putCreateDocument"></a>
 ## **putCreateDocument**
-> putCreateDocument(name, storage, folder) : DocumentResponse
+> putCreateDocument(name, storage, folder)
 
 Create empty document.
 
@@ -2873,7 +2873,7 @@ Name | Type | Description  | Notes
 
 <a name="putEpubInStorageToPdf"></a>
 ## **putEpubInStorageToPdf**
-> putEpubInStorageToPdf(name, srcPath, storage, dstFolder) : AsposeResponse
+> putEpubInStorageToPdf(name, srcPath, storage, dstFolder)
 
 Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -2896,7 +2896,7 @@ Name | Type | Description  | Notes
 
 <a name="putFieldsFlatten"></a>
 ## **putFieldsFlatten**
-> putFieldsFlatten(name, storage, folder) : AsposeResponse
+> putFieldsFlatten(name, storage, folder)
 
 Flatten form fields in document.
 
@@ -2918,7 +2918,7 @@ Name | Type | Description  | Notes
 
 <a name="putFreeTextAnnotation"></a>
 ## **putFreeTextAnnotation**
-> putFreeTextAnnotation(name, annotationId, annotation, storage, folder) : FreeTextAnnotationResponse
+> putFreeTextAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document free text annotation
 
@@ -2942,7 +2942,7 @@ Name | Type | Description  | Notes
 
 <a name="putHtmlInStorageToPdf"></a>
 ## **putHtmlInStorageToPdf**
-> putHtmlInStorageToPdf(name, srcPath, htmlFileName, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage) : AsposeResponse
+> putHtmlInStorageToPdf(name, srcPath, htmlFileName, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage)
 
 Convert HTML file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -2973,7 +2973,7 @@ Name | Type | Description  | Notes
 
 <a name="putImageExtractAsGif"></a>
 ## **putImageExtractAsGif**
-> putImageExtractAsGif(name, imageId, width, height, storage, folder, destFolder) : AsposeResponse
+> putImageExtractAsGif(name, imageId, width, height, storage, folder, destFolder)
 
 Extract document image in GIF format to folder
 
@@ -2999,7 +2999,7 @@ Name | Type | Description  | Notes
 
 <a name="putImageExtractAsJpeg"></a>
 ## **putImageExtractAsJpeg**
-> putImageExtractAsJpeg(name, imageId, width, height, storage, folder, destFolder) : AsposeResponse
+> putImageExtractAsJpeg(name, imageId, width, height, storage, folder, destFolder)
 
 Extract document image in JPEG format to folder
 
@@ -3025,7 +3025,7 @@ Name | Type | Description  | Notes
 
 <a name="putImageExtractAsPng"></a>
 ## **putImageExtractAsPng**
-> putImageExtractAsPng(name, imageId, width, height, storage, folder, destFolder) : AsposeResponse
+> putImageExtractAsPng(name, imageId, width, height, storage, folder, destFolder)
 
 Extract document image in PNG format to folder
 
@@ -3051,7 +3051,7 @@ Name | Type | Description  | Notes
 
 <a name="putImageExtractAsTiff"></a>
 ## **putImageExtractAsTiff**
-> putImageExtractAsTiff(name, imageId, width, height, storage, folder, destFolder) : AsposeResponse
+> putImageExtractAsTiff(name, imageId, width, height, storage, folder, destFolder)
 
 Extract document image in TIFF format to folder
 
@@ -3077,7 +3077,7 @@ Name | Type | Description  | Notes
 
 <a name="putImageInStorageToPdf"></a>
 ## **putImageInStorageToPdf**
-> putImageInStorageToPdf(name, imageTemplates, dstFolder, storage) : AsposeResponse
+> putImageInStorageToPdf(name, imageTemplates, dstFolder, storage)
 
 Convert image file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -3100,7 +3100,7 @@ Name | Type | Description  | Notes
 
 <a name="putImagesExtractAsGif"></a>
 ## **putImagesExtractAsGif**
-> putImagesExtractAsGif(name, pageNumber, width, height, storage, folder, destFolder) : AsposeResponse
+> putImagesExtractAsGif(name, pageNumber, width, height, storage, folder, destFolder)
 
 Extract document images in GIF format to folder.
 
@@ -3126,7 +3126,7 @@ Name | Type | Description  | Notes
 
 <a name="putImagesExtractAsJpeg"></a>
 ## **putImagesExtractAsJpeg**
-> putImagesExtractAsJpeg(name, pageNumber, width, height, storage, folder, destFolder) : AsposeResponse
+> putImagesExtractAsJpeg(name, pageNumber, width, height, storage, folder, destFolder)
 
 Extract document images in JPEG format to folder.
 
@@ -3152,7 +3152,7 @@ Name | Type | Description  | Notes
 
 <a name="putImagesExtractAsPng"></a>
 ## **putImagesExtractAsPng**
-> putImagesExtractAsPng(name, pageNumber, width, height, storage, folder, destFolder) : AsposeResponse
+> putImagesExtractAsPng(name, pageNumber, width, height, storage, folder, destFolder)
 
 Extract document images in PNG format to folder.
 
@@ -3178,7 +3178,7 @@ Name | Type | Description  | Notes
 
 <a name="putImagesExtractAsTiff"></a>
 ## **putImagesExtractAsTiff**
-> putImagesExtractAsTiff(name, pageNumber, width, height, storage, folder, destFolder) : AsposeResponse
+> putImagesExtractAsTiff(name, pageNumber, width, height, storage, folder, destFolder)
 
 Extract document images in TIFF format to folder.
 
@@ -3204,7 +3204,7 @@ Name | Type | Description  | Notes
 
 <a name="putLaTeXInStorageToPdf"></a>
 ## **putLaTeXInStorageToPdf**
-> putLaTeXInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putLaTeXInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert LaTeX file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -3227,7 +3227,7 @@ Name | Type | Description  | Notes
 
 <a name="putLineAnnotation"></a>
 ## **putLineAnnotation**
-> putLineAnnotation(name, annotationId, annotation, storage, folder) : LineAnnotationResponse
+> putLineAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document line annotation
 
@@ -3251,7 +3251,7 @@ Name | Type | Description  | Notes
 
 <a name="putLinkAnnotation"></a>
 ## **putLinkAnnotation**
-> putLinkAnnotation(name, linkId, link, storage, folder) : LinkAnnotationResponse
+> putLinkAnnotation(name, linkId, link, storage, folder)
 
 Replace document page link annotations
 
@@ -3275,7 +3275,7 @@ Name | Type | Description  | Notes
 
 <a name="putMergeDocuments"></a>
 ## **putMergeDocuments**
-> putMergeDocuments(name, mergeDocuments, storage, folder) : file
+> putMergeDocuments(name, mergeDocuments, storage, folder)
 
 Merge a list of documents.
 
@@ -3289,7 +3289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**file**
+**Buffer**
 
 ### HTTP request headers
 
@@ -3298,7 +3298,7 @@ Name | Type | Description  | Notes
 
 <a name="putMhtInStorageToPdf"></a>
 ## **putMhtInStorageToPdf**
-> putMhtInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putMhtInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -3321,7 +3321,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageAddStamp"></a>
 ## **putPageAddStamp**
-> putPageAddStamp(name, pageNumber, stamp, storage, folder) : AsposeResponse
+> putPageAddStamp(name, pageNumber, stamp, storage, folder)
 
 Add page stamp.
 
@@ -3345,7 +3345,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToBmp"></a>
 ## **putPageConvertToBmp**
-> putPageConvertToBmp(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToBmp(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to bmp image and upload resulting file to storage.
 
@@ -3371,7 +3371,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToEmf"></a>
 ## **putPageConvertToEmf**
-> putPageConvertToEmf(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToEmf(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to emf image and upload resulting file to storage.
 
@@ -3397,7 +3397,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToGif"></a>
 ## **putPageConvertToGif**
-> putPageConvertToGif(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToGif(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to gif image and upload resulting file to storage.
 
@@ -3423,7 +3423,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToJpeg"></a>
 ## **putPageConvertToJpeg**
-> putPageConvertToJpeg(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToJpeg(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to Jpeg image and upload resulting file to storage.
 
@@ -3449,7 +3449,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToPng"></a>
 ## **putPageConvertToPng**
-> putPageConvertToPng(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToPng(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to png image and upload resulting file to storage.
 
@@ -3475,7 +3475,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToTiff"></a>
 ## **putPageConvertToTiff**
-> putPageConvertToTiff(name, pageNumber, outPath, width, height, folder, storage) : AsposeResponse
+> putPageConvertToTiff(name, pageNumber, outPath, width, height, folder, storage)
 
 Convert document page to Tiff image and upload resulting file to storage.
 
@@ -3501,7 +3501,7 @@ Name | Type | Description  | Notes
 
 <a name="putPclInStorageToPdf"></a>
 ## **putPclInStorageToPdf**
-> putPclInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putPclInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert PCL file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -3524,7 +3524,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToDoc"></a>
 ## **putPdfInRequestToDoc**
-> putPdfInRequestToDoc(outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, storage, file) : AsposeResponse
+> putPdfInRequestToDoc(outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, storage, file)
 
 Converts PDF document (in request content) to DOC format and uploads resulting file to storage.
 
@@ -3554,7 +3554,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToEpub"></a>
 ## **putPdfInRequestToEpub**
-> putPdfInRequestToEpub(outPath, contentRecognitionMode, storage, file) : AsposeResponse
+> putPdfInRequestToEpub(outPath, contentRecognitionMode, storage, file)
 
 Converts PDF document (in request content) to EPUB format and uploads resulting file to storage.
 
@@ -3577,7 +3577,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToHtml"></a>
 ## **putPdfInRequestToHtml**
-> putPdfInRequestToHtml(outPath, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, storage, file) : AsposeResponse
+> putPdfInRequestToHtml(outPath, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, storage, file)
 
 Converts PDF document (in request content) to Html format and uploads resulting file to storage.
 
@@ -3627,7 +3627,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToLaTeX"></a>
 ## **putPdfInRequestToLaTeX**
-> putPdfInRequestToLaTeX(outPath, pagesCount, storage, file) : AsposeResponse
+> putPdfInRequestToLaTeX(outPath, pagesCount, storage, file)
 
 Converts PDF document (in request content) to LaTeX format and uploads resulting file to storage.
 
@@ -3650,7 +3650,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToMobiXml"></a>
 ## **putPdfInRequestToMobiXml**
-> putPdfInRequestToMobiXml(outPath, storage, file) : AsposeResponse
+> putPdfInRequestToMobiXml(outPath, storage, file)
 
 Converts PDF document (in request content) to MOBIXML format and uploads resulting file to storage.
 
@@ -3672,7 +3672,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToPdfA"></a>
 ## **putPdfInRequestToPdfA**
-> putPdfInRequestToPdfA(outPath, type, storage, file) : AsposeResponse
+> putPdfInRequestToPdfA(outPath, type, storage, file)
 
 Converts PDF document (in request content) to PdfA format and uploads resulting file to storage.
 
@@ -3695,7 +3695,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToPptx"></a>
 ## **putPdfInRequestToPptx**
-> putPdfInRequestToPptx(outPath, separateImages, slidesAsImages, storage, file) : AsposeResponse
+> putPdfInRequestToPptx(outPath, separateImages, slidesAsImages, storage, file)
 
 Converts PDF document (in request content) to PPTX format and uploads resulting file to storage.
 
@@ -3719,7 +3719,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToSvg"></a>
 ## **putPdfInRequestToSvg**
-> putPdfInRequestToSvg(outPath, storage, file) : AsposeResponse
+> putPdfInRequestToSvg(outPath, storage, file)
 
 Converts PDF document (in request content) to SVG format and uploads resulting file to storage.
 
@@ -3741,7 +3741,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToTiff"></a>
 ## **putPdfInRequestToTiff**
-> putPdfInRequestToTiff(outPath, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, storage, file) : AsposeResponse
+> putPdfInRequestToTiff(outPath, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, storage, file)
 
 Converts PDF document (in request content) to TIFF format and uploads resulting file to storage.
 
@@ -3778,7 +3778,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToXls"></a>
 ## **putPdfInRequestToXls**
-> putPdfInRequestToXls(outPath, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, storage, file) : AsposeResponse
+> putPdfInRequestToXls(outPath, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, storage, file)
 
 Converts PDF document (in request content) to XLS format and uploads resulting file to storage.
 
@@ -3804,7 +3804,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToXml"></a>
 ## **putPdfInRequestToXml**
-> putPdfInRequestToXml(outPath, storage, file) : AsposeResponse
+> putPdfInRequestToXml(outPath, storage, file)
 
 Converts PDF document (in request content) to XML format and uploads resulting file to storage.
 
@@ -3826,7 +3826,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToXps"></a>
 ## **putPdfInRequestToXps**
-> putPdfInRequestToXps(outPath, storage, file) : AsposeResponse
+> putPdfInRequestToXps(outPath, storage, file)
 
 Converts PDF document (in request content) to XPS format and uploads resulting file to storage.
 
@@ -3848,7 +3848,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToDoc"></a>
 ## **putPdfInStorageToDoc**
-> putPdfInStorageToDoc(name, outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage) : AsposeResponse
+> putPdfInStorageToDoc(name, outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage)
 
 Converts PDF document (located on storage) to DOC format and uploads resulting file to storage
 
@@ -3879,7 +3879,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToEpub"></a>
 ## **putPdfInStorageToEpub**
-> putPdfInStorageToEpub(name, outPath, contentRecognitionMode, folder, storage) : AsposeResponse
+> putPdfInStorageToEpub(name, outPath, contentRecognitionMode, folder, storage)
 
 Converts PDF document (located on storage) to EPUB format and uploads resulting file to storage
 
@@ -3903,7 +3903,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToHtml"></a>
 ## **putPdfInStorageToHtml**
-> putPdfInStorageToHtml(name, outPath, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, folder, storage) : AsposeResponse
+> putPdfInStorageToHtml(name, outPath, additionalMarginWidthInPoints, compressSvgGraphicsIfAny, convertMarkedContentToLayers, defaultFontName, documentType, fixedLayout, imageResolution, minimalLineWidth, preventGlyphsGrouping, splitCssIntoPages, splitIntoPages, useZOrder, antialiasingProcessing, cssClassNamesPrefix, explicitListOfSavedPages, fontEncodingStrategy, fontSavingMode, htmlMarkupGenerationMode, lettersPositioningMethod, pagesFlowTypeDependsOnViewersScreenSize, partsEmbeddingMode, rasterImagesSavingMode, removeEmptyAreasOnTopAndBottom, saveShadowedTextsAsTransparentTexts, saveTransparentTexts, specialFolderForAllImages, specialFolderForSvgImages, trySaveTextUnderliningAndStrikeoutingInCss, folder, storage)
 
 Converts PDF document (located on storage) to Html format and uploads resulting file to storage
 
@@ -3954,7 +3954,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToLaTeX"></a>
 ## **putPdfInStorageToLaTeX**
-> putPdfInStorageToLaTeX(name, outPath, pagesCount, folder, storage) : AsposeResponse
+> putPdfInStorageToLaTeX(name, outPath, pagesCount, folder, storage)
 
 Converts PDF document (located on storage) to LaTeX format and uploads resulting file to storage
 
@@ -3978,7 +3978,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToMobiXml"></a>
 ## **putPdfInStorageToMobiXml**
-> putPdfInStorageToMobiXml(name, outPath, folder, storage) : AsposeResponse
+> putPdfInStorageToMobiXml(name, outPath, folder, storage)
 
 Converts PDF document (located on storage) to MOBIXML format and uploads resulting file to storage
 
@@ -4001,7 +4001,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToPdfA"></a>
 ## **putPdfInStorageToPdfA**
-> putPdfInStorageToPdfA(name, outPath, type, folder, storage) : AsposeResponse
+> putPdfInStorageToPdfA(name, outPath, type, folder, storage)
 
 Converts PDF document (located on storage) to PdfA format and uploads resulting file to storage
 
@@ -4025,7 +4025,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToPptx"></a>
 ## **putPdfInStorageToPptx**
-> putPdfInStorageToPptx(name, outPath, separateImages, slidesAsImages, folder, storage) : AsposeResponse
+> putPdfInStorageToPptx(name, outPath, separateImages, slidesAsImages, folder, storage)
 
 Converts PDF document (located on storage) to PPTX format and uploads resulting file to storage
 
@@ -4050,7 +4050,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToSvg"></a>
 ## **putPdfInStorageToSvg**
-> putPdfInStorageToSvg(name, outPath, folder, storage) : AsposeResponse
+> putPdfInStorageToSvg(name, outPath, folder, storage)
 
 Converts PDF document (located on storage) to SVG format and uploads resulting file to storage
 
@@ -4073,7 +4073,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToTiff"></a>
 ## **putPdfInStorageToTiff**
-> putPdfInStorageToTiff(name, outPath, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, folder, storage) : AsposeResponse
+> putPdfInStorageToTiff(name, outPath, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, folder, storage)
 
 Converts PDF document (located on storage) to TIFF format and uploads resulting file to storage
 
@@ -4111,7 +4111,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToXls"></a>
 ## **putPdfInStorageToXls**
-> putPdfInStorageToXls(name, outPath, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, folder, storage) : AsposeResponse
+> putPdfInStorageToXls(name, outPath, insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, scaleFactor, uniformWorksheets, folder, storage)
 
 Converts PDF document (located on storage) to XLS format and uploads resulting file to storage
 
@@ -4138,7 +4138,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToXml"></a>
 ## **putPdfInStorageToXml**
-> putPdfInStorageToXml(name, outPath, folder, storage) : AsposeResponse
+> putPdfInStorageToXml(name, outPath, folder, storage)
 
 Converts PDF document (located on storage) to XML format and uploads resulting file to storage
 
@@ -4161,7 +4161,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToXps"></a>
 ## **putPdfInStorageToXps**
-> putPdfInStorageToXps(name, outPath, folder, storage) : AsposeResponse
+> putPdfInStorageToXps(name, outPath, folder, storage)
 
 Converts PDF document (located on storage) to XPS format and uploads resulting file to storage
 
@@ -4184,7 +4184,7 @@ Name | Type | Description  | Notes
 
 <a name="putPolygonAnnotation"></a>
 ## **putPolygonAnnotation**
-> putPolygonAnnotation(name, annotationId, annotation, storage, folder) : PolygonAnnotationResponse
+> putPolygonAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document polygon annotation
 
@@ -4208,7 +4208,7 @@ Name | Type | Description  | Notes
 
 <a name="putPolyLineAnnotation"></a>
 ## **putPolyLineAnnotation**
-> putPolyLineAnnotation(name, annotationId, annotation, storage, folder) : PolyLineAnnotationResponse
+> putPolyLineAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document polyline annotation
 
@@ -4232,7 +4232,7 @@ Name | Type | Description  | Notes
 
 <a name="putPrivileges"></a>
 ## **putPrivileges**
-> putPrivileges(name, privileges, storage, folder) : AsposeResponse
+> putPrivileges(name, privileges, storage, folder)
 
 Update privilege document.
 
@@ -4255,7 +4255,7 @@ Name | Type | Description  | Notes
 
 <a name="putPsInStorageToPdf"></a>
 ## **putPsInStorageToPdf**
-> putPsInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putPsInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert PS file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -4278,7 +4278,7 @@ Name | Type | Description  | Notes
 
 <a name="putReplaceImage"></a>
 ## **putReplaceImage**
-> putReplaceImage(name, imageId, imageFilePath, storage, folder, image) : ImageResponse
+> putReplaceImage(name, imageId, imageFilePath, storage, folder, image)
 
 Replace document image.
 
@@ -4303,7 +4303,7 @@ Name | Type | Description  | Notes
 
 <a name="putSearchableDocument"></a>
 ## **putSearchableDocument**
-> putSearchableDocument(name, storage, folder, lang) : AsposeResponse
+> putSearchableDocument(name, storage, folder, lang)
 
 Create searchable PDF document. Generate OCR layer for images in input PDF document.
 
@@ -4326,7 +4326,7 @@ Name | Type | Description  | Notes
 
 <a name="putSetProperty"></a>
 ## **putSetProperty**
-> putSetProperty(name, propertyName, value, storage, folder) : DocumentPropertyResponse
+> putSetProperty(name, propertyName, value, storage, folder)
 
 Add/update document property.
 
@@ -4350,7 +4350,7 @@ Name | Type | Description  | Notes
 
 <a name="putSquareAnnotation"></a>
 ## **putSquareAnnotation**
-> putSquareAnnotation(name, annotationId, annotation, storage, folder) : SquareAnnotationResponse
+> putSquareAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document square annotation
 
@@ -4374,7 +4374,7 @@ Name | Type | Description  | Notes
 
 <a name="putSvgInStorageToPdf"></a>
 ## **putSvgInStorageToPdf**
-> putSvgInStorageToPdf(name, srcPath, adjustPageSize, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage) : AsposeResponse
+> putSvgInStorageToPdf(name, srcPath, adjustPageSize, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage)
 
 Convert SVG file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -4405,7 +4405,7 @@ Name | Type | Description  | Notes
 
 <a name="putTextAnnotation"></a>
 ## **putTextAnnotation**
-> putTextAnnotation(name, annotationId, annotation, storage, folder) : TextAnnotationResponse
+> putTextAnnotation(name, annotationId, annotation, storage, folder)
 
 Replace document text annotation
 
@@ -4429,7 +4429,7 @@ Name | Type | Description  | Notes
 
 <a name="putUpdateField"></a>
 ## **putUpdateField**
-> putUpdateField(name, fieldName, field, storage, folder) : FieldResponse
+> putUpdateField(name, fieldName, field, storage, folder)
 
 Update field.
 
@@ -4453,7 +4453,7 @@ Name | Type | Description  | Notes
 
 <a name="putUpdateFields"></a>
 ## **putUpdateFields**
-> putUpdateFields(name, fields, storage, folder) : FieldsResponse
+> putUpdateFields(name, fields, storage, folder)
 
 Update fields.
 
@@ -4476,7 +4476,7 @@ Name | Type | Description  | Notes
 
 <a name="putWebInStorageToPdf"></a>
 ## **putWebInStorageToPdf**
-> putWebInStorageToPdf(name, url, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage) : AsposeResponse
+> putWebInStorageToPdf(name, url, height, width, isLandscape, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage)
 
 Convert web page to PDF format and upload resulting file to storage. 
 
@@ -4506,7 +4506,7 @@ Name | Type | Description  | Notes
 
 <a name="putXfaPdfInRequestToAcroForm"></a>
 ## **putXfaPdfInRequestToAcroForm**
-> putXfaPdfInRequestToAcroForm(outPath, storage, file) : AsposeResponse
+> putXfaPdfInRequestToAcroForm(outPath, storage, file)
 
 Converts PDF document which contatins XFA form (in request content) to PDF with AcroForm and uploads resulting file to storage.
 
@@ -4528,7 +4528,7 @@ Name | Type | Description  | Notes
 
 <a name="putXfaPdfInStorageToAcroForm"></a>
 ## **putXfaPdfInStorageToAcroForm**
-> putXfaPdfInStorageToAcroForm(name, outPath, folder, storage) : AsposeResponse
+> putXfaPdfInStorageToAcroForm(name, outPath, folder, storage)
 
 Converts PDF document which contatins XFA form (located on storage) to PDF with AcroForm and uploads resulting file to storage
 
@@ -4551,7 +4551,7 @@ Name | Type | Description  | Notes
 
 <a name="putXmlInStorageToPdf"></a>
 ## **putXmlInStorageToPdf**
-> putXmlInStorageToPdf(name, srcPath, xslFilePath, dstFolder, storage) : AsposeResponse
+> putXmlInStorageToPdf(name, srcPath, xslFilePath, dstFolder, storage)
 
 Convert XML file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -4575,7 +4575,7 @@ Name | Type | Description  | Notes
 
 <a name="putXpsInStorageToPdf"></a>
 ## **putXpsInStorageToPdf**
-> putXpsInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putXpsInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert XPS file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -4598,7 +4598,7 @@ Name | Type | Description  | Notes
 
 <a name="putXslFoInStorageToPdf"></a>
 ## **putXslFoInStorageToPdf**
-> putXslFoInStorageToPdf(name, srcPath, dstFolder, storage) : AsposeResponse
+> putXslFoInStorageToPdf(name, srcPath, dstFolder, storage)
 
 Convert XslFo file (located on storage) to PDF format and upload resulting file to storage. 
 

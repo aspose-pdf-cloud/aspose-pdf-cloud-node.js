@@ -20,6 +20,9 @@
  */
 
 
+/**
+* Represents file DTO.
+*/
 export class File {
     'name': string;
     'isFolder': boolean;
