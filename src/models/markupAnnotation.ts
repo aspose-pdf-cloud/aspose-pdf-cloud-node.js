@@ -26,6 +26,18 @@ import { Annotation } from "./annotation";
 */
 export class MarkupAnnotation extends Annotation {
     /**
+    * The date and time when the annotation was created.
+    */
+    'creationDate': string;
+    /**
+    * Get the annotation subject.
+    */
+    'subject': string;
+    /**
+    * Get the annotation title.
+    */
+    'title': string;
+    /**
     * Get the annotation RichText.
     */
     'richText': string;
@@ -33,6 +45,21 @@ export class MarkupAnnotation extends Annotation {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "creationDate",
+            "baseName": "CreationDate",
+            "type": "string"
+        },
+        {
+            "name": "subject",
+            "baseName": "Subject",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "baseName": "Title",
+            "type": "string"
+        },
         {
             "name": "richText",
             "baseName": "RichText",

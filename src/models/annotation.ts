@@ -34,18 +34,6 @@ export class Annotation extends LinkElement {
     */
     'contents': string;
     /**
-    * The date and time when the annotation was created.
-    */
-    'creationDate': string;
-    /**
-    * Get the annotation subject.
-    */
-    'subject': string;
-    /**
-    * Get the annotation title.
-    */
-    'title': string;
-    /**
     * The date and time when the annotation was last modified.
     */
     'modified': string;
@@ -88,21 +76,6 @@ export class Annotation extends LinkElement {
         {
             "name": "contents",
             "baseName": "Contents",
-            "type": "string"
-        },
-        {
-            "name": "creationDate",
-            "baseName": "CreationDate",
-            "type": "string"
-        },
-        {
-            "name": "subject",
-            "baseName": "Subject",
-            "type": "string"
-        },
-        {
-            "name": "title",
-            "baseName": "Title",
             "type": "string"
         },
         {

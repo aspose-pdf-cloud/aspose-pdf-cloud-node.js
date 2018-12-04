@@ -33,7 +33,7 @@ export function getPdfApi() {
 
     //Get App key and App SID from https://aspose.cloud
     pdfApi = new PdfApi(
-      "AppSID",
+      "AppSid",
       "AppKey",
       "https://billing.cloud.saltov.dynabic.com/v2.0"
     )
@@ -49,7 +49,7 @@ export const localTestDataFolder = "testData";
 /**
  * Upload file
  */
-export function uploadFile(name: string): Promise<{ response: http.ClientResponse; body: AsposeResponse;  }>
+export function uploadFile(name: string): Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }>
 {
   const path: string = remoteTempFolder + "/" + name;
   var data = fs.readFileSync(this.localTestDataFolder + "/" + name);

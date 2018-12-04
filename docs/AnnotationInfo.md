@@ -7,9 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **annotationType** | [**AnnotationType**](AnnotationType.md) | Gets annotation type. | 
 **contents** | **string** | Get the annotation content.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
-**creationDate** | **string** | The date and time when the annotation was created.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
-**subject** | **string** | Get the annotation subject.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
-**title** | **string** | Get the annotation title.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
 **modified** | **string** | The date and time when the annotation was last modified.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
 **id** | **string** | Gets ID of the annotation.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
 **flags** | [**Array&lt;AnnotationFlags&gt;**](AnnotationFlags.md) | Gets Flags of the annotation.<br />*Inherited from [Annotation](Annotation.md)* | [optional]

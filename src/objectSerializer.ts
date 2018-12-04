@@ -25,7 +25,9 @@ import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AppendDocument } from "./models/appendDocument";
 import { AsposeResponse } from "./models/asposeResponse";
+import { CapStyle } from "./models/capStyle";
 import { CaptionPosition } from "./models/captionPosition";
+import { CaretSymbol } from "./models/caretSymbol";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
 import { CompressionType } from "./models/compressionType";
@@ -92,6 +94,9 @@ import { Attachment } from "./models/attachment";
 import { AttachmentResponse } from "./models/attachmentResponse";
 import { Attachments } from "./models/attachments";
 import { AttachmentsResponse } from "./models/attachmentsResponse";
+import { CaretAnnotationResponse } from "./models/caretAnnotationResponse";
+import { CaretAnnotations } from "./models/caretAnnotations";
+import { CaretAnnotationsResponse } from "./models/caretAnnotationsResponse";
 import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
 import { CircleAnnotations } from "./models/circleAnnotations";
 import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
@@ -111,10 +116,16 @@ import { FilesResponse } from "./models/filesResponse";
 import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "./models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "./models/freeTextAnnotationsResponse";
+import { HighlightAnnotationResponse } from "./models/highlightAnnotationResponse";
+import { HighlightAnnotations } from "./models/highlightAnnotations";
+import { HighlightAnnotationsResponse } from "./models/highlightAnnotationsResponse";
 import { Image } from "./models/image";
 import { ImageResponse } from "./models/imageResponse";
 import { Images } from "./models/images";
 import { ImagesResponse } from "./models/imagesResponse";
+import { InkAnnotationResponse } from "./models/inkAnnotationResponse";
+import { InkAnnotations } from "./models/inkAnnotations";
+import { InkAnnotationsResponse } from "./models/inkAnnotationsResponse";
 import { LineAnnotationResponse } from "./models/lineAnnotationResponse";
 import { LineAnnotations } from "./models/lineAnnotations";
 import { LineAnnotationsResponse } from "./models/lineAnnotationsResponse";
@@ -130,25 +141,45 @@ import { PolyLineAnnotationsResponse } from "./models/polyLineAnnotationsRespons
 import { PolygonAnnotationResponse } from "./models/polygonAnnotationResponse";
 import { PolygonAnnotations } from "./models/polygonAnnotations";
 import { PolygonAnnotationsResponse } from "./models/polygonAnnotationsResponse";
+import { PopupAnnotationResponse } from "./models/popupAnnotationResponse";
+import { PopupAnnotations } from "./models/popupAnnotations";
+import { PopupAnnotationsResponse } from "./models/popupAnnotationsResponse";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
 import { SplitResultDocument } from "./models/splitResultDocument";
 import { SplitResultResponse } from "./models/splitResultResponse";
 import { SquareAnnotationResponse } from "./models/squareAnnotationResponse";
 import { SquareAnnotations } from "./models/squareAnnotations";
 import { SquareAnnotationsResponse } from "./models/squareAnnotationsResponse";
+import { SquigglyAnnotationResponse } from "./models/squigglyAnnotationResponse";
+import { SquigglyAnnotations } from "./models/squigglyAnnotations";
+import { SquigglyAnnotationsResponse } from "./models/squigglyAnnotationsResponse";
+import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
+import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
+import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
 import { TextAnnotationResponse } from "./models/textAnnotationResponse";
 import { TextAnnotations } from "./models/textAnnotations";
 import { TextAnnotationsResponse } from "./models/textAnnotationsResponse";
 import { TextRectsResponse } from "./models/textRectsResponse";
 import { TextReplaceResponse } from "./models/textReplaceResponse";
+import { UnderlineAnnotationResponse } from "./models/underlineAnnotationResponse";
+import { UnderlineAnnotations } from "./models/underlineAnnotations";
+import { UnderlineAnnotationsResponse } from "./models/underlineAnnotationsResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
 import { MarkupAnnotation } from "./models/markupAnnotation";
+import { PopupAnnotation } from "./models/popupAnnotation";
+import { CaretAnnotation } from "./models/caretAnnotation";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FreeTextAnnotation } from "./models/freeTextAnnotation";
+import { HighlightAnnotation } from "./models/highlightAnnotation";
+import { InkAnnotation } from "./models/inkAnnotation";
 import { LineAnnotation } from "./models/lineAnnotation";
 import { PolyAnnotation } from "./models/polyAnnotation";
+import { PopupAnnotationWithParent } from "./models/popupAnnotationWithParent";
+import { SquigglyAnnotation } from "./models/squigglyAnnotation";
+import { StrikeOutAnnotation } from "./models/strikeOutAnnotation";
 import { TextAnnotation } from "./models/textAnnotation";
+import { UnderlineAnnotation } from "./models/underlineAnnotation";
 import { CircleAnnotation } from "./models/circleAnnotation";
 import { PolyLineAnnotation } from "./models/polyLineAnnotation";
 import { PolygonAnnotation } from "./models/polygonAnnotation";
@@ -159,7 +190,9 @@ let enumsMap: {[index: string]: any} = {
     "AnnotationState": AnnotationState,
     "AnnotationType": AnnotationType,
     "AntialiasingProcessingType": AntialiasingProcessingType,
+    "CapStyle": CapStyle,
     "CaptionPosition": CaptionPosition,
+    "CaretSymbol": CaretSymbol,
     "ColorDepth": ColorDepth,
     "CompressionType": CompressionType,
     "DocFormat": DocFormat,
@@ -231,6 +264,9 @@ let typeMap: {[index: string]: any} = {
     "AttachmentResponse": AttachmentResponse,
     "Attachments": Attachments,
     "AttachmentsResponse": AttachmentsResponse,
+    "CaretAnnotationResponse": CaretAnnotationResponse,
+    "CaretAnnotations": CaretAnnotations,
+    "CaretAnnotationsResponse": CaretAnnotationsResponse,
     "CircleAnnotationResponse": CircleAnnotationResponse,
     "CircleAnnotations": CircleAnnotations,
     "CircleAnnotationsResponse": CircleAnnotationsResponse,
@@ -250,10 +286,16 @@ let typeMap: {[index: string]: any} = {
     "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
     "FreeTextAnnotations": FreeTextAnnotations,
     "FreeTextAnnotationsResponse": FreeTextAnnotationsResponse,
+    "HighlightAnnotationResponse": HighlightAnnotationResponse,
+    "HighlightAnnotations": HighlightAnnotations,
+    "HighlightAnnotationsResponse": HighlightAnnotationsResponse,
     "Image": Image,
     "ImageResponse": ImageResponse,
     "Images": Images,
     "ImagesResponse": ImagesResponse,
+    "InkAnnotationResponse": InkAnnotationResponse,
+    "InkAnnotations": InkAnnotations,
+    "InkAnnotationsResponse": InkAnnotationsResponse,
     "LineAnnotationResponse": LineAnnotationResponse,
     "LineAnnotations": LineAnnotations,
     "LineAnnotationsResponse": LineAnnotationsResponse,
@@ -269,25 +311,45 @@ let typeMap: {[index: string]: any} = {
     "PolygonAnnotationResponse": PolygonAnnotationResponse,
     "PolygonAnnotations": PolygonAnnotations,
     "PolygonAnnotationsResponse": PolygonAnnotationsResponse,
+    "PopupAnnotationResponse": PopupAnnotationResponse,
+    "PopupAnnotations": PopupAnnotations,
+    "PopupAnnotationsResponse": PopupAnnotationsResponse,
     "SignatureVerifyResponse": SignatureVerifyResponse,
     "SplitResultDocument": SplitResultDocument,
     "SplitResultResponse": SplitResultResponse,
     "SquareAnnotationResponse": SquareAnnotationResponse,
     "SquareAnnotations": SquareAnnotations,
     "SquareAnnotationsResponse": SquareAnnotationsResponse,
+    "SquigglyAnnotationResponse": SquigglyAnnotationResponse,
+    "SquigglyAnnotations": SquigglyAnnotations,
+    "SquigglyAnnotationsResponse": SquigglyAnnotationsResponse,
+    "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
+    "StrikeOutAnnotations": StrikeOutAnnotations,
+    "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,
     "TextAnnotationResponse": TextAnnotationResponse,
     "TextAnnotations": TextAnnotations,
     "TextAnnotationsResponse": TextAnnotationsResponse,
     "TextRectsResponse": TextRectsResponse,
     "TextReplaceResponse": TextReplaceResponse,
+    "UnderlineAnnotationResponse": UnderlineAnnotationResponse,
+    "UnderlineAnnotations": UnderlineAnnotations,
+    "UnderlineAnnotationsResponse": UnderlineAnnotationsResponse,
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
     "MarkupAnnotation": MarkupAnnotation,
+    "PopupAnnotation": PopupAnnotation,
+    "CaretAnnotation": CaretAnnotation,
     "CommonFigureAnnotation": CommonFigureAnnotation,
     "FreeTextAnnotation": FreeTextAnnotation,
+    "HighlightAnnotation": HighlightAnnotation,
+    "InkAnnotation": InkAnnotation,
     "LineAnnotation": LineAnnotation,
     "PolyAnnotation": PolyAnnotation,
+    "PopupAnnotationWithParent": PopupAnnotationWithParent,
+    "SquigglyAnnotation": SquigglyAnnotation,
+    "StrikeOutAnnotation": StrikeOutAnnotation,
     "TextAnnotation": TextAnnotation,
+    "UnderlineAnnotation": UnderlineAnnotation,
     "CircleAnnotation": CircleAnnotation,
     "PolyLineAnnotation": PolyLineAnnotation,
     "PolygonAnnotation": PolygonAnnotation,
