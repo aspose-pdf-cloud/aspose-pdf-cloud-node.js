@@ -1,4 +1,4 @@
-# AttachmentsResponse
+﻿# AttachmentsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

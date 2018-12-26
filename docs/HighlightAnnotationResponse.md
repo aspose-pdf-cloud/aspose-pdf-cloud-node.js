@@ -1,4 +1,4 @@
-# HighlightAnnotationResponse
+﻿# HighlightAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

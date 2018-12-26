@@ -1,4 +1,4 @@
-# Image
+﻿# Image
 Represents image DTO.
 
 *Inherited from [LinkElement](LinkElement.md)*

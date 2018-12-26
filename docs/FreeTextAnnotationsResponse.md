@@ -1,4 +1,4 @@
-# FreeTextAnnotationsResponse
+﻿# FreeTextAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

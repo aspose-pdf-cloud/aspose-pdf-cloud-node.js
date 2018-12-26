@@ -1,4 +1,4 @@
-# Document
+﻿# Document
 Represents document DTO.
 
 *Inherited from [LinkElement](LinkElement.md)*

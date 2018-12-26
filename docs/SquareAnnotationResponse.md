@@ -1,4 +1,4 @@
-# SquareAnnotationResponse
+﻿# SquareAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

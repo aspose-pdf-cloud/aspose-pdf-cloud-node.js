@@ -1,4 +1,4 @@
-# AnnotationsInfoResponse
+﻿# AnnotationsInfoResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

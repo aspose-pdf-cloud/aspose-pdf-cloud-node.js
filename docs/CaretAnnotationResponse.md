@@ -1,4 +1,4 @@
-# CaretAnnotationResponse
+﻿# CaretAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

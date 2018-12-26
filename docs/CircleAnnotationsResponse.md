@@ -1,4 +1,4 @@
-# CircleAnnotationsResponse
+﻿# CircleAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

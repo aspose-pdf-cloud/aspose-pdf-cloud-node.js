@@ -1,4 +1,4 @@
-# TextAnnotationsResponse
+﻿# TextAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

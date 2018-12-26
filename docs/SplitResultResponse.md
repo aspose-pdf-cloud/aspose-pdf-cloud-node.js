@@ -1,4 +1,4 @@
-# SplitResultResponse
+﻿# SplitResultResponse
 Represents split result object.
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

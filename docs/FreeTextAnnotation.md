@@ -1,4 +1,4 @@
-# FreeTextAnnotation
+﻿# FreeTextAnnotation
 Provides FreeTextAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*

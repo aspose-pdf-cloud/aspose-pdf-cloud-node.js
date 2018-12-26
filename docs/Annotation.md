@@ -1,4 +1,4 @@
-# Annotation
+﻿# Annotation
 Provides annotation.
 
 *Inherited from [LinkElement](LinkElement.md)*

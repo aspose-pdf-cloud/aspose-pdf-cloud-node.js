@@ -1,4 +1,4 @@
- /**
+﻿ /**
  *
  *   Copyright (c) 2018 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -5144,7 +5144,7 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (located on storage) to EPUB format and returns resulting file in response content
      * @param name The document name.
-     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode Рroperty tunes conversion for this or that desirable method of recognition of content.
      * @param folder The document folder.
      * @param storage The document storage.
      */
@@ -11216,7 +11216,7 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to EPUB format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.epub)
-     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode Рroperty tunes conversion for this or that desirable method of recognition of content.
      * @param storage The document storage.
      * @param file A file to be converted.
      */
@@ -12222,7 +12222,7 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to EPUB format and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.epub)
-     * @param contentRecognitionMode ?roperty tunes conversion for this or that desirable method of recognition of content.
+     * @param contentRecognitionMode Рroperty tunes conversion for this or that desirable method of recognition of content.
      * @param folder The document folder.
      * @param storage The document storage.
      */

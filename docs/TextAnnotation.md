@@ -1,4 +1,4 @@
-# TextAnnotation
+﻿# TextAnnotation
 Provides TextAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*

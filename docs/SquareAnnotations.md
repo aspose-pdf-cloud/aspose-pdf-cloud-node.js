@@ -1,4 +1,4 @@
-# SquareAnnotations
+﻿# SquareAnnotations
 List of annotations.
 
 *Inherited from [LinkElement](LinkElement.md)*

@@ -1,4 +1,4 @@
-# DocumentPageResponse
+﻿# DocumentPageResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

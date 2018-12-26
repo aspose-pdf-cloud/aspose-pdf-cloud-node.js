@@ -1,11 +1,11 @@
-# PolyAnnotation
+﻿# PolyAnnotation
 Provides PolyAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**interiorColor** | [**Color**](Color.md) | Gets or sets the interior color with which to fill the annotation?s line endings. | [optional]
+**interiorColor** | [**Color**](Color.md) | Gets or sets the interior color with which to fill the annotation’s line endings. | [optional]
 **startingStyle** | [**LineEnding**](LineEnding.md) | Gets or sets the style of first line ending. | [optional]
 **endingStyle** | [**LineEnding**](LineEnding.md) | Gets or sets the style of second line ending. | [optional]
 **intent** | [**PolyIntent**](PolyIntent.md) | Gets or sets the intent of the polygon or polyline annotation. | [optional]

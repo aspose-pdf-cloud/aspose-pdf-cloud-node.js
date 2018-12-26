@@ -1,4 +1,4 @@
-# CommonFigureAnnotation
+﻿# CommonFigureAnnotation
 Provides CommonFigureAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*
