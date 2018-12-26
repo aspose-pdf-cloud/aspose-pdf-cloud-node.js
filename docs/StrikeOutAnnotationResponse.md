@@ -1,4 +1,4 @@
-# StrikeOutAnnotationResponse
+﻿# StrikeOutAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

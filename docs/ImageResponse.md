@@ -1,4 +1,4 @@
-# ImageResponse
+﻿# ImageResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

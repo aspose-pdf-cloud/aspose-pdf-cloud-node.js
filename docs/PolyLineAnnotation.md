@@ -1,4 +1,4 @@
-# PolyLineAnnotation
+﻿# PolyLineAnnotation
 Provides PolyLineAnnotation.
 
 *Inherited from [PolyAnnotation](PolyAnnotation.md)*
@@ -6,7 +6,7 @@ Provides PolyLineAnnotation.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **color** | [**Color**](Color.md) | Color of the annotation. | [optional]
-**interiorColor** | [**Color**](Color.md) | Gets or sets the interior color with which to fill the annotation?s line endings.<br />*Inherited from [PolyAnnotation](PolyAnnotation.md)* | [optional]
+**interiorColor** | [**Color**](Color.md) | Gets or sets the interior color with which to fill the annotation’s line endings.<br />*Inherited from [PolyAnnotation](PolyAnnotation.md)* | [optional]
 **startingStyle** | [**LineEnding**](LineEnding.md) | Gets or sets the style of first line ending.<br />*Inherited from [PolyAnnotation](PolyAnnotation.md)* | [optional]
 **endingStyle** | [**LineEnding**](LineEnding.md) | Gets or sets the style of second line ending.<br />*Inherited from [PolyAnnotation](PolyAnnotation.md)* | [optional]
 **intent** | [**PolyIntent**](PolyIntent.md) | Gets or sets the intent of the polygon or polyline annotation.<br />*Inherited from [PolyAnnotation](PolyAnnotation.md)* | [optional]

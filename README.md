@@ -1,4 +1,4 @@
-# Aspose.PDF Cloud
+﻿# Aspose.PDF Cloud
 [Aspose.PDF Cloud](https://products.aspose.cloud/pdf) is a true REST API that enables you to perform a wide range of document processing operations including creation, manipulation, conversion and rendering of Pdf documents in the cloud.
 
 Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process documents in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. This repository contains new generation SDKs for Aspose.PDF Cloud and examples.
@@ -293,7 +293,7 @@ Class | Description
 [**Attachments**](docs/Attachments.md) | List of attachment.
 [**AttachmentsResponse**](docs/AttachmentsResponse.md) | 
 [**CapStyle**](docs/CapStyle.md) | Style of line ending of Ink annotation line. 
-[**CaptionPosition**](docs/CaptionPosition.md) | Enumeration of the annotation?s caption positioning.
+[**CaptionPosition**](docs/CaptionPosition.md) | Enumeration of the annotation’s caption positioning.
 [**CaretAnnotation**](docs/CaretAnnotation.md) | Provides CaretAnnotation.
 [**CaretAnnotationResponse**](docs/CaretAnnotationResponse.md) | 
 [**CaretAnnotations**](docs/CaretAnnotations.md) | List of annotations.
@@ -352,7 +352,7 @@ Class | Description
 [**InkAnnotationResponse**](docs/InkAnnotationResponse.md) | 
 [**InkAnnotations**](docs/InkAnnotations.md) | List of annotations.
 [**InkAnnotationsResponse**](docs/InkAnnotationsResponse.md) | 
-[**Justification**](docs/Justification.md) | Enumerates the forms of quadding (justification) to be used in displaying the annotation?s text.
+[**Justification**](docs/Justification.md) | Enumerates the forms of quadding (justification) to be used in displaying the annotation’s text.
 [**LettersPositioningMethods**](docs/LettersPositioningMethods.md) | It enumerates possible modes of positioning of letters in words in result HTML 
 [**LineAnnotation**](docs/LineAnnotation.md) | Provides LineAnnotation.
 [**LineAnnotationResponse**](docs/LineAnnotationResponse.md) | 
@@ -368,7 +368,7 @@ Class | Description
 [**LinkAnnotations**](docs/LinkAnnotations.md) | List of LinkAnnotations.
 [**LinkAnnotationsResponse**](docs/LinkAnnotationsResponse.md) | 
 [**LinkElement**](docs/LinkElement.md) | Represents base DTO object.
-[**LinkHighlightingMode**](docs/LinkHighlightingMode.md) | Enumerates the annotation?s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
+[**LinkHighlightingMode**](docs/LinkHighlightingMode.md) | Enumerates the annotation’s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
 [**MarginInfo**](docs/MarginInfo.md) | 
 [**MarkupAnnotation**](docs/MarkupAnnotation.md) | Provides MarkupAnnotation.
 [**MergeDocuments**](docs/MergeDocuments.md) | Documents for merging.

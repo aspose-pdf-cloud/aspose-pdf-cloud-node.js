@@ -1,4 +1,4 @@
-# DocumentPropertyResponse
+﻿# DocumentPropertyResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

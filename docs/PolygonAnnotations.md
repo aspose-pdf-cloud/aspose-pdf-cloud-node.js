@@ -1,4 +1,4 @@
-# PolygonAnnotations
+﻿# PolygonAnnotations
 List of annotations.
 
 *Inherited from [LinkElement](LinkElement.md)*

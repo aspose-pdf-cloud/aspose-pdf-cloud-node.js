@@ -1,4 +1,4 @@
-# PolygonAnnotationResponse
+﻿# PolygonAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

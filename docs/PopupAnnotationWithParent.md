@@ -1,4 +1,4 @@
-# PopupAnnotationWithParent
+﻿# PopupAnnotationWithParent
 Provides PopupAnnotation.
 
 *Inherited from [PopupAnnotation](PopupAnnotation.md)*

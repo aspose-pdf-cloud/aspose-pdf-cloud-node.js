@@ -1,4 +1,4 @@
-# InkAnnotation
+﻿# InkAnnotation
 Provides InkAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*

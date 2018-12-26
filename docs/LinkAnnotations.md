@@ -1,4 +1,4 @@
-# LinkAnnotations
+﻿# LinkAnnotations
 List of LinkAnnotations.
 
 *Inherited from [LinkElement](LinkElement.md)*

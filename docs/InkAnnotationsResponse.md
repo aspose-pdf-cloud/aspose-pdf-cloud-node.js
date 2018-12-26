@@ -1,4 +1,4 @@
-# InkAnnotationsResponse
+﻿# InkAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

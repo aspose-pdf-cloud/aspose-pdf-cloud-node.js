@@ -1,4 +1,4 @@
-# SquigglyAnnotation
+﻿# SquigglyAnnotation
 Provides SquigglyAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*

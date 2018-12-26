@@ -1,4 +1,4 @@
-# CaretAnnotation
+﻿# CaretAnnotation
 Provides CaretAnnotation.
 
 *Inherited from [MarkupAnnotation](MarkupAnnotation.md)*

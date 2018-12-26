@@ -1,4 +1,4 @@
-# InkAnnotations
+﻿# InkAnnotations
 List of annotations.
 
 *Inherited from [LinkElement](LinkElement.md)*

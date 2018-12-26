@@ -1,4 +1,4 @@
-# SquigglyAnnotationsResponse
+﻿# SquigglyAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

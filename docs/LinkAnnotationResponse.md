@@ -1,4 +1,4 @@
-# LinkAnnotationResponse
+﻿# LinkAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

@@ -1,4 +1,4 @@
- /**
+﻿ /**
  *
  *   Copyright (c) 2018 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +30,7 @@ import { MarkupAnnotation } from "./markupAnnotation";
 */
 export class PolyAnnotation extends MarkupAnnotation {
     /**
-    * Gets or sets the interior color with which to fill the annotation?s line endings.
+    * Gets or sets the interior color with which to fill the annotation’s line endings.
     */
     'interiorColor': Color;
     /**

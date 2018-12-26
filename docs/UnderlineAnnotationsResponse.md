@@ -1,4 +1,4 @@
-# UnderlineAnnotationsResponse
+﻿# UnderlineAnnotationsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

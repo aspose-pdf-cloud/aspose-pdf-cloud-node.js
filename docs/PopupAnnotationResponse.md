@@ -1,4 +1,4 @@
-# PopupAnnotationResponse
+﻿# PopupAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

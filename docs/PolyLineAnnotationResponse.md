@@ -1,4 +1,4 @@
-# PolyLineAnnotationResponse
+﻿# PolyLineAnnotationResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

@@ -1,4 +1,4 @@
-# TextRectsResponse
+﻿# TextRectsResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

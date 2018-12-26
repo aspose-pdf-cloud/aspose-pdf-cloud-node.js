@@ -1,4 +1,4 @@
- /**
+﻿ /**
  *
  *   Copyright (c) 2018 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy

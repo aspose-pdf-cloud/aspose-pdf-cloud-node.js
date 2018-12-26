@@ -1,4 +1,4 @@
-# TextReplaceResponse
+﻿# TextReplaceResponse
 
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*

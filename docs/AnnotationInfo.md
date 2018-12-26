@@ -1,4 +1,4 @@
-# AnnotationInfo
+﻿# AnnotationInfo
 Provides annotation.
 
 *Inherited from [Annotation](Annotation.md)*
