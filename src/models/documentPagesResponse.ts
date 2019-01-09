@@ -22,7 +22,13 @@
 import { Pages } from "./pages";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple pages info
+*/
 export class DocumentPagesResponse extends AsposeResponse {
+    /**
+    * Page object
+    */
     'pages': Pages;
 
     static discriminator = undefined;

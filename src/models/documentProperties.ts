@@ -23,9 +23,12 @@ import { DocumentProperty } from "./documentProperty";
 import { LinkElement } from "./linkElement";
 
 /**
-* Pdf document properties.
+* Represents list of PDF document properties.
 */
 export class DocumentProperties extends LinkElement {
+    /**
+    * List of PDF document properties.
+    */
     'list': Array<DocumentProperty>;
 
     static discriminator = undefined;

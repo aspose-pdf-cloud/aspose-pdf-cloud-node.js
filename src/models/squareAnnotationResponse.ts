@@ -22,7 +22,13 @@
 import { SquareAnnotation } from "./squareAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single square annotation object
+*/
 export class SquareAnnotationResponse extends AsposeResponse {
+    /**
+    * Square annotation object
+    */
     'annotation': SquareAnnotation;
 
     static discriminator = undefined;

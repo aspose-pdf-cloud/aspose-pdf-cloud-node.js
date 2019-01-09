@@ -1,11 +1,11 @@
 ﻿# PopupAnnotationsResponse
-
+Represents response containing multiple popup annotation objects
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**PopupAnnotations**](PopupAnnotations.md) |  | [optional]
+**annotations** | [**PopupAnnotations**](PopupAnnotations.md) | Popup annotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

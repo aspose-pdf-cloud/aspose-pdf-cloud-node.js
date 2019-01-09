@@ -1,11 +1,11 @@
 ﻿# CircleAnnotationResponse
-
+Represents response containing single circle annotation object
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**CircleAnnotation**](CircleAnnotation.md) |  | [optional]
+**annotation** | [**CircleAnnotation**](CircleAnnotation.md) | Circle annotation object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

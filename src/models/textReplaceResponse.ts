@@ -21,7 +21,13 @@
 
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing the result of text replacement
+*/
 export class TextReplaceResponse extends AsposeResponse {
+    /**
+    * Number of matches
+    */
     'matches': number;
 
     static discriminator = undefined;

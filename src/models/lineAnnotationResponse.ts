@@ -22,7 +22,13 @@
 import { LineAnnotation } from "./lineAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single line annotation object
+*/
 export class LineAnnotationResponse extends AsposeResponse {
+    /**
+    * Line annotation object
+    */
     'annotation': LineAnnotation;
 
     static discriminator = undefined;

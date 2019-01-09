@@ -22,7 +22,13 @@
 import { HighlightAnnotation } from "./highlightAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single highlight annotation object
+*/
 export class HighlightAnnotationResponse extends AsposeResponse {
+    /**
+    * Highlight annotation object
+    */
     'annotation': HighlightAnnotation;
 
     static discriminator = undefined;

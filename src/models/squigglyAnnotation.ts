@@ -20,17 +20,12 @@
  */
 
 import { Point } from "./point";
-import { Color } from "./color";
 import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
 * Provides SquigglyAnnotation.
 */
 export class SquigglyAnnotation extends MarkupAnnotation {
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
     /**
     * Gets or sets an array of points specifying the coordinates of n quadrilaterals. Each quadrilateral encompasses a word or group of contiguous words in the text underlying the annotation.
     */
@@ -39,11 +34,6 @@ export class SquigglyAnnotation extends MarkupAnnotation {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
         {
             "name": "quadPoints",
             "baseName": "QuadPoints",

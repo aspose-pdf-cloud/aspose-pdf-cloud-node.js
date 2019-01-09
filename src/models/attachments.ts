@@ -22,9 +22,12 @@
 import { LinkElement } from "./linkElement";
 
 /**
-* List of attachment.
+* Represents list of attachment.
 */
 export class Attachments extends LinkElement {
+    /**
+    * List of annotations.
+    */
     'list': Array<LinkElement>;
 
     static discriminator = undefined;

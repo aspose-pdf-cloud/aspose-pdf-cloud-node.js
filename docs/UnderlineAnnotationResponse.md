@@ -1,11 +1,11 @@
 ﻿# UnderlineAnnotationResponse
-
+Represents response containing single underline annotation object
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**UnderlineAnnotation**](UnderlineAnnotation.md) |  | [optional]
+**annotation** | [**UnderlineAnnotation**](UnderlineAnnotation.md) | Underline annotation object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

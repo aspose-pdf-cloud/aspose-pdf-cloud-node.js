@@ -1,11 +1,11 @@
 ﻿# LinkAnnotationsResponse
-
+Represents response containing multiple links info
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**links** | [**LinkAnnotations**](LinkAnnotations.md) |  | [optional]
+**links** | [**LinkAnnotations**](LinkAnnotations.md) | LinkAnnotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

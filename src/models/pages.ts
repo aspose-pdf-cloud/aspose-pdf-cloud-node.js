@@ -23,9 +23,12 @@ import { Page } from "./page";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of pages.
+* Represents list of pages.
 */
 export class Pages extends LinkElement {
+    /**
+    * List of pages.
+    */
     'list': Array<Page>;
 
     static discriminator = undefined;

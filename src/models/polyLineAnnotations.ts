@@ -23,9 +23,12 @@ import { PolyLineAnnotation } from "./polyLineAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of polyline annotations.
 */
 export class PolyLineAnnotations extends LinkElement {
+    /**
+    * List of polyline annotations.
+    */
     'list': Array<PolyLineAnnotation>;
 
     static discriminator = undefined;

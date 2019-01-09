@@ -22,7 +22,13 @@
 import { Fields } from "./fields";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple fields info
+*/
 export class FieldsResponse extends AsposeResponse {
+    /**
+    * Fields object
+    */
     'fields': Fields;
 
     static discriminator = undefined;

@@ -1,5 +1,5 @@
 ﻿# Signature
-
+Represents signature.
 
 ## Properties
 Name | Type | Description | Notes
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **contact** | **string** | Gets or sets the contact of the signature. | [optional]
 **location** | **string** | Gets or sets the location of the signature. | [optional]
 **visible** | **boolean** | Gets or sets a value indicating whether this is visible. Supports only when signing particular page. | 
-**rectangle** | [**RectanglePdf**](RectanglePdf.md) | Gets or sets the visible rectangle of the signature. Supports only when signing particular page. | [optional]
+**rectangle** | [**Rectangle**](Rectangle.md) | Gets or sets the visible rectangle of the signature. Supports only when signing particular page. | [optional]
 **formFieldName** | **string** | Gets or sets the name of the signature field. Supports only when signing document with particular form field. | [optional]
 **authority** | **string** | Gets or sets the name of the person or authority signing the document.. | [optional]
 **date** | **string** | Gets or sets the time of signing. | [optional]

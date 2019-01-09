@@ -22,7 +22,13 @@
 import { SquigglyAnnotation } from "./squigglyAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single squiggly-underline annotation object
+*/
 export class SquigglyAnnotationResponse extends AsposeResponse {
+    /**
+    * Squiggly-underline annotation object
+    */
     'annotation': SquigglyAnnotation;
 
     static discriminator = undefined;

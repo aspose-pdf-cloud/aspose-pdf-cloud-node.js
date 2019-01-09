@@ -23,9 +23,12 @@ import { CircleAnnotation } from "./circleAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of circle annotations.
 */
 export class CircleAnnotations extends LinkElement {
+    /**
+    * List of circle annotations.
+    */
     'list': Array<CircleAnnotation>;
 
     static discriminator = undefined;

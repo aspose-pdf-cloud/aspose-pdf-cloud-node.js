@@ -1,11 +1,11 @@
 ﻿# SquigglyAnnotationsResponse
-
+Represents response containing multiple squiggly-underline annotation objects
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**SquigglyAnnotations**](SquigglyAnnotations.md) |  | [optional]
+**annotations** | [**SquigglyAnnotations**](SquigglyAnnotations.md) | Squiggly-underline annotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

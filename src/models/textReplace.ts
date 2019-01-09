@@ -19,7 +19,7 @@
  *
  */
 
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { TextState } from "./textState";
 
 /**
@@ -45,7 +45,7 @@ export class TextReplace {
     /**
     * Rectangle area where searched original text.
     */
-    'rect': RectanglePdf;
+    'rect': Rectangle;
 
     static discriminator = undefined;
 
@@ -73,7 +73,7 @@ export class TextReplace {
         {
             "name": "rect",
             "baseName": "Rect",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         }    ];
 
     static getAttributeTypeMap() {

@@ -1,11 +1,11 @@
 ﻿# CaretAnnotationResponse
-
+Represents response containing single caret annotation object
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**CaretAnnotation**](CaretAnnotation.md) |  | [optional]
+**annotation** | [**CaretAnnotation**](CaretAnnotation.md) | Caret annotation object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

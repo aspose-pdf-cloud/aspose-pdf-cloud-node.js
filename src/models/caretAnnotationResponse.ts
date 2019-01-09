@@ -22,7 +22,13 @@
 import { CaretAnnotation } from "./caretAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single caret annotation object
+*/
 export class CaretAnnotationResponse extends AsposeResponse {
+    /**
+    * Caret annotation object
+    */
     'annotation': CaretAnnotation;
 
     static discriminator = undefined;

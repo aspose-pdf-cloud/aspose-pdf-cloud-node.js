@@ -19,7 +19,7 @@
  *
  */
 
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { LinkElement } from "./linkElement";
 
 /**
@@ -41,7 +41,7 @@ export class Image extends LinkElement {
     /**
     * Gets rectangle of the image.
     */
-    'rectangle': RectanglePdf;
+    'rectangle': Rectangle;
     /**
     * Gets page number.
     */
@@ -68,7 +68,7 @@ export class Image extends LinkElement {
         {
             "name": "rectangle",
             "baseName": "Rectangle",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         },
         {
             "name": "pageNumber",

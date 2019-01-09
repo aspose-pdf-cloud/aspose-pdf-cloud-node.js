@@ -23,9 +23,12 @@ import { Field } from "./field";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of form fields.
+* Represents list of form fields.
 */
 export class Fields extends LinkElement {
+    /**
+    * List of form fields.
+    */
     'list': Array<Field>;
 
     static discriminator = undefined;

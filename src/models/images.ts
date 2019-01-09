@@ -23,9 +23,12 @@ import { Image } from "./image";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of page images.
+* Represents list of images.
 */
 export class Images extends LinkElement {
+    /**
+    * List of images.
+    */
     'list': Array<Image>;
 
     static discriminator = undefined;

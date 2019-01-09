@@ -1,11 +1,11 @@
 ﻿# LineAnnotationsResponse
-
+Represents response containing multiple line annotation objects
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**LineAnnotations**](LineAnnotations.md) |  | [optional]
+**annotations** | [**LineAnnotations**](LineAnnotations.md) | Line annotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

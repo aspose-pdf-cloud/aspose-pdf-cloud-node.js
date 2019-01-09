@@ -22,7 +22,13 @@
 import { Attachments } from "./attachments";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple attachments info
+*/
 export class AttachmentsResponse extends AsposeResponse {
+    /**
+    * Attachments object
+    */
     'attachments': Attachments;
 
     static discriminator = undefined;

@@ -22,7 +22,13 @@
 import { CircleAnnotations } from "./circleAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple circle annotation objects
+*/
 export class CircleAnnotationsResponse extends AsposeResponse {
+    /**
+    * Circle annotations object
+    */
     'annotations': CircleAnnotations;
 
     static discriminator = undefined;

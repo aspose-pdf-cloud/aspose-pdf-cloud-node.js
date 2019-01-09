@@ -22,7 +22,13 @@
 import { LinkAnnotations } from "./linkAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple links info
+*/
 export class LinkAnnotationsResponse extends AsposeResponse {
+    /**
+    * LinkAnnotations object
+    */
     'links': LinkAnnotations;
 
     static discriminator = undefined;

@@ -22,7 +22,13 @@
 import { StrikeOutAnnotation } from "./strikeOutAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single strikeout annotation object
+*/
 export class StrikeOutAnnotationResponse extends AsposeResponse {
+    /**
+    * Strikeout annotation object
+    */
     'annotation': StrikeOutAnnotation;
 
     static discriminator = undefined;

@@ -1,11 +1,11 @@
 ﻿# StrikeOutAnnotationsResponse
-
+Represents response containing multiple strikeout annotation objects
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**StrikeOutAnnotations**](StrikeOutAnnotations.md) |  | [optional]
+**annotations** | [**StrikeOutAnnotations**](StrikeOutAnnotations.md) | Strikeout annotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

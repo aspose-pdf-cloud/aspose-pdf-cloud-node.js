@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **width** | **number** | Gets width of the image. | 
 **height** | **number** | Gets height of the image. | 
 **id** | **string** | Gets ID of the image. | [optional]
-**rectangle** | [**RectanglePdf**](RectanglePdf.md) | Gets rectangle of the image. | [optional]
+**rectangle** | [**Rectangle**](Rectangle.md) | Gets rectangle of the image. | [optional]
 **pageNumber** | **number** | Gets page number. | 
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document.<br />*Inherited from [LinkElement](LinkElement.md)* | [optional]
 

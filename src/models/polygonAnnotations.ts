@@ -23,9 +23,12 @@ import { PolygonAnnotation } from "./polygonAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of polygon annotations.
 */
 export class PolygonAnnotations extends LinkElement {
+    /**
+    * List of polygon annotations.
+    */
     'list': Array<PolygonAnnotation>;
 
     static discriminator = undefined;

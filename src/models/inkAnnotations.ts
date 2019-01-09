@@ -23,9 +23,12 @@ import { InkAnnotation } from "./inkAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of ink annotations.
 */
 export class InkAnnotations extends LinkElement {
+    /**
+    * List of ink annotations.
+    */
     'list': Array<InkAnnotation>;
 
     static discriminator = undefined;

@@ -1,11 +1,11 @@
 ﻿# AttachmentsResponse
-
+Represents response containing multiple attachments info
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachments** | [**Attachments**](Attachments.md) |  | [optional]
+**attachments** | [**Attachments**](Attachments.md) | Attachments object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

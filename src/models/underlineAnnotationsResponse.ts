@@ -22,7 +22,13 @@
 import { UnderlineAnnotations } from "./underlineAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple underline annotation objects
+*/
 export class UnderlineAnnotationsResponse extends AsposeResponse {
+    /**
+    * Underline annotations object
+    */
     'annotations': UnderlineAnnotations;
 
     static discriminator = undefined;

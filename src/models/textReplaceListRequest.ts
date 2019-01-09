@@ -30,7 +30,13 @@ export class TextReplaceListRequest {
     */
     'textReplaces': Array<TextReplace>;
     'defaultFont': string;
+    /**
+    * The index of first match to be replaced.
+    */
     'startIndex': number;
+    /**
+    * The number of matches to be replaced.
+    */
     'countReplace': number;
 
     static discriminator = undefined;

@@ -24,9 +24,21 @@
 * Represents color DTO.
 */
 export class Color {
+    /**
+    * Alpha component.
+    */
     'a': number;
+    /**
+    * Red component.
+    */
     'r': number;
+    /**
+    * Green component.
+    */
     'g': number;
+    /**
+    * Blue component.
+    */
     'b': number;
 
     static discriminator = undefined;

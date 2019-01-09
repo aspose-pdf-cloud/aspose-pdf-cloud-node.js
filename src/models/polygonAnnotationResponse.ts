@@ -22,7 +22,13 @@
 import { PolygonAnnotation } from "./polygonAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single polygon annotation object
+*/
 export class PolygonAnnotationResponse extends AsposeResponse {
+    /**
+    * Polygon annotation object
+    */
     'annotation': PolygonAnnotation;
 
     static discriminator = undefined;

@@ -23,9 +23,12 @@ import { FreeTextAnnotation } from "./freeTextAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of free text annotations.
 */
 export class FreeTextAnnotations extends LinkElement {
+    /**
+    * List of free text annotations.
+    */
     'list': Array<FreeTextAnnotation>;
 
     static discriminator = undefined;

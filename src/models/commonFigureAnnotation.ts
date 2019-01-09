@@ -19,7 +19,7 @@
  *
  */
 
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { Color } from "./color";
 import { MarkupAnnotation } from "./markupAnnotation";
 
@@ -34,7 +34,7 @@ export class CommonFigureAnnotation extends MarkupAnnotation {
     /**
     * Get or set the annotation Rectangle of frame.
     */
-    'frame': RectanglePdf;
+    'frame': Rectangle;
 
     static discriminator = undefined;
 
@@ -47,7 +47,7 @@ export class CommonFigureAnnotation extends MarkupAnnotation {
         {
             "name": "frame",
             "baseName": "Frame",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         }    ];
 
     static getAttributeTypeMap() {

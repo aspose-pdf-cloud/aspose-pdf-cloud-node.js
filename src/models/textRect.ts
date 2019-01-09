@@ -19,15 +19,24 @@
  *
  */
 
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 
 /**
-* Represents text DTO.
+* Represents text occurrence.
 */
 export class TextRect {
+    /**
+    * Text of the occurrence.
+    */
     'text': string;
+    /**
+    * Page on which the occurrence is found.
+    */
     'page': number;
-    'rect': RectanglePdf;
+    /**
+    * Rectangle of the occurrence.
+    */
+    'rect': Rectangle;
 
     static discriminator = undefined;
 
@@ -45,7 +54,7 @@ export class TextRect {
         {
             "name": "rect",
             "baseName": "Rect",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         }    ];
 
     static getAttributeTypeMap() {

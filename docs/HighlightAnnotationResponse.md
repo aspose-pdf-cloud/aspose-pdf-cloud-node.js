@@ -1,11 +1,11 @@
 ﻿# HighlightAnnotationResponse
-
+Represents response containing single highlight annotation object
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**HighlightAnnotation**](HighlightAnnotation.md) |  | [optional]
+**annotation** | [**HighlightAnnotation**](HighlightAnnotation.md) | Highlight annotation object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

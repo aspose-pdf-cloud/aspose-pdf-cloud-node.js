@@ -19,26 +19,17 @@
  *
  */
 
-import { Color } from "./color";
 import { PolyAnnotation } from "./polyAnnotation";
 
 /**
 * Provides PolygonAnnotation.
 */
 export class PolygonAnnotation extends PolyAnnotation {
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PolygonAnnotation.attributeTypeMap);

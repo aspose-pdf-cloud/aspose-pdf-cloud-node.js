@@ -23,9 +23,12 @@ import { UnderlineAnnotation } from "./underlineAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of underline annotations.
 */
 export class UnderlineAnnotations extends LinkElement {
+    /**
+    * List of underline annotations.
+    */
     'list': Array<UnderlineAnnotation>;
 
     static discriminator = undefined;

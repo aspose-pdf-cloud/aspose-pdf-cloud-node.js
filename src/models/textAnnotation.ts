@@ -20,7 +20,6 @@
  */
 
 import { TextIcon } from "./textIcon";
-import { Color } from "./color";
 import { AnnotationState } from "./annotationState";
 import { MarkupAnnotation } from "./markupAnnotation";
 
@@ -36,10 +35,6 @@ export class TextAnnotation extends MarkupAnnotation {
     * Gets or sets is the annotation open.
     */
     'open': boolean;
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
     /**
     * Gets or sets an icon to be used in displaying the annotation.
     */
@@ -57,11 +52,6 @@ export class TextAnnotation extends MarkupAnnotation {
             "name": "open",
             "baseName": "Open",
             "type": "boolean"
-        },
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
         },
         {
             "name": "icon",

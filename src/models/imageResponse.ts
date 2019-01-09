@@ -22,7 +22,13 @@
 import { Image } from "./image";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single image info
+*/
 export class ImageResponse extends AsposeResponse {
+    /**
+    * Image object
+    */
     'image': Image;
 
     static discriminator = undefined;

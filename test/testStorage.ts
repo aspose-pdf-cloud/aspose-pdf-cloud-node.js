@@ -57,11 +57,140 @@ describe("Storage Tests", () => {
         });
     });
 
+
+    describe("PostMoveFile Test", () => {
+
+        it("should return response with code 200", async () => {
+    
+            const name = "4pages.pdf";
+            await BaseTest.uploadFile(name);
+
+            const src = BaseTest.remoteTempFolder + '/' + name;
+            const dest = BaseTest.remoteTempFolder + '/4pages_renamed.pdf';
+
+            return BaseTest.getPdfApi().postMoveFile(src, dest)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("DeleteFile Test", () => {
+
+        it("should return response with code 200", async () => {
+    
+            const name = "4pages.pdf";
+            await BaseTest.uploadFile(name);
+
+            const path = BaseTest.remoteTempFolder + '/' + name;
+            
+            return BaseTest.getPdfApi().deleteFile(path)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
     describe("GetListFiles Test", () => {
 
-        it("should return file", async () => {
+        it("should return response with code 200", async () => {
     
             return BaseTest.getPdfApi().getListFiles(BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("PutCreateFolder Test", () => {
+
+        it("should return response with code 200", async () => {
+            const path = BaseTest.remoteTempFolder + '/testFolder';
+
+            return BaseTest.getPdfApi().putCreateFolder(path)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("PostMoveFolder Test", () => {
+
+        it("should return response with code 200", async () => {
+            const src = BaseTest.remoteTempFolder + '/testFolder';
+            await BaseTest.getPdfApi().putCreateFolder(src)
+            
+            const dest = BaseTest.remoteTempFolder + '/testFolderRenamed';
+            
+            return BaseTest.getPdfApi().postMoveFolder(src, dest)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("DeleteFolder Test", () => {
+
+        it("should return response with code 200", async () => {
+            const path = BaseTest.remoteTempFolder + '/testFolder';
+            await BaseTest.getPdfApi().putCreateFolder(path)
+            
+            return BaseTest.getPdfApi().deleteFolder(path)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("GetIsStorageExist Test", () => {
+
+        it("should return response with code 200", async () => {
+            const name = "PDF-CI";
+
+            return BaseTest.getPdfApi().getIsStorageExist(name)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("GetIsExist Test", () => {
+
+        it("should return response with code 200", async () => {
+    
+            const name = "4pages.pdf";
+            await BaseTest.uploadFile(name);
+
+            const path = BaseTest.remoteTempFolder + '/' + name;
+            
+            return BaseTest.getPdfApi().getIsExist(path)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("GetDiscUsage Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            return BaseTest.getPdfApi().getDiscUsage()
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("GetListFileVersions Test", () => {
+
+        it("should return response with code 200", async () => {
+    
+            const name = "4pages.pdf";
+            await BaseTest.uploadFile(name);
+
+            const path = BaseTest.remoteTempFolder + '/' + name;
+            
+            return BaseTest.getPdfApi().getListFileVersions(path)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
