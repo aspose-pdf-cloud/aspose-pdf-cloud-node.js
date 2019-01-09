@@ -22,11 +22,11 @@
 import { AsposeResponse } from "./asposeResponse";
 
 /**
-* Returns also a message.
+* Represent responce containing signature verification result
 */
 export class SignatureVerifyResponse extends AsposeResponse {
     /**
-    * Valid sign.
+    * True if signature is valid and false if not
     */
     'valid': boolean;
 

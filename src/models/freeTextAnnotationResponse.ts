@@ -22,7 +22,13 @@
 import { FreeTextAnnotation } from "./freeTextAnnotation";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single free text annotation object
+*/
 export class FreeTextAnnotationResponse extends AsposeResponse {
+    /**
+    * Free text annotation object
+    */
     'annotation': FreeTextAnnotation;
 
     static discriminator = undefined;

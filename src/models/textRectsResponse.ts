@@ -22,15 +22,21 @@
 import { TextRects } from "./textRects";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple text occurrences info
+*/
 export class TextRectsResponse extends AsposeResponse {
-    'textOccurences': TextRects;
+    /**
+    * TextRects object
+    */
+    'textOccurrences': TextRects;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "textOccurences",
-            "baseName": "TextOccurences",
+            "name": "textOccurrences",
+            "baseName": "TextOccurrences",
             "type": "TextRects"
         }    ];
 

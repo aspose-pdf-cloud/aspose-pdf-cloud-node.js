@@ -23,7 +23,7 @@ import { Segment } from "./segment";
 import { TextHorizontalAlignment } from "./textHorizontalAlignment";
 
 /**
-* A line of text to be inserted into .
+* A line of text to be inserted into paragraph.
 */
 export class TextLine {
     /**

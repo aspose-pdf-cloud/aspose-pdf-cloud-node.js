@@ -19,17 +19,12 @@
  *
  */
 
-import { Color } from "./color";
 import { Annotation } from "./annotation";
 
 /**
 * Provides PopupAnnotation.
 */
 export class PopupAnnotation extends Annotation {
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
     /**
     * Gets or sets a flag specifying whether the pop-up annotation should initially be displayed open.
     */
@@ -38,11 +33,6 @@ export class PopupAnnotation extends Annotation {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
         {
             "name": "open",
             "baseName": "Open",

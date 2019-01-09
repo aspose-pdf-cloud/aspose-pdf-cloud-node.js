@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **action** | **string** |  | 
 **highlighting** | [**LinkHighlightingMode**](LinkHighlightingMode.md) |  | 
 **color** | [**Color**](Color.md) |  | [optional]
-**rect** | [**RectanglePdf**](RectanglePdf.md) |  | 
+**rect** | [**Rectangle**](Rectangle.md) |  | 
 **id** | **string** |  | [optional]
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document.<br />*Inherited from [LinkElement](LinkElement.md)* | [optional]
 

@@ -19,7 +19,7 @@
  *
  */
 
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { FieldType } from "./fieldType";
 import { LinkElement } from "./linkElement";
 
@@ -42,7 +42,7 @@ export class Field extends LinkElement {
     /**
     * Field rectangle.
     */
-    'rect': RectanglePdf;
+    'rect': Rectangle;
     /**
     * Field values.
     */
@@ -69,7 +69,7 @@ export class Field extends LinkElement {
         {
             "name": "rect",
             "baseName": "Rect",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         },
         {
             "name": "values",

@@ -19,26 +19,17 @@
  *
  */
 
-import { Color } from "./color";
 import { CommonFigureAnnotation } from "./commonFigureAnnotation";
 
 /**
 * Provides SquareAnnotation.
 */
 export class SquareAnnotation extends CommonFigureAnnotation {
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        }    ];
+    ];
 
     static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(SquareAnnotation.attributeTypeMap);

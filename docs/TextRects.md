@@ -1,10 +1,10 @@
 ﻿# TextRects
-Represents text items DTO.
+Represents multiple text occurrences DTO.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**list** | [**Array&lt;TextRect&gt;**](TextRect.md) |  | [optional]
+**list** | [**Array&lt;TextRect&gt;**](TextRect.md) | The list of text occurrences. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/textRects.ts)
 

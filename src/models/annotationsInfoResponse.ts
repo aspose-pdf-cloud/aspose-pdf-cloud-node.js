@@ -22,7 +22,13 @@
 import { AnnotationsInfo } from "./annotationsInfo";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents multiple annotations info reponse
+*/
 export class AnnotationsInfoResponse extends AsposeResponse {
+    /**
+    * Annotations info
+    */
     'annotations': AnnotationsInfo;
 
     static discriminator = undefined;

@@ -1,11 +1,11 @@
 ﻿# ImagesResponse
-
+Represents response containing multiple images info
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**images** | [**Images**](Images.md) |  | [optional]
+**images** | [**Images**](Images.md) | Images object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

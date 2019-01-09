@@ -21,8 +21,17 @@
 
 import { TextState } from "./textState";
 
+/**
+* Represents segment of Pdf text.
+*/
 export class Segment {
+    /**
+    * Text that the Segment object represents.
+    */
     'value': string;
+    /**
+    * Text state for the text that Segment object represents.
+    */
     'textState': TextState;
 
     static discriminator = undefined;

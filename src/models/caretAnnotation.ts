@@ -20,8 +20,7 @@
  */
 
 import { CaretSymbol } from "./caretSymbol";
-import { RectanglePdf } from "./rectanglePdf";
-import { Color } from "./color";
+import { Rectangle } from "./rectangle";
 import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
@@ -29,13 +28,9 @@ import { MarkupAnnotation } from "./markupAnnotation";
 */
 export class CaretAnnotation extends MarkupAnnotation {
     /**
-    * Color of the annotation.
-    */
-    'color': Color;
-    /**
     * Gets or sets caret rectangle.
     */
-    'frame': RectanglePdf;
+    'frame': Rectangle;
     /**
     * Gets or sets symbol associated with caret.
     */
@@ -45,14 +40,9 @@ export class CaretAnnotation extends MarkupAnnotation {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
-        {
             "name": "frame",
             "baseName": "Frame",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         },
         {
             "name": "symbol",

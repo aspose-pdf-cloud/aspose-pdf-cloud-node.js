@@ -21,14 +21,19 @@
 
 import { VerticalAlignment } from "./verticalAlignment";
 import { HorizontalAlignment } from "./horizontalAlignment";
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { AnnotationFlags } from "./annotationFlags";
+import { Color } from "./color";
 import { LinkElement } from "./linkElement";
 
 /**
 * Provides annotation.
 */
 export class Annotation extends LinkElement {
+    /**
+    * Color of the annotation.
+    */
+    'color': Color;
     /**
     * Get the annotation content.
     */
@@ -52,7 +57,7 @@ export class Annotation extends LinkElement {
     /**
     * Gets Rect of the annotation.
     */
-    'rect': RectanglePdf;
+    'rect': Rectangle;
     /**
     * Gets PageIndex of the annotation.
     */
@@ -73,6 +78,11 @@ export class Annotation extends LinkElement {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "color",
+            "baseName": "Color",
+            "type": "Color"
+        },
         {
             "name": "contents",
             "baseName": "Contents",
@@ -101,7 +111,7 @@ export class Annotation extends LinkElement {
         {
             "name": "rect",
             "baseName": "Rect",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         },
         {
             "name": "pageIndex",

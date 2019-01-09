@@ -23,9 +23,12 @@ import { CaretAnnotation } from "./caretAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of caret annotations.
 */
 export class CaretAnnotations extends LinkElement {
+    /**
+    * List of caret annotations.
+    */
     'list': Array<CaretAnnotation>;
 
     static discriminator = undefined;

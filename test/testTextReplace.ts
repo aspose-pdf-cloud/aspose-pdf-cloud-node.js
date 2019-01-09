@@ -23,14 +23,14 @@ import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
 import { beforeEach } from "mocha";
 import { TextReplaceListRequest } from "../src/models/textReplaceListRequest";
-import { RectanglePdf } from "../src/models/rectanglePdf";
+import { Rectangle } from "../src/models/rectangle";
 import { TextReplace } from "../src/models/textReplace";
 var assert = require('assert');
 
 describe("TextReplace Tests", () => {
 
     const name = "marketing.pdf";
-    const rect: RectanglePdf = { lLX: 100, lLY: 100, uRX: 300, uRY: 300 };
+    const rect: Rectangle = { lLX: 100, lLY: 100, uRX: 300, uRY: 300 };
     
     const textReplace: TextReplace = { 
         oldValue: "market", 

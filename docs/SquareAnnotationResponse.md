@@ -1,11 +1,11 @@
 ﻿# SquareAnnotationResponse
-
+Represents response containing single square annotation object
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**SquareAnnotation**](SquareAnnotation.md) |  | [optional]
+**annotation** | [**SquareAnnotation**](SquareAnnotation.md) | Square annotation object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

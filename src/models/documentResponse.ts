@@ -22,8 +22,17 @@
 import { Document } from "./document";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing document info
+*/
 export class DocumentResponse extends AsposeResponse {
+    /**
+    * Document object
+    */
     'document': Document;
+    /**
+    * A list of messages obtained while producing the responce
+    */
     'messages': Array<string>;
 
     static discriminator = undefined;

@@ -23,9 +23,12 @@ import { StrikeOutAnnotation } from "./strikeOutAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of strikeout annotations.
 */
 export class StrikeOutAnnotations extends LinkElement {
+    /**
+    * List of strikeout annotations.
+    */
     'list': Array<StrikeOutAnnotation>;
 
     static discriminator = undefined;

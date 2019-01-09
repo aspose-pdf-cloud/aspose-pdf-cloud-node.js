@@ -20,41 +20,26 @@
  */
 
 
-/**
-* Represents rectangle DTO.
-*/
-export class RectanglePdf {
-    'lLX': number;
-    'lLY': number;
-    'uRX': number;
-    'uRY': number;
+export class FileExist {
+    'isExist': boolean;
+    'isFolder': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "lLX",
-            "baseName": "LLX",
-            "type": "number"
+            "name": "isExist",
+            "baseName": "IsExist",
+            "type": "boolean"
         },
         {
-            "name": "lLY",
-            "baseName": "LLY",
-            "type": "number"
-        },
-        {
-            "name": "uRX",
-            "baseName": "URX",
-            "type": "number"
-        },
-        {
-            "name": "uRY",
-            "baseName": "URY",
-            "type": "number"
+            "name": "isFolder",
+            "baseName": "IsFolder",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return RectanglePdf.attributeTypeMap;
+        return FileExist.attributeTypeMap;
     }
 }
 

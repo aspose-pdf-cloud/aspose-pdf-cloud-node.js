@@ -75,10 +75,6 @@ export class LineAnnotation extends MarkupAnnotation {
     */
     'captionPosition': CaptionPosition;
     /**
-    * Color of the annotation.
-    */
-    'color': Color;
-    /**
     * Gets or sets the intent of the line annotation.
     */
     'intent': LineIntent;
@@ -140,11 +136,6 @@ export class LineAnnotation extends MarkupAnnotation {
             "name": "captionPosition",
             "baseName": "CaptionPosition",
             "type": "CaptionPosition"
-        },
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
         },
         {
             "name": "intent",

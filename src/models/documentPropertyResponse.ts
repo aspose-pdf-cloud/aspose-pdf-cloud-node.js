@@ -22,7 +22,13 @@
 import { DocumentProperty } from "./documentProperty";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single document property info
+*/
 export class DocumentPropertyResponse extends AsposeResponse {
+    /**
+    * DocumentProperty object
+    */
     'documentProperty': DocumentProperty;
 
     static discriminator = undefined;

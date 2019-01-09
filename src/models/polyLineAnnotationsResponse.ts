@@ -22,7 +22,13 @@
 import { PolyLineAnnotations } from "./polyLineAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple polyline annotation objects
+*/
 export class PolyLineAnnotationsResponse extends AsposeResponse {
+    /**
+    * Polyline annotations object
+    */
     'annotations': PolyLineAnnotations;
 
     static discriminator = undefined;

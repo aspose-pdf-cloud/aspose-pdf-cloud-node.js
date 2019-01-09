@@ -21,17 +21,12 @@
 
 import { CapStyle } from "./capStyle";
 import { Point } from "./point";
-import { Color } from "./color";
 import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
 * Provides InkAnnotation.
 */
 export class InkAnnotation extends MarkupAnnotation {
-    /**
-    * Color of the annotation.
-    */
-    'color': Color;
     /**
     * Gets or sets list of gestures that are independent lines which are represented by Point[] arrays.
     */
@@ -44,11 +39,6 @@ export class InkAnnotation extends MarkupAnnotation {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "color",
-            "baseName": "Color",
-            "type": "Color"
-        },
         {
             "name": "inkList",
             "baseName": "InkList",

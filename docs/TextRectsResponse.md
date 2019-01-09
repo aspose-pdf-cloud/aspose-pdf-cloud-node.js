@@ -1,11 +1,11 @@
 ﻿# TextRectsResponse
-
+Represents response containing multiple text occurrences info
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**textOccurences** | [**TextRects**](TextRects.md) |  | [optional]
+**textOccurrences** | [**TextRects**](TextRects.md) | TextRects object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

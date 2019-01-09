@@ -22,7 +22,13 @@
 import { TextAnnotations } from "./textAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple text annotation objects
+*/
 export class TextAnnotationsResponse extends AsposeResponse {
+    /**
+    * Text annotations object
+    */
     'annotations': TextAnnotations;
 
     static discriminator = undefined;

@@ -22,7 +22,13 @@
 import { PopupAnnotationWithParent } from "./popupAnnotationWithParent";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing single popup annotation object
+*/
 export class PopupAnnotationResponse extends AsposeResponse {
+    /**
+    * Popup annotation object
+    */
     'annotation': PopupAnnotationWithParent;
 
     static discriminator = undefined;

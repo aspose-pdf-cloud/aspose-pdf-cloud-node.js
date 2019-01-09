@@ -22,9 +22,12 @@
 import { TextRect } from "./textRect";
 
 /**
-* Represents text items DTO.
+* Represents multiple text occurrences DTO.
 */
 export class TextRects {
+    /**
+    * The list of text occurrences.
+    */
     'list': Array<TextRect>;
 
     static discriminator = undefined;

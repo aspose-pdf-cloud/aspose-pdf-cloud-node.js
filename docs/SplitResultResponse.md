@@ -1,11 +1,11 @@
 ﻿# SplitResultResponse
-Represents split result object.
+Represents responce containing split result.
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**result** | [**SplitResult**](SplitResult.md) | Gets or sets the splitting result. | [optional]
+**result** | [**SplitResult**](SplitResult.md) | SplitResult object. | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

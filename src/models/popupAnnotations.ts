@@ -23,9 +23,12 @@ import { PopupAnnotationWithParent } from "./popupAnnotationWithParent";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of popup annotations.
 */
 export class PopupAnnotations extends LinkElement {
+    /**
+    * List of popup annotations.
+    */
     'list': Array<PopupAnnotationWithParent>;
 
     static discriminator = undefined;

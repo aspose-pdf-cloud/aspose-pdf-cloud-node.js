@@ -23,9 +23,12 @@ import { SquareAnnotation } from "./squareAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of square annotations.
 */
 export class SquareAnnotations extends LinkElement {
+    /**
+    * List of square annotations.
+    */
     'list': Array<SquareAnnotation>;
 
     static discriminator = undefined;

@@ -23,9 +23,12 @@ import { AnnotationInfo } from "./annotationInfo";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of annotation info objects.
 */
 export class AnnotationsInfo extends LinkElement {
+    /**
+    * List of annotation info objects.
+    */
     'list': Array<AnnotationInfo>;
 
     static discriminator = undefined;

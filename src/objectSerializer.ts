@@ -31,12 +31,14 @@ import { CaretSymbol } from "./models/caretSymbol";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
 import { CompressionType } from "./models/compressionType";
+import { DiscUsage } from "./models/discUsage";
 import { DocFormat } from "./models/docFormat";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
 import { FieldType } from "./models/fieldType";
 import { File } from "./models/file";
+import { FileExist } from "./models/fileExist";
 import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
@@ -66,7 +68,7 @@ import { PdfAType } from "./models/pdfAType";
 import { Point } from "./models/point";
 import { PolyIntent } from "./models/polyIntent";
 import { RasterImagesSavingModes } from "./models/rasterImagesSavingModes";
-import { RectanglePdf } from "./models/rectanglePdf";
+import { Rectangle } from "./models/rectangle";
 import { Rotation } from "./models/rotation";
 import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
@@ -100,6 +102,7 @@ import { CaretAnnotationsResponse } from "./models/caretAnnotationsResponse";
 import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
 import { CircleAnnotations } from "./models/circleAnnotations";
 import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
+import { DiscUsageResponse } from "./models/discUsageResponse";
 import { Document } from "./models/document";
 import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
@@ -112,6 +115,9 @@ import { Field } from "./models/field";
 import { FieldResponse } from "./models/fieldResponse";
 import { Fields } from "./models/fields";
 import { FieldsResponse } from "./models/fieldsResponse";
+import { FileExistResponse } from "./models/fileExistResponse";
+import { FileVersion } from "./models/fileVersion";
+import { FileVersionsResponse } from "./models/fileVersionsResponse";
 import { FilesResponse } from "./models/filesResponse";
 import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "./models/freeTextAnnotations";
@@ -153,6 +159,7 @@ import { SquareAnnotationsResponse } from "./models/squareAnnotationsResponse";
 import { SquigglyAnnotationResponse } from "./models/squigglyAnnotationResponse";
 import { SquigglyAnnotations } from "./models/squigglyAnnotations";
 import { SquigglyAnnotationsResponse } from "./models/squigglyAnnotationsResponse";
+import { StorageExistResponse } from "./models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
@@ -232,8 +239,10 @@ let typeMap: {[index: string]: any} = {
     "AppendDocument": AppendDocument,
     "AsposeResponse": AsposeResponse,
     "Color": Color,
+    "DiscUsage": DiscUsage,
     "DocumentPrivilege": DocumentPrivilege,
     "File": File,
+    "FileExist": FileExist,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
     "Link": Link,
@@ -244,7 +253,7 @@ let typeMap: {[index: string]: any} = {
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
     "Point": Point,
-    "RectanglePdf": RectanglePdf,
+    "Rectangle": Rectangle,
     "Segment": Segment,
     "Signature": Signature,
     "SplitResult": SplitResult,
@@ -270,6 +279,7 @@ let typeMap: {[index: string]: any} = {
     "CircleAnnotationResponse": CircleAnnotationResponse,
     "CircleAnnotations": CircleAnnotations,
     "CircleAnnotationsResponse": CircleAnnotationsResponse,
+    "DiscUsageResponse": DiscUsageResponse,
     "Document": Document,
     "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
@@ -282,6 +292,9 @@ let typeMap: {[index: string]: any} = {
     "FieldResponse": FieldResponse,
     "Fields": Fields,
     "FieldsResponse": FieldsResponse,
+    "FileExistResponse": FileExistResponse,
+    "FileVersion": FileVersion,
+    "FileVersionsResponse": FileVersionsResponse,
     "FilesResponse": FilesResponse,
     "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
     "FreeTextAnnotations": FreeTextAnnotations,
@@ -323,6 +336,7 @@ let typeMap: {[index: string]: any} = {
     "SquigglyAnnotationResponse": SquigglyAnnotationResponse,
     "SquigglyAnnotations": SquigglyAnnotations,
     "SquigglyAnnotationsResponse": SquigglyAnnotationsResponse,
+    "StorageExistResponse": StorageExistResponse,
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
     "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,

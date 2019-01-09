@@ -23,9 +23,12 @@ import { LineAnnotation } from "./lineAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of line annotations.
 */
 export class LineAnnotations extends LinkElement {
+    /**
+    * List of line annotations.
+    */
     'list': Array<LineAnnotation>;
 
     static discriminator = undefined;

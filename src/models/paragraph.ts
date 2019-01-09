@@ -21,26 +21,62 @@
 
 import { TextLine } from "./textLine";
 import { VerticalAlignment } from "./verticalAlignment";
-import { RectanglePdf } from "./rectanglePdf";
+import { Rectangle } from "./rectangle";
 import { TextHorizontalAlignment } from "./textHorizontalAlignment";
 import { WrapMode } from "./wrapMode";
 import { LineSpacing } from "./lineSpacing";
 
 /**
-* Paragraph DTO for add text functionality.
+* Represents text paragraphs as multiline text object.
 */
 export class Paragraph {
+    /**
+    * Line spacing mode.
+    */
     'lineSpacing': LineSpacing;
+    /**
+    * Word wrap mode.
+    */
     'wrapMode': WrapMode;
+    /**
+    * Horizontal alignment for the text inside paragrph's rectangle.
+    */
     'horizontalAlignment': TextHorizontalAlignment;
+    /**
+    * Left margin.
+    */
     'leftMargin': number;
+    /**
+    * Right margin.
+    */
     'rightMargin': number;
+    /**
+    * Top margin.
+    */
     'topMargin': number;
+    /**
+    * Bottom margin.
+    */
     'bottomMargin': number;
-    'rectangle': RectanglePdf;
+    /**
+    * Rectangle of the paragraph.
+    */
+    'rectangle': Rectangle;
+    /**
+    * Rotation angle in degrees.
+    */
     'rotation': number;
+    /**
+    * Subsequent lines indent value.
+    */
     'subsequentLinesIndent': number;
+    /**
+    * Vertical alignment for the text inside paragrph's rectangle
+    */
     'verticalAlignment': VerticalAlignment;
+    /**
+    * An array of text lines.
+    */
     'lines': Array<TextLine>;
 
     static discriminator = undefined;
@@ -84,7 +120,7 @@ export class Paragraph {
         {
             "name": "rectangle",
             "baseName": "Rectangle",
-            "type": "RectanglePdf"
+            "type": "Rectangle"
         },
         {
             "name": "rotation",

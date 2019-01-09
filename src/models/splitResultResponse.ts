@@ -23,11 +23,11 @@ import { SplitResult } from "./splitResult";
 import { AsposeResponse } from "./asposeResponse";
 
 /**
-* Represents split result object.
+* Represents responce containing split result.
 */
 export class SplitResultResponse extends AsposeResponse {
     /**
-    * Gets or sets the splitting result.
+    * SplitResult object.
     */
     'result': SplitResult;
 

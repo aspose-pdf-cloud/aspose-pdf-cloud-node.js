@@ -22,7 +22,13 @@
 import { Images } from "./images";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple images info
+*/
 export class ImagesResponse extends AsposeResponse {
+    /**
+    * Images object
+    */
     'images': Images;
 
     static discriminator = undefined;

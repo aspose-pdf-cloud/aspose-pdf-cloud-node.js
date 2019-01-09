@@ -23,9 +23,12 @@ import { SquigglyAnnotation } from "./squigglyAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of squiggly-underline annotations.
 */
 export class SquigglyAnnotations extends LinkElement {
+    /**
+    * List of squiggly-underline annotations.
+    */
     'list': Array<SquigglyAnnotation>;
 
     static discriminator = undefined;

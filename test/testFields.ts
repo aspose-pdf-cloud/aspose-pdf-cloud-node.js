@@ -164,4 +164,23 @@ describe("Fields Tests", () => {
             });
         });
     });
+
+    describe("PostFlattenDocument Test", () => {
+        
+        it("should return response with code 200", async () => {
+
+            const name = "PdfWithAcroForm.pdf";
+            const fieldName = "textField";
+            await BaseTest.uploadFile(name);
+
+            const updateAppearances = true;
+            const hideButtons = true;
+
+
+            return BaseTest.getPdfApi().postFlattenDocument(name, updateAppearances, null, hideButtons, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
 });

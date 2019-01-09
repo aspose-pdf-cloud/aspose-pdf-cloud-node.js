@@ -22,7 +22,13 @@
 import { InkAnnotations } from "./inkAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
+/**
+* Represents response containing multiple ink annotation objects
+*/
 export class InkAnnotationsResponse extends AsposeResponse {
+    /**
+    * Ink annotations object
+    */
     'annotations': InkAnnotations;
 
     static discriminator = undefined;

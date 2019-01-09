@@ -23,9 +23,12 @@ import { TextAnnotation } from "./textAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of text annotations.
 */
 export class TextAnnotations extends LinkElement {
+    /**
+    * List of text annotations.
+    */
     'list': Array<TextAnnotation>;
 
     static discriminator = undefined;

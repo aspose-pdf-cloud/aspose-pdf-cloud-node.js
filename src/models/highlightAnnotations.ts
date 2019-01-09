@@ -23,9 +23,12 @@ import { HighlightAnnotation } from "./highlightAnnotation";
 import { LinkElement } from "./linkElement";
 
 /**
-* List of annotations.
+* Object representing a list of highlight annotations.
 */
 export class HighlightAnnotations extends LinkElement {
+    /**
+    * List of highlight annotations.
+    */
     'list': Array<HighlightAnnotation>;
 
     static discriminator = undefined;

@@ -25,8 +25,17 @@ import { LinkElement } from "./linkElement";
 * Pdf document property.
 */
 export class DocumentProperty extends LinkElement {
+    /**
+    * Pame of the property.
+    */
     'name': string;
+    /**
+    * Property value.
+    */
     'value': string;
+    /**
+    * Value indicating whether it is a built-in property.
+    */
     'builtIn': boolean;
 
     static discriminator = undefined;

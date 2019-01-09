@@ -1,11 +1,11 @@
 ﻿# PolyLineAnnotationsResponse
-
+Represents response containing multiple polyline annotation objects
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**PolyLineAnnotations**](PolyLineAnnotations.md) |  | [optional]
+**annotations** | [**PolyLineAnnotations**](PolyLineAnnotations.md) | Polyline annotations object | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

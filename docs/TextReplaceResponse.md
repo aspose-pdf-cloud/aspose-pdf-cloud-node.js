@@ -1,11 +1,11 @@
 ﻿# TextReplaceResponse
-
+Represents response containing the result of text replacement
 
 *Inherited from [AsposeResponse](AsposeResponse.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matches** | **number** |  | 
+**matches** | **number** | Number of matches | 
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

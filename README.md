@@ -60,6 +60,8 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**deleteDocumentAnnotations**](docs/PdfApi.md#deleteDocumentAnnotations) | **DELETE** /pdf/\{name}/annotations | Delete all annotations from the document
 *PdfApi* | [**deleteDocumentLinkAnnotations**](docs/PdfApi.md#deleteDocumentLinkAnnotations) | **DELETE** /pdf/\{name}/links | Delete all link annotations from the document
 *PdfApi* | [**deleteField**](docs/PdfApi.md#deleteField) | **DELETE** /pdf/\{name}/fields/\{fieldName} | Delete document field by name.
+*PdfApi* | [**deleteFile**](docs/PdfApi.md#deleteFile) | **DELETE** /storage/file | Remove a specific file 
+*PdfApi* | [**deleteFolder**](docs/PdfApi.md#deleteFolder) | **DELETE** /storage/folder | Remove a specific folder 
 *PdfApi* | [**deleteImage**](docs/PdfApi.md#deleteImage) | **DELETE** /pdf/\{name}/images/\{imageId} | Delete image from document page.
 *PdfApi* | [**deleteLinkAnnotation**](docs/PdfApi.md#deleteLinkAnnotation) | **DELETE** /pdf/\{name}/links/\{linkId} | Delete document page link annotation by ID
 *PdfApi* | [**deletePage**](docs/PdfApi.md#deletePage) | **DELETE** /pdf/\{name}/pages/\{pageNumber} | Delete document page by its number.
@@ -69,6 +71,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**deleteProperty**](docs/PdfApi.md#deleteProperty) | **DELETE** /pdf/\{name}/documentproperties/\{propertyName} | Delete document property.
 *PdfApi* | [**getCaretAnnotation**](docs/PdfApi.md#getCaretAnnotation) | **GET** /pdf/\{name}/annotations/caret/\{annotationId} | Read document page caret annotation by ID.
 *PdfApi* | [**getCircleAnnotation**](docs/PdfApi.md#getCircleAnnotation) | **GET** /pdf/\{name}/annotations/circle/\{annotationId} | Read document page circle annotation by ID.
+*PdfApi* | [**getDiscUsage**](docs/PdfApi.md#getDiscUsage) | **GET** /storage/disc | Check the disk usage of the current account 
 *PdfApi* | [**getDocument**](docs/PdfApi.md#getDocument) | **GET** /pdf/\{name} | Read common document info.
 *PdfApi* | [**getDocumentAnnotations**](docs/PdfApi.md#getDocumentAnnotations) | **GET** /pdf/\{name}/annotations | Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
 *PdfApi* | [**getDocumentAttachmentByIndex**](docs/PdfApi.md#getDocumentAttachmentByIndex) | **GET** /pdf/\{name}/attachments/\{attachmentIndex} | Read document attachment info by its index.
@@ -106,10 +109,13 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getImageExtractAsTiff**](docs/PdfApi.md#getImageExtractAsTiff) | **GET** /pdf/\{name}/images/\{imageId}/extract/tiff | Extract document image in TIFF format
 *PdfApi* | [**getImages**](docs/PdfApi.md#getImages) | **GET** /pdf/\{name}/pages/\{pageNumber}/images | Read document images.
 *PdfApi* | [**getInkAnnotation**](docs/PdfApi.md#getInkAnnotation) | **GET** /pdf/\{name}/annotations/ink/\{annotationId} | Read document page ink annotation by ID.
+*PdfApi* | [**getIsExist**](docs/PdfApi.md#getIsExist) | **GET** /storage/exist | Check if a specific file or folder exists
+*PdfApi* | [**getIsStorageExist**](docs/PdfApi.md#getIsStorageExist) | **GET** /storage/\{name}/exist | Check if storage exists 
 *PdfApi* | [**getLaTeXInStorageToPdf**](docs/PdfApi.md#getLaTeXInStorageToPdf) | **GET** /pdf/create/latex | Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getLineAnnotation**](docs/PdfApi.md#getLineAnnotation) | **GET** /pdf/\{name}/annotations/line/\{annotationId} | Read document page line annotation by ID.
 *PdfApi* | [**getLinkAnnotation**](docs/PdfApi.md#getLinkAnnotation) | **GET** /pdf/\{name}/links/\{linkId} | Read document link annotation by ID.
 *PdfApi* | [**getListFiles**](docs/PdfApi.md#getListFiles) | **GET** /storage/folder | Get the file listing of a specific folder 
+*PdfApi* | [**getListFileVersions**](docs/PdfApi.md#getListFileVersions) | **GET** /storage/version | Get the file's versions list 
 *PdfApi* | [**getMhtInStorageToPdf**](docs/PdfApi.md#getMhtInStorageToPdf) | **GET** /pdf/create/mht | Convert MHT file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getPage**](docs/PdfApi.md#getPage) | **GET** /pdf/\{name}/pages/\{pageNumber} | Read document page info.
 *PdfApi* | [**getPageAnnotations**](docs/PdfApi.md#getPageAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations | Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
@@ -171,7 +177,10 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**postAppendDocument**](docs/PdfApi.md#postAppendDocument) | **POST** /pdf/\{name}/appendDocument | Append document to existing one.
 *PdfApi* | [**postCreateField**](docs/PdfApi.md#postCreateField) | **POST** /pdf/\{name}/fields | Create field.
 *PdfApi* | [**postDocumentTextReplace**](docs/PdfApi.md#postDocumentTextReplace) | **POST** /pdf/\{name}/text/replace | Document's replace text method.
+*PdfApi* | [**postFlattenDocument**](docs/PdfApi.md#postFlattenDocument) | **POST** /pdf/\{name}/flatten | Removes all fields from the document and place their values instead.
 *PdfApi* | [**postInsertImage**](docs/PdfApi.md#postInsertImage) | **POST** /pdf/\{name}/pages/\{pageNumber}/images | Insert image to document page.
+*PdfApi* | [**postMoveFile**](docs/PdfApi.md#postMoveFile) | **POST** /storage/file | Move a specific file
+*PdfApi* | [**postMoveFolder**](docs/PdfApi.md#postMoveFolder) | **POST** /storage/folder | Move a specific folder 
 *PdfApi* | [**postMovePage**](docs/PdfApi.md#postMovePage) | **POST** /pdf/\{name}/pages/\{pageNumber}/movePage | Move page to new position.
 *PdfApi* | [**postOptimizeDocument**](docs/PdfApi.md#postOptimizeDocument) | **POST** /pdf/\{name}/optimize | Optimize document.
 *PdfApi* | [**postPageCaretAnnotations**](docs/PdfApi.md#postPageCaretAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/caret | Add document page caret annotations.
@@ -199,6 +208,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putCircleAnnotation**](docs/PdfApi.md#putCircleAnnotation) | **PUT** /pdf/\{name}/annotations/circle/\{annotationId} | Replace document circle annotation
 *PdfApi* | [**putCreate**](docs/PdfApi.md#putCreate) | **PUT** /storage/file | Upload a specific file 
 *PdfApi* | [**putCreateDocument**](docs/PdfApi.md#putCreateDocument) | **PUT** /pdf/\{name} | Create empty document.
+*PdfApi* | [**putCreateFolder**](docs/PdfApi.md#putCreateFolder) | **PUT** /storage/folder | Create the folder 
 *PdfApi* | [**putEpubInStorageToPdf**](docs/PdfApi.md#putEpubInStorageToPdf) | **PUT** /pdf/\{name}/create/epub | Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putFieldsFlatten**](docs/PdfApi.md#putFieldsFlatten) | **PUT** /pdf/\{name}/fields/flatten | Flatten form fields in document.
 *PdfApi* | [**putFreeTextAnnotation**](docs/PdfApi.md#putFreeTextAnnotation) | **PUT** /pdf/\{name}/annotations/freetext/\{annotationId} | Replace document free text annotation
@@ -281,92 +291,98 @@ Class | Description
 [**Annotation**](docs/Annotation.md) | Provides annotation.
 [**AnnotationFlags**](docs/AnnotationFlags.md) | A set of flags specifying various characteristics of the annotation.
 [**AnnotationInfo**](docs/AnnotationInfo.md) | Provides annotation.
-[**AnnotationsInfo**](docs/AnnotationsInfo.md) | List of annotations.
-[**AnnotationsInfoResponse**](docs/AnnotationsInfoResponse.md) | 
+[**AnnotationsInfo**](docs/AnnotationsInfo.md) | Object representing a list of annotation info objects.
+[**AnnotationsInfoResponse**](docs/AnnotationsInfoResponse.md) | Represents multiple annotations info reponse
 [**AnnotationState**](docs/AnnotationState.md) | The enumeration of states to which the original annotation can be set.
 [**AnnotationType**](docs/AnnotationType.md) | 
 [**AntialiasingProcessingType**](docs/AntialiasingProcessingType.md) | This enum describes possible antialiasing measures during conversion
 [**AppendDocument**](docs/AppendDocument.md) | Class for appendDocument service request building.
 [**AsposeResponse**](docs/AsposeResponse.md) | Base class for all responses.
 [**Attachment**](docs/Attachment.md) | Provides link to attachment.
-[**AttachmentResponse**](docs/AttachmentResponse.md) | 
-[**Attachments**](docs/Attachments.md) | List of attachment.
-[**AttachmentsResponse**](docs/AttachmentsResponse.md) | 
+[**AttachmentResponse**](docs/AttachmentResponse.md) | Represents response containing single attachment info
+[**Attachments**](docs/Attachments.md) | Represents list of attachment.
+[**AttachmentsResponse**](docs/AttachmentsResponse.md) | Represents response containing multiple attachments info
 [**CapStyle**](docs/CapStyle.md) | Style of line ending of Ink annotation line. 
 [**CaptionPosition**](docs/CaptionPosition.md) | Enumeration of the annotation’s caption positioning.
 [**CaretAnnotation**](docs/CaretAnnotation.md) | Provides CaretAnnotation.
-[**CaretAnnotationResponse**](docs/CaretAnnotationResponse.md) | 
-[**CaretAnnotations**](docs/CaretAnnotations.md) | List of annotations.
-[**CaretAnnotationsResponse**](docs/CaretAnnotationsResponse.md) | 
+[**CaretAnnotationResponse**](docs/CaretAnnotationResponse.md) | Represents response containing single caret annotation object
+[**CaretAnnotations**](docs/CaretAnnotations.md) | Object representing a list of caret annotations.
+[**CaretAnnotationsResponse**](docs/CaretAnnotationsResponse.md) | Represents response containing multiple caret annotation objects
 [**CaretSymbol**](docs/CaretSymbol.md) | A symbol to be associated with the caret.
 [**CircleAnnotation**](docs/CircleAnnotation.md) | Provides CircleAnnotation.
-[**CircleAnnotationResponse**](docs/CircleAnnotationResponse.md) | 
-[**CircleAnnotations**](docs/CircleAnnotations.md) | List of annotations.
-[**CircleAnnotationsResponse**](docs/CircleAnnotationsResponse.md) | 
+[**CircleAnnotationResponse**](docs/CircleAnnotationResponse.md) | Represents response containing single circle annotation object
+[**CircleAnnotations**](docs/CircleAnnotations.md) | Object representing a list of circle annotations.
+[**CircleAnnotationsResponse**](docs/CircleAnnotationsResponse.md) | Represents response containing multiple circle annotation objects
 [**Color**](docs/Color.md) | Represents color DTO.
 [**ColorDepth**](docs/ColorDepth.md) | Used to specify the parameter value passed to a Tiff image device.
 [**CommonFigureAnnotation**](docs/CommonFigureAnnotation.md) | Provides CommonFigureAnnotation.
 [**CompressionType**](docs/CompressionType.md) | Used to specify the parameter value passed to a Tiff image device.
+[**DiscUsage**](docs/DiscUsage.md) | 
+[**DiscUsageResponse**](docs/DiscUsageResponse.md) | 
 [**DocFormat**](docs/DocFormat.md) | Allows to specify .doc or .docx file format.
 [**DocRecognitionMode**](docs/DocRecognitionMode.md) | Allows to control how a PDF document is converted into a word processing document.
 [**Document**](docs/Document.md) | Represents document DTO.
-[**DocumentPageResponse**](docs/DocumentPageResponse.md) | 
-[**DocumentPagesResponse**](docs/DocumentPagesResponse.md) | 
+[**DocumentPageResponse**](docs/DocumentPageResponse.md) | Represents response containing single page info
+[**DocumentPagesResponse**](docs/DocumentPagesResponse.md) | Represents response containing multiple pages info
 [**DocumentPrivilege**](docs/DocumentPrivilege.md) | Represents the privileges for accessing Pdf file./>.
-[**DocumentProperties**](docs/DocumentProperties.md) | Pdf document properties.
-[**DocumentPropertiesResponse**](docs/DocumentPropertiesResponse.md) | 
+[**DocumentProperties**](docs/DocumentProperties.md) | Represents list of PDF document properties.
+[**DocumentPropertiesResponse**](docs/DocumentPropertiesResponse.md) | Represents response containing multiple document properties info
 [**DocumentProperty**](docs/DocumentProperty.md) | Pdf document property.
-[**DocumentPropertyResponse**](docs/DocumentPropertyResponse.md) | 
-[**DocumentResponse**](docs/DocumentResponse.md) | 
+[**DocumentPropertyResponse**](docs/DocumentPropertyResponse.md) | Represents response containing single document property info
+[**DocumentResponse**](docs/DocumentResponse.md) | Represents response containing document info
 [**EpubRecognitionMode**](docs/EpubRecognitionMode.md) | When PDF file (that usually has fixed layout) is being converted, the conversion engine tries to perform grouping and multi-level analysis to restore the original document author's intent and produce result in flow layout. This property tunes that conversion for this or that desirable method of recognition of content. 
 [**Field**](docs/Field.md) | Represents form field.
-[**FieldResponse**](docs/FieldResponse.md) | 
-[**Fields**](docs/Fields.md) | List of form fields.
-[**FieldsResponse**](docs/FieldsResponse.md) | 
+[**FieldResponse**](docs/FieldResponse.md) | Represents response containing single field info
+[**Fields**](docs/Fields.md) | Represents list of form fields.
+[**FieldsResponse**](docs/FieldsResponse.md) | Represents response containing multiple fields info
 [**FieldType**](docs/FieldType.md) | Represents an enumeration of available field types.
 [**File**](docs/File.md) | Represents file DTO.
+[**FileExist**](docs/FileExist.md) | 
+[**FileExistResponse**](docs/FileExistResponse.md) | 
 [**FilesResponse**](docs/FilesResponse.md) | 
+[**FileVersion**](docs/FileVersion.md) | 
+[**FileVersionsResponse**](docs/FileVersionsResponse.md) | 
 [**FontEncodingRules**](docs/FontEncodingRules.md) | This enumeration defines rules which tune encoding logic
 [**FontSavingModes**](docs/FontSavingModes.md) | Enumerates modes that can be used for saving of fonts referenced in saved PDF 
 [**FontStyles**](docs/FontStyles.md) | Specifies style information applied to text.
 [**FreeTextAnnotation**](docs/FreeTextAnnotation.md) | Provides FreeTextAnnotation.
-[**FreeTextAnnotationResponse**](docs/FreeTextAnnotationResponse.md) | 
-[**FreeTextAnnotations**](docs/FreeTextAnnotations.md) | List of annotations.
-[**FreeTextAnnotationsResponse**](docs/FreeTextAnnotationsResponse.md) | 
+[**FreeTextAnnotationResponse**](docs/FreeTextAnnotationResponse.md) | Represents response containing single free text annotation object
+[**FreeTextAnnotations**](docs/FreeTextAnnotations.md) | Object representing a list of free text annotations.
+[**FreeTextAnnotationsResponse**](docs/FreeTextAnnotationsResponse.md) | Represents response containing multiple free text annotation objects
 [**FreeTextIntent**](docs/FreeTextIntent.md) | Enumerates the intents of the free text annotation.
 [**HighlightAnnotation**](docs/HighlightAnnotation.md) | Provides HighlightAnnotation.
-[**HighlightAnnotationResponse**](docs/HighlightAnnotationResponse.md) | 
-[**HighlightAnnotations**](docs/HighlightAnnotations.md) | List of annotations.
-[**HighlightAnnotationsResponse**](docs/HighlightAnnotationsResponse.md) | 
-[**HorizontalAlignment**](docs/HorizontalAlignment.md) | 
+[**HighlightAnnotationResponse**](docs/HighlightAnnotationResponse.md) | Represents response containing single highlight annotation object
+[**HighlightAnnotations**](docs/HighlightAnnotations.md) | Object representing a list of highlight annotations.
+[**HighlightAnnotationsResponse**](docs/HighlightAnnotationsResponse.md) | Represents response containing multiple highlight annotation objects
+[**HorizontalAlignment**](docs/HorizontalAlignment.md) | Describes horizontal alignment.
 [**HtmlDocumentType**](docs/HtmlDocumentType.md) | Represents enumeration of the Html document types.
 [**HtmlMarkupGenerationModes**](docs/HtmlMarkupGenerationModes.md) | Sometimes specific reqirments to created HTML are present. This enum defines HTML preparing modes that can be used during conversion of PDF to HTML to match such specific requirments. 
 [**Image**](docs/Image.md) | Represents image DTO.
-[**ImageResponse**](docs/ImageResponse.md) | 
-[**Images**](docs/Images.md) | List of page images.
+[**ImageResponse**](docs/ImageResponse.md) | Represents response containing single image info
+[**Images**](docs/Images.md) | Represents list of images.
 [**ImageSrcType**](docs/ImageSrcType.md) | Allows to specify image file format.
-[**ImagesResponse**](docs/ImagesResponse.md) | 
+[**ImagesResponse**](docs/ImagesResponse.md) | Represents response containing multiple images info
 [**ImageTemplate**](docs/ImageTemplate.md) | Template of image.
 [**ImageTemplatesRequest**](docs/ImageTemplatesRequest.md) | Create document from images request.
 [**InkAnnotation**](docs/InkAnnotation.md) | Provides InkAnnotation.
-[**InkAnnotationResponse**](docs/InkAnnotationResponse.md) | 
-[**InkAnnotations**](docs/InkAnnotations.md) | List of annotations.
-[**InkAnnotationsResponse**](docs/InkAnnotationsResponse.md) | 
+[**InkAnnotationResponse**](docs/InkAnnotationResponse.md) | Represents response containing single ink annotation object
+[**InkAnnotations**](docs/InkAnnotations.md) | Object representing a list of ink annotations.
+[**InkAnnotationsResponse**](docs/InkAnnotationsResponse.md) | Represents response containing multiple ink annotation objects
 [**Justification**](docs/Justification.md) | Enumerates the forms of quadding (justification) to be used in displaying the annotation’s text.
 [**LettersPositioningMethods**](docs/LettersPositioningMethods.md) | It enumerates possible modes of positioning of letters in words in result HTML 
 [**LineAnnotation**](docs/LineAnnotation.md) | Provides LineAnnotation.
-[**LineAnnotationResponse**](docs/LineAnnotationResponse.md) | 
-[**LineAnnotations**](docs/LineAnnotations.md) | List of annotations.
-[**LineAnnotationsResponse**](docs/LineAnnotationsResponse.md) | 
+[**LineAnnotationResponse**](docs/LineAnnotationResponse.md) | Represents response containing single line annotation object
+[**LineAnnotations**](docs/LineAnnotations.md) | Object representing a list of line annotations.
+[**LineAnnotationsResponse**](docs/LineAnnotationsResponse.md) | Represents response containing multiple line annotation objects
 [**LineEnding**](docs/LineEnding.md) | Enumerates the line ending styles to be used in drawing the line.
 [**LineIntent**](docs/LineIntent.md) | Enumerates the intents of the line annotation.
-[**LineSpacing**](docs/LineSpacing.md) | 
+[**LineSpacing**](docs/LineSpacing.md) | Defines line spacing specifics
 [**Link**](docs/Link.md) | Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
 [**LinkActionType**](docs/LinkActionType.md) | Represents list of link action types.
 [**LinkAnnotation**](docs/LinkAnnotation.md) | Provides link to linkAnnotation.
-[**LinkAnnotationResponse**](docs/LinkAnnotationResponse.md) | 
-[**LinkAnnotations**](docs/LinkAnnotations.md) | List of LinkAnnotations.
-[**LinkAnnotationsResponse**](docs/LinkAnnotationsResponse.md) | 
+[**LinkAnnotationResponse**](docs/LinkAnnotationResponse.md) | Represents response containing single link info
+[**LinkAnnotations**](docs/LinkAnnotations.md) | Object representing a list of link annotations.
+[**LinkAnnotationsResponse**](docs/LinkAnnotationsResponse.md) | Represents response containing multiple links info
 [**LinkElement**](docs/LinkElement.md) | Represents base DTO object.
 [**LinkHighlightingMode**](docs/LinkHighlightingMode.md) | Enumerates the annotation’s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
 [**MarginInfo**](docs/MarginInfo.md) | 
@@ -374,72 +390,73 @@ Class | Description
 [**MergeDocuments**](docs/MergeDocuments.md) | Documents for merging.
 [**OptimizeOptions**](docs/OptimizeOptions.md) | Represents Pdf optimize options.
 [**Page**](docs/Page.md) | Provides link to page.
-[**Pages**](docs/Pages.md) | List of pages.
+[**Pages**](docs/Pages.md) | Represents list of pages.
 [**PageWordCount**](docs/PageWordCount.md) | Page words count.
-[**Paragraph**](docs/Paragraph.md) | Paragraph DTO for add text functionality.
+[**Paragraph**](docs/Paragraph.md) | Represents text paragraphs as multiline text object.
 [**PartsEmbeddingModes**](docs/PartsEmbeddingModes.md) | This enum enumerates possible modes of embedding of files referenced in HTML It allows to control whether referenced files (HTML, Fonts,Images, CSSes) will be embedded into main HTML file or will be generated as apart binary entities 
 [**PdfAType**](docs/PdfAType.md) | Allows to specify PdfA file format.
 [**Point**](docs/Point.md) | Represent point with fractional coordinates.
 [**PolyAnnotation**](docs/PolyAnnotation.md) | Provides PolyAnnotation.
 [**PolygonAnnotation**](docs/PolygonAnnotation.md) | Provides PolygonAnnotation.
-[**PolygonAnnotationResponse**](docs/PolygonAnnotationResponse.md) | 
-[**PolygonAnnotations**](docs/PolygonAnnotations.md) | List of annotations.
-[**PolygonAnnotationsResponse**](docs/PolygonAnnotationsResponse.md) | 
+[**PolygonAnnotationResponse**](docs/PolygonAnnotationResponse.md) | Represents response containing single polygon annotation object
+[**PolygonAnnotations**](docs/PolygonAnnotations.md) | Object representing a list of polygon annotations.
+[**PolygonAnnotationsResponse**](docs/PolygonAnnotationsResponse.md) | Represents response containing multiple polygon annotation objects
 [**PolyIntent**](docs/PolyIntent.md) | Enumerates the intents of the polygon or polyline annotation.
 [**PolyLineAnnotation**](docs/PolyLineAnnotation.md) | Provides PolyLineAnnotation.
-[**PolyLineAnnotationResponse**](docs/PolyLineAnnotationResponse.md) | 
-[**PolyLineAnnotations**](docs/PolyLineAnnotations.md) | List of annotations.
-[**PolyLineAnnotationsResponse**](docs/PolyLineAnnotationsResponse.md) | 
+[**PolyLineAnnotationResponse**](docs/PolyLineAnnotationResponse.md) | Represents response containing single polyline annotation object
+[**PolyLineAnnotations**](docs/PolyLineAnnotations.md) | Object representing a list of polyline annotations.
+[**PolyLineAnnotationsResponse**](docs/PolyLineAnnotationsResponse.md) | Represents response containing multiple polyline annotation objects
 [**PopupAnnotation**](docs/PopupAnnotation.md) | Provides PopupAnnotation.
-[**PopupAnnotationResponse**](docs/PopupAnnotationResponse.md) | 
-[**PopupAnnotations**](docs/PopupAnnotations.md) | List of annotations.
-[**PopupAnnotationsResponse**](docs/PopupAnnotationsResponse.md) | 
+[**PopupAnnotationResponse**](docs/PopupAnnotationResponse.md) | Represents response containing single popup annotation object
+[**PopupAnnotations**](docs/PopupAnnotations.md) | Object representing a list of popup annotations.
+[**PopupAnnotationsResponse**](docs/PopupAnnotationsResponse.md) | Represents response containing multiple popup annotation objects
 [**PopupAnnotationWithParent**](docs/PopupAnnotationWithParent.md) | Provides PopupAnnotation.
 [**RasterImagesSavingModes**](docs/RasterImagesSavingModes.md) | Converted PDF can contain raster images(.png, *.jpeg etc.) This enum defines methods of how raster images can be handled during conversion of PDF to HTML 
-[**RectanglePdf**](docs/RectanglePdf.md) | Represents rectangle DTO.
+[**Rectangle**](docs/Rectangle.md) | Represents rectangle DTO.
 [**Rotation**](docs/Rotation.md) | Enumeration of possible rotation values.
-[**Segment**](docs/Segment.md) | 
+[**Segment**](docs/Segment.md) | Represents segment of Pdf text.
 [**ShapeType**](docs/ShapeType.md) | This enum represents shape type for the extracted images.
-[**Signature**](docs/Signature.md) | 
-[**SignatureType**](docs/SignatureType.md) | 
-[**SignatureVerifyResponse**](docs/SignatureVerifyResponse.md) | Returns also a message.
+[**Signature**](docs/Signature.md) | Represents signature.
+[**SignatureType**](docs/SignatureType.md) | The type of signature.
+[**SignatureVerifyResponse**](docs/SignatureVerifyResponse.md) | Represent responce containing signature verification result
 [**SplitResult**](docs/SplitResult.md) | Represents split result object.
 [**SplitResultDocument**](docs/SplitResultDocument.md) | Represents split result document,
-[**SplitResultResponse**](docs/SplitResultResponse.md) | Represents split result object.
+[**SplitResultResponse**](docs/SplitResultResponse.md) | Represents responce containing split result.
 [**SquareAnnotation**](docs/SquareAnnotation.md) | Provides SquareAnnotation.
-[**SquareAnnotationResponse**](docs/SquareAnnotationResponse.md) | 
-[**SquareAnnotations**](docs/SquareAnnotations.md) | List of annotations.
-[**SquareAnnotationsResponse**](docs/SquareAnnotationsResponse.md) | 
+[**SquareAnnotationResponse**](docs/SquareAnnotationResponse.md) | Represents response containing single square annotation object
+[**SquareAnnotations**](docs/SquareAnnotations.md) | Object representing a list of square annotations.
+[**SquareAnnotationsResponse**](docs/SquareAnnotationsResponse.md) | Represents response containing multiple square annotation objects
 [**SquigglyAnnotation**](docs/SquigglyAnnotation.md) | Provides SquigglyAnnotation.
-[**SquigglyAnnotationResponse**](docs/SquigglyAnnotationResponse.md) | 
-[**SquigglyAnnotations**](docs/SquigglyAnnotations.md) | List of annotations.
-[**SquigglyAnnotationsResponse**](docs/SquigglyAnnotationsResponse.md) | 
+[**SquigglyAnnotationResponse**](docs/SquigglyAnnotationResponse.md) | Represents response containing single squiggly-underline annotation object
+[**SquigglyAnnotations**](docs/SquigglyAnnotations.md) | Object representing a list of squiggly-underline annotations.
+[**SquigglyAnnotationsResponse**](docs/SquigglyAnnotationsResponse.md) | Represents response containing multiple squiggly-underline annotation objects
 [**Stamp**](docs/Stamp.md) | Represents Pdf stamps.
 [**StampType**](docs/StampType.md) | Represents enumeration of the stamp types.
+[**StorageExistResponse**](docs/StorageExistResponse.md) | 
 [**StrikeOutAnnotation**](docs/StrikeOutAnnotation.md) | Provides StrikeOutAnnotation.
-[**StrikeOutAnnotationResponse**](docs/StrikeOutAnnotationResponse.md) | 
-[**StrikeOutAnnotations**](docs/StrikeOutAnnotations.md) | List of annotations.
-[**StrikeOutAnnotationsResponse**](docs/StrikeOutAnnotationsResponse.md) | 
+[**StrikeOutAnnotationResponse**](docs/StrikeOutAnnotationResponse.md) | Represents response containing single strikeout annotation object
+[**StrikeOutAnnotations**](docs/StrikeOutAnnotations.md) | Object representing a list of strikeout annotations.
+[**StrikeOutAnnotationsResponse**](docs/StrikeOutAnnotationsResponse.md) | Represents response containing multiple strikeout annotation objects
 [**TextAnnotation**](docs/TextAnnotation.md) | Provides TextAnnotation.
-[**TextAnnotationResponse**](docs/TextAnnotationResponse.md) | 
-[**TextAnnotations**](docs/TextAnnotations.md) | List of annotations.
-[**TextAnnotationsResponse**](docs/TextAnnotationsResponse.md) | 
-[**TextHorizontalAlignment**](docs/TextHorizontalAlignment.md) | 
+[**TextAnnotationResponse**](docs/TextAnnotationResponse.md) | Represents response containing single text annotation object
+[**TextAnnotations**](docs/TextAnnotations.md) | Object representing a list of text annotations.
+[**TextAnnotationsResponse**](docs/TextAnnotationsResponse.md) | Represents response containing multiple text annotation objects
+[**TextHorizontalAlignment**](docs/TextHorizontalAlignment.md) | Describes text horizontal alignment.
 [**TextIcon**](docs/TextIcon.md) | Enumerates the icons to be used in displaying the annotation.
-[**TextLine**](docs/TextLine.md) | A line of text to be inserted into .
-[**TextRect**](docs/TextRect.md) | Represents text DTO.
-[**TextRects**](docs/TextRects.md) | Represents text items DTO.
-[**TextRectsResponse**](docs/TextRectsResponse.md) | 
+[**TextLine**](docs/TextLine.md) | A line of text to be inserted into paragraph.
+[**TextRect**](docs/TextRect.md) | Represents text occurrence.
+[**TextRects**](docs/TextRects.md) | Represents multiple text occurrences DTO.
+[**TextRectsResponse**](docs/TextRectsResponse.md) | Represents response containing multiple text occurrences info
 [**TextReplace**](docs/TextReplace.md) | Single text replacement setting.
 [**TextReplaceListRequest**](docs/TextReplaceListRequest.md) | Multiple text replacements request.
-[**TextReplaceResponse**](docs/TextReplaceResponse.md) | 
+[**TextReplaceResponse**](docs/TextReplaceResponse.md) | Represents response containing the result of text replacement
 [**TextState**](docs/TextState.md) | Represents a text state of a text
 [**TextStyle**](docs/TextStyle.md) | Represents a text style of a text
 [**UnderlineAnnotation**](docs/UnderlineAnnotation.md) | Provides UnderlineAnnotation.
-[**UnderlineAnnotationResponse**](docs/UnderlineAnnotationResponse.md) | 
-[**UnderlineAnnotations**](docs/UnderlineAnnotations.md) | List of annotations.
-[**UnderlineAnnotationsResponse**](docs/UnderlineAnnotationsResponse.md) | 
+[**UnderlineAnnotationResponse**](docs/UnderlineAnnotationResponse.md) | Represents response containing single underline annotation object
+[**UnderlineAnnotations**](docs/UnderlineAnnotations.md) | Object representing a list of underline annotations.
+[**UnderlineAnnotationsResponse**](docs/UnderlineAnnotationsResponse.md) | Represents response containing multiple underline annotation objects
 [**VerticalAlignment**](docs/VerticalAlignment.md) | Enumeration of possible vertical alignment values.
 [**WordCount**](docs/WordCount.md) | Number of words per document pages.
 [**WordCountResponse**](docs/WordCountResponse.md) | Number of words per document pages.
-[**WrapMode**](docs/WrapMode.md) | 
+[**WrapMode**](docs/WrapMode.md) | Defines word wrapping strategies
