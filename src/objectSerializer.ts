@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2018 Aspose.PDF Cloud
+ *   Copyright (c) 2019 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -39,6 +39,7 @@ import { EpubRecognitionMode } from "./models/epubRecognitionMode";
 import { FieldType } from "./models/fieldType";
 import { File } from "./models/file";
 import { FileExist } from "./models/fileExist";
+import { FileIcon } from "./models/fileIcon";
 import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
@@ -74,6 +75,8 @@ import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
 import { Signature } from "./models/signature";
 import { SignatureType } from "./models/signatureType";
+import { SoundEncoding } from "./models/soundEncoding";
+import { SoundIcon } from "./models/soundIcon";
 import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
 import { StampType } from "./models/stampType";
@@ -115,6 +118,9 @@ import { Field } from "./models/field";
 import { FieldResponse } from "./models/fieldResponse";
 import { Fields } from "./models/fields";
 import { FieldsResponse } from "./models/fieldsResponse";
+import { FileAttachmentAnnotationResponse } from "./models/fileAttachmentAnnotationResponse";
+import { FileAttachmentAnnotations } from "./models/fileAttachmentAnnotations";
+import { FileAttachmentAnnotationsResponse } from "./models/fileAttachmentAnnotationsResponse";
 import { FileExistResponse } from "./models/fileExistResponse";
 import { FileVersion } from "./models/fileVersion";
 import { FileVersionsResponse } from "./models/fileVersionsResponse";
@@ -139,6 +145,9 @@ import { LinkAnnotation } from "./models/linkAnnotation";
 import { LinkAnnotationResponse } from "./models/linkAnnotationResponse";
 import { LinkAnnotations } from "./models/linkAnnotations";
 import { LinkAnnotationsResponse } from "./models/linkAnnotationsResponse";
+import { MovieAnnotationResponse } from "./models/movieAnnotationResponse";
+import { MovieAnnotations } from "./models/movieAnnotations";
+import { MovieAnnotationsResponse } from "./models/movieAnnotationsResponse";
 import { Page } from "./models/page";
 import { Pages } from "./models/pages";
 import { PolyLineAnnotationResponse } from "./models/polyLineAnnotationResponse";
@@ -150,7 +159,13 @@ import { PolygonAnnotationsResponse } from "./models/polygonAnnotationsResponse"
 import { PopupAnnotationResponse } from "./models/popupAnnotationResponse";
 import { PopupAnnotations } from "./models/popupAnnotations";
 import { PopupAnnotationsResponse } from "./models/popupAnnotationsResponse";
+import { RedactionAnnotationResponse } from "./models/redactionAnnotationResponse";
+import { RedactionAnnotations } from "./models/redactionAnnotations";
+import { RedactionAnnotationsResponse } from "./models/redactionAnnotationsResponse";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
+import { SoundAnnotationResponse } from "./models/soundAnnotationResponse";
+import { SoundAnnotations } from "./models/soundAnnotations";
+import { SoundAnnotationsResponse } from "./models/soundAnnotationsResponse";
 import { SplitResultDocument } from "./models/splitResultDocument";
 import { SplitResultResponse } from "./models/splitResultResponse";
 import { SquareAnnotationResponse } from "./models/squareAnnotationResponse";
@@ -174,15 +189,19 @@ import { UnderlineAnnotationsResponse } from "./models/underlineAnnotationsRespo
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
 import { MarkupAnnotation } from "./models/markupAnnotation";
+import { MovieAnnotation } from "./models/movieAnnotation";
 import { PopupAnnotation } from "./models/popupAnnotation";
+import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { CaretAnnotation } from "./models/caretAnnotation";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
+import { FileAttachmentAnnotation } from "./models/fileAttachmentAnnotation";
 import { FreeTextAnnotation } from "./models/freeTextAnnotation";
 import { HighlightAnnotation } from "./models/highlightAnnotation";
 import { InkAnnotation } from "./models/inkAnnotation";
 import { LineAnnotation } from "./models/lineAnnotation";
 import { PolyAnnotation } from "./models/polyAnnotation";
 import { PopupAnnotationWithParent } from "./models/popupAnnotationWithParent";
+import { SoundAnnotation } from "./models/soundAnnotation";
 import { SquigglyAnnotation } from "./models/squigglyAnnotation";
 import { StrikeOutAnnotation } from "./models/strikeOutAnnotation";
 import { TextAnnotation } from "./models/textAnnotation";
@@ -206,6 +225,7 @@ let enumsMap: {[index: string]: any} = {
     "DocRecognitionMode": DocRecognitionMode,
     "EpubRecognitionMode": EpubRecognitionMode,
     "FieldType": FieldType,
+    "FileIcon": FileIcon,
     "FontEncodingRules": FontEncodingRules,
     "FontSavingModes": FontSavingModes,
     "FontStyles": FontStyles,
@@ -228,6 +248,8 @@ let enumsMap: {[index: string]: any} = {
     "Rotation": Rotation,
     "ShapeType": ShapeType,
     "SignatureType": SignatureType,
+    "SoundEncoding": SoundEncoding,
+    "SoundIcon": SoundIcon,
     "StampType": StampType,
     "TextHorizontalAlignment": TextHorizontalAlignment,
     "TextIcon": TextIcon,
@@ -292,6 +314,9 @@ let typeMap: {[index: string]: any} = {
     "FieldResponse": FieldResponse,
     "Fields": Fields,
     "FieldsResponse": FieldsResponse,
+    "FileAttachmentAnnotationResponse": FileAttachmentAnnotationResponse,
+    "FileAttachmentAnnotations": FileAttachmentAnnotations,
+    "FileAttachmentAnnotationsResponse": FileAttachmentAnnotationsResponse,
     "FileExistResponse": FileExistResponse,
     "FileVersion": FileVersion,
     "FileVersionsResponse": FileVersionsResponse,
@@ -316,6 +341,9 @@ let typeMap: {[index: string]: any} = {
     "LinkAnnotationResponse": LinkAnnotationResponse,
     "LinkAnnotations": LinkAnnotations,
     "LinkAnnotationsResponse": LinkAnnotationsResponse,
+    "MovieAnnotationResponse": MovieAnnotationResponse,
+    "MovieAnnotations": MovieAnnotations,
+    "MovieAnnotationsResponse": MovieAnnotationsResponse,
     "Page": Page,
     "Pages": Pages,
     "PolyLineAnnotationResponse": PolyLineAnnotationResponse,
@@ -327,7 +355,13 @@ let typeMap: {[index: string]: any} = {
     "PopupAnnotationResponse": PopupAnnotationResponse,
     "PopupAnnotations": PopupAnnotations,
     "PopupAnnotationsResponse": PopupAnnotationsResponse,
+    "RedactionAnnotationResponse": RedactionAnnotationResponse,
+    "RedactionAnnotations": RedactionAnnotations,
+    "RedactionAnnotationsResponse": RedactionAnnotationsResponse,
     "SignatureVerifyResponse": SignatureVerifyResponse,
+    "SoundAnnotationResponse": SoundAnnotationResponse,
+    "SoundAnnotations": SoundAnnotations,
+    "SoundAnnotationsResponse": SoundAnnotationsResponse,
     "SplitResultDocument": SplitResultDocument,
     "SplitResultResponse": SplitResultResponse,
     "SquareAnnotationResponse": SquareAnnotationResponse,
@@ -351,15 +385,19 @@ let typeMap: {[index: string]: any} = {
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
     "MarkupAnnotation": MarkupAnnotation,
+    "MovieAnnotation": MovieAnnotation,
     "PopupAnnotation": PopupAnnotation,
+    "RedactionAnnotation": RedactionAnnotation,
     "CaretAnnotation": CaretAnnotation,
     "CommonFigureAnnotation": CommonFigureAnnotation,
+    "FileAttachmentAnnotation": FileAttachmentAnnotation,
     "FreeTextAnnotation": FreeTextAnnotation,
     "HighlightAnnotation": HighlightAnnotation,
     "InkAnnotation": InkAnnotation,
     "LineAnnotation": LineAnnotation,
     "PolyAnnotation": PolyAnnotation,
     "PopupAnnotationWithParent": PopupAnnotationWithParent,
+    "SoundAnnotation": SoundAnnotation,
     "SquigglyAnnotation": SquigglyAnnotation,
     "StrikeOutAnnotation": StrikeOutAnnotation,
     "TextAnnotation": TextAnnotation,
