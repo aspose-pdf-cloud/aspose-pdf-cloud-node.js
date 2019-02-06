@@ -27,16 +27,20 @@ Method | HTTP request | Description
 *PdfApi* | [**getDocumentBookmarks**](PdfApi.md#getDocumentBookmarks) | **GET** /pdf/\{name}/bookmarks | Read document bookmark/bookmarks (including children).
 *PdfApi* | [**getDocumentCaretAnnotations**](PdfApi.md#getDocumentCaretAnnotations) | **GET** /pdf/\{name}/annotations/caret | Read document caret annotations.
 *PdfApi* | [**getDocumentCircleAnnotations**](PdfApi.md#getDocumentCircleAnnotations) | **GET** /pdf/\{name}/annotations/circle | Read document circle annotations.
+*PdfApi* | [**getDocumentFileAttachmentAnnotations**](PdfApi.md#getDocumentFileAttachmentAnnotations) | **GET** /pdf/\{name}/annotations/fileattachment | Read document FileAttachment annotations.
 *PdfApi* | [**getDocumentFreeTextAnnotations**](PdfApi.md#getDocumentFreeTextAnnotations) | **GET** /pdf/\{name}/annotations/freetext | Read document free text annotations.
 *PdfApi* | [**getDocumentHighlightAnnotations**](PdfApi.md#getDocumentHighlightAnnotations) | **GET** /pdf/\{name}/annotations/highlight | Read document highlight annotations.
 *PdfApi* | [**getDocumentInkAnnotations**](PdfApi.md#getDocumentInkAnnotations) | **GET** /pdf/\{name}/annotations/ink | Read document ink annotations.
 *PdfApi* | [**getDocumentLineAnnotations**](PdfApi.md#getDocumentLineAnnotations) | **GET** /pdf/\{name}/annotations/line | Read document line annotations.
+*PdfApi* | [**getDocumentMovieAnnotations**](PdfApi.md#getDocumentMovieAnnotations) | **GET** /pdf/\{name}/annotations/movie | Read document movie annotations.
 *PdfApi* | [**getDocumentPolygonAnnotations**](PdfApi.md#getDocumentPolygonAnnotations) | **GET** /pdf/\{name}/annotations/polygon | Read document polygon annotations.
 *PdfApi* | [**getDocumentPolyLineAnnotations**](PdfApi.md#getDocumentPolyLineAnnotations) | **GET** /pdf/\{name}/annotations/polyline | Read document polyline annotations.
 *PdfApi* | [**getDocumentPopupAnnotations**](PdfApi.md#getDocumentPopupAnnotations) | **GET** /pdf/\{name}/annotations/popup | Read document popup annotations.
 *PdfApi* | [**getDocumentPopupAnnotationsByParent**](PdfApi.md#getDocumentPopupAnnotationsByParent) | **GET** /pdf/\{name}/annotations/\{annotationId}/popup | Read document popup annotations by parent id.
 *PdfApi* | [**getDocumentProperties**](PdfApi.md#getDocumentProperties) | **GET** /pdf/\{name}/documentproperties | Read document properties.
 *PdfApi* | [**getDocumentProperty**](PdfApi.md#getDocumentProperty) | **GET** /pdf/\{name}/documentproperties/\{propertyName} | Read document property by name.
+*PdfApi* | [**getDocumentRedactionAnnotations**](PdfApi.md#getDocumentRedactionAnnotations) | **GET** /pdf/\{name}/annotations/redaction | Read document redaction annotations.
+*PdfApi* | [**getDocumentSoundAnnotations**](PdfApi.md#getDocumentSoundAnnotations) | **GET** /pdf/\{name}/annotations/sound | Read document sound annotations.
 *PdfApi* | [**getDocumentSquareAnnotations**](PdfApi.md#getDocumentSquareAnnotations) | **GET** /pdf/\{name}/annotations/square | Read document square annotations.
 *PdfApi* | [**getDocumentSquigglyAnnotations**](PdfApi.md#getDocumentSquigglyAnnotations) | **GET** /pdf/\{name}/annotations/squiggly | Read document squiggly annotations.
 *PdfApi* | [**getDocumentStrikeOutAnnotations**](PdfApi.md#getDocumentStrikeOutAnnotations) | **GET** /pdf/\{name}/annotations/strikeout | Read document StrikeOut annotations.
@@ -47,6 +51,8 @@ Method | HTTP request | Description
 *PdfApi* | [**getEpubInStorageToPdf**](PdfApi.md#getEpubInStorageToPdf) | **GET** /pdf/create/epub | Convert EPUB file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getField**](PdfApi.md#getField) | **GET** /pdf/\{name}/fields/\{fieldName} | Get document field by name.
 *PdfApi* | [**getFields**](PdfApi.md#getFields) | **GET** /pdf/\{name}/fields | Get document fields.
+*PdfApi* | [**getFileAttachmentAnnotation**](PdfApi.md#getFileAttachmentAnnotation) | **GET** /pdf/\{name}/annotations/fileattachment/\{annotationId} | Read document page FileAttachment annotation by ID.
+*PdfApi* | [**getFileAttachmentAnnotationData**](PdfApi.md#getFileAttachmentAnnotationData) | **GET** /pdf/\{name}/annotations/fileattachment/\{annotationId}/data | Read document page FileAttachment annotation by ID.
 *PdfApi* | [**getFreeTextAnnotation**](PdfApi.md#getFreeTextAnnotation) | **GET** /pdf/\{name}/annotations/freetext/\{annotationId} | Read document page free text annotation by ID.
 *PdfApi* | [**getHighlightAnnotation**](PdfApi.md#getHighlightAnnotation) | **GET** /pdf/\{name}/annotations/highlight/\{annotationId} | Read document page highlight annotation by ID.
 *PdfApi* | [**getHtmlInStorageToPdf**](PdfApi.md#getHtmlInStorageToPdf) | **GET** /pdf/create/html | Convert HTML file (located on storage) to PDF format and return resulting file in response. 
@@ -65,6 +71,7 @@ Method | HTTP request | Description
 *PdfApi* | [**getListFiles**](PdfApi.md#getListFiles) | **GET** /storage/folder | Get the file listing of a specific folder 
 *PdfApi* | [**getListFileVersions**](PdfApi.md#getListFileVersions) | **GET** /storage/version | Get the file's versions list 
 *PdfApi* | [**getMhtInStorageToPdf**](PdfApi.md#getMhtInStorageToPdf) | **GET** /pdf/create/mht | Convert MHT file (located on storage) to PDF format and return resulting file in response. 
+*PdfApi* | [**getMovieAnnotation**](PdfApi.md#getMovieAnnotation) | **GET** /pdf/\{name}/annotations/movie/\{annotationId} | Read document page movie annotation by ID.
 *PdfApi* | [**getPage**](PdfApi.md#getPage) | **GET** /pdf/\{name}/pages/\{pageNumber} | Read document page info.
 *PdfApi* | [**getPageAnnotations**](PdfApi.md#getPageAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations | Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
 *PdfApi* | [**getPageCaretAnnotations**](PdfApi.md#getPageCaretAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/caret | Read document page caret annotations.
@@ -75,16 +82,20 @@ Method | HTTP request | Description
 *PdfApi* | [**getPageConvertToJpeg**](PdfApi.md#getPageConvertToJpeg) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/jpeg | Convert document page to Jpeg image and return resulting file in response.
 *PdfApi* | [**getPageConvertToPng**](PdfApi.md#getPageConvertToPng) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/png | Convert document page to Png image and return resulting file in response.
 *PdfApi* | [**getPageConvertToTiff**](PdfApi.md#getPageConvertToTiff) | **GET** /pdf/\{name}/pages/\{pageNumber}/convert/tiff | Convert document page to Tiff image and return resulting file in response.
+*PdfApi* | [**getPageFileAttachmentAnnotations**](PdfApi.md#getPageFileAttachmentAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/fileattachment | Read document page FileAttachment annotations.
 *PdfApi* | [**getPageFreeTextAnnotations**](PdfApi.md#getPageFreeTextAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/freetext | Read document page free text annotations.
 *PdfApi* | [**getPageHighlightAnnotations**](PdfApi.md#getPageHighlightAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/highlight | Read document page highlight annotations.
 *PdfApi* | [**getPageInkAnnotations**](PdfApi.md#getPageInkAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/ink | Read document page ink annotations.
 *PdfApi* | [**getPageLineAnnotations**](PdfApi.md#getPageLineAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/line | Read document page line annotations.
 *PdfApi* | [**getPageLinkAnnotation**](PdfApi.md#getPageLinkAnnotation) | **GET** /pdf/\{name}/pages/\{pageNumber}/links/\{linkId} | Read document page link annotation by ID.
 *PdfApi* | [**getPageLinkAnnotations**](PdfApi.md#getPageLinkAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/links | Read document page link annotations.
+*PdfApi* | [**getPageMovieAnnotations**](PdfApi.md#getPageMovieAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/movie | Read document page movie annotations.
 *PdfApi* | [**getPagePolygonAnnotations**](PdfApi.md#getPagePolygonAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/polygon | Read document page polygon annotations.
 *PdfApi* | [**getPagePolyLineAnnotations**](PdfApi.md#getPagePolyLineAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/polyline | Read document page polyline annotations.
 *PdfApi* | [**getPagePopupAnnotations**](PdfApi.md#getPagePopupAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/popup | Read document page popup annotations.
+*PdfApi* | [**getPageRedactionAnnotations**](PdfApi.md#getPageRedactionAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/redaction | Read document page redaction annotations.
 *PdfApi* | [**getPages**](PdfApi.md#getPages) | **GET** /pdf/\{name}/pages | Read document pages info.
+*PdfApi* | [**getPageSoundAnnotations**](PdfApi.md#getPageSoundAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/sound | Read document page sound annotations.
 *PdfApi* | [**getPageSquareAnnotations**](PdfApi.md#getPageSquareAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/square | Read document page square annotations.
 *PdfApi* | [**getPageSquigglyAnnotations**](PdfApi.md#getPageSquigglyAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/squiggly | Read document page squiggly annotations.
 *PdfApi* | [**getPageStrikeOutAnnotations**](PdfApi.md#getPageStrikeOutAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/strikeout | Read document page StrikeOut annotations.
@@ -108,6 +119,9 @@ Method | HTTP request | Description
 *PdfApi* | [**getPolyLineAnnotation**](PdfApi.md#getPolyLineAnnotation) | **GET** /pdf/\{name}/annotations/polyline/\{annotationId} | Read document page polyline annotation by ID.
 *PdfApi* | [**getPopupAnnotation**](PdfApi.md#getPopupAnnotation) | **GET** /pdf/\{name}/annotations/popup/\{annotationId} | Read document page popup annotation by ID.
 *PdfApi* | [**getPsInStorageToPdf**](PdfApi.md#getPsInStorageToPdf) | **GET** /pdf/create/ps | Convert PS file (located on storage) to PDF format and return resulting file in response. 
+*PdfApi* | [**getRedactionAnnotation**](PdfApi.md#getRedactionAnnotation) | **GET** /pdf/\{name}/annotations/redaction/\{annotationId} | Read document page redaction annotation by ID.
+*PdfApi* | [**getSoundAnnotation**](PdfApi.md#getSoundAnnotation) | **GET** /pdf/\{name}/annotations/sound/\{annotationId} | Read document page sound annotation by ID.
+*PdfApi* | [**getSoundAnnotationData**](PdfApi.md#getSoundAnnotationData) | **GET** /pdf/\{name}/annotations/sound/\{annotationId}/data | Read document page sound annotation by ID.
 *PdfApi* | [**getSquareAnnotation**](PdfApi.md#getSquareAnnotation) | **GET** /pdf/\{name}/annotations/square/\{annotationId} | Read document page square annotation by ID.
 *PdfApi* | [**getSquigglyAnnotation**](PdfApi.md#getSquigglyAnnotation) | **GET** /pdf/\{name}/annotations/squiggly/\{annotationId} | Read document page squiggly annotation by ID.
 *PdfApi* | [**getStrikeOutAnnotation**](PdfApi.md#getStrikeOutAnnotation) | **GET** /pdf/\{name}/annotations/strikeout/\{annotationId} | Read document page StrikeOut annotation by ID.
@@ -125,7 +139,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postAppendDocument**](PdfApi.md#postAppendDocument) | **POST** /pdf/\{name}/appendDocument | Append document to existing one.
 *PdfApi* | [**postCreateField**](PdfApi.md#postCreateField) | **POST** /pdf/\{name}/fields | Create field.
 *PdfApi* | [**postDocumentTextReplace**](PdfApi.md#postDocumentTextReplace) | **POST** /pdf/\{name}/text/replace | Document's replace text method.
-*PdfApi* | [**postFlattenDocument**](PdfApi.md#postFlattenDocument) | **POST** /pdf/\{name}/flatten | Removes all fields from the document and place their values instead.
+*PdfApi* | [**postFlattenDocument**](PdfApi.md#postFlattenDocument) | **POST** /pdf/\{name}/flatten | Flatten the document.
 *PdfApi* | [**postInsertImage**](PdfApi.md#postInsertImage) | **POST** /pdf/\{name}/pages/\{pageNumber}/images | Insert image to document page.
 *PdfApi* | [**postMoveFile**](PdfApi.md#postMoveFile) | **POST** /storage/file | Move a specific file
 *PdfApi* | [**postMoveFolder**](PdfApi.md#postMoveFolder) | **POST** /storage/folder | Move a specific folder 
@@ -133,13 +147,17 @@ Method | HTTP request | Description
 *PdfApi* | [**postOptimizeDocument**](PdfApi.md#postOptimizeDocument) | **POST** /pdf/\{name}/optimize | Optimize document.
 *PdfApi* | [**postPageCaretAnnotations**](PdfApi.md#postPageCaretAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/caret | Add document page caret annotations.
 *PdfApi* | [**postPageCircleAnnotations**](PdfApi.md#postPageCircleAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/circle | Add document page circle annotations.
+*PdfApi* | [**postPageFileAttachmentAnnotations**](PdfApi.md#postPageFileAttachmentAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/fileattachment | Add document page FileAttachment annotations.
 *PdfApi* | [**postPageFreeTextAnnotations**](PdfApi.md#postPageFreeTextAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/freetext | Add document page free text annotations.
 *PdfApi* | [**postPageHighlightAnnotations**](PdfApi.md#postPageHighlightAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/highlight | Add document page highlight annotations.
 *PdfApi* | [**postPageInkAnnotations**](PdfApi.md#postPageInkAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/ink | Add document page ink annotations.
 *PdfApi* | [**postPageLineAnnotations**](PdfApi.md#postPageLineAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/line | Add document page line annotations.
 *PdfApi* | [**postPageLinkAnnotations**](PdfApi.md#postPageLinkAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/links | Add document page link annotations.
+*PdfApi* | [**postPageMovieAnnotations**](PdfApi.md#postPageMovieAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/movie | Add document page movie annotations.
 *PdfApi* | [**postPagePolygonAnnotations**](PdfApi.md#postPagePolygonAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/polygon | Add document page polygon annotations.
 *PdfApi* | [**postPagePolyLineAnnotations**](PdfApi.md#postPagePolyLineAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/polyline | Add document page polyline annotations.
+*PdfApi* | [**postPageRedactionAnnotations**](PdfApi.md#postPageRedactionAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/redaction | Add document page redaction annotations.
+*PdfApi* | [**postPageSoundAnnotations**](PdfApi.md#postPageSoundAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/sound | Add document page sound annotations.
 *PdfApi* | [**postPageSquareAnnotations**](PdfApi.md#postPageSquareAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/square | Add document page square annotations.
 *PdfApi* | [**postPageSquigglyAnnotations**](PdfApi.md#postPageSquigglyAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/squiggly | Add document page squiggly annotations.
 *PdfApi* | [**postPageStrikeOutAnnotations**](PdfApi.md#postPageStrikeOutAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/strikeout | Add document page StrikeOut annotations.
@@ -159,6 +177,8 @@ Method | HTTP request | Description
 *PdfApi* | [**putCreateFolder**](PdfApi.md#putCreateFolder) | **PUT** /storage/folder | Create the folder 
 *PdfApi* | [**putEpubInStorageToPdf**](PdfApi.md#putEpubInStorageToPdf) | **PUT** /pdf/\{name}/create/epub | Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putFieldsFlatten**](PdfApi.md#putFieldsFlatten) | **PUT** /pdf/\{name}/fields/flatten | Flatten form fields in document.
+*PdfApi* | [**putFileAttachmentAnnotation**](PdfApi.md#putFileAttachmentAnnotation) | **PUT** /pdf/\{name}/annotations/fileattachment/\{annotationId} | Replace document FileAttachment annotation
+*PdfApi* | [**putFileAttachmentAnnotationDataExtract**](PdfApi.md#putFileAttachmentAnnotationDataExtract) | **PUT** /pdf/\{name}/annotations/fileattachment/\{annotationId}/data/extract | Extract document FileAttachment annotation content to storage
 *PdfApi* | [**putFreeTextAnnotation**](PdfApi.md#putFreeTextAnnotation) | **PUT** /pdf/\{name}/annotations/freetext/\{annotationId} | Replace document free text annotation
 *PdfApi* | [**putHighlightAnnotation**](PdfApi.md#putHighlightAnnotation) | **PUT** /pdf/\{name}/annotations/highlight/\{annotationId} | Replace document highlight annotation
 *PdfApi* | [**putHtmlInStorageToPdf**](PdfApi.md#putHtmlInStorageToPdf) | **PUT** /pdf/\{name}/create/html | Convert HTML file (located on storage) to PDF format and upload resulting file to storage. 
@@ -177,6 +197,7 @@ Method | HTTP request | Description
 *PdfApi* | [**putLinkAnnotation**](PdfApi.md#putLinkAnnotation) | **PUT** /pdf/\{name}/links/\{linkId} | Replace document page link annotations
 *PdfApi* | [**putMergeDocuments**](PdfApi.md#putMergeDocuments) | **PUT** /pdf/\{name}/merge | Merge a list of documents.
 *PdfApi* | [**putMhtInStorageToPdf**](PdfApi.md#putMhtInStorageToPdf) | **PUT** /pdf/\{name}/create/mht | Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
+*PdfApi* | [**putMovieAnnotation**](PdfApi.md#putMovieAnnotation) | **PUT** /pdf/\{name}/annotations/movie/\{annotationId} | Replace document movie annotation
 *PdfApi* | [**putPageAddStamp**](PdfApi.md#putPageAddStamp) | **PUT** /pdf/\{name}/pages/\{pageNumber}/stamp | Add page stamp.
 *PdfApi* | [**putPageConvertToBmp**](PdfApi.md#putPageConvertToBmp) | **PUT** /pdf/\{name}/pages/\{pageNumber}/convert/bmp | Convert document page to bmp image and upload resulting file to storage.
 *PdfApi* | [**putPageConvertToEmf**](PdfApi.md#putPageConvertToEmf) | **PUT** /pdf/\{name}/pages/\{pageNumber}/convert/emf | Convert document page to emf image and upload resulting file to storage.
@@ -214,9 +235,12 @@ Method | HTTP request | Description
 *PdfApi* | [**putPopupAnnotation**](PdfApi.md#putPopupAnnotation) | **PUT** /pdf/\{name}/annotations/popup/\{annotationId} | Replace document popup annotation
 *PdfApi* | [**putPrivileges**](PdfApi.md#putPrivileges) | **PUT** /pdf/\{name}/privileges | Update privilege document.
 *PdfApi* | [**putPsInStorageToPdf**](PdfApi.md#putPsInStorageToPdf) | **PUT** /pdf/\{name}/create/ps | Convert PS file (located on storage) to PDF format and upload resulting file to storage. 
+*PdfApi* | [**putRedactionAnnotation**](PdfApi.md#putRedactionAnnotation) | **PUT** /pdf/\{name}/annotations/redaction/\{annotationId} | Replace document redaction annotation
 *PdfApi* | [**putReplaceImage**](PdfApi.md#putReplaceImage) | **PUT** /pdf/\{name}/images/\{imageId} | Replace document image.
 *PdfApi* | [**putSearchableDocument**](PdfApi.md#putSearchableDocument) | **PUT** /pdf/\{name}/ocr | Create searchable PDF document. Generate OCR layer for images in input PDF document.
 *PdfApi* | [**putSetProperty**](PdfApi.md#putSetProperty) | **PUT** /pdf/\{name}/documentproperties/\{propertyName} | Add/update document property.
+*PdfApi* | [**putSoundAnnotation**](PdfApi.md#putSoundAnnotation) | **PUT** /pdf/\{name}/annotations/sound/\{annotationId} | Replace document sound annotation
+*PdfApi* | [**putSoundAnnotationDataExtract**](PdfApi.md#putSoundAnnotationDataExtract) | **PUT** /pdf/\{name}/annotations/sound/\{annotationId}/data/extract | Extract document sound annotation content to storage
 *PdfApi* | [**putSquareAnnotation**](PdfApi.md#putSquareAnnotation) | **PUT** /pdf/\{name}/annotations/square/\{annotationId} | Replace document square annotation
 *PdfApi* | [**putSquigglyAnnotation**](PdfApi.md#putSquigglyAnnotation) | **PUT** /pdf/\{name}/annotations/squiggly/\{annotationId} | Replace document squiggly annotation
 *PdfApi* | [**putStrikeOutAnnotation**](PdfApi.md#putStrikeOutAnnotation) | **PUT** /pdf/\{name}/annotations/strikeout/\{annotationId} | Replace document StrikeOut annotation
@@ -747,6 +771,28 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getDocumentFileAttachmentAnnotations"></a>
+## **getDocumentFileAttachmentAnnotations**
+> getDocumentFileAttachmentAnnotations(name, storage, folder)
+
+Read document FileAttachment annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**FileAttachmentAnnotationsResponse**](FileAttachmentAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getDocumentFreeTextAnnotations"></a>
 ## **getDocumentFreeTextAnnotations**
 > getDocumentFreeTextAnnotations(name, storage, folder)
@@ -829,6 +875,28 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LineAnnotationsResponse**](LineAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getDocumentMovieAnnotations"></a>
+## **getDocumentMovieAnnotations**
+> getDocumentMovieAnnotations(name, storage, folder)
+
+Read document movie annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**MovieAnnotationsResponse**](MovieAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -963,6 +1031,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentPropertyResponse**](DocumentPropertyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getDocumentRedactionAnnotations"></a>
+## **getDocumentRedactionAnnotations**
+> getDocumentRedactionAnnotations(name, storage, folder)
+
+Read document redaction annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**RedactionAnnotationsResponse**](RedactionAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getDocumentSoundAnnotations"></a>
+## **getDocumentSoundAnnotations**
+> getDocumentSoundAnnotations(name, storage, folder)
+
+Read document sound annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**SoundAnnotationsResponse**](SoundAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -1184,6 +1296,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FieldsResponse**](FieldsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getFileAttachmentAnnotation"></a>
+## **getFileAttachmentAnnotation**
+> getFileAttachmentAnnotation(name, annotationId, storage, folder)
+
+Read document page FileAttachment annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**FileAttachmentAnnotationResponse**](FileAttachmentAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getFileAttachmentAnnotationData"></a>
+## **getFileAttachmentAnnotationData**
+> getFileAttachmentAnnotationData(name, annotationId, storage, folder)
+
+Read document page FileAttachment annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+**Buffer**
 
 ### HTTP request headers
 
@@ -1606,6 +1764,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
 
+<a name="getMovieAnnotation"></a>
+## **getMovieAnnotation**
+> getMovieAnnotation(name, annotationId, storage, folder)
+
+Read document page movie annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**MovieAnnotationResponse**](MovieAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getPage"></a>
 ## **getPage**
 > getPage(name, pageNumber, storage, folder)
@@ -1848,6 +2029,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getPageFileAttachmentAnnotations"></a>
+## **getPageFileAttachmentAnnotations**
+> getPageFileAttachmentAnnotations(name, pageNumber, storage, folder)
+
+Read document page FileAttachment annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**FileAttachmentAnnotationsResponse**](FileAttachmentAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getPageFreeTextAnnotations"></a>
 ## **getPageFreeTextAnnotations**
 > getPageFreeTextAnnotations(name, pageNumber, storage, folder)
@@ -1987,6 +2191,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getPageMovieAnnotations"></a>
+## **getPageMovieAnnotations**
+> getPageMovieAnnotations(name, pageNumber, storage, folder)
+
+Read document page movie annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**MovieAnnotationsResponse**](MovieAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getPagePolygonAnnotations"></a>
 ## **getPagePolygonAnnotations**
 > getPagePolygonAnnotations(name, pageNumber, storage, folder)
@@ -2056,6 +2283,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="getPageRedactionAnnotations"></a>
+## **getPageRedactionAnnotations**
+> getPageRedactionAnnotations(name, pageNumber, storage, folder)
+
+Read document page redaction annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**RedactionAnnotationsResponse**](RedactionAnnotationsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getPages"></a>
 ## **getPages**
 > getPages(name, storage, folder)
@@ -2072,6 +2322,29 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentPagesResponse**](DocumentPagesResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getPageSoundAnnotations"></a>
+## **getPageSoundAnnotations**
+> getPageSoundAnnotations(name, pageNumber, storage, folder)
+
+Read document page sound annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**SoundAnnotationsResponse**](SoundAnnotationsResponse.md)
 
 ### HTTP request headers
 
@@ -2659,6 +2932,75 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
 
+<a name="getRedactionAnnotation"></a>
+## **getRedactionAnnotation**
+> getRedactionAnnotation(name, annotationId, storage, folder)
+
+Read document page redaction annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**RedactionAnnotationResponse**](RedactionAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getSoundAnnotation"></a>
+## **getSoundAnnotation**
+> getSoundAnnotation(name, annotationId, storage, folder)
+
+Read document page sound annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**SoundAnnotationResponse**](SoundAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getSoundAnnotationData"></a>
+## **getSoundAnnotationData**
+> getSoundAnnotationData(name, annotationId, storage, folder)
+
+Read document page sound annotation by ID.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="getSquareAnnotation"></a>
 ## **getSquareAnnotation**
 > getSquareAnnotation(name, annotationId, storage, folder)
@@ -3068,7 +3410,7 @@ Name | Type | Description  | Notes
 ## **postFlattenDocument**
 > postFlattenDocument(name, updateAppearances, callEvents, hideButtons, storage, folder)
 
-Removes all fields from the document and place their values instead.
+Flatten the document.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -3260,6 +3602,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="postPageFileAttachmentAnnotations"></a>
+## **postPageFileAttachmentAnnotations**
+> postPageFileAttachmentAnnotations(name, pageNumber, annotations, storage, folder)
+
+Add document page FileAttachment annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**annotations** | [**Array&lt;FileAttachmentAnnotation&gt;**](FileAttachmentAnnotation.md) | Annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postPageFreeTextAnnotations"></a>
 ## **postPageFreeTextAnnotations**
 > postPageFreeTextAnnotations(name, pageNumber, annotations, storage, folder)
@@ -3380,6 +3746,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="postPageMovieAnnotations"></a>
+## **postPageMovieAnnotations**
+> postPageMovieAnnotations(name, pageNumber, annotations, storage, folder)
+
+Add document page movie annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**annotations** | [**Array&lt;MovieAnnotation&gt;**](MovieAnnotation.md) | The array of annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postPagePolygonAnnotations"></a>
 ## **postPagePolygonAnnotations**
 > postPagePolygonAnnotations(name, pageNumber, annotations, storage, folder)
@@ -3416,6 +3806,54 @@ Name | Type | Description  | Notes
 **name** | **string** | The document name. | 
 **pageNumber** | **number** | The page number. | 
 **annotations** | [**Array&lt;PolyLineAnnotation&gt;**](PolyLineAnnotation.md) | The array of annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postPageRedactionAnnotations"></a>
+## **postPageRedactionAnnotations**
+> postPageRedactionAnnotations(name, pageNumber, annotations, storage, folder)
+
+Add document page redaction annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**annotations** | [**Array&lt;RedactionAnnotation&gt;**](RedactionAnnotation.md) | The array of annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postPageSoundAnnotations"></a>
+## **postPageSoundAnnotations**
+> postPageSoundAnnotations(name, pageNumber, annotations, storage, folder)
+
+Add document page sound annotations.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**pageNumber** | **number** | The page number. | 
+**annotations** | [**Array&lt;SoundAnnotation&gt;**](SoundAnnotation.md) | The array of annotation. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
 
@@ -3874,6 +4312,54 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="putFileAttachmentAnnotation"></a>
+## **putFileAttachmentAnnotation**
+> putFileAttachmentAnnotation(name, annotationId, annotation, storage, folder)
+
+Replace document FileAttachment annotation
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**annotation** | [**FileAttachmentAnnotation**](FileAttachmentAnnotation.md) | Annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**FileAttachmentAnnotationResponse**](FileAttachmentAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="putFileAttachmentAnnotationDataExtract"></a>
+## **putFileAttachmentAnnotationDataExtract**
+> putFileAttachmentAnnotationDataExtract(name, annotationId, outFolder, storage, folder)
+
+Extract document FileAttachment annotation content to storage
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**outFolder** | **string** | The output folder. | [optional]
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="putFreeTextAnnotation"></a>
 ## **putFreeTextAnnotation**
 > putFreeTextAnnotation(name, annotationId, annotation, storage, folder)
@@ -4319,6 +4805,30 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="putMovieAnnotation"></a>
+## **putMovieAnnotation**
+> putMovieAnnotation(name, annotationId, annotation, storage, folder)
+
+Replace document movie annotation
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**annotation** | [**MovieAnnotation**](MovieAnnotation.md) | Annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**MovieAnnotationResponse**](MovieAnnotationResponse.md)
 
 ### HTTP request headers
 
@@ -5306,6 +5816,30 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="putRedactionAnnotation"></a>
+## **putRedactionAnnotation**
+> putRedactionAnnotation(name, annotationId, annotation, storage, folder)
+
+Replace document redaction annotation
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**annotation** | [**RedactionAnnotation**](RedactionAnnotation.md) | Annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**RedactionAnnotationResponse**](RedactionAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="putReplaceImage"></a>
 ## **putReplaceImage**
 > putReplaceImage(name, imageId, imageFilePath, storage, folder, image)
@@ -5372,6 +5906,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DocumentPropertyResponse**](DocumentPropertyResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="putSoundAnnotation"></a>
+## **putSoundAnnotation**
+> putSoundAnnotation(name, annotationId, annotation, storage, folder)
+
+Replace document sound annotation
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**annotation** | [**SoundAnnotation**](SoundAnnotation.md) | Annotation. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**SoundAnnotationResponse**](SoundAnnotationResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="putSoundAnnotationDataExtract"></a>
+## **putSoundAnnotationDataExtract**
+> putSoundAnnotationDataExtract(name, annotationId, outFilePath, storage, folder)
+
+Extract document sound annotation content to storage
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**annotationId** | **string** | The annotation ID. | 
+**outFilePath** | **string** | The output file path. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
 
 ### HTTP request headers
 
