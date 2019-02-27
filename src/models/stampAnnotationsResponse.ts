@@ -19,17 +19,17 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
+import { StampAnnotations } from "./stampAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
 /**
-* Represents response containing multiple redaction annotation objects
+* Represents response containing multiple stamp annotation objects
 */
-export class RedactionAnnotationsResponse extends AsposeResponse {
+export class StampAnnotationsResponse extends AsposeResponse {
     /**
-    * Redaction annotations object
+    * Stamp annotations object
     */
-    'annotations': RedactionAnnotations;
+    'annotations': StampAnnotations;
 
     static discriminator = undefined;
 
@@ -37,11 +37,11 @@ export class RedactionAnnotationsResponse extends AsposeResponse {
         {
             "name": "annotations",
             "baseName": "Annotations",
-            "type": "RedactionAnnotations"
+            "type": "StampAnnotations"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(StampAnnotationsResponse.attributeTypeMap);
     }
 }
 

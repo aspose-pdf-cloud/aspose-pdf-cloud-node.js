@@ -19,29 +19,29 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
-import { AsposeResponse } from "./asposeResponse";
+import { ScreenAnnotation } from "./screenAnnotation";
+import { LinkElement } from "./linkElement";
 
 /**
-* Represents response containing multiple redaction annotation objects
+* Object representing a list of screen annotations.
 */
-export class RedactionAnnotationsResponse extends AsposeResponse {
+export class ScreenAnnotations extends LinkElement {
     /**
-    * Redaction annotations object
+    * List of screen annotations.
     */
-    'annotations': RedactionAnnotations;
+    'list': Array<ScreenAnnotation>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "RedactionAnnotations"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<ScreenAnnotation>"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ScreenAnnotations.attributeTypeMap);
     }
 }
 

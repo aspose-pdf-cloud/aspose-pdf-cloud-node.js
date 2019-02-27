@@ -19,29 +19,47 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
-import { AsposeResponse } from "./asposeResponse";
+import { StampIcon } from "./stampIcon";
+import { MarkupAnnotation } from "./markupAnnotation";
 
 /**
-* Represents response containing multiple redaction annotation objects
+* Provides StampAnnotation.
 */
-export class RedactionAnnotationsResponse extends AsposeResponse {
+export class StampAnnotation extends MarkupAnnotation {
     /**
-    * Redaction annotations object
+    * Gets or sets icon for rubber stamp.
     */
-    'annotations': RedactionAnnotations;
+    'icon': StampIcon;
+    /**
+    * Sets content file path. 
+    */
+    'filePath': string;
+    /**
+    * Gets is image exist. 
+    */
+    'hasImage': boolean;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "RedactionAnnotations"
+            "name": "icon",
+            "baseName": "Icon",
+            "type": "StampIcon"
+        },
+        {
+            "name": "filePath",
+            "baseName": "FilePath",
+            "type": "string"
+        },
+        {
+            "name": "hasImage",
+            "baseName": "HasImage",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(StampAnnotation.attributeTypeMap);
     }
 }
 

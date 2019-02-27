@@ -19,29 +19,37 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
-import { AsposeResponse } from "./asposeResponse";
+import { Annotation } from "./annotation";
 
 /**
-* Represents response containing multiple redaction annotation objects
+* Provides ScreenAnnotation.
 */
-export class RedactionAnnotationsResponse extends AsposeResponse {
+export class ScreenAnnotation extends Annotation {
     /**
-    * Redaction annotations object
+    * Get the annotation title.
     */
-    'annotations': RedactionAnnotations;
+    'title': string;
+    /**
+    * Sets content file path. 
+    */
+    'filePath': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "RedactionAnnotations"
+            "name": "title",
+            "baseName": "Title",
+            "type": "string"
+        },
+        {
+            "name": "filePath",
+            "baseName": "FilePath",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ScreenAnnotation.attributeTypeMap);
     }
 }
 

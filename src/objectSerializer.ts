@@ -79,6 +79,7 @@ import { SoundEncoding } from "./models/soundEncoding";
 import { SoundIcon } from "./models/soundIcon";
 import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
+import { StampIcon } from "./models/stampIcon";
 import { StampType } from "./models/stampType";
 import { TextHorizontalAlignment } from "./models/textHorizontalAlignment";
 import { TextIcon } from "./models/textIcon";
@@ -162,6 +163,9 @@ import { PopupAnnotationsResponse } from "./models/popupAnnotationsResponse";
 import { RedactionAnnotationResponse } from "./models/redactionAnnotationResponse";
 import { RedactionAnnotations } from "./models/redactionAnnotations";
 import { RedactionAnnotationsResponse } from "./models/redactionAnnotationsResponse";
+import { ScreenAnnotationResponse } from "./models/screenAnnotationResponse";
+import { ScreenAnnotations } from "./models/screenAnnotations";
+import { ScreenAnnotationsResponse } from "./models/screenAnnotationsResponse";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
 import { SoundAnnotationResponse } from "./models/soundAnnotationResponse";
 import { SoundAnnotations } from "./models/soundAnnotations";
@@ -174,6 +178,9 @@ import { SquareAnnotationsResponse } from "./models/squareAnnotationsResponse";
 import { SquigglyAnnotationResponse } from "./models/squigglyAnnotationResponse";
 import { SquigglyAnnotations } from "./models/squigglyAnnotations";
 import { SquigglyAnnotationsResponse } from "./models/squigglyAnnotationsResponse";
+import { StampAnnotationResponse } from "./models/stampAnnotationResponse";
+import { StampAnnotations } from "./models/stampAnnotations";
+import { StampAnnotationsResponse } from "./models/stampAnnotationsResponse";
 import { StorageExistResponse } from "./models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
@@ -192,6 +199,7 @@ import { MarkupAnnotation } from "./models/markupAnnotation";
 import { MovieAnnotation } from "./models/movieAnnotation";
 import { PopupAnnotation } from "./models/popupAnnotation";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
+import { ScreenAnnotation } from "./models/screenAnnotation";
 import { CaretAnnotation } from "./models/caretAnnotation";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FileAttachmentAnnotation } from "./models/fileAttachmentAnnotation";
@@ -203,6 +211,7 @@ import { PolyAnnotation } from "./models/polyAnnotation";
 import { PopupAnnotationWithParent } from "./models/popupAnnotationWithParent";
 import { SoundAnnotation } from "./models/soundAnnotation";
 import { SquigglyAnnotation } from "./models/squigglyAnnotation";
+import { StampAnnotation } from "./models/stampAnnotation";
 import { StrikeOutAnnotation } from "./models/strikeOutAnnotation";
 import { TextAnnotation } from "./models/textAnnotation";
 import { UnderlineAnnotation } from "./models/underlineAnnotation";
@@ -250,6 +259,7 @@ let enumsMap: {[index: string]: any} = {
     "SignatureType": SignatureType,
     "SoundEncoding": SoundEncoding,
     "SoundIcon": SoundIcon,
+    "StampIcon": StampIcon,
     "StampType": StampType,
     "TextHorizontalAlignment": TextHorizontalAlignment,
     "TextIcon": TextIcon,
@@ -358,6 +368,9 @@ let typeMap: {[index: string]: any} = {
     "RedactionAnnotationResponse": RedactionAnnotationResponse,
     "RedactionAnnotations": RedactionAnnotations,
     "RedactionAnnotationsResponse": RedactionAnnotationsResponse,
+    "ScreenAnnotationResponse": ScreenAnnotationResponse,
+    "ScreenAnnotations": ScreenAnnotations,
+    "ScreenAnnotationsResponse": ScreenAnnotationsResponse,
     "SignatureVerifyResponse": SignatureVerifyResponse,
     "SoundAnnotationResponse": SoundAnnotationResponse,
     "SoundAnnotations": SoundAnnotations,
@@ -370,6 +383,9 @@ let typeMap: {[index: string]: any} = {
     "SquigglyAnnotationResponse": SquigglyAnnotationResponse,
     "SquigglyAnnotations": SquigglyAnnotations,
     "SquigglyAnnotationsResponse": SquigglyAnnotationsResponse,
+    "StampAnnotationResponse": StampAnnotationResponse,
+    "StampAnnotations": StampAnnotations,
+    "StampAnnotationsResponse": StampAnnotationsResponse,
     "StorageExistResponse": StorageExistResponse,
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
@@ -388,6 +404,7 @@ let typeMap: {[index: string]: any} = {
     "MovieAnnotation": MovieAnnotation,
     "PopupAnnotation": PopupAnnotation,
     "RedactionAnnotation": RedactionAnnotation,
+    "ScreenAnnotation": ScreenAnnotation,
     "CaretAnnotation": CaretAnnotation,
     "CommonFigureAnnotation": CommonFigureAnnotation,
     "FileAttachmentAnnotation": FileAttachmentAnnotation,
@@ -399,6 +416,7 @@ let typeMap: {[index: string]: any} = {
     "PopupAnnotationWithParent": PopupAnnotationWithParent,
     "SoundAnnotation": SoundAnnotation,
     "SquigglyAnnotation": SquigglyAnnotation,
+    "StampAnnotation": StampAnnotation,
     "StrikeOutAnnotation": StrikeOutAnnotation,
     "TextAnnotation": TextAnnotation,
     "UnderlineAnnotation": UnderlineAnnotation,
