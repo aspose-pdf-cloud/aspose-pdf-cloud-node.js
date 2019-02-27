@@ -20,7 +20,7 @@
  */
 import http = require('http');
 import { PdfApi } from "../src/api/api";
-import { AsposeResponse } from "../src/models/AsposeResponse";
+import { AsposeResponse } from "../src/models/asposeResponse";
 var fs = require('fs');
 
 let pdfApi: PdfApi;
