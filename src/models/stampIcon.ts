@@ -19,30 +19,19 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
-import { AsposeResponse } from "./asposeResponse";
-
-/**
-* Represents response containing multiple redaction annotation objects
-*/
-export class RedactionAnnotationsResponse extends AsposeResponse {
-    /**
-    * Redaction annotations object
-    */
-    'annotations': RedactionAnnotations;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "annotations",
-            "baseName": "Annotations",
-            "type": "RedactionAnnotations"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
-    }
+export enum StampIcon {
+    Draft = 'Draft',
+    Approved = 'Approved',
+    Experimental = 'Experimental',
+    NotApproved = 'NotApproved',
+    AsIs = 'AsIs',
+    Expired = 'Expired',
+    NotForPublicRelease = 'NotForPublicRelease',
+    Confidential = 'Confidential',
+    Final = 'Final',
+    Sold = 'Sold',
+    Departmental = 'Departmental',
+    ForComment = 'ForComment',
+    ForPublicRelease = 'ForPublicRelease',
+    TopSecret = 'TopSecret',
 }
-
-

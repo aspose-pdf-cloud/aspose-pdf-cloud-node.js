@@ -1,6 +1,6 @@
 {
     "name": "asposepdfcloud",
-    "version": "19.1.1",
+    "version": "19.2.0",
     "description": "Aspose.PDF Cloud SDK",
     "homepage": "https://products.aspose.cloud/pdf/cloud",
     "author": {
@@ -25,7 +25,7 @@
     "scripts": {
         "clean": "rm -Rf node_modules/ typings/ *.js",
         "build": "tsc",
-        "test": "mocha -r ts-node/register test/test*.ts --timeout 180000"
+        "test": "mocha -r ts-node/register test/test*.ts --timeout 60000"
     },
     "dependencies": {
         "@types/bluebird": "*",

@@ -21,6 +21,7 @@
 
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
+import { AnnotationType } from "../src/models/annotationType";
 var assert = require('assert');
 
 describe("Annotations Tests", () => {
@@ -85,6 +86,19 @@ describe("Annotations Tests", () => {
             const annotationId = result.body.annotations.list[0].id;
 
             return BaseTest.getPdfApi().deleteAnnotation(name, annotationId, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Put Annotations Flatten Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            const endPage = 2;
+            const annotationTypes = [AnnotationType.Stamp];
+            return BaseTest.getPdfApi().putAnnotationsFlatten(name, null, endPage, annotationTypes, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });

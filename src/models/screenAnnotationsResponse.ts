@@ -19,17 +19,17 @@
  *
  */
 
-import { RedactionAnnotations } from "./redactionAnnotations";
+import { ScreenAnnotations } from "./screenAnnotations";
 import { AsposeResponse } from "./asposeResponse";
 
 /**
-* Represents response containing multiple redaction annotation objects
+* Represents response containing multiple screen annotation objects
 */
-export class RedactionAnnotationsResponse extends AsposeResponse {
+export class ScreenAnnotationsResponse extends AsposeResponse {
     /**
-    * Redaction annotations object
+    * Screen annotations object
     */
-    'annotations': RedactionAnnotations;
+    'annotations': ScreenAnnotations;
 
     static discriminator = undefined;
 
@@ -37,11 +37,11 @@ export class RedactionAnnotationsResponse extends AsposeResponse {
         {
             "name": "annotations",
             "baseName": "Annotations",
-            "type": "RedactionAnnotations"
+            "type": "ScreenAnnotations"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(RedactionAnnotationsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ScreenAnnotationsResponse.attributeTypeMap);
     }
 }
 
