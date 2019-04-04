@@ -19,6 +19,10 @@
  *
  */
 
+import { TextState } from "./textState";
+import { Position } from "./position";
+import { VerticalAlignment } from "./verticalAlignment";
+import { HorizontalAlignment } from "./horizontalAlignment";
 import { Rectangle } from "./rectangle";
 
 /**
@@ -37,6 +41,26 @@ export class TextRect {
     * Rectangle of the occurrence.
     */
     'rect': Rectangle;
+    /**
+    * Gets or sets a horizontal alignment of text fragment. 
+    */
+    'horizontalAlignment': HorizontalAlignment;
+    /**
+    * Gets or sets a vertical alignment of text fragment. 
+    */
+    'verticalAlignment': VerticalAlignment;
+    /**
+    * Gets or sets text position for text, represented with  object.
+    */
+    'position': Position;
+    /**
+    * Gets text position for text, represented with  object. The YIndent of the Position structure represents baseline coordinate of the text fragment.
+    */
+    'baselinePosition': Position;
+    /**
+    * Gets or sets text state for the text that  object represents.
+    */
+    'textState': TextState;
 
     static discriminator = undefined;
 
@@ -55,6 +79,31 @@ export class TextRect {
             "name": "rect",
             "baseName": "Rect",
             "type": "Rectangle"
+        },
+        {
+            "name": "horizontalAlignment",
+            "baseName": "HorizontalAlignment",
+            "type": "HorizontalAlignment"
+        },
+        {
+            "name": "verticalAlignment",
+            "baseName": "VerticalAlignment",
+            "type": "VerticalAlignment"
+        },
+        {
+            "name": "position",
+            "baseName": "Position",
+            "type": "Position"
+        },
+        {
+            "name": "baselinePosition",
+            "baseName": "BaselinePosition",
+            "type": "Position"
+        },
+        {
+            "name": "textState",
+            "baseName": "TextState",
+            "type": "TextState"
         }    ];
 
     static getAttributeTypeMap() {
