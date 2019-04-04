@@ -28,6 +28,7 @@ import { AsposeResponse } from "./models/asposeResponse";
 import { CapStyle } from "./models/capStyle";
 import { CaptionPosition } from "./models/captionPosition";
 import { CaretSymbol } from "./models/caretSymbol";
+import { CellRecognized } from "./models/cellRecognized";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
 import { CompressionType } from "./models/compressionType";
@@ -68,9 +69,11 @@ import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
 import { PdfAType } from "./models/pdfAType";
 import { Point } from "./models/point";
 import { PolyIntent } from "./models/polyIntent";
+import { Position } from "./models/position";
 import { RasterImagesSavingModes } from "./models/rasterImagesSavingModes";
 import { Rectangle } from "./models/rectangle";
 import { Rotation } from "./models/rotation";
+import { RowRecognized } from "./models/rowRecognized";
 import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
 import { Signature } from "./models/signature";
@@ -181,10 +184,18 @@ import { SquigglyAnnotationsResponse } from "./models/squigglyAnnotationsRespons
 import { StampAnnotationResponse } from "./models/stampAnnotationResponse";
 import { StampAnnotations } from "./models/stampAnnotations";
 import { StampAnnotationsResponse } from "./models/stampAnnotationsResponse";
+import { StampBase } from "./models/stampBase";
+import { StampInfo } from "./models/stampInfo";
+import { StampsInfo } from "./models/stampsInfo";
+import { StampsInfoResponse } from "./models/stampsInfoResponse";
 import { StorageExistResponse } from "./models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
+import { TableRecognized } from "./models/tableRecognized";
+import { TableRecognizedResponse } from "./models/tableRecognizedResponse";
+import { TablesRecognized } from "./models/tablesRecognized";
+import { TablesRecognizedResponse } from "./models/tablesRecognizedResponse";
 import { TextAnnotationResponse } from "./models/textAnnotationResponse";
 import { TextAnnotations } from "./models/textAnnotations";
 import { TextAnnotationsResponse } from "./models/textAnnotationsResponse";
@@ -195,11 +206,14 @@ import { UnderlineAnnotations } from "./models/underlineAnnotations";
 import { UnderlineAnnotationsResponse } from "./models/underlineAnnotationsResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
+import { ImageStamp } from "./models/imageStamp";
 import { MarkupAnnotation } from "./models/markupAnnotation";
 import { MovieAnnotation } from "./models/movieAnnotation";
+import { PdfPageStamp } from "./models/pdfPageStamp";
 import { PopupAnnotation } from "./models/popupAnnotation";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { ScreenAnnotation } from "./models/screenAnnotation";
+import { TextStamp } from "./models/textStamp";
 import { CaretAnnotation } from "./models/caretAnnotation";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FileAttachmentAnnotation } from "./models/fileAttachmentAnnotation";
@@ -270,6 +284,7 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "AppendDocument": AppendDocument,
     "AsposeResponse": AsposeResponse,
+    "CellRecognized": CellRecognized,
     "Color": Color,
     "DiscUsage": DiscUsage,
     "DocumentPrivilege": DocumentPrivilege,
@@ -285,7 +300,9 @@ let typeMap: {[index: string]: any} = {
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
     "Point": Point,
+    "Position": Position,
     "Rectangle": Rectangle,
+    "RowRecognized": RowRecognized,
     "Segment": Segment,
     "Signature": Signature,
     "SplitResult": SplitResult,
@@ -386,10 +403,18 @@ let typeMap: {[index: string]: any} = {
     "StampAnnotationResponse": StampAnnotationResponse,
     "StampAnnotations": StampAnnotations,
     "StampAnnotationsResponse": StampAnnotationsResponse,
+    "StampBase": StampBase,
+    "StampInfo": StampInfo,
+    "StampsInfo": StampsInfo,
+    "StampsInfoResponse": StampsInfoResponse,
     "StorageExistResponse": StorageExistResponse,
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
     "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,
+    "TableRecognized": TableRecognized,
+    "TableRecognizedResponse": TableRecognizedResponse,
+    "TablesRecognized": TablesRecognized,
+    "TablesRecognizedResponse": TablesRecognizedResponse,
     "TextAnnotationResponse": TextAnnotationResponse,
     "TextAnnotations": TextAnnotations,
     "TextAnnotationsResponse": TextAnnotationsResponse,
@@ -400,11 +425,14 @@ let typeMap: {[index: string]: any} = {
     "UnderlineAnnotationsResponse": UnderlineAnnotationsResponse,
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
+    "ImageStamp": ImageStamp,
     "MarkupAnnotation": MarkupAnnotation,
     "MovieAnnotation": MovieAnnotation,
+    "PdfPageStamp": PdfPageStamp,
     "PopupAnnotation": PopupAnnotation,
     "RedactionAnnotation": RedactionAnnotation,
     "ScreenAnnotation": ScreenAnnotation,
+    "TextStamp": TextStamp,
     "CaretAnnotation": CaretAnnotation,
     "CommonFigureAnnotation": CommonFigureAnnotation,
     "FileAttachmentAnnotation": FileAttachmentAnnotation,

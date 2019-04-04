@@ -122,7 +122,7 @@ describe("Screen Annotations Tests", () => {
             });
         });
     });
-    /*
+    
     describe("Get Screen Annotation Data Test", () => {
 
         it("should return response with code 200", async () => {
@@ -143,12 +143,13 @@ describe("Screen Annotations Tests", () => {
 
             const result = await BaseTest.getPdfApi().getDocumentScreenAnnotations(name, null, BaseTest.remoteTempFolder)
             const annotationId = result.body.annotations.list[0].id;
-            
-            return BaseTest.getPdfApi().putScreenAnnotationDataExtract(name, annotationId, null, null, BaseTest.remoteTempFolder)
+            const outFilePath = BaseTest.remoteTempFolder + '/screen.dat';
+
+            return BaseTest.getPdfApi().putScreenAnnotationDataExtract(name, annotationId, outFilePath, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
-    */
+    
 });
