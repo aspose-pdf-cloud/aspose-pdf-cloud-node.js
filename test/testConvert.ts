@@ -285,6 +285,47 @@ describe("Convert Tests", () => {
         });
     });
     
+    describe("To XLSX Tests", () => {
+
+        const resFileName = "result.xlsx";
+        const outPath = BaseTest.remoteTempFolder + "/" + resFileName;
+        
+        describe("GetPdfInStorageToXlsx Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getPdfInStorageToXlsx(simplePdf, null, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutPdfInStorageToXlsx Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().putPdfInStorageToXlsx(simplePdf, outPath, null, null, null, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutPdfInRequestToXlsx Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
+
+                return BaseTest.getPdfApi().putPdfInRequestToXlsx(outPath, null, null, null, null, null, data)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
     describe("To HTML Tests", () => {
 
         const resFileName = "result.zip";

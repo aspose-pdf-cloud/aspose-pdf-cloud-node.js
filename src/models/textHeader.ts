@@ -19,33 +19,26 @@
  *
  */
 
-import { VerticalAlignment } from "./verticalAlignment";
+import { TextState } from "./textState";
+import { HorizontalAlignment } from "./horizontalAlignment";
 import { StampBase } from "./stampBase";
 
 /**
-* Represents Pdf stamps.
+* Represents Pdf text header.
 */
-export class ImageStamp extends StampBase {
+export class TextHeader extends StampBase {
     /**
-    * Gets or sets the file name.
+    * Alignment of the text inside the stamp.
     */
-    'fileName': string;
+    'textAlignment': HorizontalAlignment;
     /**
-    * Gets or sets image width. Setting this property allos to scal image horizontally.
+    * Gets or sets string value which is used as stamp on the page.
     */
-    'width': number;
+    'value': string;
     /**
-    * Gets or sets image height. Setting this image allows to scale image vertically.
+    * Gets text properties of the stamp. See  for details.
     */
-    'height': number;
-    /**
-    * Gets or sets vertical alignment of stamp on page.
-    */
-    'verticalAlignment': VerticalAlignment;
-    /**
-    * Gets or sets bottom margin of stamp.
-    */
-    'bottomMargin': number;
+    'textState': TextState;
     /**
     * Gets or sets left margin of stamp.
     */
@@ -63,29 +56,19 @@ export class ImageStamp extends StampBase {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "fileName",
-            "baseName": "FileName",
+            "name": "textAlignment",
+            "baseName": "TextAlignment",
+            "type": "HorizontalAlignment"
+        },
+        {
+            "name": "value",
+            "baseName": "Value",
             "type": "string"
         },
         {
-            "name": "width",
-            "baseName": "Width",
-            "type": "number"
-        },
-        {
-            "name": "height",
-            "baseName": "Height",
-            "type": "number"
-        },
-        {
-            "name": "verticalAlignment",
-            "baseName": "VerticalAlignment",
-            "type": "VerticalAlignment"
-        },
-        {
-            "name": "bottomMargin",
-            "baseName": "BottomMargin",
-            "type": "number"
+            "name": "textState",
+            "baseName": "TextState",
+            "type": "TextState"
         },
         {
             "name": "leftMargin",
@@ -104,7 +87,7 @@ export class ImageStamp extends StampBase {
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageStamp.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(TextHeader.attributeTypeMap);
     }
 }
 

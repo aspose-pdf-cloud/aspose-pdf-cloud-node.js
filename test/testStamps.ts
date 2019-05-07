@@ -29,6 +29,7 @@ import { Rotation } from "../src/models/rotation";
 import { TextState } from "../src/models/textState";
 import { ImageStamp } from "../src/models/imageStamp";
 import { PdfPageStamp } from "../src/models/pdfPageStamp";
+import { PageNumberStamp } from "../src/models/pageNumberStamp";
 
 describe("Stamps Tests", () => {
 
@@ -187,6 +188,39 @@ describe("Stamps Tests", () => {
             const stampId = result.body.stamps.list[0].id;
 
             return BaseTest.getPdfApi().deleteStamp(name, stampId, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Post Document PageNumber Stamps", () => {
+
+        it("should return response with code 200", async () => {
+            
+            await BaseTest.uploadFile(pdfFile);
+
+            const stamp = new PageNumberStamp();
+            stamp.background = true;
+            stamp.leftMargin = 1;
+            stamp.rightMargin = 2;
+            stamp.topMargin = 3;
+            stamp.bottomMargin = 4;
+            stamp.horizontalAlignment = HorizontalAlignment.Center;
+            stamp.verticalAlignment = VerticalAlignment.Center;
+            stamp.opacity = 1;
+            stamp.rotate = Rotation.None;
+            stamp.rotateAngle = 0;
+            stamp.xIndent = 0;
+            stamp.yIndent = 0;
+            stamp.zoom = 1;
+            stamp.startingNumber = 3;
+            stamp.value = "Page #";
+
+            const startPageNumber = 2;
+            const endPageNumber = 3;
+
+            return BaseTest.getPdfApi().postDocumentPageNumberStamps(name, stamp, startPageNumber, endPageNumber, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });

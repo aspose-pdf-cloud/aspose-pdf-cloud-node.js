@@ -19,27 +19,32 @@
  *
  */
 
+import { GraphInfo } from "./graphInfo";
 
 /**
-* This class represents a margin for different objects.
+* This class represents border for graphics elements.
 */
-export class MarginInfo {
+export class BorderInfo {
     /**
-    * Gets or sets a float value that indicates the left margin.
+    * Gets or sets a object that indicates left of the border.
     */
-    'left': number;
+    'left': GraphInfo;
     /**
-    * Gets or sets a float value that indicates the right margin.
+    * Gets or sets a object that indicates right of the border.
     */
-    'right': number;
+    'right': GraphInfo;
     /**
-    * Gets or sets a float value that indicates the top margin.
+    * Gets or sets a object that indicates the top border.
     */
-    'top': number;
+    'top': GraphInfo;
     /**
-    * Gets or sets a float value that indicates the bottom margin.
+    * Gets or sets a object that indicates bottom of the border.
     */
-    'bottom': number;
+    'bottom': GraphInfo;
+    /**
+    * Gets or sets a rouded border radius
+    */
+    'roundedBorderRadius': number;
 
     static discriminator = undefined;
 
@@ -47,26 +52,31 @@ export class MarginInfo {
         {
             "name": "left",
             "baseName": "Left",
-            "type": "number"
+            "type": "GraphInfo"
         },
         {
             "name": "right",
             "baseName": "Right",
-            "type": "number"
+            "type": "GraphInfo"
         },
         {
             "name": "top",
             "baseName": "Top",
-            "type": "number"
+            "type": "GraphInfo"
         },
         {
             "name": "bottom",
             "baseName": "Bottom",
+            "type": "GraphInfo"
+        },
+        {
+            "name": "roundedBorderRadius",
+            "baseName": "RoundedBorderRadius",
             "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return MarginInfo.attributeTypeMap;
+        return BorderInfo.attributeTypeMap;
     }
 }
 

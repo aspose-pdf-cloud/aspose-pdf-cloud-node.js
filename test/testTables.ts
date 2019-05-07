@@ -103,4 +103,36 @@ describe("Tables Tests", () => {
             });
         });
     });
+
+    describe("Post Page Tables Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            const pdf = "4pages.pdf";
+            await BaseTest.uploadFile(pdf);
+
+            const table = BaseTest.drawTable();
+
+            return BaseTest.getPdfApi().postPageTables(pdf, pageNumber, [table], null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Put Table Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            const table = BaseTest.drawTable();
+            
+            const result = await BaseTest.getPdfApi().getDocumentTables(name, null, BaseTest.remoteTempFolder)
+            const tableId = result.body.tables.list[0].id;
+
+            return BaseTest.getPdfApi().putTable(name, tableId, table, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
 });

@@ -82,7 +82,6 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getDocumentAnnotations**](docs/PdfApi.md#getDocumentAnnotations) | **GET** /pdf/\{name}/annotations | Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
 *PdfApi* | [**getDocumentAttachmentByIndex**](docs/PdfApi.md#getDocumentAttachmentByIndex) | **GET** /pdf/\{name}/attachments/\{attachmentIndex} | Read document attachment info by its index.
 *PdfApi* | [**getDocumentAttachments**](docs/PdfApi.md#getDocumentAttachments) | **GET** /pdf/\{name}/attachments | Read document attachments info.
-*PdfApi* | [**getDocumentBookmarks**](docs/PdfApi.md#getDocumentBookmarks) | **GET** /pdf/\{name}/bookmarks | Read document bookmark/bookmarks (including children).
 *PdfApi* | [**getDocumentCaretAnnotations**](docs/PdfApi.md#getDocumentCaretAnnotations) | **GET** /pdf/\{name}/annotations/caret | Read document caret annotations.
 *PdfApi* | [**getDocumentCircleAnnotations**](docs/PdfApi.md#getDocumentCircleAnnotations) | **GET** /pdf/\{name}/annotations/circle | Read document circle annotations.
 *PdfApi* | [**getDocumentFileAttachmentAnnotations**](docs/PdfApi.md#getDocumentFileAttachmentAnnotations) | **GET** /pdf/\{name}/annotations/fileattachment | Read document FileAttachment annotations.
@@ -179,6 +178,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getPdfInStorageToSvg**](docs/PdfApi.md#getPdfInStorageToSvg) | **GET** /pdf/\{name}/convert/svg | Converts PDF document (located on storage) to SVG format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToTiff**](docs/PdfApi.md#getPdfInStorageToTiff) | **GET** /pdf/\{name}/convert/tiff | Converts PDF document (located on storage) to TIFF format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToXls**](docs/PdfApi.md#getPdfInStorageToXls) | **GET** /pdf/\{name}/convert/xls | Converts PDF document (located on storage) to XLS format and returns resulting file in response content
+*PdfApi* | [**getPdfInStorageToXlsx**](docs/PdfApi.md#getPdfInStorageToXlsx) | **GET** /pdf/\{name}/convert/xlsx | Converts PDF document (located on storage) to XLSX format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToXml**](docs/PdfApi.md#getPdfInStorageToXml) | **GET** /pdf/\{name}/convert/xml | Converts PDF document (located on storage) to XML format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToXps**](docs/PdfApi.md#getPdfInStorageToXps) | **GET** /pdf/\{name}/convert/xps | Converts PDF document (located on storage) to XPS format and returns resulting file in response content
 *PdfApi* | [**getPolygonAnnotation**](docs/PdfApi.md#getPolygonAnnotation) | **GET** /pdf/\{name}/annotations/polygon/\{annotationId} | Read document page polygon annotation by ID.
@@ -208,8 +208,16 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getXpsInStorageToPdf**](docs/PdfApi.md#getXpsInStorageToPdf) | **GET** /pdf/create/xps | Convert XPS file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getXslFoInStorageToPdf**](docs/PdfApi.md#getXslFoInStorageToPdf) | **GET** /pdf/create/xslfo | Convert XslFo file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**postAppendDocument**](docs/PdfApi.md#postAppendDocument) | **POST** /pdf/\{name}/appendDocument | Append document to existing one.
+*PdfApi* | [**postChangePasswordDocumentInStorage**](docs/PdfApi.md#postChangePasswordDocumentInStorage) | **POST** /pdf/\{name}/changepassword | Change document password in storage.
 *PdfApi* | [**postCreateField**](docs/PdfApi.md#postCreateField) | **POST** /pdf/\{name}/fields | Create field.
+*PdfApi* | [**postDecryptDocumentInStorage**](docs/PdfApi.md#postDecryptDocumentInStorage) | **POST** /pdf/\{name}/decrypt | Decrypt document in storage.
+*PdfApi* | [**postDocumentImageFooter**](docs/PdfApi.md#postDocumentImageFooter) | **POST** /pdf/\{name}/footer/image | Add document image footer.
+*PdfApi* | [**postDocumentImageHeader**](docs/PdfApi.md#postDocumentImageHeader) | **POST** /pdf/\{name}/header/image | Add document image header.
+*PdfApi* | [**postDocumentPageNumberStamps**](docs/PdfApi.md#postDocumentPageNumberStamps) | **POST** /pdf/\{name}/stamps/pagenumber | Add document page number stamps.
+*PdfApi* | [**postDocumentTextFooter**](docs/PdfApi.md#postDocumentTextFooter) | **POST** /pdf/\{name}/footer/text | Add document text footer.
+*PdfApi* | [**postDocumentTextHeader**](docs/PdfApi.md#postDocumentTextHeader) | **POST** /pdf/\{name}/header/text | Add document text header.
 *PdfApi* | [**postDocumentTextReplace**](docs/PdfApi.md#postDocumentTextReplace) | **POST** /pdf/\{name}/text/replace | Document's replace text method.
+*PdfApi* | [**postEncryptDocumentInStorage**](docs/PdfApi.md#postEncryptDocumentInStorage) | **POST** /pdf/\{name}/encrypt | Encrypt document in storage.
 *PdfApi* | [**postFlattenDocument**](docs/PdfApi.md#postFlattenDocument) | **POST** /pdf/\{name}/flatten | Flatten the document.
 *PdfApi* | [**postInsertImage**](docs/PdfApi.md#postInsertImage) | **POST** /pdf/\{name}/pages/\{pageNumber}/images | Insert image to document page.
 *PdfApi* | [**postMoveFile**](docs/PdfApi.md#postMoveFile) | **POST** /storage/file | Move a specific file
@@ -236,6 +244,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**postPageSquigglyAnnotations**](docs/PdfApi.md#postPageSquigglyAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/squiggly | Add document page squiggly annotations.
 *PdfApi* | [**postPageStampAnnotations**](docs/PdfApi.md#postPageStampAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/stamp | Add document page stamp annotations.
 *PdfApi* | [**postPageStrikeOutAnnotations**](docs/PdfApi.md#postPageStrikeOutAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/strikeout | Add document page StrikeOut annotations.
+*PdfApi* | [**postPageTables**](docs/PdfApi.md#postPageTables) | **POST** /pdf/\{name}/pages/\{pageNumber}/tables | Add document page tables.
 *PdfApi* | [**postPageTextAnnotations**](docs/PdfApi.md#postPageTextAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/text | Add document page text annotations.
 *PdfApi* | [**postPageTextReplace**](docs/PdfApi.md#postPageTextReplace) | **POST** /pdf/\{name}/pages/\{pageNumber}/text/replace | Page's replace text method.
 *PdfApi* | [**postPageTextStamps**](docs/PdfApi.md#postPageTextStamps) | **POST** /pdf/\{name}/pages/\{pageNumber}/stamps/text | Add document page text stamps.
@@ -248,10 +257,13 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putAddText**](docs/PdfApi.md#putAddText) | **PUT** /pdf/\{name}/pages/\{pageNumber}/text | Add text to PDF document page.
 *PdfApi* | [**putAnnotationsFlatten**](docs/PdfApi.md#putAnnotationsFlatten) | **PUT** /pdf/\{name}/annotations/flatten | Flattens the annotations of the specified types
 *PdfApi* | [**putCaretAnnotation**](docs/PdfApi.md#putCaretAnnotation) | **PUT** /pdf/\{name}/annotations/caret/\{annotationId} | Replace document caret annotation
+*PdfApi* | [**putChangePasswordDocument**](docs/PdfApi.md#putChangePasswordDocument) | **PUT** /pdf/changepassword | Change document password from content.
 *PdfApi* | [**putCircleAnnotation**](docs/PdfApi.md#putCircleAnnotation) | **PUT** /pdf/\{name}/annotations/circle/\{annotationId} | Replace document circle annotation
 *PdfApi* | [**putCreate**](docs/PdfApi.md#putCreate) | **PUT** /storage/file | Upload a specific file 
 *PdfApi* | [**putCreateDocument**](docs/PdfApi.md#putCreateDocument) | **PUT** /pdf/\{name} | Create empty document.
 *PdfApi* | [**putCreateFolder**](docs/PdfApi.md#putCreateFolder) | **PUT** /storage/folder | Create the folder 
+*PdfApi* | [**putDecryptDocument**](docs/PdfApi.md#putDecryptDocument) | **PUT** /pdf/decrypt | Decrypt document from content.
+*PdfApi* | [**putEncryptDocument**](docs/PdfApi.md#putEncryptDocument) | **PUT** /pdf/encrypt | Encrypt document from content.
 *PdfApi* | [**putEpubInStorageToPdf**](docs/PdfApi.md#putEpubInStorageToPdf) | **PUT** /pdf/\{name}/create/epub | Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putFieldsFlatten**](docs/PdfApi.md#putFieldsFlatten) | **PUT** /pdf/\{name}/fields/flatten | Flatten form fields in document.
 *PdfApi* | [**putFileAttachmentAnnotation**](docs/PdfApi.md#putFileAttachmentAnnotation) | **PUT** /pdf/\{name}/annotations/fileattachment/\{annotationId} | Replace document FileAttachment annotation
@@ -293,6 +305,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putPdfInRequestToSvg**](docs/PdfApi.md#putPdfInRequestToSvg) | **PUT** /pdf/convert/svg | Converts PDF document (in request content) to SVG format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToTiff**](docs/PdfApi.md#putPdfInRequestToTiff) | **PUT** /pdf/convert/tiff | Converts PDF document (in request content) to TIFF format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToXls**](docs/PdfApi.md#putPdfInRequestToXls) | **PUT** /pdf/convert/xls | Converts PDF document (in request content) to XLS format and uploads resulting file to storage.
+*PdfApi* | [**putPdfInRequestToXlsx**](docs/PdfApi.md#putPdfInRequestToXlsx) | **PUT** /pdf/convert/xlsx | Converts PDF document (in request content) to XLSX format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToXml**](docs/PdfApi.md#putPdfInRequestToXml) | **PUT** /pdf/convert/xml | Converts PDF document (in request content) to XML format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToXps**](docs/PdfApi.md#putPdfInRequestToXps) | **PUT** /pdf/convert/xps | Converts PDF document (in request content) to XPS format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInStorageToDoc**](docs/PdfApi.md#putPdfInStorageToDoc) | **PUT** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and uploads resulting file to storage
@@ -305,6 +318,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putPdfInStorageToSvg**](docs/PdfApi.md#putPdfInStorageToSvg) | **PUT** /pdf/\{name}/convert/svg | Converts PDF document (located on storage) to SVG format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToTiff**](docs/PdfApi.md#putPdfInStorageToTiff) | **PUT** /pdf/\{name}/convert/tiff | Converts PDF document (located on storage) to TIFF format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToXls**](docs/PdfApi.md#putPdfInStorageToXls) | **PUT** /pdf/\{name}/convert/xls | Converts PDF document (located on storage) to XLS format and uploads resulting file to storage
+*PdfApi* | [**putPdfInStorageToXlsx**](docs/PdfApi.md#putPdfInStorageToXlsx) | **PUT** /pdf/\{name}/convert/xlsx | Converts PDF document (located on storage) to XLSX format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToXml**](docs/PdfApi.md#putPdfInStorageToXml) | **PUT** /pdf/\{name}/convert/xml | Converts PDF document (located on storage) to XML format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToXps**](docs/PdfApi.md#putPdfInStorageToXps) | **PUT** /pdf/\{name}/convert/xps | Converts PDF document (located on storage) to XPS format and uploads resulting file to storage
 *PdfApi* | [**putPolygonAnnotation**](docs/PdfApi.md#putPolygonAnnotation) | **PUT** /pdf/\{name}/annotations/polygon/\{annotationId} | Replace document polygon annotation
@@ -326,6 +340,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putStampAnnotationDataExtract**](docs/PdfApi.md#putStampAnnotationDataExtract) | **PUT** /pdf/\{name}/annotations/stamp/\{annotationId}/data/extract | Extract document stamp annotation content to storage
 *PdfApi* | [**putStrikeOutAnnotation**](docs/PdfApi.md#putStrikeOutAnnotation) | **PUT** /pdf/\{name}/annotations/strikeout/\{annotationId} | Replace document StrikeOut annotation
 *PdfApi* | [**putSvgInStorageToPdf**](docs/PdfApi.md#putSvgInStorageToPdf) | **PUT** /pdf/\{name}/create/svg | Convert SVG file (located on storage) to PDF format and upload resulting file to storage. 
+*PdfApi* | [**putTable**](docs/PdfApi.md#putTable) | **PUT** /pdf/\{name}/tables/\{tableId} | Replace document page table.
 *PdfApi* | [**putTextAnnotation**](docs/PdfApi.md#putTextAnnotation) | **PUT** /pdf/\{name}/annotations/text/\{annotationId} | Replace document text annotation
 *PdfApi* | [**putUnderlineAnnotation**](docs/PdfApi.md#putUnderlineAnnotation) | **PUT** /pdf/\{name}/annotations/underline/\{annotationId} | Replace document underline annotation
 *PdfApi* | [**putUpdateField**](docs/PdfApi.md#putUpdateField) | **PUT** /pdf/\{name}/fields/\{fieldName} | Update field.
@@ -355,6 +370,8 @@ Class | Description
 [**AttachmentResponse**](docs/AttachmentResponse.md) | Represents response containing single attachment info
 [**Attachments**](docs/Attachments.md) | Represents list of attachment.
 [**AttachmentsResponse**](docs/AttachmentsResponse.md) | Represents response containing multiple attachments info
+[**BorderCornerStyle**](docs/BorderCornerStyle.md) | Enumerates the border corner styles for border.
+[**BorderInfo**](docs/BorderInfo.md) | This class represents border for graphics elements.
 [**CapStyle**](docs/CapStyle.md) | Style of line ending of Ink annotation line. 
 [**CaptionPosition**](docs/CaptionPosition.md) | Enumeration of the annotation’s caption positioning.
 [**CaretAnnotation**](docs/CaretAnnotation.md) | Provides CaretAnnotation.
@@ -362,6 +379,7 @@ Class | Description
 [**CaretAnnotations**](docs/CaretAnnotations.md) | Object representing a list of caret annotations.
 [**CaretAnnotationsResponse**](docs/CaretAnnotationsResponse.md) | Represents response containing multiple caret annotation objects
 [**CaretSymbol**](docs/CaretSymbol.md) | A symbol to be associated with the caret.
+[**Cell**](docs/Cell.md) | Represents a cell of the table's row.
 [**CellRecognized**](docs/CellRecognized.md) | 
 [**CircleAnnotation**](docs/CircleAnnotation.md) | Provides CircleAnnotation.
 [**CircleAnnotationResponse**](docs/CircleAnnotationResponse.md) | Represents response containing single circle annotation object
@@ -369,8 +387,10 @@ Class | Description
 [**CircleAnnotationsResponse**](docs/CircleAnnotationsResponse.md) | Represents response containing multiple circle annotation objects
 [**Color**](docs/Color.md) | Represents color DTO.
 [**ColorDepth**](docs/ColorDepth.md) | Used to specify the parameter value passed to a Tiff image device.
+[**ColumnAdjustment**](docs/ColumnAdjustment.md) | Enumerates column adjustment types.
 [**CommonFigureAnnotation**](docs/CommonFigureAnnotation.md) | Provides CommonFigureAnnotation.
 [**CompressionType**](docs/CompressionType.md) | Used to specify the parameter value passed to a Tiff image device.
+[**CryptoAlgorithm**](docs/CryptoAlgorithm.md) | Represent type of cryptographic algorithm that used in encryption/decryption routines.
 [**DiscUsage**](docs/DiscUsage.md) | 
 [**DiscUsageResponse**](docs/DiscUsageResponse.md) | 
 [**DocFormat**](docs/DocFormat.md) | Allows to specify .doc or .docx file format.
@@ -409,6 +429,7 @@ Class | Description
 [**FreeTextAnnotations**](docs/FreeTextAnnotations.md) | Object representing a list of free text annotations.
 [**FreeTextAnnotationsResponse**](docs/FreeTextAnnotationsResponse.md) | Represents response containing multiple free text annotation objects
 [**FreeTextIntent**](docs/FreeTextIntent.md) | Enumerates the intents of the free text annotation.
+[**GraphInfo**](docs/GraphInfo.md) | Represents graphics info.
 [**HighlightAnnotation**](docs/HighlightAnnotation.md) | Provides HighlightAnnotation.
 [**HighlightAnnotationResponse**](docs/HighlightAnnotationResponse.md) | Represents response containing single highlight annotation object
 [**HighlightAnnotations**](docs/HighlightAnnotations.md) | Object representing a list of highlight annotations.
@@ -417,6 +438,8 @@ Class | Description
 [**HtmlDocumentType**](docs/HtmlDocumentType.md) | Represents enumeration of the Html document types.
 [**HtmlMarkupGenerationModes**](docs/HtmlMarkupGenerationModes.md) | Sometimes specific reqirments to created HTML are present. This enum defines HTML preparing modes that can be used during conversion of PDF to HTML to match such specific requirments. 
 [**Image**](docs/Image.md) | Represents image DTO.
+[**ImageFooter**](docs/ImageFooter.md) | Represents Pdf image footer.
+[**ImageHeader**](docs/ImageHeader.md) | Represents Pdf image header.
 [**ImageResponse**](docs/ImageResponse.md) | Represents response containing single image info
 [**Images**](docs/Images.md) | Represents list of images.
 [**ImageSrcType**](docs/ImageSrcType.md) | Allows to specify image file format.
@@ -445,7 +468,7 @@ Class | Description
 [**LinkAnnotationsResponse**](docs/LinkAnnotationsResponse.md) | Represents response containing multiple links info
 [**LinkElement**](docs/LinkElement.md) | Represents base DTO object.
 [**LinkHighlightingMode**](docs/LinkHighlightingMode.md) | Enumerates the annotation’s highlighting mode, the visual effect to be used when the mouse button is pressed or held down inside its active area.
-[**MarginInfo**](docs/MarginInfo.md) | 
+[**MarginInfo**](docs/MarginInfo.md) | This class represents a margin for different objects.
 [**MarkupAnnotation**](docs/MarkupAnnotation.md) | Provides MarkupAnnotation.
 [**MergeDocuments**](docs/MergeDocuments.md) | Documents for merging.
 [**MovieAnnotation**](docs/MovieAnnotation.md) | Provides MovieAnnotation.
@@ -454,12 +477,14 @@ Class | Description
 [**MovieAnnotationsResponse**](docs/MovieAnnotationsResponse.md) | Represents response containing multiple movie annotation objects
 [**OptimizeOptions**](docs/OptimizeOptions.md) | Represents Pdf optimize options.
 [**Page**](docs/Page.md) | Provides link to page.
+[**PageNumberStamp**](docs/PageNumberStamp.md) | Represents Pdf stamps.
 [**Pages**](docs/Pages.md) | Represents list of pages.
 [**PageWordCount**](docs/PageWordCount.md) | Page words count.
 [**Paragraph**](docs/Paragraph.md) | Represents text paragraphs as multiline text object.
 [**PartsEmbeddingModes**](docs/PartsEmbeddingModes.md) | This enum enumerates possible modes of embedding of files referenced in HTML It allows to control whether referenced files (HTML, Fonts,Images, CSSes) will be embedded into main HTML file or will be generated as apart binary entities 
 [**PdfAType**](docs/PdfAType.md) | Allows to specify PdfA file format.
 [**PdfPageStamp**](docs/PdfPageStamp.md) | Represents Pdf stamps.
+[**PermissionsFlags**](docs/PermissionsFlags.md) | This enum represents user's permissions for a pdf.
 [**Point**](docs/Point.md) | Represent point with fractional coordinates.
 [**PolyAnnotation**](docs/PolyAnnotation.md) | Provides PolyAnnotation.
 [**PolygonAnnotation**](docs/PolygonAnnotation.md) | Provides PolygonAnnotation.
@@ -484,6 +509,7 @@ Class | Description
 [**RedactionAnnotations**](docs/RedactionAnnotations.md) | Object representing a list of redaction annotations.
 [**RedactionAnnotationsResponse**](docs/RedactionAnnotationsResponse.md) | Represents response containing multiple redaction annotation objects
 [**Rotation**](docs/Rotation.md) | Enumeration of possible rotation values.
+[**Row**](docs/Row.md) | Represents a row of the table.
 [**RowRecognized**](docs/RowRecognized.md) | 
 [**ScreenAnnotation**](docs/ScreenAnnotation.md) | Provides ScreenAnnotation.
 [**ScreenAnnotationResponse**](docs/ScreenAnnotationResponse.md) | Represents response containing single screen annotation object
@@ -527,6 +553,8 @@ Class | Description
 [**StrikeOutAnnotationResponse**](docs/StrikeOutAnnotationResponse.md) | Represents response containing single strikeout annotation object
 [**StrikeOutAnnotations**](docs/StrikeOutAnnotations.md) | Object representing a list of strikeout annotations.
 [**StrikeOutAnnotationsResponse**](docs/StrikeOutAnnotationsResponse.md) | Represents response containing multiple strikeout annotation objects
+[**Table**](docs/Table.md) | Represents a table that can be added to the page.
+[**TableBroken**](docs/TableBroken.md) | Enumerates the table broken.
 [**TableRecognized**](docs/TableRecognized.md) | 
 [**TableRecognizedResponse**](docs/TableRecognizedResponse.md) | Represents response containing single recognized table
 [**TablesRecognized**](docs/TablesRecognized.md) | Represents list of recognized tables.
@@ -535,6 +563,8 @@ Class | Description
 [**TextAnnotationResponse**](docs/TextAnnotationResponse.md) | Represents response containing single text annotation object
 [**TextAnnotations**](docs/TextAnnotations.md) | Object representing a list of text annotations.
 [**TextAnnotationsResponse**](docs/TextAnnotationsResponse.md) | Represents response containing multiple text annotation objects
+[**TextFooter**](docs/TextFooter.md) | Represents Pdf text header.
+[**TextHeader**](docs/TextHeader.md) | Represents Pdf text header.
 [**TextHorizontalAlignment**](docs/TextHorizontalAlignment.md) | Describes text horizontal alignment.
 [**TextIcon**](docs/TextIcon.md) | Enumerates the icons to be used in displaying the annotation.
 [**TextLine**](docs/TextLine.md) | A line of text to be inserted into paragraph.

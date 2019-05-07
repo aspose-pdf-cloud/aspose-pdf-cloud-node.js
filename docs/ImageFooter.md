@@ -1,17 +1,15 @@
-﻿# TextStamp
-Represents Pdf stamps.
+﻿# ImageFooter
+Represents Pdf image footer.
 
 *Inherited from [StampBase](StampBase.md)*
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**textAlignment** | [**HorizontalAlignment**](HorizontalAlignment.md) | Alignment of the text inside the stamp. | [optional]
-**value** | **string** | Gets or sets string value which is used as stamp on the page. | [optional]
-**textState** | [**TextState**](TextState.md) | Gets text properties of the stamp. See for details. | [optional]
-**verticalAlignment** | [**VerticalAlignment**](VerticalAlignment.md) | Gets or sets vertical alignment of stamp on page. | [optional]
+**fileName** | **string** | Gets or sets the file name. | [optional]
+**width** | **number** | Gets or sets image width. Setting this property allos to scal image horizontally. | [optional]
+**height** | **number** | Gets or sets image height. Setting this image allows to scale image vertically. | [optional]
 **bottomMargin** | **number** | Gets or sets bottom margin of stamp. | [optional]
 **leftMargin** | **number** | Gets or sets left margin of stamp. | [optional]
-**topMargin** | **number** | Gets or sets top margin of stamp. | [optional]
 **rightMargin** | **number** | Gets or sets right margin of stamp. | [optional]
 **background** | **boolean** | Sets or gets a bool value that indicates the content is stamped as background. If the value is true, the stamp content is layed at the bottom. By defalt, the value is false, the stamp content is layed at the top.<br />*Inherited from [StampBase](StampBase.md)* | [optional]
 **horizontalAlignment** | [**HorizontalAlignment**](HorizontalAlignment.md) | Gets or sets Horizontal alignment of stamp on the page. <br />*Inherited from [StampBase](StampBase.md)* | [optional]
@@ -23,5 +21,5 @@ Name | Type | Description | Notes
 **zoom** | **number** | Zooming factor of the stamp. Allows to scale stamp.<br />*Inherited from [StampBase](StampBase.md)* | [optional]
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document.<br />*Inherited from [LinkElement](LinkElement.md)* | [optional]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/textStamp.ts)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/imageFooter.ts)
 

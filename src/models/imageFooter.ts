@@ -19,13 +19,12 @@
  *
  */
 
-import { VerticalAlignment } from "./verticalAlignment";
 import { StampBase } from "./stampBase";
 
 /**
-* Represents Pdf stamps.
+* Represents Pdf image footer.
 */
-export class ImageStamp extends StampBase {
+export class ImageFooter extends StampBase {
     /**
     * Gets or sets the file name.
     */
@@ -39,10 +38,6 @@ export class ImageStamp extends StampBase {
     */
     'height': number;
     /**
-    * Gets or sets vertical alignment of stamp on page.
-    */
-    'verticalAlignment': VerticalAlignment;
-    /**
     * Gets or sets bottom margin of stamp.
     */
     'bottomMargin': number;
@@ -50,10 +45,6 @@ export class ImageStamp extends StampBase {
     * Gets or sets left margin of stamp.
     */
     'leftMargin': number;
-    /**
-    * Gets or sets top margin of stamp.
-    */
-    'topMargin': number;
     /**
     * Gets or sets right margin of stamp.
     */
@@ -78,11 +69,6 @@ export class ImageStamp extends StampBase {
             "type": "number"
         },
         {
-            "name": "verticalAlignment",
-            "baseName": "VerticalAlignment",
-            "type": "VerticalAlignment"
-        },
-        {
             "name": "bottomMargin",
             "baseName": "BottomMargin",
             "type": "number"
@@ -93,18 +79,13 @@ export class ImageStamp extends StampBase {
             "type": "number"
         },
         {
-            "name": "topMargin",
-            "baseName": "TopMargin",
-            "type": "number"
-        },
-        {
             "name": "rightMargin",
             "baseName": "RightMargin",
             "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageStamp.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ImageFooter.attributeTypeMap);
     }
 }
 

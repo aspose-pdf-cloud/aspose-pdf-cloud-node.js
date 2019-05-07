@@ -1,4 +1,4 @@
- /**
+﻿ /**
  *
  *   Copyright (c) 2019 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,26 +19,13 @@
  *
  */
 
-import * as BaseTest from "./baseTestPdfApi";
-import "mocha";
-var assert = require('assert');
-
-describe("Bookmarks Tests", () => {
-
-    const name = "PdfWithBookmarks.pdf";
-  
-    before( async ()=> {
-        await BaseTest.uploadFile(name);
-    });
-
-    describe("GetDocumentBookmarks Test", () => {
-
-        it("should return response with code 200", async () => {
-
-            return BaseTest.getPdfApi().getDocumentBookmarks(name, null, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, 200);
-            });
-        });
-    });
-});
+export enum PermissionsFlags {
+    PrintDocument = 'PrintDocument',
+    ModifyContent = 'ModifyContent',
+    ExtractContent = 'ExtractContent',
+    ModifyTextAnnotations = 'ModifyTextAnnotations',
+    FillForm = 'FillForm',
+    ExtractContentWithDisabilities = 'ExtractContentWithDisabilities',
+    AssembleDocument = 'AssembleDocument',
+    PrintingQuality = 'PrintingQuality',
+}
