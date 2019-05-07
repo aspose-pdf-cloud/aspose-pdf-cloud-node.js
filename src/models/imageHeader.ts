@@ -19,13 +19,12 @@
  *
  */
 
-import { VerticalAlignment } from "./verticalAlignment";
 import { StampBase } from "./stampBase";
 
 /**
-* Represents Pdf stamps.
+* Represents Pdf image header.
 */
-export class ImageStamp extends StampBase {
+export class ImageHeader extends StampBase {
     /**
     * Gets or sets the file name.
     */
@@ -38,14 +37,6 @@ export class ImageStamp extends StampBase {
     * Gets or sets image height. Setting this image allows to scale image vertically.
     */
     'height': number;
-    /**
-    * Gets or sets vertical alignment of stamp on page.
-    */
-    'verticalAlignment': VerticalAlignment;
-    /**
-    * Gets or sets bottom margin of stamp.
-    */
-    'bottomMargin': number;
     /**
     * Gets or sets left margin of stamp.
     */
@@ -78,16 +69,6 @@ export class ImageStamp extends StampBase {
             "type": "number"
         },
         {
-            "name": "verticalAlignment",
-            "baseName": "VerticalAlignment",
-            "type": "VerticalAlignment"
-        },
-        {
-            "name": "bottomMargin",
-            "baseName": "BottomMargin",
-            "type": "number"
-        },
-        {
             "name": "leftMargin",
             "baseName": "LeftMargin",
             "type": "number"
@@ -104,7 +85,7 @@ export class ImageStamp extends StampBase {
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageStamp.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ImageHeader.attributeTypeMap);
     }
 }
 

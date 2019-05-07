@@ -25,13 +25,18 @@ import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AppendDocument } from "./models/appendDocument";
 import { AsposeResponse } from "./models/asposeResponse";
+import { BorderCornerStyle } from "./models/borderCornerStyle";
+import { BorderInfo } from "./models/borderInfo";
 import { CapStyle } from "./models/capStyle";
 import { CaptionPosition } from "./models/captionPosition";
 import { CaretSymbol } from "./models/caretSymbol";
+import { Cell } from "./models/cell";
 import { CellRecognized } from "./models/cellRecognized";
 import { Color } from "./models/color";
 import { ColorDepth } from "./models/colorDepth";
+import { ColumnAdjustment } from "./models/columnAdjustment";
 import { CompressionType } from "./models/compressionType";
+import { CryptoAlgorithm } from "./models/cryptoAlgorithm";
 import { DiscUsage } from "./models/discUsage";
 import { DocFormat } from "./models/docFormat";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
@@ -45,6 +50,7 @@ import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
 import { FreeTextIntent } from "./models/freeTextIntent";
+import { GraphInfo } from "./models/graphInfo";
 import { HorizontalAlignment } from "./models/horizontalAlignment";
 import { HtmlDocumentType } from "./models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "./models/htmlMarkupGenerationModes";
@@ -67,12 +73,14 @@ import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
 import { PdfAType } from "./models/pdfAType";
+import { PermissionsFlags } from "./models/permissionsFlags";
 import { Point } from "./models/point";
 import { PolyIntent } from "./models/polyIntent";
 import { Position } from "./models/position";
 import { RasterImagesSavingModes } from "./models/rasterImagesSavingModes";
 import { Rectangle } from "./models/rectangle";
 import { Rotation } from "./models/rotation";
+import { Row } from "./models/row";
 import { RowRecognized } from "./models/rowRecognized";
 import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
@@ -84,6 +92,7 @@ import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
 import { StampIcon } from "./models/stampIcon";
 import { StampType } from "./models/stampType";
+import { TableBroken } from "./models/tableBroken";
 import { TextHorizontalAlignment } from "./models/textHorizontalAlignment";
 import { TextIcon } from "./models/textIcon";
 import { TextLine } from "./models/textLine";
@@ -192,6 +201,7 @@ import { StorageExistResponse } from "./models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
+import { Table } from "./models/table";
 import { TableRecognized } from "./models/tableRecognized";
 import { TableRecognizedResponse } from "./models/tableRecognizedResponse";
 import { TablesRecognized } from "./models/tablesRecognized";
@@ -206,13 +216,18 @@ import { UnderlineAnnotations } from "./models/underlineAnnotations";
 import { UnderlineAnnotationsResponse } from "./models/underlineAnnotationsResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
+import { ImageFooter } from "./models/imageFooter";
+import { ImageHeader } from "./models/imageHeader";
 import { ImageStamp } from "./models/imageStamp";
 import { MarkupAnnotation } from "./models/markupAnnotation";
 import { MovieAnnotation } from "./models/movieAnnotation";
+import { PageNumberStamp } from "./models/pageNumberStamp";
 import { PdfPageStamp } from "./models/pdfPageStamp";
 import { PopupAnnotation } from "./models/popupAnnotation";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { ScreenAnnotation } from "./models/screenAnnotation";
+import { TextFooter } from "./models/textFooter";
+import { TextHeader } from "./models/textHeader";
 import { TextStamp } from "./models/textStamp";
 import { CaretAnnotation } from "./models/caretAnnotation";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
@@ -239,11 +254,14 @@ let enumsMap: {[index: string]: any} = {
     "AnnotationState": AnnotationState,
     "AnnotationType": AnnotationType,
     "AntialiasingProcessingType": AntialiasingProcessingType,
+    "BorderCornerStyle": BorderCornerStyle,
     "CapStyle": CapStyle,
     "CaptionPosition": CaptionPosition,
     "CaretSymbol": CaretSymbol,
     "ColorDepth": ColorDepth,
+    "ColumnAdjustment": ColumnAdjustment,
     "CompressionType": CompressionType,
+    "CryptoAlgorithm": CryptoAlgorithm,
     "DocFormat": DocFormat,
     "DocRecognitionMode": DocRecognitionMode,
     "EpubRecognitionMode": EpubRecognitionMode,
@@ -266,6 +284,7 @@ let enumsMap: {[index: string]: any} = {
     "LinkHighlightingMode": LinkHighlightingMode,
     "PartsEmbeddingModes": PartsEmbeddingModes,
     "PdfAType": PdfAType,
+    "PermissionsFlags": PermissionsFlags,
     "PolyIntent": PolyIntent,
     "RasterImagesSavingModes": RasterImagesSavingModes,
     "Rotation": Rotation,
@@ -275,6 +294,7 @@ let enumsMap: {[index: string]: any} = {
     "SoundIcon": SoundIcon,
     "StampIcon": StampIcon,
     "StampType": StampType,
+    "TableBroken": TableBroken,
     "TextHorizontalAlignment": TextHorizontalAlignment,
     "TextIcon": TextIcon,
     "VerticalAlignment": VerticalAlignment,
@@ -284,12 +304,15 @@ let enumsMap: {[index: string]: any} = {
 let typeMap: {[index: string]: any} = {
     "AppendDocument": AppendDocument,
     "AsposeResponse": AsposeResponse,
+    "BorderInfo": BorderInfo,
+    "Cell": Cell,
     "CellRecognized": CellRecognized,
     "Color": Color,
     "DiscUsage": DiscUsage,
     "DocumentPrivilege": DocumentPrivilege,
     "File": File,
     "FileExist": FileExist,
+    "GraphInfo": GraphInfo,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
     "Link": Link,
@@ -302,6 +325,7 @@ let typeMap: {[index: string]: any} = {
     "Point": Point,
     "Position": Position,
     "Rectangle": Rectangle,
+    "Row": Row,
     "RowRecognized": RowRecognized,
     "Segment": Segment,
     "Signature": Signature,
@@ -411,6 +435,7 @@ let typeMap: {[index: string]: any} = {
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
     "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,
+    "Table": Table,
     "TableRecognized": TableRecognized,
     "TableRecognizedResponse": TableRecognizedResponse,
     "TablesRecognized": TablesRecognized,
@@ -425,13 +450,18 @@ let typeMap: {[index: string]: any} = {
     "UnderlineAnnotationsResponse": UnderlineAnnotationsResponse,
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
+    "ImageFooter": ImageFooter,
+    "ImageHeader": ImageHeader,
     "ImageStamp": ImageStamp,
     "MarkupAnnotation": MarkupAnnotation,
     "MovieAnnotation": MovieAnnotation,
+    "PageNumberStamp": PageNumberStamp,
     "PdfPageStamp": PdfPageStamp,
     "PopupAnnotation": PopupAnnotation,
     "RedactionAnnotation": RedactionAnnotation,
     "ScreenAnnotation": ScreenAnnotation,
+    "TextFooter": TextFooter,
+    "TextHeader": TextHeader,
     "TextStamp": TextStamp,
     "CaretAnnotation": CaretAnnotation,
     "CommonFigureAnnotation": CommonFigureAnnotation,

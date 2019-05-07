@@ -21,6 +21,13 @@
 import http = require('http');
 import { PdfApi } from "../src/api/api";
 import { AsposeResponse } from "../src/models/asposeResponse";
+import { TextState } from '../src/models/textState';
+import { FontStyles } from '../src/models/fontStyles';
+import { Table } from '../src/models/table';
+import { GraphInfo } from '../src/models/graphInfo';
+import { Row } from '../src/models/row';
+import { Cell } from '../src/models/cell';
+import { TextRect } from '../src/models/textRect';
 var fs = require('fs');
 
 let pdfApi: PdfApi;
@@ -45,6 +52,14 @@ export function getPdfApi() {
 export const remoteTempFolder = "TempPdfCloud";
 export const localTestDataFolder = "testData";
 
+/**
+ * 
+ * @param name 
+ */
+export function toBase64(str: string): string {
+   return Buffer.from(str).toString('base64');
+}
+
 
 /**
  * Upload file
@@ -55,4 +70,97 @@ export function uploadFile(name: string): Promise<{ response: http.IncomingMessa
   var data = fs.readFileSync(this.localTestDataFolder + "/" + name);
   
   return getPdfApi().putCreate(path, data).then();
+}
+
+/**
+ *  Create Table instance
+ */
+export function drawTable() {
+  const textState = {
+    font: "Arial Bold",
+    fontSize: 11,
+    foregroundColor: { a: 0xFF, r: 0x00, g: 0xFF, b: 0x00 },
+    backgroundColor: { a: 0xFF, r: 0xFF, g: 0x00, b: 0x00},
+    fontStyle: FontStyles.Bold
+  };
+
+  const numOfCols = 5;
+  const numOfRows = 5;
+
+  const table = new Table();
+  table.rows = [];
+
+  let colWidths = "";
+  for (let c = 0; c < numOfCols; c++)
+  {
+      colWidths += " 30";
+  }
+
+  table.columnWidths = colWidths;
+
+  table.defaultCellTextState = textState;
+
+  const borderTableBorder = new GraphInfo();
+  borderTableBorder.color = { a: 0xFF, r: 0x00, g: 0xFF, b: 0x00 };
+  borderTableBorder.lineWidth = 1;
+
+  table.defaultCellBorder = {
+      top: borderTableBorder,
+      right: borderTableBorder,
+      bottom: borderTableBorder,
+      left: borderTableBorder,
+      roundedBorderRadius: 0
+  };
+  table.top = 100;
+
+  for (let r = 0; r < numOfRows; r++)
+  {
+
+      const row = new Row();
+      row.cells = [];
+
+      for (let c = 0; c < numOfCols; c++)
+      {
+          const cell = new Cell();
+          cell.backgroundColor = { a: 0xFF, r: 0x00, g: 0x88, b: 0x00 };
+          cell.defaultCellTextState = textState;
+          
+          const textRect = new TextRect();
+          textRect.text = "value";
+          cell.paragraphs = [textRect];
+          
+          // change properties on cell
+          
+          if (c == 1)
+          {
+              cell.defaultCellTextState.foregroundColor = { a: 0xFF, r: 0x00, g: 0x00, b: 0xFF };
+          }
+
+          // change properties on cell AFTER first clearing and re-adding paragraphs
+          else if (c == 2)
+          {
+              cell.paragraphs[0].text = "y";
+              cell.defaultCellTextState.foregroundColor = { a: 0xFF, r: 0x00, g: 0x00, b: 0xFF };
+          }
+
+          // change properties on paragraph
+          else if (c == 3)
+          {
+              cell.paragraphs[0].textState = textState;
+              cell.paragraphs[0].textState.foregroundColor = { a: 0xFF, r: 0x00, g: 0x00, b: 0xFF };
+          }
+
+          // change properties on paragraph AFTER first clearing and re-adding paragraphs
+          else if (c == 4)
+          {
+            cell.paragraphs[0].text = "y";
+            cell.paragraphs[0].textState = textState;
+            cell.paragraphs[0].textState.foregroundColor = { a: 0xFF, r: 0x00, g: 0x00, b: 0xFF };
+          }
+          row.cells.push(cell);
+          
+      }
+      table.rows.push(row);
+  }
+  return table;
 }

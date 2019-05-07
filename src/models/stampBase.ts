@@ -19,7 +19,6 @@
  *
  */
 
-import { VerticalAlignment } from "./verticalAlignment";
 import { Rotation } from "./rotation";
 import { HorizontalAlignment } from "./horizontalAlignment";
 import { LinkElement } from "./linkElement";
@@ -33,25 +32,13 @@ export class StampBase extends LinkElement {
     */
     'background': boolean;
     /**
-    * Gets or sets bottom margin of stamp.
-    */
-    'bottomMargin': number;
-    /**
     * Gets or sets Horizontal alignment of stamp on the page. 
     */
     'horizontalAlignment': HorizontalAlignment;
     /**
-    * Gets or sets left margin of stamp.
-    */
-    'leftMargin': number;
-    /**
     * Gets or sets a value to indicate the stamp opacity. The value is from 0.0 to 1.0. By default the value is 1.0.
     */
     'opacity': number;
-    /**
-    * Gets or sets right margin of stamp.
-    */
-    'rightMargin': number;
     /**
     * Sets or gets the rotation of stamp content according  values. Note. This property is for set angles which are multiples of 90 degrees (0, 90, 180, 270 degrees). To set arbitrary angle use RotateAngle property.  If angle set by ArbitraryAngle is not multiple of 90 then Rotate property returns Rotation.None.
     */
@@ -60,14 +47,6 @@ export class StampBase extends LinkElement {
     * Gets or sets rotate angle of stamp in degrees. This property allows to set arbitrary rotate angle. 
     */
     'rotateAngle': number;
-    /**
-    * Gets or sets top margin of stamp.
-    */
-    'topMargin': number;
-    /**
-    * Gets or sets vertical alignment of stamp on page.
-    */
-    'verticalAlignment': VerticalAlignment;
     /**
     * Horizontal stamp coordinate, starting from the left.
     */
@@ -90,28 +69,13 @@ export class StampBase extends LinkElement {
             "type": "boolean"
         },
         {
-            "name": "bottomMargin",
-            "baseName": "BottomMargin",
-            "type": "number"
-        },
-        {
             "name": "horizontalAlignment",
             "baseName": "HorizontalAlignment",
             "type": "HorizontalAlignment"
         },
         {
-            "name": "leftMargin",
-            "baseName": "LeftMargin",
-            "type": "number"
-        },
-        {
             "name": "opacity",
             "baseName": "Opacity",
-            "type": "number"
-        },
-        {
-            "name": "rightMargin",
-            "baseName": "RightMargin",
             "type": "number"
         },
         {
@@ -123,16 +87,6 @@ export class StampBase extends LinkElement {
             "name": "rotateAngle",
             "baseName": "RotateAngle",
             "type": "number"
-        },
-        {
-            "name": "topMargin",
-            "baseName": "TopMargin",
-            "type": "number"
-        },
-        {
-            "name": "verticalAlignment",
-            "baseName": "VerticalAlignment",
-            "type": "VerticalAlignment"
         },
         {
             "name": "xIndent",

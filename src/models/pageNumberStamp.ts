@@ -25,19 +25,15 @@ import { StampBase } from "./stampBase";
 /**
 * Represents Pdf stamps.
 */
-export class ImageStamp extends StampBase {
+export class PageNumberStamp extends StampBase {
     /**
-    * Gets or sets the file name.
+    * Gets or sets string value which is used as stamp on the page.
     */
-    'fileName': string;
+    'value': string;
     /**
-    * Gets or sets image width. Setting this property allos to scal image horizontally.
+    * Gets or sets value of the number of starting page. Other pages will be numbered starting from this value.
     */
-    'width': number;
-    /**
-    * Gets or sets image height. Setting this image allows to scale image vertically.
-    */
-    'height': number;
+    'startingNumber': number;
     /**
     * Gets or sets vertical alignment of stamp on page.
     */
@@ -63,18 +59,13 @@ export class ImageStamp extends StampBase {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "fileName",
-            "baseName": "FileName",
+            "name": "value",
+            "baseName": "Value",
             "type": "string"
         },
         {
-            "name": "width",
-            "baseName": "Width",
-            "type": "number"
-        },
-        {
-            "name": "height",
-            "baseName": "Height",
+            "name": "startingNumber",
+            "baseName": "StartingNumber",
             "type": "number"
         },
         {
@@ -104,7 +95,7 @@ export class ImageStamp extends StampBase {
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageStamp.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(PageNumberStamp.attributeTypeMap);
     }
 }
 
