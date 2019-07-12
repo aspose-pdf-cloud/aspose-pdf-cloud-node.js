@@ -23,7 +23,6 @@ import { AnnotationFlags } from "../models/annotationFlags";
 import { AnnotationState } from "../models/annotationState";
 import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
-import { AppendDocument } from "../models/appendDocument";
 import { AsposeResponse } from "../models/asposeResponse";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
 import { BorderInfo } from "../models/borderInfo";
@@ -42,10 +41,12 @@ import { DocFormat } from "../models/docFormat";
 import { DocRecognitionMode } from "../models/docRecognitionMode";
 import { DocumentPrivilege } from "../models/documentPrivilege";
 import { EpubRecognitionMode } from "../models/epubRecognitionMode";
+import { ErrorDetails } from "../models/errorDetails";
 import { FieldType } from "../models/fieldType";
-import { File } from "../models/file";
-import { FileExist } from "../models/fileExist";
 import { FileIcon } from "../models/fileIcon";
+import { FileVersions } from "../models/fileVersions";
+import { FilesList } from "../models/filesList";
+import { FilesUploadResult } from "../models/filesUploadResult";
 import { FontEncodingRules } from "../models/fontEncodingRules";
 import { FontSavingModes } from "../models/fontSavingModes";
 import { FontStyles } from "../models/fontStyles";
@@ -68,6 +69,8 @@ import { LinkElement } from "../models/linkElement";
 import { LinkHighlightingMode } from "../models/linkHighlightingMode";
 import { MarginInfo } from "../models/marginInfo";
 import { MergeDocuments } from "../models/mergeDocuments";
+import { ModelError } from "../models/modelError";
+import { ObjectExist } from "../models/objectExist";
 import { OptimizeOptions } from "../models/optimizeOptions";
 import { PageWordCount } from "../models/pageWordCount";
 import { Paragraph } from "../models/paragraph";
@@ -92,6 +95,8 @@ import { SplitResult } from "../models/splitResult";
 import { Stamp } from "../models/stamp";
 import { StampIcon } from "../models/stampIcon";
 import { StampType } from "../models/stampType";
+import { StorageExist } from "../models/storageExist";
+import { StorageFile } from "../models/storageFile";
 import { TableBroken } from "../models/tableBroken";
 import { TextHorizontalAlignment } from "../models/textHorizontalAlignment";
 import { TextIcon } from "../models/textIcon";
@@ -112,13 +117,16 @@ import { Attachment } from "../models/attachment";
 import { AttachmentResponse } from "../models/attachmentResponse";
 import { Attachments } from "../models/attachments";
 import { AttachmentsResponse } from "../models/attachmentsResponse";
+import { Bookmark } from "../models/bookmark";
+import { BookmarkResponse } from "../models/bookmarkResponse";
+import { Bookmarks } from "../models/bookmarks";
+import { BookmarksResponse } from "../models/bookmarksResponse";
 import { CaretAnnotationResponse } from "../models/caretAnnotationResponse";
 import { CaretAnnotations } from "../models/caretAnnotations";
 import { CaretAnnotationsResponse } from "../models/caretAnnotationsResponse";
 import { CircleAnnotationResponse } from "../models/circleAnnotationResponse";
 import { CircleAnnotations } from "../models/circleAnnotations";
 import { CircleAnnotationsResponse } from "../models/circleAnnotationsResponse";
-import { DiscUsageResponse } from "../models/discUsageResponse";
 import { Document } from "../models/document";
 import { DocumentPageResponse } from "../models/documentPageResponse";
 import { DocumentPagesResponse } from "../models/documentPagesResponse";
@@ -134,10 +142,7 @@ import { FieldsResponse } from "../models/fieldsResponse";
 import { FileAttachmentAnnotationResponse } from "../models/fileAttachmentAnnotationResponse";
 import { FileAttachmentAnnotations } from "../models/fileAttachmentAnnotations";
 import { FileAttachmentAnnotationsResponse } from "../models/fileAttachmentAnnotationsResponse";
-import { FileExistResponse } from "../models/fileExistResponse";
 import { FileVersion } from "../models/fileVersion";
-import { FileVersionsResponse } from "../models/fileVersionsResponse";
-import { FilesResponse } from "../models/filesResponse";
 import { FreeTextAnnotationResponse } from "../models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "../models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "../models/freeTextAnnotationsResponse";
@@ -197,7 +202,6 @@ import { StampBase } from "../models/stampBase";
 import { StampInfo } from "../models/stampInfo";
 import { StampsInfo } from "../models/stampsInfo";
 import { StampsInfoResponse } from "../models/stampsInfoResponse";
-import { StorageExistResponse } from "../models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "../models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "../models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "../models/strikeOutAnnotationsResponse";
@@ -256,7 +260,7 @@ import localVarRequest = require('request');
 import http = require('http');
 import { invokeApiMethod } from "../requestHelper";
 
-let defaultBasePath = 'https://api.aspose.cloud/v2.0';
+let defaultBasePath = 'https://api.aspose.cloud/v3.0';
 
 
 
@@ -296,6 +300,182 @@ export class PdfApi {
         return this.configuration.baseUrl;
     }
 
+
+
+    /**
+     * 
+     * @summary Copy file
+     * @param srcPath Source file path e.g. &#39;/folder/file.ext&#39;
+     * @param destPath Destination file path
+     * @param srcStorageName Source storage name
+     * @param destStorageName Destination storage name
+     * @param versionId File version ID to copy
+     */
+    public async copyFile (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/file/copy/{srcPath}'
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling copyFile.');
+        }
+
+        // verify required parameter 'destPath' is not null or undefined
+        if (destPath === null || destPath === undefined) {
+            throw new Error('Required parameter destPath was null or undefined when calling copyFile.');
+        }
+
+        if (destPath !== undefined && null !== destPath) {
+            localVarQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+        }
+
+        if (srcStorageName !== undefined && null !== srcStorageName) {
+            localVarQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+        }
+
+        if (destStorageName !== undefined && null !== destStorageName) {
+            localVarQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+        }
+
+        if (versionId !== undefined && null !== versionId) {
+            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Copy folder
+     * @param srcPath Source folder path e.g. &#39;/src&#39;
+     * @param destPath Destination folder path e.g. &#39;/dst&#39;
+     * @param srcStorageName Source storage name
+     * @param destStorageName Destination storage name
+     */
+    public async copyFolder (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/folder/copy/{srcPath}'
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling copyFolder.');
+        }
+
+        // verify required parameter 'destPath' is not null or undefined
+        if (destPath === null || destPath === undefined) {
+            throw new Error('Required parameter destPath was null or undefined when calling copyFolder.');
+        }
+
+        if (destPath !== undefined && null !== destPath) {
+            localVarQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+        }
+
+        if (srcStorageName !== undefined && null !== srcStorageName) {
+            localVarQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+        }
+
+        if (destStorageName !== undefined && null !== destStorageName) {
+            localVarQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Create the folder
+     * @param path Folder path to create e.g. &#39;folder_1/folder_2/&#39;
+     * @param storageName Storage name
+     */
+    public async createFolder (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling createFolder.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "");
+        return Promise.resolve({body: result, response});
+    }
 
 
     /**
@@ -359,6 +539,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Delete document bookmark by ID.
+     * @param name The document name.
+     * @param bookmarkPath The bookmark path.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async deleteBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteBookmark.');
+        }
+
+        // verify required parameter 'bookmarkPath' is not null or undefined
+        if (bookmarkPath === null || bookmarkPath === undefined) {
+            throw new Error('Required parameter bookmarkPath was null or undefined when calling deleteBookmark.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Delete all annotations from the document
      * @param name The document name.
      * @param storage The document storage.
@@ -382,6 +621,58 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Delete all document bookmarks.
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async deleteDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteDocumentBookmarks.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -626,13 +917,14 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Remove a specific file 
-     * @param path Path of the file including file name and extension e.g. /Folder1/file.ext
-     * @param versionId File&#39;s version
-     * @param storage User&#39;s storage name
+     * @summary Delete file
+     * @param path File path e.g. &#39;/folder/file.ext&#39;
+     * @param storageName Storage name
+     * @param versionId File version ID to delete
      */
-    public async deleteFile (path: string, versionId?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/file';
+    public async deleteFile (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/file/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -642,16 +934,12 @@ export class PdfApi {
             throw new Error('Required parameter path was null or undefined when calling deleteFile.');
         }
 
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
         }
 
         if (versionId !== undefined && null !== versionId) {
             localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
 
@@ -674,20 +962,21 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "");
         return Promise.resolve({body: result, response});
     }
 
 
     /**
      * 
-     * @summary Remove a specific folder 
-     * @param path Folder path e.g. /Folder1
-     * @param storage User&#39;s storage name
-     * @param recursive Remove recursivelly inner folder/files. If false and folder contains data than exception is raised.
+     * @summary Delete folder
+     * @param path Folder path e.g. &#39;/folder&#39;
+     * @param storageName Storage name
+     * @param recursive Enable to delete folders, subfolders and files
      */
-    public async deleteFolder (path: string, storage?: string, recursive?: boolean) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/folder';
+    public async deleteFolder (path: string, storageName?: string, recursive?: boolean) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -697,12 +986,8 @@ export class PdfApi {
             throw new Error('Required parameter path was null or undefined when calling deleteFolder.');
         }
 
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
         }
 
         if (recursive !== undefined && null !== recursive) {
@@ -729,7 +1014,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "");
         return Promise.resolve({body: result, response});
     }
 
@@ -1378,6 +1663,176 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Download file
+     * @param path File path e.g. &#39;/folder/file.ext&#39;
+     * @param storageName Storage name
+     * @param versionId File version ID to download
+     */
+    public async downloadFile (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/file/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling downloadFile.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+        if (versionId !== undefined && null !== versionId) {
+            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document bookmark.
+     * @param name The document name.
+     * @param bookmarkPath The bookmark path.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getBookmark.');
+        }
+
+        // verify required parameter 'bookmarkPath' is not null or undefined
+        if (bookmarkPath === null || bookmarkPath === undefined) {
+            throw new Error('Required parameter bookmarkPath was null or undefined when calling getBookmark.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document bookmarks node list.
+     * @param name The document name.
+     * @param bookmarkPath The bookmark path.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getBookmarks (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/list/{bookmarkPath}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getBookmarks.');
+        }
+
+        // verify required parameter 'bookmarkPath' is not null or undefined
+        if (bookmarkPath === null || bookmarkPath === undefined) {
+            throw new Error('Required parameter bookmarkPath was null or undefined when calling getBookmarks.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page caret annotation by ID.
      * @param name The document name.
      * @param annotationId The annotation ID.
@@ -1496,17 +1951,17 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Check the disk usage of the current account 
-     * @param storage User&#39;s storage name
+     * @summary Get disc usage
+     * @param storageName Storage name
      */
-    public async getDiscUsage (storage?: string) : Promise<{ response: http.IncomingMessage; body: DiscUsageResponse;  }> {
-        const localVarPath = this.basePath + '/storage/disc';
+    public async getDiscUsage (storageName?: string) : Promise<{ response: http.IncomingMessage; body: DiscUsage;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/disc';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
         }
 
 
@@ -1529,7 +1984,7 @@ export class PdfApi {
             }
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "DiscUsageResponse");
+        const result =  ObjectSerializer.deserialize(response.body, "DiscUsage");
         return Promise.resolve({body: result, response});
     }
 
@@ -1745,6 +2200,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AttachmentsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document bookmarks tree.
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentBookmarks.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -3065,61 +3572,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Download a specific file 
-     * @param path Path of the file including the file name and extension e.g. /file.ext
-     * @param versionId File&#39;s version
-     * @param storage User&#39;s storage name
-     */
-    public async getDownload (path: string, versionId?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/storage/file';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'path' is not null or undefined
-        if (path === null || path === undefined) {
-            throw new Error('Required parameter path was null or undefined when calling getDownload.');
-        }
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (versionId !== undefined && null !== versionId) {
-            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Download document attachment content by its index.
      * @param name The document name.
      * @param attachmentIndex The attachment index.
@@ -3452,6 +3904,100 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Get file versions
+     * @param path File path e.g. &#39;/file.ext&#39;
+     * @param storageName Storage name
+     */
+    public async getFileVersions (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FileVersions;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/version/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling getFileVersions.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FileVersions");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Get all files and folders within a folder
+     * @param path Folder path e.g. &#39;/folder&#39;
+     * @param storageName Storage name
+     */
+    public async getFilesList (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FilesList;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling getFilesList.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FilesList");
         return Promise.resolve({body: result, response});
     }
 
@@ -4119,103 +4665,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Check if a specific file or folder exists
-     * @param path File or folder path e.g. /file.ext or /Folder1
-     * @param versionId File&#39;s version
-     * @param storage User&#39;s storage name
-     */
-    public async getIsExist (path: string, versionId?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: FileExistResponse;  }> {
-        const localVarPath = this.basePath + '/storage/exist';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'path' is not null or undefined
-        if (path === null || path === undefined) {
-            throw new Error('Required parameter path was null or undefined when calling getIsExist.');
-        }
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (versionId !== undefined && null !== versionId) {
-            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "FileExistResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Check if storage exists 
-     * @param name Storage name
-     */
-    public async getIsStorageExist (name: string) : Promise<{ response: http.IncomingMessage; body: StorageExistResponse;  }> {
-        const localVarPath = this.basePath + '/storage/{name}/exist'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getIsStorageExist.');
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "StorageExistResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param storage The document storage.
@@ -4378,101 +4827,6 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Get the file's versions list 
-     * @param path File path e.g. /file.ext or /Folder1/file.ext
-     * @param storage User&#39;s storage name
-     */
-    public async getListFileVersions (path: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: FileVersionsResponse;  }> {
-        const localVarPath = this.basePath + '/storage/version';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'path' is not null or undefined
-        if (path === null || path === undefined) {
-            throw new Error('Required parameter path was null or undefined when calling getListFileVersions.');
-        }
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "FileVersionsResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Get the file listing of a specific folder 
-     * @param path Start with name of storage e.g. root folder &#39;/&#39;or some folder &#39;/folder1/..&#39;
-     * @param storage User&#39;s storage name
-     */
-    public async getListFiles (path?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: FilesResponse;  }> {
-        const localVarPath = this.basePath + '/storage/folder';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "FilesResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9362,16 +9716,196 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Move file
+     * @param srcPath Source file path e.g. &#39;/src.ext&#39;
+     * @param destPath Destination file path e.g. &#39;/dest.ext&#39;
+     * @param srcStorageName Source storage name
+     * @param destStorageName Destination storage name
+     * @param versionId File version ID to move
+     */
+    public async moveFile (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/file/move/{srcPath}'
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling moveFile.');
+        }
+
+        // verify required parameter 'destPath' is not null or undefined
+        if (destPath === null || destPath === undefined) {
+            throw new Error('Required parameter destPath was null or undefined when calling moveFile.');
+        }
+
+        if (destPath !== undefined && null !== destPath) {
+            localVarQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+        }
+
+        if (srcStorageName !== undefined && null !== srcStorageName) {
+            localVarQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+        }
+
+        if (destStorageName !== undefined && null !== destStorageName) {
+            localVarQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+        }
+
+        if (versionId !== undefined && null !== versionId) {
+            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Move folder
+     * @param srcPath Folder path to move e.g. &#39;/folder&#39;
+     * @param destPath Destination folder path to move to e.g &#39;/dst&#39;
+     * @param srcStorageName Source storage name
+     * @param destStorageName Destination storage name
+     */
+    public async moveFolder (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/folder/move/{srcPath}'
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling moveFolder.');
+        }
+
+        // verify required parameter 'destPath' is not null or undefined
+        if (destPath === null || destPath === undefined) {
+            throw new Error('Required parameter destPath was null or undefined when calling moveFolder.');
+        }
+
+        if (destPath !== undefined && null !== destPath) {
+            localVarQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+        }
+
+        if (srcStorageName !== undefined && null !== srcStorageName) {
+            localVarQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+        }
+
+        if (destStorageName !== undefined && null !== destStorageName) {
+            localVarQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Check if file or folder exists
+     * @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
+     * @param storageName Storage name
+     * @param versionId File version ID
+     */
+    public async objectExists (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body: ObjectExist;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/exist/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling objectExists.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+        if (versionId !== undefined && null !== versionId) {
+            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ObjectExist");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Append document to existing one.
      * @param name The original document name.
-     * @param appendDocument with the append document data.
      * @param appendFile Append file server path.
      * @param startPage Appending start page.
      * @param endPage Appending end page.
      * @param storage The documents storage.
      * @param folder The original document folder.
      */
-    public async postAppendDocument (name: string, appendDocument?: AppendDocument, appendFile?: string, startPage?: number, endPage?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
+    public async postAppendDocument (name: string, appendFile: string, startPage?: number, endPage?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/appendDocument'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9381,6 +9915,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling postAppendDocument.');
+        }
+
+        // verify required parameter 'appendFile' is not null or undefined
+        if (appendFile === null || appendFile === undefined) {
+            throw new Error('Required parameter appendFile was null or undefined when calling postAppendDocument.');
         }
 
         if (appendFile !== undefined && null !== appendFile) {
@@ -9413,7 +9952,6 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(appendDocument, "AppendDocument")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -9425,6 +9963,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document bookmarks.
+     * @param name The document name.
+     * @param bookmarkPath The bookmark path.
+     * @param bookmarks The array of bookmark.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async postBookmark (name: string, bookmarkPath: string, bookmarks: Array<Bookmark>, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postBookmark.');
+        }
+
+        // verify required parameter 'bookmarkPath' is not null or undefined
+        if (bookmarkPath === null || bookmarkPath === undefined) {
+            throw new Error('Required parameter bookmarkPath was null or undefined when calling postBookmark.');
+        }
+
+        // verify required parameter 'bookmarks' is not null or undefined
+        if (bookmarks === null || bookmarks === undefined) {
+            throw new Error('Required parameter bookmarks was null or undefined when calling postBookmark.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(bookmarks, "Array<Bookmark>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "BookmarksResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -9516,11 +10120,11 @@ export class PdfApi {
      * @summary Create field.
      * @param name The document name.
      * @param page Document page number.
-     * @param field with the field data.
+     * @param field Field with the field data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postCreateField (name: string, page: number, field?: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postCreateField (name: string, page: number, field: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -9535,6 +10139,11 @@ export class PdfApi {
         // verify required parameter 'page' is not null or undefined
         if (page === null || page === undefined) {
             throw new Error('Required parameter page was null or undefined when calling postCreateField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling postCreateField.');
         }
 
         if (page !== undefined && null !== page) {
@@ -10047,8 +10656,8 @@ export class PdfApi {
      * @param name Document name.
      * @param userPassword User password (encrypted Base64).
      * @param ownerPassword Owner password (encrypted Base64).
-     * @param cryptoAlgorithm Cryptographic algorithm, see  for details.
-     * @param permissionsFlags Array of document permissions, see  for details.
+     * @param cryptoAlgorithm Cryptographic algorithm, see CryptoAlgorithm for details.
+     * @param permissionsFlags Array of document permissions, see PermissionsFlags for details.
      * @param usePdf20 Support for revision 6 (Extension 8).
      * @param storage The document storage.
      * @param folder The document folder.
@@ -10314,141 +10923,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Move a specific file
-     * @param src Source file path e.g. /fileSource.ext
-     * @param dest Destination file path e.g. /fileDestination.ext
-     * @param versionId Source file&#39;s version,
-     * @param storage User&#39;s source storage name
-     * @param destStorage User&#39;s destination storage name
-     */
-    public async postMoveFile (src: string, dest: string, versionId?: string, storage?: string, destStorage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/file';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'src' is not null or undefined
-        if (src === null || src === undefined) {
-            throw new Error('Required parameter src was null or undefined when calling postMoveFile.');
-        }
-
-        // verify required parameter 'dest' is not null or undefined
-        if (dest === null || dest === undefined) {
-            throw new Error('Required parameter dest was null or undefined when calling postMoveFile.');
-        }
-
-        if (src !== undefined && null !== src) {
-            localVarQueryParameters['src'] = ObjectSerializer.serialize(src, "string");
-        }
-
-        if (dest !== undefined && null !== dest) {
-            localVarQueryParameters['dest'] = ObjectSerializer.serialize(dest, "string");
-        }
-
-        if (versionId !== undefined && null !== versionId) {
-            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (destStorage !== undefined && null !== destStorage) {
-            localVarQueryParameters['destStorage'] = ObjectSerializer.serialize(destStorage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Move a specific folder 
-     * @param src Source folder path e.g. /Folder1
-     * @param dest Destination folder path e.g. /Folder2
-     * @param storage User&#39;s source storage name
-     * @param destStorage User&#39;s destination storage name
-     */
-    public async postMoveFolder (src: string, dest: string, storage?: string, destStorage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/folder';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'src' is not null or undefined
-        if (src === null || src === undefined) {
-            throw new Error('Required parameter src was null or undefined when calling postMoveFolder.');
-        }
-
-        // verify required parameter 'dest' is not null or undefined
-        if (dest === null || dest === undefined) {
-            throw new Error('Required parameter dest was null or undefined when calling postMoveFolder.');
-        }
-
-        if (src !== undefined && null !== src) {
-            localVarQueryParameters['src'] = ObjectSerializer.serialize(src, "string");
-        }
-
-        if (dest !== undefined && null !== dest) {
-            localVarQueryParameters['dest'] = ObjectSerializer.serialize(dest, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (destStorage !== undefined && null !== destStorage) {
-            localVarQueryParameters['destStorage'] = ObjectSerializer.serialize(destStorage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'POST',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Move page to new position.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -10524,7 +10998,7 @@ export class PdfApi {
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postOptimizeDocument (name: string, options?: OptimizeOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postOptimizeDocument (name: string, options: OptimizeOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/optimize'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -10534,6 +11008,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling postOptimizeDocument.');
+        }
+
+        // verify required parameter 'options' is not null or undefined
+        if (options === null || options === undefined) {
+            throw new Error('Required parameter options was null or undefined when calling postOptimizeDocument.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -12290,11 +12769,11 @@ export class PdfApi {
      * 
      * @summary Sign document.
      * @param name The document name.
-     * @param signature Signature object containing signature data.
+     * @param sign Signature object containing signature data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postSignDocument (name: string, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postSignDocument (name: string, sign: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/sign'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -12304,6 +12783,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling postSignDocument.');
+        }
+
+        // verify required parameter 'sign' is not null or undefined
+        if (sign === null || sign === undefined) {
+            throw new Error('Required parameter sign was null or undefined when calling postSignDocument.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -12324,7 +12808,7 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(signature, "Signature")
+            body: ObjectSerializer.serialize(sign, "Signature")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -12345,11 +12829,11 @@ export class PdfApi {
      * @summary Sign page.
      * @param name The document name.
      * @param pageNumber The page number.
-     * @param signature Signature object containing signature data.
+     * @param sign Signature object containing signature data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async postSignPage (name: string, pageNumber: number, signature?: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postSignPage (name: string, pageNumber: number, sign: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/sign'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -12365,6 +12849,11 @@ export class PdfApi {
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
             throw new Error('Required parameter pageNumber was null or undefined when calling postSignPage.');
+        }
+
+        // verify required parameter 'sign' is not null or undefined
+        if (sign === null || sign === undefined) {
+            throw new Error('Required parameter sign was null or undefined when calling postSignPage.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -12385,7 +12874,7 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(signature, "Signature")
+            body: ObjectSerializer.serialize(sign, "Signature")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -12529,7 +13018,7 @@ export class PdfApi {
      * @param folder Document folder.
      * @param storage The document storage.
      */
-    public async putAddText (name: string, pageNumber: number, paragraph?: Paragraph, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putAddText (name: string, pageNumber: number, paragraph: Paragraph, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
@@ -12545,6 +13034,11 @@ export class PdfApi {
         // verify required parameter 'pageNumber' is not null or undefined
         if (pageNumber === null || pageNumber === undefined) {
             throw new Error('Required parameter pageNumber was null or undefined when calling putAddText.');
+        }
+
+        // verify required parameter 'paragraph' is not null or undefined
+        if (paragraph === null || paragraph === undefined) {
+            throw new Error('Required parameter paragraph was null or undefined when calling putAddText.');
         }
 
         if (folder !== undefined && null !== folder) {
@@ -12644,6 +13138,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update document bookmark.
+     * @param name The document name.
+     * @param bookmarkPath The bookmark path.
+     * @param bookmark The bookmark.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async putBookmark (name: string, bookmarkPath: string, bookmark: Bookmark, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putBookmark.');
+        }
+
+        // verify required parameter 'bookmarkPath' is not null or undefined
+        if (bookmarkPath === null || bookmarkPath === undefined) {
+            throw new Error('Required parameter bookmarkPath was null or undefined when calling putBookmark.');
+        }
+
+        // verify required parameter 'bookmark' is not null or undefined
+        if (bookmark === null || bookmark === undefined) {
+            throw new Error('Required parameter bookmark was null or undefined when calling putBookmark.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(bookmark, "Bookmark")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "BookmarkResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -12870,74 +13430,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Upload a specific file 
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext
-     * @param file File to upload
-     * @param versionId Source file&#39;s version
-     * @param storage User&#39;s storage name
-     */
-    public async putCreate (path: string, file: Buffer, versionId?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/file';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'path' is not null or undefined
-        if (path === null || path === undefined) {
-            throw new Error('Required parameter path was null or undefined when calling putCreate.');
-        }
-
-        // verify required parameter 'file' is not null or undefined
-        if (file === null || file === undefined) {
-            throw new Error('Required parameter file was null or undefined when calling putCreate.');
-        }
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (versionId !== undefined && null !== versionId) {
-            localVarQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        if (file !== undefined) {
-            localVarFormParams['File'] = file;
-            fileData = file;
-        }
-        localVarUseFormData = true;
-        
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Create empty document.
      * @param name The new document name.
      * @param storage The document storage.
@@ -12984,61 +13476,6 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Create the folder 
-     * @param path Target folder&#39;s path e.g. Folder1/Folder2/. The folders will be created recursively
-     * @param storage User&#39;s source storage name
-     * @param destStorage User&#39;s destination storage name
-     */
-    public async putCreateFolder (path: string, storage?: string, destStorage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/storage/folder';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'path' is not null or undefined
-        if (path === null || path === undefined) {
-            throw new Error('Required parameter path was null or undefined when calling putCreateFolder.');
-        }
-
-        if (path !== undefined && null !== path) {
-            localVarQueryParameters['path'] = ObjectSerializer.serialize(path, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-        if (destStorage !== undefined && null !== destStorage) {
-            localVarQueryParameters['destStorage'] = ObjectSerializer.serialize(destStorage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -13117,8 +13554,8 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.doc)
      * @param userPassword User password (encrypted Base64).
      * @param ownerPassword Owner password (encrypted Base64).
-     * @param cryptoAlgorithm Cryptographic algorithm, see  for details.
-     * @param permissionsFlags Array of document permissions, see  for details.
+     * @param cryptoAlgorithm Cryptographic algorithm, see CryptoAlgorithm for details.
+     * @param permissionsFlags Array of document permissions, see PermissionsFlags for details.
      * @param usePdf20 Support for revision 6 (Extension 8).
      * @param storage The document storage.
      * @param file A file to be encrypted.
@@ -13987,7 +14424,7 @@ export class PdfApi {
      * 
      * @summary Convert image file (located on storage) to PDF format and upload resulting file to storage. 
      * @param name The document name.
-     * @param imageTemplates Image templates
+     * @param imageTemplates ImageTemplatesRequestImage templates
      * @param dstFolder The destination document folder.
      * @param storage The document storage.
      */
@@ -14123,7 +14560,7 @@ export class PdfApi {
      * @param pageNumber The page number.
      * @param width The converted image width.
      * @param height The converted image height.
-     * @param storage 
+     * @param storage The document storage.
      * @param folder The document folder.
      * @param destFolder The document folder.
      */
@@ -14602,11 +15039,11 @@ export class PdfApi {
      * 
      * @summary Merge a list of documents.
      * @param name Resulting documen name.
-     * @param mergeDocuments with a list of documents.
+     * @param mergeDocuments MergeDocuments with a list of documents.
      * @param storage Resulting document storage.
      * @param folder Resulting document folder.
      */
-    public async putMergeDocuments (name: string, mergeDocuments?: MergeDocuments, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
+    public async putMergeDocuments (name: string, mergeDocuments: MergeDocuments, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/merge'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -14616,6 +15053,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling putMergeDocuments.');
+        }
+
+        // verify required parameter 'mergeDocuments' is not null or undefined
+        if (mergeDocuments === null || mergeDocuments === undefined) {
+            throw new Error('Required parameter mergeDocuments was null or undefined when calling putMergeDocuments.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -14785,7 +15227,7 @@ export class PdfApi {
      * @summary Add page stamp.
      * @param name The document name.
      * @param pageNumber The page number.
-     * @param stamp with data.
+     * @param stamp Stamp with data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
@@ -17794,11 +18236,11 @@ export class PdfApi {
      * 
      * @summary Update privilege document.
      * @param name The document name.
-     * @param privileges Document privileges. 
+     * @param privileges Document privileges. DocumentPrivilege
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putPrivileges (name: string, privileges?: DocumentPrivilege, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPrivileges (name: string, privileges: DocumentPrivilege, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/privileges'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -17808,6 +18250,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling putPrivileges.');
+        }
+
+        // verify required parameter 'privileges' is not null or undefined
+        if (privileges === null || privileges === undefined) {
+            throw new Error('Required parameter privileges was null or undefined when calling putPrivileges.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -19078,11 +19525,11 @@ export class PdfApi {
      * @summary Update field.
      * @param name The document name.
      * @param fieldName The name of a field to be updated.
-     * @param field with the field data.
+     * @param field Field with the field data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putUpdateField (name: string, fieldName: string, field?: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldResponse;  }> {
+    public async putUpdateField (name: string, fieldName: string, field: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/{fieldName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
@@ -19098,6 +19545,11 @@ export class PdfApi {
         // verify required parameter 'fieldName' is not null or undefined
         if (fieldName === null || fieldName === undefined) {
             throw new Error('Required parameter fieldName was null or undefined when calling putUpdateField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putUpdateField.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -19138,11 +19590,11 @@ export class PdfApi {
      * 
      * @summary Update fields.
      * @param name The document name.
-     * @param fields with the fields data.
+     * @param fields Fields with the fields data.
      * @param storage The document storage.
      * @param folder The document folder.
      */
-    public async putUpdateFields (name: string, fields?: Fields, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldsResponse;  }> {
+    public async putUpdateFields (name: string, fields: Fields, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
@@ -19152,6 +19604,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling putUpdateFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling putUpdateFields.');
         }
 
         if (storage !== undefined && null !== storage) {
@@ -19592,6 +20049,108 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Check if storage exists
+     * @param storageName Storage name
+     */
+    public async storageExists (storageName: string) : Promise<{ response: http.IncomingMessage; body: StorageExist;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/{storageName}/exist'
+            .replace('{' + 'storageName' + '}', encodeURIComponent(String(storageName)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'storageName' is not null or undefined
+        if (storageName === null || storageName === undefined) {
+            throw new Error('Required parameter storageName was null or undefined when calling storageExists.');
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "StorageExist");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Upload file
+     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
+     * @param file File to upload
+     * @param storageName Storage name
+     */
+    public async uploadFile (path: string, file: Buffer, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FilesUploadResult;  }> {
+        const localVarPath = this.basePath + '/pdf/storage/file/{path}'
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path' is not null or undefined
+        if (path === null || path === undefined) {
+            throw new Error('Required parameter path was null or undefined when calling uploadFile.');
+        }
+
+        // verify required parameter 'file' is not null or undefined
+        if (file === null || file === undefined) {
+            throw new Error('Required parameter file was null or undefined when calling uploadFile.');
+        }
+
+        if (storageName !== undefined && null !== storageName) {
+            localVarQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (file !== undefined) {
+            localVarFormParams['File'] = file;
+            fileData = file;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "FilesUploadResult");
         return Promise.resolve({body: result, response});
     }
 }

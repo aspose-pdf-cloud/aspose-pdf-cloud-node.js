@@ -5,7 +5,7 @@ Number of words per document pages.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**wordsPerPage** | [**WordCount**](WordCount.md) | with words per page info.  | [optional]
+**wordsPerPage** | [**WordCount**](WordCount.md) | WordCount with words per page info. | [optional]
 **code** | **number** | Response status code.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | 
 **status** | **string** | Response status.<br />*Inherited from [AsposeResponse](AsposeResponse.md)* | [optional]
 

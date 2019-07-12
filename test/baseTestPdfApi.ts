@@ -28,6 +28,7 @@ import { GraphInfo } from '../src/models/graphInfo';
 import { Row } from '../src/models/row';
 import { Cell } from '../src/models/cell';
 import { TextRect } from '../src/models/textRect';
+import { FilesUploadResult } from '../src/models/filesUploadResult';
 var fs = require('fs');
 
 let pdfApi: PdfApi;
@@ -40,10 +41,11 @@ export function getPdfApi() {
 
     //Get App key and App SID from https://aspose.cloud
     pdfApi = new PdfApi(
-      "AppSid",
-      "AppKey",
-      "https://billing.cloud.saltov.dynabic.com/v2.0"
-    )
+      "appSID",
+      "appKey",
+      "https://api-qa.aspose.cloud/v3.0"
+    );
+
     pdfApi.configuration.debugMode = true;
   }
   return pdfApi;
@@ -64,12 +66,12 @@ export function toBase64(str: string): string {
 /**
  * Upload file
  */
-export function uploadFile(name: string): Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }>
+export function uploadFile(name: string): Promise<{ response: http.IncomingMessage; body: FilesUploadResult;  }>
 {
   const path: string = remoteTempFolder + "/" + name;
   var data = fs.readFileSync(this.localTestDataFolder + "/" + name);
   
-  return getPdfApi().putCreate(path, data).then();
+  return getPdfApi().uploadFile(path, data).then();
 }
 
 /**

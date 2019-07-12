@@ -29,28 +29,28 @@ describe("Storage Tests", () => {
     const name = "4pages.pdf";
     const path = BaseTest.remoteTempFolder + "/" + name;
 
-    describe("PutCreate Test", () => {
+    describe("UploadFile Test", () => {
 
         it("should return response with code 200", () => {
 
             var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + name);
 
-            return BaseTest.getPdfApi().putCreate(path, data)
+            return BaseTest.getPdfApi().uploadFile(path, data)
             .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetDownload Test", () => {
+    describe("DownloadFile Test", () => {
 
         it("should return file", async () => {
     
             var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + name);
 
-            await BaseTest.getPdfApi().putCreate(path, data);
+            await BaseTest.getPdfApi().uploadFile(path, data);
             
-            return BaseTest.getPdfApi().getDownload(path)
+            return BaseTest.getPdfApi().downloadFile(path)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
@@ -58,7 +58,7 @@ describe("Storage Tests", () => {
     });
 
 
-    describe("PostMoveFile Test", () => {
+    describe("MoveFile Test", () => {
 
         it("should return response with code 200", async () => {
     
@@ -68,7 +68,7 @@ describe("Storage Tests", () => {
             const src = BaseTest.remoteTempFolder + '/' + name;
             const dest = BaseTest.remoteTempFolder + '/4pages_renamed.pdf';
 
-            return BaseTest.getPdfApi().postMoveFile(src, dest)
+            return BaseTest.getPdfApi().moveFile(src, dest)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
@@ -91,38 +91,38 @@ describe("Storage Tests", () => {
         });
     });
 
-    describe("GetListFiles Test", () => {
+    describe("GetFilesList Test", () => {
 
         it("should return response with code 200", async () => {
     
-            return BaseTest.getPdfApi().getListFiles(BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().getFilesList(BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PutCreateFolder Test", () => {
+    describe("CreateFolder Test", () => {
 
         it("should return response with code 200", async () => {
             const path = BaseTest.remoteTempFolder + '/testFolder';
 
-            return BaseTest.getPdfApi().putCreateFolder(path)
+            return BaseTest.getPdfApi().createFolder(path)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("PostMoveFolder Test", () => {
+    describe("MoveFolder Test", () => {
 
         it("should return response with code 200", async () => {
             const src = BaseTest.remoteTempFolder + '/testFolder';
-            await BaseTest.getPdfApi().putCreateFolder(src)
+            await BaseTest.getPdfApi().createFolder(src)
             
             const dest = BaseTest.remoteTempFolder + '/testFolderRenamed';
             
-            return BaseTest.getPdfApi().postMoveFolder(src, dest)
+            return BaseTest.getPdfApi().moveFolder(src, dest)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
@@ -133,7 +133,7 @@ describe("Storage Tests", () => {
 
         it("should return response with code 200", async () => {
             const path = BaseTest.remoteTempFolder + '/testFolder';
-            await BaseTest.getPdfApi().putCreateFolder(path)
+            await BaseTest.getPdfApi().createFolder(path)
             
             return BaseTest.getPdfApi().deleteFolder(path)
                 .then((result) => {
@@ -142,19 +142,19 @@ describe("Storage Tests", () => {
         });
     });
 
-    describe("GetIsStorageExist Test", () => {
+    describe("StorageExists Test", () => {
 
         it("should return response with code 200", async () => {
             const name = "PDF-CI";
 
-            return BaseTest.getPdfApi().getIsStorageExist(name)
+            return BaseTest.getPdfApi().storageExists(name)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
         });
     });
 
-    describe("GetIsExist Test", () => {
+    describe("ObjectExists Test", () => {
 
         it("should return response with code 200", async () => {
     
@@ -163,7 +163,7 @@ describe("Storage Tests", () => {
 
             const path = BaseTest.remoteTempFolder + '/' + name;
             
-            return BaseTest.getPdfApi().getIsExist(path)
+            return BaseTest.getPdfApi().objectExists(path)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
@@ -181,7 +181,7 @@ describe("Storage Tests", () => {
         });
     });
 
-    describe("GetListFileVersions Test", () => {
+    describe("GetFileVersions Test", () => {
 
         it("should return response with code 200", async () => {
     
@@ -190,7 +190,7 @@ describe("Storage Tests", () => {
 
             const path = BaseTest.remoteTempFolder + '/' + name;
             
-            return BaseTest.getPdfApi().getListFileVersions(path)
+            return BaseTest.getPdfApi().getFileVersions(path)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });

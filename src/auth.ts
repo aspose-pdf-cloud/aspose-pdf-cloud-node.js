@@ -43,7 +43,6 @@ export interface IAuthentication {
  */
 export class OAuth implements IAuthentication {
     private accessToken: string;
-    private refreshToken: string;
 
      /**
       * Apply authentication settings to header and query params.
@@ -64,14 +63,15 @@ export class OAuth implements IAuthentication {
      * Handle 401 response.
      */
     public async handle401response(configuration: Configuration) {
-        await this._refreshToken(configuration);
+        await this._requestToken(configuration);
     }
 
     private async _requestToken(configuration: Configuration): Promise<void> {
         const requestOptions: request.Options = {
             method: "POST",
             json: true,
-            uri: configuration.baseUrl.replace("/v2.0", "") + "/oauth2/token",
+            uri: configuration.baseUrl.replace("/v3.0", "") + "/connect/token",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             form: {
                 grant_type: "client_credentials",
                 client_id: configuration.appSID,
@@ -80,29 +80,7 @@ export class OAuth implements IAuthentication {
         };
         
         const response = await invokeApiMethod(requestOptions, configuration, true);
-        //console.log("_requestToken====================================================");
-        //console.log(response);
         this.accessToken = response.body.access_token;
-        this.refreshToken = response.body.refresh_token;
-        //console.log("config====================================");
-        //console.log(this);
-        return Promise.resolve();
-    }
-
-    private async _refreshToken(configuration: Configuration): Promise<void> {
-        const requestOptions: request.Options = {
-            method: "POST",
-            json: true,
-            uri: configuration.baseUrl.replace("/v2.0", "") + "/oauth2/token",
-            form: {
-                grant_type: "refresh_token",
-                refresh_token: this.refreshToken,
-            },
-        };
-
-        const response = await invokeApiMethod(requestOptions, configuration, true);
-        this.accessToken = response.body.access_token;
-        this.refreshToken = response.body.refresh_token;
         return Promise.resolve();
     }
 }

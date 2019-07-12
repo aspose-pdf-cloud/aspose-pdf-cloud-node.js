@@ -24,7 +24,7 @@ import { TextRects } from "./textRects";
 
 export class CellRecognized {
     /**
-    * Gets collection of  objects that describes text containing in the cell
+    * Gets collection of TextRect objects that describes text containing in the cell
     */
     'textRects': TextRects;
     /**

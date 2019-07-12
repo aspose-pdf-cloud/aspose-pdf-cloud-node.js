@@ -41,23 +41,7 @@ describe("Append Tests", () => {
 
         it("should return response with code 200", async () => {
 
-            return BaseTest.getPdfApi().postAppendDocument(name, null, appendFilePath, startPage, endPage, null, BaseTest.remoteTempFolder)
-                .then((result) => {
-                    assert.equal(result.response.statusCode, 200);
-            });
-        });
-    });
-
-    describe("PostAppendDocument using json Test", () => {
-
-        it("should return response with code 200", async () => {
-
-            let appendDocument = new AppendDocument();
-            appendDocument.document = appendFilePath;
-            appendDocument.startPage = startPage;
-            appendDocument.endPage = endPage;
-
-            return BaseTest.getPdfApi().postAppendDocument(name, null, appendFilePath, startPage, endPage, null, BaseTest.remoteTempFolder)
+            return BaseTest.getPdfApi().postAppendDocument(name, appendFilePath, startPage, endPage, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });

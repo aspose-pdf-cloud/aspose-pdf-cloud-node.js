@@ -5,10 +5,10 @@ Represents graphics info.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lineWidth** | **number** | Gets or sets a float value that indicates the line width of the graph. | [optional]
-**color** | [**Color**](Color.md) | Gets or sets a object that indicates the color of the graph. | [optional]
+**color** | [**Color**](Color.md) | Gets or sets a Color object that indicates the color of the graph. | [optional]
 **dashArray** | **Array&lt;number&gt;** | Gets or sets a dash array. | [optional]
 **dashPhase** | **number** | Gets or sets a dash phase. | [optional]
-**fillColor** | [**Color**](Color.md) | Gets or sets a object that indicates the fill color of the graph. | [optional]
+**fillColor** | [**Color**](Color.md) | Gets or sets a Color object that indicates the fill color of the graph. | [optional]
 **isDoubled** | **boolean** | Gets or sets is border doubled. | [optional]
 **skewAngleX** | **number** | Gets or sets a float value that indicates the skew angle of the x-coordinate when transforming a coordinate system. | [optional]
 **skewAngleY** | **number** | Gets or sets a float value that indicates the skew angle of the y-coordinate when transforming a coordinate system. | [optional]

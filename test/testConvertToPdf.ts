@@ -91,7 +91,7 @@ describe("Convert To PDF Tests", () => {
     
     describe("LaTex To PDF Tests", () => {
             
-        const name = "TexExample.tex";
+        const name = "sample.tex";
         const resFileName = "fromLaTeX.pdf";
         const srcPath = BaseTest.remoteTempFolder + "/" + name;
         

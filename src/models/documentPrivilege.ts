@@ -21,7 +21,7 @@
 
 
 /**
-* Represents the privileges for accessing Pdf file./>.
+* Represents the privileges for accessing Pdf file.
 */
 export class DocumentPrivilege {
     /**

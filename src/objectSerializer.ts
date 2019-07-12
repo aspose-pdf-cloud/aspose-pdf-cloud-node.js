@@ -23,7 +23,6 @@ import { AnnotationFlags } from "./models/annotationFlags";
 import { AnnotationState } from "./models/annotationState";
 import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
-import { AppendDocument } from "./models/appendDocument";
 import { AsposeResponse } from "./models/asposeResponse";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
 import { BorderInfo } from "./models/borderInfo";
@@ -42,10 +41,12 @@ import { DocFormat } from "./models/docFormat";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
+import { ErrorDetails } from "./models/errorDetails";
 import { FieldType } from "./models/fieldType";
-import { File } from "./models/file";
-import { FileExist } from "./models/fileExist";
 import { FileIcon } from "./models/fileIcon";
+import { FileVersions } from "./models/fileVersions";
+import { FilesList } from "./models/filesList";
+import { FilesUploadResult } from "./models/filesUploadResult";
 import { FontEncodingRules } from "./models/fontEncodingRules";
 import { FontSavingModes } from "./models/fontSavingModes";
 import { FontStyles } from "./models/fontStyles";
@@ -68,6 +69,8 @@ import { LinkElement } from "./models/linkElement";
 import { LinkHighlightingMode } from "./models/linkHighlightingMode";
 import { MarginInfo } from "./models/marginInfo";
 import { MergeDocuments } from "./models/mergeDocuments";
+import { ModelError } from "./models/modelError";
+import { ObjectExist } from "./models/objectExist";
 import { OptimizeOptions } from "./models/optimizeOptions";
 import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
@@ -92,6 +95,8 @@ import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
 import { StampIcon } from "./models/stampIcon";
 import { StampType } from "./models/stampType";
+import { StorageExist } from "./models/storageExist";
+import { StorageFile } from "./models/storageFile";
 import { TableBroken } from "./models/tableBroken";
 import { TextHorizontalAlignment } from "./models/textHorizontalAlignment";
 import { TextIcon } from "./models/textIcon";
@@ -112,13 +117,16 @@ import { Attachment } from "./models/attachment";
 import { AttachmentResponse } from "./models/attachmentResponse";
 import { Attachments } from "./models/attachments";
 import { AttachmentsResponse } from "./models/attachmentsResponse";
+import { Bookmark } from "./models/bookmark";
+import { BookmarkResponse } from "./models/bookmarkResponse";
+import { Bookmarks } from "./models/bookmarks";
+import { BookmarksResponse } from "./models/bookmarksResponse";
 import { CaretAnnotationResponse } from "./models/caretAnnotationResponse";
 import { CaretAnnotations } from "./models/caretAnnotations";
 import { CaretAnnotationsResponse } from "./models/caretAnnotationsResponse";
 import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
 import { CircleAnnotations } from "./models/circleAnnotations";
 import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
-import { DiscUsageResponse } from "./models/discUsageResponse";
 import { Document } from "./models/document";
 import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
@@ -134,10 +142,7 @@ import { FieldsResponse } from "./models/fieldsResponse";
 import { FileAttachmentAnnotationResponse } from "./models/fileAttachmentAnnotationResponse";
 import { FileAttachmentAnnotations } from "./models/fileAttachmentAnnotations";
 import { FileAttachmentAnnotationsResponse } from "./models/fileAttachmentAnnotationsResponse";
-import { FileExistResponse } from "./models/fileExistResponse";
 import { FileVersion } from "./models/fileVersion";
-import { FileVersionsResponse } from "./models/fileVersionsResponse";
-import { FilesResponse } from "./models/filesResponse";
 import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "./models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "./models/freeTextAnnotationsResponse";
@@ -197,7 +202,6 @@ import { StampBase } from "./models/stampBase";
 import { StampInfo } from "./models/stampInfo";
 import { StampsInfo } from "./models/stampsInfo";
 import { StampsInfoResponse } from "./models/stampsInfoResponse";
-import { StorageExistResponse } from "./models/storageExistResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
@@ -302,7 +306,6 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "AppendDocument": AppendDocument,
     "AsposeResponse": AsposeResponse,
     "BorderInfo": BorderInfo,
     "Cell": Cell,
@@ -310,8 +313,10 @@ let typeMap: {[index: string]: any} = {
     "Color": Color,
     "DiscUsage": DiscUsage,
     "DocumentPrivilege": DocumentPrivilege,
-    "File": File,
-    "FileExist": FileExist,
+    "ErrorDetails": ErrorDetails,
+    "FileVersions": FileVersions,
+    "FilesList": FilesList,
+    "FilesUploadResult": FilesUploadResult,
     "GraphInfo": GraphInfo,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
@@ -319,6 +324,8 @@ let typeMap: {[index: string]: any} = {
     "LinkElement": LinkElement,
     "MarginInfo": MarginInfo,
     "MergeDocuments": MergeDocuments,
+    "ModelError": ModelError,
+    "ObjectExist": ObjectExist,
     "OptimizeOptions": OptimizeOptions,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
@@ -331,6 +338,8 @@ let typeMap: {[index: string]: any} = {
     "Signature": Signature,
     "SplitResult": SplitResult,
     "Stamp": Stamp,
+    "StorageExist": StorageExist,
+    "StorageFile": StorageFile,
     "TextLine": TextLine,
     "TextRect": TextRect,
     "TextRects": TextRects,
@@ -346,13 +355,16 @@ let typeMap: {[index: string]: any} = {
     "AttachmentResponse": AttachmentResponse,
     "Attachments": Attachments,
     "AttachmentsResponse": AttachmentsResponse,
+    "Bookmark": Bookmark,
+    "BookmarkResponse": BookmarkResponse,
+    "Bookmarks": Bookmarks,
+    "BookmarksResponse": BookmarksResponse,
     "CaretAnnotationResponse": CaretAnnotationResponse,
     "CaretAnnotations": CaretAnnotations,
     "CaretAnnotationsResponse": CaretAnnotationsResponse,
     "CircleAnnotationResponse": CircleAnnotationResponse,
     "CircleAnnotations": CircleAnnotations,
     "CircleAnnotationsResponse": CircleAnnotationsResponse,
-    "DiscUsageResponse": DiscUsageResponse,
     "Document": Document,
     "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
@@ -368,10 +380,7 @@ let typeMap: {[index: string]: any} = {
     "FileAttachmentAnnotationResponse": FileAttachmentAnnotationResponse,
     "FileAttachmentAnnotations": FileAttachmentAnnotations,
     "FileAttachmentAnnotationsResponse": FileAttachmentAnnotationsResponse,
-    "FileExistResponse": FileExistResponse,
     "FileVersion": FileVersion,
-    "FileVersionsResponse": FileVersionsResponse,
-    "FilesResponse": FilesResponse,
     "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
     "FreeTextAnnotations": FreeTextAnnotations,
     "FreeTextAnnotationsResponse": FreeTextAnnotationsResponse,
@@ -431,7 +440,6 @@ let typeMap: {[index: string]: any} = {
     "StampInfo": StampInfo,
     "StampsInfo": StampsInfo,
     "StampsInfoResponse": StampsInfoResponse,
-    "StorageExistResponse": StorageExistResponse,
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
     "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,

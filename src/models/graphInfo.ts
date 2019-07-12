@@ -30,7 +30,7 @@ export class GraphInfo {
     */
     'lineWidth': number;
     /**
-    * Gets or sets a  object that indicates the color of the graph.
+    * Gets or sets a Color object that indicates the color of the graph.
     */
     'color': Color;
     /**
@@ -42,7 +42,7 @@ export class GraphInfo {
     */
     'dashPhase': number;
     /**
-    * Gets or sets a  object that indicates the fill color of the graph.
+    * Gets or sets a Color object that indicates the fill color of the graph.
     */
     'fillColor': Color;
     /**
