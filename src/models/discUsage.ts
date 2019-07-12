@@ -20,8 +20,17 @@
  */
 
 
+/**
+* Class for disc space information.
+*/
 export class DiscUsage {
+    /**
+    * Application used disc space.
+    */
     'usedSize': number;
+    /**
+    * Total disc space.
+    */
     'totalSize': number;
 
     static discriminator = undefined;

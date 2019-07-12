@@ -19,10 +19,19 @@
  *
  */
 
-import { File } from "./file";
+import { StorageFile } from "./storageFile";
 
-export class FileVersion extends File {
+/**
+* File Version
+*/
+export class FileVersion extends StorageFile {
+    /**
+    * File Version ID.
+    */
     'versionId': string;
+    /**
+    * Specifies whether the file is (true) or is not (false) the latest version of an file.
+    */
     'isLatest': boolean;
 
     static discriminator = undefined;

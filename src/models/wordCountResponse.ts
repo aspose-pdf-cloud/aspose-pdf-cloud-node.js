@@ -27,7 +27,7 @@ import { AsposeResponse } from "./asposeResponse";
 */
 export class WordCountResponse extends AsposeResponse {
     /**
-    * with words per page info.            
+    * WordCount with words per page info.
     */
     'wordsPerPage': WordCount;
 

@@ -55,7 +55,7 @@ export class Signature {
     */
     'location': string;
     /**
-    * Gets or sets a value indicating whether this  is visible. Supports only when signing particular page.
+    * Gets or sets a value indicating whether this Signature is visible. Supports only when signing particular page.
     */
     'visible': boolean;
     /**

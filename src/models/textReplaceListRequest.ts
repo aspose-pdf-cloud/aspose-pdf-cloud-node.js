@@ -29,6 +29,9 @@ export class TextReplaceListRequest {
     * A list of text replacement settings.
     */
     'textReplaces': Array<TextReplace>;
+    /**
+    * Name of font to use if requested font is not embedded into document.
+    */
     'defaultFont': string;
     /**
     * The index of first match to be replaced.

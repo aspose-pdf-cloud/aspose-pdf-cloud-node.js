@@ -36,7 +36,7 @@ export class TextHeader extends StampBase {
     */
     'value': string;
     /**
-    * Gets text properties of the stamp. See  for details.
+    * Gets text properties of the stamp. See TextState for details.
     */
     'textState': TextState;
     /**
