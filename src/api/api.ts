@@ -3681,9 +3681,165 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Export fields from from PDF in storage to FDF file.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getExportFieldsFromPdfToFdfInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/fdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getExportFieldsFromPdfToFdfInStorage.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Export fields from from PDF in storage to XFDF file.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getExportFieldsFromPdfToXfdfInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/xfdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getExportFieldsFromPdfToXfdfInStorage.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Export fields from from PDF in storage to XML file.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getExportFieldsFromPdfToXmlInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getExportFieldsFromPdfToXmlInStorage.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Get document field by name.
      * @param name The document name.
-     * @param fieldName The field name/
+     * @param fieldName The field name (name should be encoded).
      * @param storage The document storage.
      * @param folder The document folder.
      */
@@ -4600,6 +4756,192 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "ImagesResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from FDF file in storage.
+     * @param name The document name.
+     * @param fdfFilePath The Fdf file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImportFieldsFromFdfInStorage (name: string, fdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImportFieldsFromFdfInStorage.');
+        }
+
+        // verify required parameter 'fdfFilePath' is not null or undefined
+        if (fdfFilePath === null || fdfFilePath === undefined) {
+            throw new Error('Required parameter fdfFilePath was null or undefined when calling getImportFieldsFromFdfInStorage.');
+        }
+
+        if (fdfFilePath !== undefined && null !== fdfFilePath) {
+            localVarQueryParameters['fdfFilePath'] = ObjectSerializer.serialize(fdfFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from XFDF file in storage.
+     * @param name The document name.
+     * @param xfdfFilePath The XFDF file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImportFieldsFromXfdfInStorage (name: string, xfdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImportFieldsFromXfdfInStorage.');
+        }
+
+        // verify required parameter 'xfdfFilePath' is not null or undefined
+        if (xfdfFilePath === null || xfdfFilePath === undefined) {
+            throw new Error('Required parameter xfdfFilePath was null or undefined when calling getImportFieldsFromXfdfInStorage.');
+        }
+
+        if (xfdfFilePath !== undefined && null !== xfdfFilePath) {
+            localVarQueryParameters['xfdfFilePath'] = ObjectSerializer.serialize(xfdfFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Import from XML file (located on storage) to PDF format and return resulting file in response. 
+     * @param name The document name.
+     * @param xmlFilePath Full source filename (ex. /folder1/folder2/template.xml)
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getImportFieldsFromXmlInStorage (name: string, xmlFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImportFieldsFromXmlInStorage.');
+        }
+
+        // verify required parameter 'xmlFilePath' is not null or undefined
+        if (xmlFilePath === null || xmlFilePath === undefined) {
+            throw new Error('Required parameter xmlFilePath was null or undefined when calling getImportFieldsFromXmlInStorage.');
+        }
+
+        if (xmlFilePath !== undefined && null !== xmlFilePath) {
+            localVarQueryParameters['xmlFilePath'] = ObjectSerializer.serialize(xmlFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
     }
 
@@ -10811,6 +11153,186 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Update fields from FDF file in request.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param fdfData Fdf file.
+     */
+    public async postImportFieldsFromFdf (name: string, storage?: string, folder?: string, fdfData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postImportFieldsFromFdf.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (fdfData !== undefined) {
+            localVarFormParams['fdfData'] = fdfData;
+            fileData = fdfData;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from XFDF file in request.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param xfdfData Xfdf file.
+     */
+    public async postImportFieldsFromXfdf (name: string, storage?: string, folder?: string, xfdfData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postImportFieldsFromXfdf.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (xfdfData !== undefined) {
+            localVarFormParams['xfdfData'] = xfdfData;
+            fileData = xfdfData;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from XML file in request.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param xmlData Xml file.
+     */
+    public async postImportFieldsFromXml (name: string, storage?: string, folder?: string, xmlData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postImportFieldsFromXml.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (xmlData !== undefined) {
+            localVarFormParams['xmlData'] = xmlData;
+            fileData = xmlData;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Insert image to document page.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -13710,6 +14232,192 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Export fields from from PDF in storage to FDF file in storage.
+     * @param name The document name.
+     * @param fdfOutputFilePath The output Fdf file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putExportFieldsFromPdfToFdfInStorage (name: string, fdfOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/fdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putExportFieldsFromPdfToFdfInStorage.');
+        }
+
+        // verify required parameter 'fdfOutputFilePath' is not null or undefined
+        if (fdfOutputFilePath === null || fdfOutputFilePath === undefined) {
+            throw new Error('Required parameter fdfOutputFilePath was null or undefined when calling putExportFieldsFromPdfToFdfInStorage.');
+        }
+
+        if (fdfOutputFilePath !== undefined && null !== fdfOutputFilePath) {
+            localVarQueryParameters['fdfOutputFilePath'] = ObjectSerializer.serialize(fdfOutputFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Export fields from from PDF in storage to XFDF file in storage.
+     * @param name The document name.
+     * @param xfdfOutputFilePath The output xfdf file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putExportFieldsFromPdfToXfdfInStorage (name: string, xfdfOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/xfdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putExportFieldsFromPdfToXfdfInStorage.');
+        }
+
+        // verify required parameter 'xfdfOutputFilePath' is not null or undefined
+        if (xfdfOutputFilePath === null || xfdfOutputFilePath === undefined) {
+            throw new Error('Required parameter xfdfOutputFilePath was null or undefined when calling putExportFieldsFromPdfToXfdfInStorage.');
+        }
+
+        if (xfdfOutputFilePath !== undefined && null !== xfdfOutputFilePath) {
+            localVarQueryParameters['xfdfOutputFilePath'] = ObjectSerializer.serialize(xfdfOutputFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Export fields from from PDF in storage to XML file in storage.
+     * @param name The document name.
+     * @param xmlOutputFilePath The output xml file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putExportFieldsFromPdfToXmlInStorage (name: string, xmlOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/export/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putExportFieldsFromPdfToXmlInStorage.');
+        }
+
+        // verify required parameter 'xmlOutputFilePath' is not null or undefined
+        if (xmlOutputFilePath === null || xmlOutputFilePath === undefined) {
+            throw new Error('Required parameter xmlOutputFilePath was null or undefined when calling putExportFieldsFromPdfToXmlInStorage.');
+        }
+
+        if (xmlOutputFilePath !== undefined && null !== xmlOutputFilePath) {
+            localVarQueryParameters['xmlOutputFilePath'] = ObjectSerializer.serialize(xmlOutputFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Flatten form fields in document.
      * @param name The document name.
      * @param storage The document storage.
@@ -14748,6 +15456,192 @@ export class PdfApi {
 
         if (destFolder !== undefined && null !== destFolder) {
             localVarQueryParameters['destFolder'] = ObjectSerializer.serialize(destFolder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from FDF file in storage.
+     * @param name The document name.
+     * @param fdfFilePath The Fdf file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putImportFieldsFromFdfInStorage (name: string, fdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImportFieldsFromFdfInStorage.');
+        }
+
+        // verify required parameter 'fdfFilePath' is not null or undefined
+        if (fdfFilePath === null || fdfFilePath === undefined) {
+            throw new Error('Required parameter fdfFilePath was null or undefined when calling putImportFieldsFromFdfInStorage.');
+        }
+
+        if (fdfFilePath !== undefined && null !== fdfFilePath) {
+            localVarQueryParameters['fdfFilePath'] = ObjectSerializer.serialize(fdfFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from XFDF file in storage.
+     * @param name The document name.
+     * @param xfdfFilePath The XFDF file path.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putImportFieldsFromXfdfInStorage (name: string, xfdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImportFieldsFromXfdfInStorage.');
+        }
+
+        // verify required parameter 'xfdfFilePath' is not null or undefined
+        if (xfdfFilePath === null || xfdfFilePath === undefined) {
+            throw new Error('Required parameter xfdfFilePath was null or undefined when calling putImportFieldsFromXfdfInStorage.');
+        }
+
+        if (xfdfFilePath !== undefined && null !== xfdfFilePath) {
+            localVarQueryParameters['xfdfFilePath'] = ObjectSerializer.serialize(xfdfFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Update fields from XML file in storage.
+     * @param name The document name.
+     * @param xmlFilePath Full source filename (ex. /folder1/folder2/template.xml)
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putImportFieldsFromXmlInStorage (name: string, xmlFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/import/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putImportFieldsFromXmlInStorage.');
+        }
+
+        // verify required parameter 'xmlFilePath' is not null or undefined
+        if (xmlFilePath === null || xmlFilePath === undefined) {
+            throw new Error('Required parameter xmlFilePath was null or undefined when calling putImportFieldsFromXmlInStorage.');
+        }
+
+        if (xmlFilePath !== undefined && null !== xmlFilePath) {
+            localVarQueryParameters['xmlFilePath'] = ObjectSerializer.serialize(xmlFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
 
