@@ -19,6 +19,8 @@
  *
  */
 
+import { SignatureCustomAppearance } from "./signatureCustomAppearance";
+import { TimestampSettings } from "./timestampSettings";
 import { Rectangle } from "./rectangle";
 import { SignatureType } from "./signatureType";
 
@@ -78,6 +80,18 @@ export class Signature {
     * Gets or sets the showproperties in signature field
     */
     'showProperties': boolean;
+    /**
+    * Gets/sets timestamp settings.
+    */
+    'timestampSettings': TimestampSettings;
+    /**
+    * Verify the document regarding this signature and return true if document is valid or otherwise false.
+    */
+    'isValid': boolean;
+    /**
+    * Gets/sets the custom appearance.
+    */
+    'customAppearance': SignatureCustomAppearance;
 
     static discriminator = undefined;
 
@@ -146,6 +160,21 @@ export class Signature {
             "name": "showProperties",
             "baseName": "ShowProperties",
             "type": "boolean"
+        },
+        {
+            "name": "timestampSettings",
+            "baseName": "TimestampSettings",
+            "type": "TimestampSettings"
+        },
+        {
+            "name": "isValid",
+            "baseName": "IsValid",
+            "type": "boolean"
+        },
+        {
+            "name": "customAppearance",
+            "baseName": "CustomAppearance",
+            "type": "SignatureCustomAppearance"
         }    ];
 
     static getAttributeTypeMap() {

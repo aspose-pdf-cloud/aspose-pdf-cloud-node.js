@@ -107,6 +107,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getDocumentProperty**](docs/PdfApi.md#getDocumentProperty) | **GET** /pdf/\{name}/documentproperties/\{propertyName} | Read document property by name.
 *PdfApi* | [**getDocumentRedactionAnnotations**](docs/PdfApi.md#getDocumentRedactionAnnotations) | **GET** /pdf/\{name}/annotations/redaction | Read document redaction annotations.
 *PdfApi* | [**getDocumentScreenAnnotations**](docs/PdfApi.md#getDocumentScreenAnnotations) | **GET** /pdf/\{name}/annotations/screen | Read document screen annotations.
+*PdfApi* | [**getDocumentSignatureFields**](docs/PdfApi.md#getDocumentSignatureFields) | **GET** /pdf/\{name}/fields/signature | Read document signature fields.
 *PdfApi* | [**getDocumentSoundAnnotations**](docs/PdfApi.md#getDocumentSoundAnnotations) | **GET** /pdf/\{name}/annotations/sound | Read document sound annotations.
 *PdfApi* | [**getDocumentSquareAnnotations**](docs/PdfApi.md#getDocumentSquareAnnotations) | **GET** /pdf/\{name}/annotations/square | Read document square annotations.
 *PdfApi* | [**getDocumentSquigglyAnnotations**](docs/PdfApi.md#getDocumentSquigglyAnnotations) | **GET** /pdf/\{name}/annotations/squiggly | Read document squiggly annotations.
@@ -143,6 +144,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getLaTeXInStorageToPdf**](docs/PdfApi.md#getLaTeXInStorageToPdf) | **GET** /pdf/create/latex | Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getLineAnnotation**](docs/PdfApi.md#getLineAnnotation) | **GET** /pdf/\{name}/annotations/line/\{annotationId} | Read document page line annotation by ID.
 *PdfApi* | [**getLinkAnnotation**](docs/PdfApi.md#getLinkAnnotation) | **GET** /pdf/\{name}/links/\{linkId} | Read document link annotation by ID.
+*PdfApi* | [**getMarkdownInStorageToPdf**](docs/PdfApi.md#getMarkdownInStorageToPdf) | **GET** /pdf/create/markdown | Convert MD file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getMhtInStorageToPdf**](docs/PdfApi.md#getMhtInStorageToPdf) | **GET** /pdf/create/mht | Convert MHT file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getMovieAnnotation**](docs/PdfApi.md#getMovieAnnotation) | **GET** /pdf/\{name}/annotations/movie/\{annotationId} | Read document page movie annotation by ID.
 *PdfApi* | [**getPage**](docs/PdfApi.md#getPage) | **GET** /pdf/\{name}/pages/\{pageNumber} | Read document page info.
@@ -169,6 +171,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getPageRedactionAnnotations**](docs/PdfApi.md#getPageRedactionAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/redaction | Read document page redaction annotations.
 *PdfApi* | [**getPages**](docs/PdfApi.md#getPages) | **GET** /pdf/\{name}/pages | Read document pages info.
 *PdfApi* | [**getPageScreenAnnotations**](docs/PdfApi.md#getPageScreenAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/screen | Read document page screen annotations.
+*PdfApi* | [**getPageSignatureFields**](docs/PdfApi.md#getPageSignatureFields) | **GET** /pdf/\{name}/page/\{pageNumber}/fields/signature | Read document page signature fields.
 *PdfApi* | [**getPageSoundAnnotations**](docs/PdfApi.md#getPageSoundAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/sound | Read document page sound annotations.
 *PdfApi* | [**getPageSquareAnnotations**](docs/PdfApi.md#getPageSquareAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/square | Read document page square annotations.
 *PdfApi* | [**getPageSquigglyAnnotations**](docs/PdfApi.md#getPageSquigglyAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/squiggly | Read document page squiggly annotations.
@@ -200,6 +203,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getRedactionAnnotation**](docs/PdfApi.md#getRedactionAnnotation) | **GET** /pdf/\{name}/annotations/redaction/\{annotationId} | Read document page redaction annotation by ID.
 *PdfApi* | [**getScreenAnnotation**](docs/PdfApi.md#getScreenAnnotation) | **GET** /pdf/\{name}/annotations/screen/\{annotationId} | Read document page screen annotation by ID.
 *PdfApi* | [**getScreenAnnotationData**](docs/PdfApi.md#getScreenAnnotationData) | **GET** /pdf/\{name}/annotations/screen/\{annotationId}/data | Read document page screen annotation by ID.
+*PdfApi* | [**getSignatureField**](docs/PdfApi.md#getSignatureField) | **GET** /pdf/\{name}/fields/signature/\{fieldName} | Read document signature field by name.
 *PdfApi* | [**getSoundAnnotation**](docs/PdfApi.md#getSoundAnnotation) | **GET** /pdf/\{name}/annotations/sound/\{annotationId} | Read document page sound annotation by ID.
 *PdfApi* | [**getSoundAnnotationData**](docs/PdfApi.md#getSoundAnnotationData) | **GET** /pdf/\{name}/annotations/sound/\{annotationId}/data | Read document page sound annotation by ID.
 *PdfApi* | [**getSquareAnnotation**](docs/PdfApi.md#getSquareAnnotation) | **GET** /pdf/\{name}/annotations/square/\{annotationId} | Read document page square annotation by ID.
@@ -242,6 +246,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**postMovePage**](docs/PdfApi.md#postMovePage) | **POST** /pdf/\{name}/pages/\{pageNumber}/movePage | Move page to new position.
 *PdfApi* | [**postOptimizeDocument**](docs/PdfApi.md#postOptimizeDocument) | **POST** /pdf/\{name}/optimize | Optimize document.
 *PdfApi* | [**postPageCaretAnnotations**](docs/PdfApi.md#postPageCaretAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/caret | Add document page caret annotations.
+*PdfApi* | [**postPageCertify**](docs/PdfApi.md#postPageCertify) | **POST** /pdf/\{name}/pages/\{pageNumber}/certify | Certify document page.
 *PdfApi* | [**postPageCircleAnnotations**](docs/PdfApi.md#postPageCircleAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/circle | Add document page circle annotations.
 *PdfApi* | [**postPageFileAttachmentAnnotations**](docs/PdfApi.md#postPageFileAttachmentAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/fileattachment | Add document page FileAttachment annotations.
 *PdfApi* | [**postPageFreeTextAnnotations**](docs/PdfApi.md#postPageFreeTextAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/freetext | Add document page free text annotations.
@@ -306,6 +311,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putLaTeXInStorageToPdf**](docs/PdfApi.md#putLaTeXInStorageToPdf) | **PUT** /pdf/\{name}/create/latex | Convert LaTeX file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putLineAnnotation**](docs/PdfApi.md#putLineAnnotation) | **PUT** /pdf/\{name}/annotations/line/\{annotationId} | Replace document line annotation
 *PdfApi* | [**putLinkAnnotation**](docs/PdfApi.md#putLinkAnnotation) | **PUT** /pdf/\{name}/links/\{linkId} | Replace document page link annotations
+*PdfApi* | [**putMarkdownInStorageToPdf**](docs/PdfApi.md#putMarkdownInStorageToPdf) | **PUT** /pdf/\{name}/create/markdown | Convert MD file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putMergeDocuments**](docs/PdfApi.md#putMergeDocuments) | **PUT** /pdf/\{name}/merge | Merge a list of documents.
 *PdfApi* | [**putMhtInStorageToPdf**](docs/PdfApi.md#putMhtInStorageToPdf) | **PUT** /pdf/\{name}/create/mht | Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putMovieAnnotation**](docs/PdfApi.md#putMovieAnnotation) | **PUT** /pdf/\{name}/annotations/movie/\{annotationId} | Replace document movie annotation
@@ -420,6 +426,7 @@ Class | Description
 [**CryptoAlgorithm**](docs/CryptoAlgorithm.md) | Represent type of cryptographic algorithm that used in encryption/decryption routines.
 [**DiscUsage**](docs/DiscUsage.md) | Class for disc space information.
 [**DocFormat**](docs/DocFormat.md) | Allows to specify .doc or .docx file format.
+[**DocMDPAccessPermissionType**](docs/DocMDPAccessPermissionType.md) | The access permissions granted for this document. Valid values are: 1 - No changes to the document are permitted; any change to the document invalidates the signature. 2 - Permitted changes are filling in forms, instantiating page templates, and signing; other changes invalidate the signature. 3 - Permitted changes are the same as for 2, as well as annotation creation, deletion, and modification; other changes invalidate the signature.
 [**DocRecognitionMode**](docs/DocRecognitionMode.md) | Allows to control how a PDF document is converted into a word processing document.
 [**Document**](docs/Document.md) | Represents document DTO.
 [**DocumentPageResponse**](docs/DocumentPageResponse.md) | Represents response containing single page info
@@ -450,6 +457,7 @@ Class | Description
 [**FontEncodingRules**](docs/FontEncodingRules.md) | This enumeration defines rules which tune encoding logic
 [**FontSavingModes**](docs/FontSavingModes.md) | Enumerates modes that can be used for saving of fonts referenced in saved PDF 
 [**FontStyles**](docs/FontStyles.md) | Specifies style information applied to text.
+[**FormField**](docs/FormField.md) | Provides form field.
 [**FreeTextAnnotation**](docs/FreeTextAnnotation.md) | Provides FreeTextAnnotation.
 [**FreeTextAnnotationResponse**](docs/FreeTextAnnotationResponse.md) | Represents response containing single free text annotation object
 [**FreeTextAnnotations**](docs/FreeTextAnnotations.md) | Object representing a list of free text annotations.
@@ -545,6 +553,11 @@ Class | Description
 [**Segment**](docs/Segment.md) | Represents segment of Pdf text.
 [**ShapeType**](docs/ShapeType.md) | This enum represents shape type for the extracted images.
 [**Signature**](docs/Signature.md) | Represents signature.
+[**SignatureCustomAppearance**](docs/SignatureCustomAppearance.md) | An abstract class which represents signature custon appearance object.
+[**SignatureField**](docs/SignatureField.md) | Provides SignatureField.
+[**SignatureFieldResponse**](docs/SignatureFieldResponse.md) | Represents response containing single signature field object
+[**SignatureFields**](docs/SignatureFields.md) | Object representing a list of signature fields.
+[**SignatureFieldsResponse**](docs/SignatureFieldsResponse.md) | Represents response containing multiple signature field objects
 [**SignatureType**](docs/SignatureType.md) | The type of signature.
 [**SignatureVerifyResponse**](docs/SignatureVerifyResponse.md) | Represent responce containing signature verification result
 [**SoundAnnotation**](docs/SoundAnnotation.md) | Provides SoundAnnotation.
@@ -605,6 +618,7 @@ Class | Description
 [**TextStamp**](docs/TextStamp.md) | Represents Pdf stamps.
 [**TextState**](docs/TextState.md) | Represents a text state of a text
 [**TextStyle**](docs/TextStyle.md) | Represents a text style of a text
+[**TimestampSettings**](docs/TimestampSettings.md) | Represents the ocsp settings using during signing process.
 [**UnderlineAnnotation**](docs/UnderlineAnnotation.md) | Provides UnderlineAnnotation.
 [**UnderlineAnnotationResponse**](docs/UnderlineAnnotationResponse.md) | Represents response containing single underline annotation object
 [**UnderlineAnnotations**](docs/UnderlineAnnotations.md) | Object representing a list of underline annotations.
