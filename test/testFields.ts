@@ -183,4 +183,53 @@ describe("Fields Tests", () => {
             });
         });
     });
+
+    describe("SignatureField Tests", () => {
+
+        describe("GetDocumentSignatureFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "adbe.x509.rsa_sha1.valid.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentSignatureFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageSignatureFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "adbe.x509.rsa_sha1.valid.pdf";
+                await BaseTest.uploadFile(name);
+
+                const pageNumber = 1;
+    
+                return BaseTest.getPdfApi().getPageSignatureFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetSignatureField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "adbe.x509.rsa_sha1.valid.pdf";
+                await BaseTest.uploadFile(name);
+
+                const fieldName = "Signature1";
+    
+                return BaseTest.getPdfApi().getSignatureField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
 });

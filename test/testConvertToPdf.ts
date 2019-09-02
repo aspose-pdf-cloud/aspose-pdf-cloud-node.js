@@ -426,4 +426,37 @@ describe("Convert To PDF Tests", () => {
             });
         });
     });
+
+    describe("Markdown To PDF Tests", () => {
+                                        
+        const name = "mixed.md";
+        const resFileName = "fromMd.pdf";
+        const srcPath = BaseTest.remoteTempFolder + "/" + name;
+        
+        before( async ()=> {
+            await BaseTest.uploadFile(name);
+        });
+
+        describe("GetMarkdownInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getMarkdownInStorageToPdf(srcPath)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+        
+        describe("PutMarkdownInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().putMarkdownInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
 });

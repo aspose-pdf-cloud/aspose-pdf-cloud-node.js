@@ -38,6 +38,7 @@ import { CompressionType } from "./models/compressionType";
 import { CryptoAlgorithm } from "./models/cryptoAlgorithm";
 import { DiscUsage } from "./models/discUsage";
 import { DocFormat } from "./models/docFormat";
+import { DocMDPAccessPermissionType } from "./models/docMDPAccessPermissionType";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
@@ -88,6 +89,7 @@ import { RowRecognized } from "./models/rowRecognized";
 import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
 import { Signature } from "./models/signature";
+import { SignatureCustomAppearance } from "./models/signatureCustomAppearance";
 import { SignatureType } from "./models/signatureType";
 import { SoundEncoding } from "./models/soundEncoding";
 import { SoundIcon } from "./models/soundIcon";
@@ -107,6 +109,7 @@ import { TextReplace } from "./models/textReplace";
 import { TextReplaceListRequest } from "./models/textReplaceListRequest";
 import { TextState } from "./models/textState";
 import { TextStyle } from "./models/textStyle";
+import { TimestampSettings } from "./models/timestampSettings";
 import { VerticalAlignment } from "./models/verticalAlignment";
 import { WordCount } from "./models/wordCount";
 import { WrapMode } from "./models/wrapMode";
@@ -143,6 +146,7 @@ import { FileAttachmentAnnotationResponse } from "./models/fileAttachmentAnnotat
 import { FileAttachmentAnnotations } from "./models/fileAttachmentAnnotations";
 import { FileAttachmentAnnotationsResponse } from "./models/fileAttachmentAnnotationsResponse";
 import { FileVersion } from "./models/fileVersion";
+import { FormField } from "./models/formField";
 import { FreeTextAnnotationResponse } from "./models/freeTextAnnotationResponse";
 import { FreeTextAnnotations } from "./models/freeTextAnnotations";
 import { FreeTextAnnotationsResponse } from "./models/freeTextAnnotationsResponse";
@@ -183,6 +187,9 @@ import { RedactionAnnotationsResponse } from "./models/redactionAnnotationsRespo
 import { ScreenAnnotationResponse } from "./models/screenAnnotationResponse";
 import { ScreenAnnotations } from "./models/screenAnnotations";
 import { ScreenAnnotationsResponse } from "./models/screenAnnotationsResponse";
+import { SignatureFieldResponse } from "./models/signatureFieldResponse";
+import { SignatureFields } from "./models/signatureFields";
+import { SignatureFieldsResponse } from "./models/signatureFieldsResponse";
 import { SignatureVerifyResponse } from "./models/signatureVerifyResponse";
 import { SoundAnnotationResponse } from "./models/soundAnnotationResponse";
 import { SoundAnnotations } from "./models/soundAnnotations";
@@ -230,6 +237,7 @@ import { PdfPageStamp } from "./models/pdfPageStamp";
 import { PopupAnnotation } from "./models/popupAnnotation";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { ScreenAnnotation } from "./models/screenAnnotation";
+import { SignatureField } from "./models/signatureField";
 import { TextFooter } from "./models/textFooter";
 import { TextHeader } from "./models/textHeader";
 import { TextStamp } from "./models/textStamp";
@@ -267,6 +275,7 @@ let enumsMap: {[index: string]: any} = {
     "CompressionType": CompressionType,
     "CryptoAlgorithm": CryptoAlgorithm,
     "DocFormat": DocFormat,
+    "DocMDPAccessPermissionType": DocMDPAccessPermissionType,
     "DocRecognitionMode": DocRecognitionMode,
     "EpubRecognitionMode": EpubRecognitionMode,
     "FieldType": FieldType,
@@ -336,6 +345,7 @@ let typeMap: {[index: string]: any} = {
     "RowRecognized": RowRecognized,
     "Segment": Segment,
     "Signature": Signature,
+    "SignatureCustomAppearance": SignatureCustomAppearance,
     "SplitResult": SplitResult,
     "Stamp": Stamp,
     "StorageExist": StorageExist,
@@ -347,6 +357,7 @@ let typeMap: {[index: string]: any} = {
     "TextReplaceListRequest": TextReplaceListRequest,
     "TextState": TextState,
     "TextStyle": TextStyle,
+    "TimestampSettings": TimestampSettings,
     "WordCount": WordCount,
     "Annotation": Annotation,
     "AnnotationsInfo": AnnotationsInfo,
@@ -381,6 +392,7 @@ let typeMap: {[index: string]: any} = {
     "FileAttachmentAnnotations": FileAttachmentAnnotations,
     "FileAttachmentAnnotationsResponse": FileAttachmentAnnotationsResponse,
     "FileVersion": FileVersion,
+    "FormField": FormField,
     "FreeTextAnnotationResponse": FreeTextAnnotationResponse,
     "FreeTextAnnotations": FreeTextAnnotations,
     "FreeTextAnnotationsResponse": FreeTextAnnotationsResponse,
@@ -421,6 +433,9 @@ let typeMap: {[index: string]: any} = {
     "ScreenAnnotationResponse": ScreenAnnotationResponse,
     "ScreenAnnotations": ScreenAnnotations,
     "ScreenAnnotationsResponse": ScreenAnnotationsResponse,
+    "SignatureFieldResponse": SignatureFieldResponse,
+    "SignatureFields": SignatureFields,
+    "SignatureFieldsResponse": SignatureFieldsResponse,
     "SignatureVerifyResponse": SignatureVerifyResponse,
     "SoundAnnotationResponse": SoundAnnotationResponse,
     "SoundAnnotations": SoundAnnotations,
@@ -468,6 +483,7 @@ let typeMap: {[index: string]: any} = {
     "PopupAnnotation": PopupAnnotation,
     "RedactionAnnotation": RedactionAnnotation,
     "ScreenAnnotation": ScreenAnnotation,
+    "SignatureField": SignatureField,
     "TextFooter": TextFooter,
     "TextHeader": TextHeader,
     "TextStamp": TextStamp,
