@@ -220,6 +220,9 @@ import { TablesRecognizedResponse } from "../models/tablesRecognizedResponse";
 import { TextAnnotationResponse } from "../models/textAnnotationResponse";
 import { TextAnnotations } from "../models/textAnnotations";
 import { TextAnnotationsResponse } from "../models/textAnnotationsResponse";
+import { TextBoxFieldResponse } from "../models/textBoxFieldResponse";
+import { TextBoxFields } from "../models/textBoxFields";
+import { TextBoxFieldsResponse } from "../models/textBoxFieldsResponse";
 import { TextRectsResponse } from "../models/textRectsResponse";
 import { TextReplaceResponse } from "../models/textReplaceResponse";
 import { UnderlineAnnotationResponse } from "../models/underlineAnnotationResponse";
@@ -238,6 +241,7 @@ import { PopupAnnotation } from "../models/popupAnnotation";
 import { RedactionAnnotation } from "../models/redactionAnnotation";
 import { ScreenAnnotation } from "../models/screenAnnotation";
 import { SignatureField } from "../models/signatureField";
+import { TextBoxField } from "../models/textBoxField";
 import { TextFooter } from "../models/textFooter";
 import { TextHeader } from "../models/textHeader";
 import { TextStamp } from "../models/textStamp";
@@ -3574,6 +3578,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document text box fields.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentTextBoxFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/textbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentTextBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -7463,6 +7519,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page text box fields.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageTextBoxFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/textbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageTextBoxFields.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageTextBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextBoxFieldsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page underline annotations.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -9815,6 +9930,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document text box field by name.
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getTextBoxField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/textbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getTextBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling getTextBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextBoxFieldResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -13779,6 +13953,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "SplitResultResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document text box fields.
+     * @param name The document name.
+     * @param fields The array of field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postTextBoxFields (name: string, fields: Array<TextBoxField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/textbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postTextBoxFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling postTextBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fields, "Array<TextBoxField>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -20710,6 +20943,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "TextAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document text box field
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param field The field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putTextBoxField (name: string, fieldName: string, field: TextBoxField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/textbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putTextBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling putTextBoxField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putTextBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(field, "TextBoxField")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "TextBoxFieldResponse");
         return Promise.resolve({body: result, response});
     }
 

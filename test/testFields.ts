@@ -23,6 +23,7 @@ import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
 import { Field } from "../src/models/field";
 import { FieldType } from "../src/models/fieldType";
+import { TextBoxField } from "../src/models/textBoxField";
 var assert = require('assert');
 
 describe("Fields Tests", () => {
@@ -231,5 +232,108 @@ describe("Fields Tests", () => {
                 });
             });
         });
+    });
+
+    describe("TextBoxField Tests", () => {
+
+        describe("GetDocumentTextBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "FormDataTextBox.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentTextBoxFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageTextBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "FormDataTextBox.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const pageNumber = 1;
+
+                return BaseTest.getPdfApi().getPageTextBoxFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetTextBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "FormDataTextBox.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "Petitioner";
+
+                return BaseTest.getPdfApi().getTextBoxField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostTextBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const textBox = new TextBoxField();
+                textBox.pageIndex = 1; 
+                textBox.isGroup = false;
+                textBox.color = {a: 255, r: 255, g: 0, b: 0};
+                textBox.multiline = true;
+                textBox.maxLen = 100;
+                textBox.rect = { lLX: 100, lLY: 100, uRX: 500, uRY: 200};
+                textBox.value = "Page 1\nValue";
+                textBox.partialName = "testField";
+                
+
+                return BaseTest.getPdfApi().postTextBoxFields(name, [textBox], null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutTextBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "FormDataTextBox.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "Petitioner";
+
+                const textBox = new TextBoxField();
+                textBox.pageIndex = 1; 
+                textBox.isGroup = false;
+                textBox.color = {a: 255, r: 255, g: 0, b: 0};
+                textBox.multiline = true;
+                textBox.maxLen = 100;
+                textBox.rect = { lLX: 100, lLY: 100, uRX: 500, uRY: 200};
+                textBox.value = "Page 1\nValue";
+                textBox.partialName = "testField";
+                
+
+                return BaseTest.getPdfApi().putTextBoxField(name, fieldName, textBox, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        
     });
 });

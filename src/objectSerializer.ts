@@ -220,6 +220,9 @@ import { TablesRecognizedResponse } from "./models/tablesRecognizedResponse";
 import { TextAnnotationResponse } from "./models/textAnnotationResponse";
 import { TextAnnotations } from "./models/textAnnotations";
 import { TextAnnotationsResponse } from "./models/textAnnotationsResponse";
+import { TextBoxFieldResponse } from "./models/textBoxFieldResponse";
+import { TextBoxFields } from "./models/textBoxFields";
+import { TextBoxFieldsResponse } from "./models/textBoxFieldsResponse";
 import { TextRectsResponse } from "./models/textRectsResponse";
 import { TextReplaceResponse } from "./models/textReplaceResponse";
 import { UnderlineAnnotationResponse } from "./models/underlineAnnotationResponse";
@@ -238,6 +241,7 @@ import { PopupAnnotation } from "./models/popupAnnotation";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { ScreenAnnotation } from "./models/screenAnnotation";
 import { SignatureField } from "./models/signatureField";
+import { TextBoxField } from "./models/textBoxField";
 import { TextFooter } from "./models/textFooter";
 import { TextHeader } from "./models/textHeader";
 import { TextStamp } from "./models/textStamp";
@@ -466,6 +470,9 @@ let typeMap: {[index: string]: any} = {
     "TextAnnotationResponse": TextAnnotationResponse,
     "TextAnnotations": TextAnnotations,
     "TextAnnotationsResponse": TextAnnotationsResponse,
+    "TextBoxFieldResponse": TextBoxFieldResponse,
+    "TextBoxFields": TextBoxFields,
+    "TextBoxFieldsResponse": TextBoxFieldsResponse,
     "TextRectsResponse": TextRectsResponse,
     "TextReplaceResponse": TextReplaceResponse,
     "UnderlineAnnotationResponse": UnderlineAnnotationResponse,
@@ -484,6 +491,7 @@ let typeMap: {[index: string]: any} = {
     "RedactionAnnotation": RedactionAnnotation,
     "ScreenAnnotation": ScreenAnnotation,
     "SignatureField": SignatureField,
+    "TextBoxField": TextBoxField,
     "TextFooter": TextFooter,
     "TextHeader": TextHeader,
     "TextStamp": TextStamp,

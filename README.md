@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getDocumentStrikeOutAnnotations**](docs/PdfApi.md#getDocumentStrikeOutAnnotations) | **GET** /pdf/\{name}/annotations/strikeout | Read document StrikeOut annotations.
 *PdfApi* | [**getDocumentTables**](docs/PdfApi.md#getDocumentTables) | **GET** /pdf/\{name}/tables | Read document tables.
 *PdfApi* | [**getDocumentTextAnnotations**](docs/PdfApi.md#getDocumentTextAnnotations) | **GET** /pdf/\{name}/annotations/text | Read document text annotations.
+*PdfApi* | [**getDocumentTextBoxFields**](docs/PdfApi.md#getDocumentTextBoxFields) | **GET** /pdf/\{name}/fields/textbox | Read document text box fields.
 *PdfApi* | [**getDocumentUnderlineAnnotations**](docs/PdfApi.md#getDocumentUnderlineAnnotations) | **GET** /pdf/\{name}/annotations/underline | Read document underline annotations.
 *PdfApi* | [**getDownloadDocumentAttachmentByIndex**](docs/PdfApi.md#getDownloadDocumentAttachmentByIndex) | **GET** /pdf/\{name}/attachments/\{attachmentIndex}/download | Download document attachment content by its index.
 *PdfApi* | [**getEpubInStorageToPdf**](docs/PdfApi.md#getEpubInStorageToPdf) | **GET** /pdf/create/epub | Convert EPUB file (located on storage) to PDF format and return resulting file in response. 
@@ -181,6 +182,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getPageTables**](docs/PdfApi.md#getPageTables) | **GET** /pdf/\{name}/pages/\{pageNumber}/tables | Read document page tables.
 *PdfApi* | [**getPageText**](docs/PdfApi.md#getPageText) | **GET** /pdf/\{name}/pages/\{pageNumber}/text | Read page text items.
 *PdfApi* | [**getPageTextAnnotations**](docs/PdfApi.md#getPageTextAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/text | Read document page text annotations.
+*PdfApi* | [**getPageTextBoxFields**](docs/PdfApi.md#getPageTextBoxFields) | **GET** /pdf/\{name}/page/\{pageNumber}/fields/textbox | Read document page text box fields.
 *PdfApi* | [**getPageUnderlineAnnotations**](docs/PdfApi.md#getPageUnderlineAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/underline | Read document page underline annotations.
 *PdfApi* | [**getPclInStorageToPdf**](docs/PdfApi.md#getPclInStorageToPdf) | **GET** /pdf/create/pcl | Convert PCL file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getPdfInStorageToDoc**](docs/PdfApi.md#getPdfInStorageToDoc) | **GET** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and returns resulting file in response content
@@ -215,6 +217,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**getTable**](docs/PdfApi.md#getTable) | **GET** /pdf/\{name}/tables/\{tableId} | Read document page table by ID.
 *PdfApi* | [**getText**](docs/PdfApi.md#getText) | **GET** /pdf/\{name}/text | Read document text.
 *PdfApi* | [**getTextAnnotation**](docs/PdfApi.md#getTextAnnotation) | **GET** /pdf/\{name}/annotations/text/\{annotationId} | Read document page text annotation by ID.
+*PdfApi* | [**getTextBoxField**](docs/PdfApi.md#getTextBoxField) | **GET** /pdf/\{name}/fields/textbox/\{fieldName} | Read document text box field by name.
 *PdfApi* | [**getUnderlineAnnotation**](docs/PdfApi.md#getUnderlineAnnotation) | **GET** /pdf/\{name}/annotations/underline/\{annotationId} | Read document page underline annotation by ID.
 *PdfApi* | [**getVerifySignature**](docs/PdfApi.md#getVerifySignature) | **GET** /pdf/\{name}/verifySignature | Verify signature document.
 *PdfApi* | [**getWebInStorageToPdf**](docs/PdfApi.md#getWebInStorageToPdf) | **GET** /pdf/create/web | Convert web page to PDF format and return resulting file in response. 
@@ -275,6 +278,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**postSignDocument**](docs/PdfApi.md#postSignDocument) | **POST** /pdf/\{name}/sign | Sign document.
 *PdfApi* | [**postSignPage**](docs/PdfApi.md#postSignPage) | **POST** /pdf/\{name}/pages/\{pageNumber}/sign | Sign page.
 *PdfApi* | [**postSplitDocument**](docs/PdfApi.md#postSplitDocument) | **POST** /pdf/\{name}/split | Split document to parts.
+*PdfApi* | [**postTextBoxFields**](docs/PdfApi.md#postTextBoxFields) | **POST** /pdf/\{name}/fields/textbox | Add document text box fields.
 *PdfApi* | [**putAddNewPage**](docs/PdfApi.md#putAddNewPage) | **PUT** /pdf/\{name}/pages | Add new page to end of the document.
 *PdfApi* | [**putAddText**](docs/PdfApi.md#putAddText) | **PUT** /pdf/\{name}/pages/\{pageNumber}/text | Add text to PDF document page.
 *PdfApi* | [**putAnnotationsFlatten**](docs/PdfApi.md#putAnnotationsFlatten) | **PUT** /pdf/\{name}/annotations/flatten | Flattens the annotations of the specified types
@@ -370,6 +374,7 @@ Class | Method | HTTP request | Description
 *PdfApi* | [**putSvgInStorageToPdf**](docs/PdfApi.md#putSvgInStorageToPdf) | **PUT** /pdf/\{name}/create/svg | Convert SVG file (located on storage) to PDF format and upload resulting file to storage. 
 *PdfApi* | [**putTable**](docs/PdfApi.md#putTable) | **PUT** /pdf/\{name}/tables/\{tableId} | Replace document page table.
 *PdfApi* | [**putTextAnnotation**](docs/PdfApi.md#putTextAnnotation) | **PUT** /pdf/\{name}/annotations/text/\{annotationId} | Replace document text annotation
+*PdfApi* | [**putTextBoxField**](docs/PdfApi.md#putTextBoxField) | **PUT** /pdf/\{name}/fields/textbox/\{fieldName} | Replace document text box field
 *PdfApi* | [**putUnderlineAnnotation**](docs/PdfApi.md#putUnderlineAnnotation) | **PUT** /pdf/\{name}/annotations/underline/\{annotationId} | Replace document underline annotation
 *PdfApi* | [**putUpdateField**](docs/PdfApi.md#putUpdateField) | **PUT** /pdf/\{name}/fields/\{fieldName} | Update field.
 *PdfApi* | [**putUpdateFields**](docs/PdfApi.md#putUpdateFields) | **PUT** /pdf/\{name}/fields | Update fields.
@@ -604,6 +609,10 @@ Class | Description
 [**TextAnnotationResponse**](docs/TextAnnotationResponse.md) | Represents response containing single text annotation object
 [**TextAnnotations**](docs/TextAnnotations.md) | Object representing a list of text annotations.
 [**TextAnnotationsResponse**](docs/TextAnnotationsResponse.md) | Represents response containing multiple text annotation objects
+[**TextBoxField**](docs/TextBoxField.md) | Provides TextBoxField.
+[**TextBoxFieldResponse**](docs/TextBoxFieldResponse.md) | Represents response containing single text box field object
+[**TextBoxFields**](docs/TextBoxFields.md) | Object representing a list of text box fields.
+[**TextBoxFieldsResponse**](docs/TextBoxFieldsResponse.md) | Represents response containing multiple text box field objects
 [**TextFooter**](docs/TextFooter.md) | Represents Pdf text header.
 [**TextHeader**](docs/TextHeader.md) | Represents Pdf text header.
 [**TextHorizontalAlignment**](docs/TextHorizontalAlignment.md) | Describes text horizontal alignment.
