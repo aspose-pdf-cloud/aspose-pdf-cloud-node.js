@@ -325,7 +325,7 @@ export class PdfApi {
      */
     public async copyFile (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/file/copy/{srcPath}'
-            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -391,7 +391,7 @@ export class PdfApi {
      */
     public async copyFolder (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/folder/copy/{srcPath}'
-            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -451,7 +451,7 @@ export class PdfApi {
      */
     public async createFolder (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -500,8 +500,8 @@ export class PdfApi {
      */
     public async deleteAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -559,8 +559,8 @@ export class PdfApi {
      */
     public async deleteBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -617,7 +617,7 @@ export class PdfApi {
      */
     public async deleteDocumentAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -669,7 +669,7 @@ export class PdfApi {
      */
     public async deleteDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -721,7 +721,7 @@ export class PdfApi {
      */
     public async deleteDocumentLinkAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/links'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -773,7 +773,7 @@ export class PdfApi {
      */
     public async deleteDocumentStamps (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -825,7 +825,7 @@ export class PdfApi {
      */
     public async deleteDocumentTables (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/tables'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -878,8 +878,8 @@ export class PdfApi {
      */
     public async deleteField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -936,7 +936,7 @@ export class PdfApi {
      */
     public async deleteFile (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/file/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -988,7 +988,7 @@ export class PdfApi {
      */
     public async deleteFolder (path: string, storageName?: string, recursive?: boolean) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1041,8 +1041,8 @@ export class PdfApi {
      */
     public async deleteImage (name: string, imageId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1100,8 +1100,8 @@ export class PdfApi {
      */
     public async deleteLinkAnnotation (name: string, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1159,8 +1159,8 @@ export class PdfApi {
      */
     public async deletePage (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1218,8 +1218,8 @@ export class PdfApi {
      */
     public async deletePageAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1277,8 +1277,8 @@ export class PdfApi {
      */
     public async deletePageLinkAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1336,8 +1336,8 @@ export class PdfApi {
      */
     public async deletePageStamps (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1395,8 +1395,8 @@ export class PdfApi {
      */
     public async deletePageTables (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/tables'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1453,7 +1453,7 @@ export class PdfApi {
      */
     public async deleteProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1506,8 +1506,8 @@ export class PdfApi {
      */
     public async deleteProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1565,8 +1565,8 @@ export class PdfApi {
      */
     public async deleteStamp (name: string, stampId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps/{stampId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'stampId' + '}', encodeURIComponent(String(stampId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'stampId' + '}', encodeURIComponent(String(stampId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1624,8 +1624,8 @@ export class PdfApi {
      */
     public async deleteTable (name: string, tableId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/tables/{tableId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1682,7 +1682,7 @@ export class PdfApi {
      */
     public async downloadFile (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/storage/file/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1735,8 +1735,8 @@ export class PdfApi {
      */
     public async getBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1794,8 +1794,8 @@ export class PdfApi {
      */
     public async getBookmarks (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/list/{bookmarkPath}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1853,8 +1853,8 @@ export class PdfApi {
      */
     public async getCaretAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CaretAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/caret/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -1912,8 +1912,8 @@ export class PdfApi {
      */
     public async getCircleAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CircleAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/circle/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2010,7 +2010,7 @@ export class PdfApi {
      */
     public async getDocument (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2062,7 +2062,7 @@ export class PdfApi {
      */
     public async getDocumentAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AnnotationsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2115,8 +2115,8 @@ export class PdfApi {
      */
     public async getDocumentAttachmentByIndex (name: string, attachmentIndex: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AttachmentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/attachments/{attachmentIndex}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'attachmentIndex' + '}', encodeURIComponent(String(attachmentIndex)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'attachmentIndex' + '}', encodeURIComponent(String(attachmentIndex)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2173,7 +2173,7 @@ export class PdfApi {
      */
     public async getDocumentAttachments (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AttachmentsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/attachments'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2225,7 +2225,7 @@ export class PdfApi {
      */
     public async getDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2277,7 +2277,7 @@ export class PdfApi {
      */
     public async getDocumentCaretAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CaretAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/caret'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2329,7 +2329,7 @@ export class PdfApi {
      */
     public async getDocumentCircleAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CircleAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/circle'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2381,7 +2381,7 @@ export class PdfApi {
      */
     public async getDocumentFileAttachmentAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FileAttachmentAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/fileattachment'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2433,7 +2433,7 @@ export class PdfApi {
      */
     public async getDocumentFreeTextAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FreeTextAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2485,7 +2485,7 @@ export class PdfApi {
      */
     public async getDocumentHighlightAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: HighlightAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/highlight'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2537,7 +2537,7 @@ export class PdfApi {
      */
     public async getDocumentInkAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: InkAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/ink'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2589,7 +2589,7 @@ export class PdfApi {
      */
     public async getDocumentLineAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/line'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2641,7 +2641,7 @@ export class PdfApi {
      */
     public async getDocumentMovieAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: MovieAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/movie'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2693,7 +2693,7 @@ export class PdfApi {
      */
     public async getDocumentPolyLineAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolyLineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2745,7 +2745,7 @@ export class PdfApi {
      */
     public async getDocumentPolygonAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolygonAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2797,7 +2797,7 @@ export class PdfApi {
      */
     public async getDocumentPopupAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PopupAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/popup'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2850,8 +2850,8 @@ export class PdfApi {
      */
     public async getDocumentPopupAnnotationsByParent (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PopupAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/{annotationId}/popup'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2908,7 +2908,7 @@ export class PdfApi {
      */
     public async getDocumentProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertiesResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -2961,8 +2961,8 @@ export class PdfApi {
      */
     public async getDocumentProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3019,7 +3019,7 @@ export class PdfApi {
      */
     public async getDocumentRedactionAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/redaction'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3071,7 +3071,7 @@ export class PdfApi {
      */
     public async getDocumentScreenAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ScreenAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/screen'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3123,7 +3123,7 @@ export class PdfApi {
      */
     public async getDocumentSignatureFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SignatureFieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/signature'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3175,7 +3175,7 @@ export class PdfApi {
      */
     public async getDocumentSoundAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SoundAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/sound'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3227,7 +3227,7 @@ export class PdfApi {
      */
     public async getDocumentSquareAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquareAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/square'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3279,7 +3279,7 @@ export class PdfApi {
      */
     public async getDocumentSquigglyAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquigglyAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/squiggly'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3331,7 +3331,7 @@ export class PdfApi {
      */
     public async getDocumentStampAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/stamp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3383,7 +3383,7 @@ export class PdfApi {
      */
     public async getDocumentStamps (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3435,7 +3435,7 @@ export class PdfApi {
      */
     public async getDocumentStrikeOutAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StrikeOutAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/strikeout'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3487,7 +3487,7 @@ export class PdfApi {
      */
     public async getDocumentTables (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TablesRecognizedResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/tables'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3539,7 +3539,7 @@ export class PdfApi {
      */
     public async getDocumentTextAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3591,7 +3591,7 @@ export class PdfApi {
      */
     public async getDocumentTextBoxFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/textbox'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3643,7 +3643,7 @@ export class PdfApi {
      */
     public async getDocumentUnderlineAnnotations (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: UnderlineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/underline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3696,8 +3696,8 @@ export class PdfApi {
      */
     public async getDownloadDocumentAttachmentByIndex (name: string, attachmentIndex: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/attachments/{attachmentIndex}/download'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'attachmentIndex' + '}', encodeURIComponent(String(attachmentIndex)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'attachmentIndex' + '}', encodeURIComponent(String(attachmentIndex)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3804,7 +3804,7 @@ export class PdfApi {
      */
     public async getExportFieldsFromPdfToFdfInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/fdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3856,7 +3856,7 @@ export class PdfApi {
      */
     public async getExportFieldsFromPdfToXfdfInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/xfdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3908,7 +3908,7 @@ export class PdfApi {
      */
     public async getExportFieldsFromPdfToXmlInStorage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -3961,8 +3961,8 @@ export class PdfApi {
      */
     public async getField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4019,7 +4019,7 @@ export class PdfApi {
      */
     public async getFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4072,8 +4072,8 @@ export class PdfApi {
      */
     public async getFileAttachmentAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FileAttachmentAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/fileattachment/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4131,8 +4131,8 @@ export class PdfApi {
      */
     public async getFileAttachmentAnnotationData (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/fileattachment/{annotationId}/data'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4188,7 +4188,7 @@ export class PdfApi {
      */
     public async getFileVersions (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FileVersions;  }> {
         const localVarPath = this.basePath + '/pdf/storage/version/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4235,7 +4235,7 @@ export class PdfApi {
      */
     public async getFilesList (path: string, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FilesList;  }> {
         const localVarPath = this.basePath + '/pdf/storage/folder/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4284,8 +4284,8 @@ export class PdfApi {
      */
     public async getFreeTextAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FreeTextAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4343,8 +4343,8 @@ export class PdfApi {
      */
     public async getHighlightAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: HighlightAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/highlight/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4492,8 +4492,8 @@ export class PdfApi {
      */
     public async getImage (name: string, imageId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ImageResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4553,8 +4553,8 @@ export class PdfApi {
      */
     public async getImageExtractAsGif (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/gif'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4622,8 +4622,8 @@ export class PdfApi {
      */
     public async getImageExtractAsJpeg (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/jpeg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4691,8 +4691,8 @@ export class PdfApi {
      */
     public async getImageExtractAsPng (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/png'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4760,8 +4760,8 @@ export class PdfApi {
      */
     public async getImageExtractAsTiff (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4827,8 +4827,8 @@ export class PdfApi {
      */
     public async getImages (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ImagesResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4886,7 +4886,7 @@ export class PdfApi {
      */
     public async getImportFieldsFromFdfInStorage (name: string, fdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -4948,7 +4948,7 @@ export class PdfApi {
      */
     public async getImportFieldsFromXfdfInStorage (name: string, xfdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5010,7 +5010,7 @@ export class PdfApi {
      */
     public async getImportFieldsFromXmlInStorage (name: string, xmlFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5072,8 +5072,8 @@ export class PdfApi {
      */
     public async getInkAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: InkAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/ink/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5181,8 +5181,8 @@ export class PdfApi {
      */
     public async getLineAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/line/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5240,8 +5240,8 @@ export class PdfApi {
      */
     public async getLinkAnnotation (name: string, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LinkAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5399,8 +5399,8 @@ export class PdfApi {
      */
     public async getMovieAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: MovieAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/movie/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5458,8 +5458,8 @@ export class PdfApi {
      */
     public async getPage (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPageResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5517,8 +5517,8 @@ export class PdfApi {
      */
     public async getPageAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AnnotationsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5576,8 +5576,8 @@ export class PdfApi {
      */
     public async getPageCaretAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CaretAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/caret'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5635,8 +5635,8 @@ export class PdfApi {
      */
     public async getPageCircleAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CircleAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/circle'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5696,8 +5696,8 @@ export class PdfApi {
      */
     public async getPageConvertToBmp (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5765,8 +5765,8 @@ export class PdfApi {
      */
     public async getPageConvertToEmf (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5834,8 +5834,8 @@ export class PdfApi {
      */
     public async getPageConvertToGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5903,8 +5903,8 @@ export class PdfApi {
      */
     public async getPageConvertToJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -5972,8 +5972,8 @@ export class PdfApi {
      */
     public async getPageConvertToPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6041,8 +6041,8 @@ export class PdfApi {
      */
     public async getPageConvertToTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6108,8 +6108,8 @@ export class PdfApi {
      */
     public async getPageFileAttachmentAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FileAttachmentAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/fileattachment'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6167,8 +6167,8 @@ export class PdfApi {
      */
     public async getPageFreeTextAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FreeTextAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/freetext'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6226,8 +6226,8 @@ export class PdfApi {
      */
     public async getPageHighlightAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: HighlightAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/highlight'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6285,8 +6285,8 @@ export class PdfApi {
      */
     public async getPageInkAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: InkAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/ink'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6344,8 +6344,8 @@ export class PdfApi {
      */
     public async getPageLineAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/line'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6404,9 +6404,9 @@ export class PdfApi {
      */
     public async getPageLinkAnnotation (name: string, pageNumber: number, linkId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LinkAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links/{linkId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)))
-            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6469,8 +6469,8 @@ export class PdfApi {
      */
     public async getPageLinkAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LinkAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6528,8 +6528,8 @@ export class PdfApi {
      */
     public async getPageMovieAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: MovieAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/movie'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6587,8 +6587,8 @@ export class PdfApi {
      */
     public async getPagePolyLineAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolyLineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polyline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6646,8 +6646,8 @@ export class PdfApi {
      */
     public async getPagePolygonAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolygonAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polygon'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6705,8 +6705,8 @@ export class PdfApi {
      */
     public async getPagePopupAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PopupAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/popup'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6764,8 +6764,8 @@ export class PdfApi {
      */
     public async getPageRedactionAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/redaction'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6823,8 +6823,8 @@ export class PdfApi {
      */
     public async getPageScreenAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ScreenAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/screen'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6882,8 +6882,8 @@ export class PdfApi {
      */
     public async getPageSignatureFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SignatureFieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/signature'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -6941,8 +6941,8 @@ export class PdfApi {
      */
     public async getPageSoundAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SoundAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/sound'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7000,8 +7000,8 @@ export class PdfApi {
      */
     public async getPageSquareAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquareAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/square'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7059,8 +7059,8 @@ export class PdfApi {
      */
     public async getPageSquigglyAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquigglyAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/squiggly'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7118,8 +7118,8 @@ export class PdfApi {
      */
     public async getPageStampAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/stamp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7177,8 +7177,8 @@ export class PdfApi {
      */
     public async getPageStamps (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7236,8 +7236,8 @@ export class PdfApi {
      */
     public async getPageStrikeOutAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StrikeOutAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/strikeout'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7295,8 +7295,8 @@ export class PdfApi {
      */
     public async getPageTables (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TablesRecognizedResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/tables'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7361,8 +7361,8 @@ export class PdfApi {
      */
     public async getPageText (name: string, pageNumber: number, LLX: number, LLY: number, URX: number, URY: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: TextRectsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7468,8 +7468,8 @@ export class PdfApi {
      */
     public async getPageTextAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7527,8 +7527,8 @@ export class PdfApi {
      */
     public async getPageTextBoxFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/textbox'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7586,8 +7586,8 @@ export class PdfApi {
      */
     public async getPageUnderlineAnnotations (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: UnderlineAnnotationsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/underline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7644,7 +7644,7 @@ export class PdfApi {
      */
     public async getPages (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPagesResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7754,7 +7754,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToDoc (name: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7839,7 +7839,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToEpub (name: string, contentRecognitionMode?: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/epub'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -7923,7 +7923,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToHtml (name: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8088,7 +8088,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToLaTeX (name: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8144,7 +8144,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToMobiXml (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/mobixml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8197,7 +8197,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToPdfA (name: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8260,7 +8260,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToPptx (name: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8321,7 +8321,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToSvg (name: string, compressOutputToZipArchive?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8392,7 +8392,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToTiff (name: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8508,7 +8508,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToXls (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8580,7 +8580,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToXlsx (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xlsx'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8648,7 +8648,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToXml (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8700,7 +8700,7 @@ export class PdfApi {
      */
     public async getPdfInStorageToXps (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8753,8 +8753,8 @@ export class PdfApi {
      */
     public async getPolyLineAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolyLineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8812,8 +8812,8 @@ export class PdfApi {
      */
     public async getPolygonAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolygonAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8871,8 +8871,8 @@ export class PdfApi {
      */
     public async getPopupAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PopupAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/popup/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -8980,8 +8980,8 @@ export class PdfApi {
      */
     public async getRedactionAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/redaction/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9039,8 +9039,8 @@ export class PdfApi {
      */
     public async getScreenAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ScreenAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/screen/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9098,8 +9098,8 @@ export class PdfApi {
      */
     public async getScreenAnnotationData (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/screen/{annotationId}/data'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9157,8 +9157,8 @@ export class PdfApi {
      */
     public async getSignatureField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SignatureFieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/signature/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9216,8 +9216,8 @@ export class PdfApi {
      */
     public async getSoundAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SoundAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/sound/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9275,8 +9275,8 @@ export class PdfApi {
      */
     public async getSoundAnnotationData (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/sound/{annotationId}/data'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9334,8 +9334,8 @@ export class PdfApi {
      */
     public async getSquareAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquareAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/square/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9393,8 +9393,8 @@ export class PdfApi {
      */
     public async getSquigglyAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquigglyAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/squiggly/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9452,8 +9452,8 @@ export class PdfApi {
      */
     public async getStampAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/stamp/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9511,8 +9511,8 @@ export class PdfApi {
      */
     public async getStampAnnotationData (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/stamp/{annotationId}/data'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9570,8 +9570,8 @@ export class PdfApi {
      */
     public async getStrikeOutAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StrikeOutAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/strikeout/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9719,8 +9719,8 @@ export class PdfApi {
      */
     public async getTable (name: string, tableId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TableRecognizedResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/tables/{tableId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9784,7 +9784,7 @@ export class PdfApi {
      */
     public async getText (name: string, LLX: number, LLY: number, URX: number, URY: number, format?: Array<string>, regex?: string, splitRects?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: TextRectsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9885,8 +9885,8 @@ export class PdfApi {
      */
     public async getTextAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/text/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -9944,8 +9944,8 @@ export class PdfApi {
      */
     public async getTextBoxField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/textbox/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10003,8 +10003,8 @@ export class PdfApi {
      */
     public async getUnderlineAnnotation (name: string, annotationId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: UnderlineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/underline/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10062,7 +10062,7 @@ export class PdfApi {
      */
     public async getVerifySignature (name: string, signName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SignatureVerifyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/verifySignature'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10208,7 +10208,7 @@ export class PdfApi {
      */
     public async getWordsPerPage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: WordCountResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/wordCount'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10260,7 +10260,7 @@ export class PdfApi {
      */
     public async getXfaPdfInStorageToAcroForm (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xfatoacroform'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10469,7 +10469,7 @@ export class PdfApi {
      */
     public async moveFile (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/file/move/{srcPath}'
-            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10535,7 +10535,7 @@ export class PdfApi {
      */
     public async moveFolder (srcPath: string, destPath: string, srcStorageName?: string, destStorageName?: string) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
         const localVarPath = this.basePath + '/pdf/storage/folder/move/{srcPath}'
-            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            .replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10596,7 +10596,7 @@ export class PdfApi {
      */
     public async objectExists (path: string, storageName?: string, versionId?: string) : Promise<{ response: http.IncomingMessage; body: ObjectExist;  }> {
         const localVarPath = this.basePath + '/pdf/storage/exist/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10651,7 +10651,7 @@ export class PdfApi {
      */
     public async postAppendDocument (name: string, appendFile: string, startPage?: number, endPage?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/appendDocument'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10722,8 +10722,8 @@ export class PdfApi {
      */
     public async postBookmark (name: string, bookmarkPath: string, bookmarks: Array<Bookmark>, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10789,7 +10789,7 @@ export class PdfApi {
      */
     public async postChangePasswordDocumentInStorage (name: string, ownerPassword: string, newUserPassword: string, newOwnerPassword: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/changepassword'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10870,7 +10870,7 @@ export class PdfApi {
      */
     public async postCreateField (name: string, page: number, field: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -10938,7 +10938,7 @@ export class PdfApi {
      */
     public async postDecryptDocumentInStorage (name: string, password: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/decrypt'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11002,7 +11002,7 @@ export class PdfApi {
      */
     public async postDocumentImageFooter (name: string, imageFooter: ImageFooter, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/footer/image'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11071,7 +11071,7 @@ export class PdfApi {
      */
     public async postDocumentImageHeader (name: string, imageHeader: ImageHeader, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/header/image'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11140,7 +11140,7 @@ export class PdfApi {
      */
     public async postDocumentPageNumberStamps (name: string, stamp: PageNumberStamp, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps/pagenumber'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11209,7 +11209,7 @@ export class PdfApi {
      */
     public async postDocumentTextFooter (name: string, textFooter: TextFooter, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/footer/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11278,7 +11278,7 @@ export class PdfApi {
      */
     public async postDocumentTextHeader (name: string, textHeader: TextHeader, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/header/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11345,7 +11345,7 @@ export class PdfApi {
      */
     public async postDocumentTextReplace (name: string, textReplace: TextReplaceListRequest, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextReplaceResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/text/replace'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11408,7 +11408,7 @@ export class PdfApi {
      */
     public async postEncryptDocumentInStorage (name: string, userPassword: string, ownerPassword: string, cryptoAlgorithm: string, permissionsFlags?: Array<PermissionsFlags>, usePdf20?: boolean, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/encrypt'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11498,7 +11498,7 @@ export class PdfApi {
      */
     public async postFlattenDocument (name: string, updateAppearances?: boolean, callEvents?: boolean, hideButtons?: boolean, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/flatten'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11563,7 +11563,7 @@ export class PdfApi {
      */
     public async postImportFieldsFromFdf (name: string, storage?: string, folder?: string, fdfData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11623,7 +11623,7 @@ export class PdfApi {
      */
     public async postImportFieldsFromXfdf (name: string, storage?: string, folder?: string, xfdfData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11683,7 +11683,7 @@ export class PdfApi {
      */
     public async postImportFieldsFromXml (name: string, storage?: string, folder?: string, xmlData?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11749,8 +11749,8 @@ export class PdfApi {
      */
     public async postInsertImage (name: string, pageNumber: number, llx: number, lly: number, urx: number, ury: number, imageFilePath?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11856,8 +11856,8 @@ export class PdfApi {
      */
     public async postMovePage (name: string, pageNumber: number, newIndex: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/movePage'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11924,7 +11924,7 @@ export class PdfApi {
      */
     public async postOptimizeDocument (name: string, options: OptimizeOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/optimize'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -11984,8 +11984,8 @@ export class PdfApi {
      */
     public async postPageCaretAnnotations (name: string, pageNumber: number, annotations: Array<CaretAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/caret'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12051,8 +12051,8 @@ export class PdfApi {
      */
     public async postPageCertify (name: string, pageNumber: number, sign: Signature, docMdpAccessPermissionType: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/certify'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12126,8 +12126,8 @@ export class PdfApi {
      */
     public async postPageCircleAnnotations (name: string, pageNumber: number, annotations: Array<CircleAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/circle'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12192,8 +12192,8 @@ export class PdfApi {
      */
     public async postPageFileAttachmentAnnotations (name: string, pageNumber: number, annotations: Array<FileAttachmentAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/fileattachment'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12258,8 +12258,8 @@ export class PdfApi {
      */
     public async postPageFreeTextAnnotations (name: string, pageNumber: number, annotations: Array<FreeTextAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/freetext'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12324,8 +12324,8 @@ export class PdfApi {
      */
     public async postPageHighlightAnnotations (name: string, pageNumber: number, annotations: Array<HighlightAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/highlight'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12390,8 +12390,8 @@ export class PdfApi {
      */
     public async postPageImageStamps (name: string, pageNumber: number, stamps: Array<ImageStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/image'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12456,8 +12456,8 @@ export class PdfApi {
      */
     public async postPageInkAnnotations (name: string, pageNumber: number, annotations: Array<InkAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/ink'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12522,8 +12522,8 @@ export class PdfApi {
      */
     public async postPageLineAnnotations (name: string, pageNumber: number, annotations: Array<LineAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/line'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12588,8 +12588,8 @@ export class PdfApi {
      */
     public async postPageLinkAnnotations (name: string, pageNumber: number, links: Array<LinkAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/links'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12654,8 +12654,8 @@ export class PdfApi {
      */
     public async postPageMovieAnnotations (name: string, pageNumber: number, annotations: Array<MovieAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/movie'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12720,8 +12720,8 @@ export class PdfApi {
      */
     public async postPagePdfPageStamps (name: string, pageNumber: number, stamps: Array<PdfPageStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/pdfpage'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12786,8 +12786,8 @@ export class PdfApi {
      */
     public async postPagePolyLineAnnotations (name: string, pageNumber: number, annotations: Array<PolyLineAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polyline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12852,8 +12852,8 @@ export class PdfApi {
      */
     public async postPagePolygonAnnotations (name: string, pageNumber: number, annotations: Array<PolygonAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/polygon'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12918,8 +12918,8 @@ export class PdfApi {
      */
     public async postPageRedactionAnnotations (name: string, pageNumber: number, annotations: Array<RedactionAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/redaction'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -12984,8 +12984,8 @@ export class PdfApi {
      */
     public async postPageScreenAnnotations (name: string, pageNumber: number, annotations: Array<ScreenAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/screen'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13050,8 +13050,8 @@ export class PdfApi {
      */
     public async postPageSoundAnnotations (name: string, pageNumber: number, annotations: Array<SoundAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/sound'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13116,8 +13116,8 @@ export class PdfApi {
      */
     public async postPageSquareAnnotations (name: string, pageNumber: number, annotations: Array<SquareAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/square'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13182,8 +13182,8 @@ export class PdfApi {
      */
     public async postPageSquigglyAnnotations (name: string, pageNumber: number, annotations: Array<SquigglyAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/squiggly'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13248,8 +13248,8 @@ export class PdfApi {
      */
     public async postPageStampAnnotations (name: string, pageNumber: number, annotations: Array<StampAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/stamp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13314,8 +13314,8 @@ export class PdfApi {
      */
     public async postPageStrikeOutAnnotations (name: string, pageNumber: number, annotations: Array<StrikeOutAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/strikeout'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13380,8 +13380,8 @@ export class PdfApi {
      */
     public async postPageTables (name: string, pageNumber: number, tables: Array<Table>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/tables'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13446,8 +13446,8 @@ export class PdfApi {
      */
     public async postPageTextAnnotations (name: string, pageNumber: number, annotations: Array<TextAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13512,8 +13512,8 @@ export class PdfApi {
      */
     public async postPageTextReplace (name: string, pageNumber: number, textReplaceListRequest: TextReplaceListRequest, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextReplaceResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text/replace'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13578,8 +13578,8 @@ export class PdfApi {
      */
     public async postPageTextStamps (name: string, pageNumber: number, stamps: Array<TextStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13644,8 +13644,8 @@ export class PdfApi {
      */
     public async postPageUnderlineAnnotations (name: string, pageNumber: number, annotations: Array<UnderlineAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/underline'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13710,8 +13710,8 @@ export class PdfApi {
      */
     public async postPopupAnnotation (name: string, annotationId: string, annotation: PopupAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/{annotationId}/popup'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13775,7 +13775,7 @@ export class PdfApi {
      */
     public async postSignDocument (name: string, sign: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/sign'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13835,8 +13835,8 @@ export class PdfApi {
      */
     public async postSignPage (name: string, pageNumber: number, sign: Signature, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/sign'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13902,7 +13902,7 @@ export class PdfApi {
      */
     public async postSplitDocument (name: string, format?: string, from?: number, to?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/split'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -13967,7 +13967,7 @@ export class PdfApi {
      */
     public async postTextBoxFields (name: string, fields: Array<TextBoxField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/textbox'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14025,7 +14025,7 @@ export class PdfApi {
      */
     public async putAddNewPage (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPagesResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14079,8 +14079,8 @@ export class PdfApi {
      */
     public async putAddText (name: string, pageNumber: number, paragraph: Paragraph, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/text'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14146,7 +14146,7 @@ export class PdfApi {
      */
     public async putAnnotationsFlatten (name: string, startPage?: number, endPage?: number, annotationTypes?: Array<AnnotationType>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/flatten'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14212,8 +14212,8 @@ export class PdfApi {
      */
     public async putBookmark (name: string, bookmarkPath: string, bookmark: Bookmark, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14278,8 +14278,8 @@ export class PdfApi {
      */
     public async putCaretAnnotation (name: string, annotationId: string, annotation: CaretAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CaretAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/caret/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14432,8 +14432,8 @@ export class PdfApi {
      */
     public async putCircleAnnotation (name: string, annotationId: string, annotation: CircleAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CircleAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/circle/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14496,7 +14496,7 @@ export class PdfApi {
      */
     public async putCreateDocument (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14715,7 +14715,7 @@ export class PdfApi {
      */
     public async putEpubInStorageToPdf (name: string, srcPath: string, storage?: string, dstFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/epub'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14777,7 +14777,7 @@ export class PdfApi {
      */
     public async putExportFieldsFromPdfToFdfInStorage (name: string, fdfOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/fdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14839,7 +14839,7 @@ export class PdfApi {
      */
     public async putExportFieldsFromPdfToXfdfInStorage (name: string, xfdfOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/xfdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14901,7 +14901,7 @@ export class PdfApi {
      */
     public async putExportFieldsFromPdfToXmlInStorage (name: string, xmlOutputFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/export/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -14962,7 +14962,7 @@ export class PdfApi {
      */
     public async putFieldsFlatten (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/flatten'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15016,8 +15016,8 @@ export class PdfApi {
      */
     public async putFileAttachmentAnnotation (name: string, annotationId: string, annotation: FileAttachmentAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FileAttachmentAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/fileattachment/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15082,8 +15082,8 @@ export class PdfApi {
      */
     public async putFileAttachmentAnnotationDataExtract (name: string, annotationId: string, outFolder?: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/fileattachment/{annotationId}/data/extract'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15146,8 +15146,8 @@ export class PdfApi {
      */
     public async putFreeTextAnnotation (name: string, annotationId: string, annotation: FreeTextAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FreeTextAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/freetext/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15212,8 +15212,8 @@ export class PdfApi {
      */
     public async putHighlightAnnotation (name: string, annotationId: string, annotation: HighlightAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: HighlightAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/highlight/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15285,7 +15285,7 @@ export class PdfApi {
      */
     public async putHtmlInStorageToPdf (name: string, srcPath: string, htmlFileName?: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/html'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15382,8 +15382,8 @@ export class PdfApi {
      */
     public async putImageExtractAsGif (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/gif'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15456,8 +15456,8 @@ export class PdfApi {
      */
     public async putImageExtractAsJpeg (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/jpeg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15530,8 +15530,8 @@ export class PdfApi {
      */
     public async putImageExtractAsPng (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/png'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15604,8 +15604,8 @@ export class PdfApi {
      */
     public async putImageExtractAsTiff (name: string, imageId: string, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}/extract/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15675,7 +15675,7 @@ export class PdfApi {
      */
     public async putImageInStorageToPdf (name: string, imageTemplates: ImageTemplatesRequest, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/images'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15737,8 +15737,8 @@ export class PdfApi {
      */
     public async putImagesExtractAsGif (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/gif'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15811,8 +15811,8 @@ export class PdfApi {
      */
     public async putImagesExtractAsJpeg (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/jpeg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15885,8 +15885,8 @@ export class PdfApi {
      */
     public async putImagesExtractAsPng (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/png'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -15959,8 +15959,8 @@ export class PdfApi {
      */
     public async putImagesExtractAsTiff (name: string, pageNumber: number, width?: number, height?: number, storage?: string, folder?: string, destFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16030,7 +16030,7 @@ export class PdfApi {
      */
     public async putImportFieldsFromFdfInStorage (name: string, fdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/fdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16092,7 +16092,7 @@ export class PdfApi {
      */
     public async putImportFieldsFromXfdfInStorage (name: string, xfdfFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xfdf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16154,7 +16154,7 @@ export class PdfApi {
      */
     public async putImportFieldsFromXmlInStorage (name: string, xmlFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/import/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16217,8 +16217,8 @@ export class PdfApi {
      */
     public async putInkAnnotation (name: string, annotationId: string, annotation: InkAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: InkAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/ink/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16282,7 +16282,7 @@ export class PdfApi {
      */
     public async putLaTeXInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16345,8 +16345,8 @@ export class PdfApi {
      */
     public async putLineAnnotation (name: string, annotationId: string, annotation: LineAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/line/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16411,8 +16411,8 @@ export class PdfApi {
      */
     public async putLinkAnnotation (name: string, linkId: string, link: LinkAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: LinkAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/links/{linkId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'linkId' + '}', encodeURIComponent(String(linkId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16476,7 +16476,7 @@ export class PdfApi {
      */
     public async putMarkdownInStorageToPdf (name: string, srcPath: string, storage?: string, dstFolder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/markdown'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16538,7 +16538,7 @@ export class PdfApi {
      */
     public async putMergeDocuments (name: string, mergeDocuments: MergeDocuments, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/merge'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16597,7 +16597,7 @@ export class PdfApi {
      */
     public async putMhtInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/mht'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16660,8 +16660,8 @@ export class PdfApi {
      */
     public async putMovieAnnotation (name: string, annotationId: string, annotation: MovieAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: MovieAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/movie/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16726,8 +16726,8 @@ export class PdfApi {
      */
     public async putPageAddStamp (name: string, pageNumber: number, stamp: Stamp, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16794,8 +16794,8 @@ export class PdfApi {
      */
     public async putPageConvertToBmp (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16873,8 +16873,8 @@ export class PdfApi {
      */
     public async putPageConvertToEmf (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -16952,8 +16952,8 @@ export class PdfApi {
      */
     public async putPageConvertToGif (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -17031,8 +17031,8 @@ export class PdfApi {
      */
     public async putPageConvertToJpeg (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -17110,8 +17110,8 @@ export class PdfApi {
      */
     public async putPageConvertToPng (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -17189,8 +17189,8 @@ export class PdfApi {
      */
     public async putPageConvertToTiff (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -17265,7 +17265,7 @@ export class PdfApi {
      */
     public async putPclInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/pcl'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18414,7 +18414,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToDoc (name: string, outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18509,7 +18509,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToEpub (name: string, outPath: string, contentRecognitionMode?: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/epub'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18603,7 +18603,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18778,7 +18778,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToLaTeX (name: string, outPath: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18844,7 +18844,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToMobiXml (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/mobixml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18907,7 +18907,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToPdfA (name: string, outPath: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -18980,7 +18980,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToPptx (name: string, outPath: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19050,7 +19050,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToSvg (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19127,7 +19127,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToTiff (name: string, outPath: string, brightness?: number, compression?: string, colorDepth?: string, leftMargin?: number, rightMargin?: number, topMargin?: number, bottomMargin?: number, orientation?: string, skipBlankPages?: boolean, width?: number, height?: number, xResolution?: number, yResolution?: number, pageIndex?: number, pageCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/tiff'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19253,7 +19253,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToXls (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19335,7 +19335,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToXlsx (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xlsx'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19413,7 +19413,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToXml (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19475,7 +19475,7 @@ export class PdfApi {
      */
     public async putPdfInStorageToXps (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19538,8 +19538,8 @@ export class PdfApi {
      */
     public async putPolyLineAnnotation (name: string, annotationId: string, annotation: PolyLineAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolyLineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polyline/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19604,8 +19604,8 @@ export class PdfApi {
      */
     public async putPolygonAnnotation (name: string, annotationId: string, annotation: PolygonAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PolygonAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/polygon/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19670,8 +19670,8 @@ export class PdfApi {
      */
     public async putPopupAnnotation (name: string, annotationId: string, annotation: PopupAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: PopupAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/popup/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19735,7 +19735,7 @@ export class PdfApi {
      */
     public async putPrivileges (name: string, privileges: DocumentPrivilege, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/privileges'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19794,7 +19794,7 @@ export class PdfApi {
      */
     public async putPsInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/ps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19857,8 +19857,8 @@ export class PdfApi {
      */
     public async putRedactionAnnotation (name: string, annotationId: string, annotation: RedactionAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/redaction/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19924,8 +19924,8 @@ export class PdfApi {
      */
     public async putReplaceImage (name: string, imageId: string, imageFilePath?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.IncomingMessage; body: ImageResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/images/{imageId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'imageId' + '}', encodeURIComponent(String(imageId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -19995,8 +19995,8 @@ export class PdfApi {
      */
     public async putScreenAnnotation (name: string, annotationId: string, annotation: ScreenAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ScreenAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/screen/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20061,8 +20061,8 @@ export class PdfApi {
      */
     public async putScreenAnnotationDataExtract (name: string, annotationId: string, outFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/screen/{annotationId}/data/extract'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20129,7 +20129,7 @@ export class PdfApi {
      */
     public async putSearchableDocument (name: string, storage?: string, folder?: string, lang?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/ocr'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20187,8 +20187,8 @@ export class PdfApi {
      */
     public async putSetProperty (name: string, propertyName: string, value: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20256,8 +20256,8 @@ export class PdfApi {
      */
     public async putSoundAnnotation (name: string, annotationId: string, annotation: SoundAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SoundAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/sound/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20322,8 +20322,8 @@ export class PdfApi {
      */
     public async putSoundAnnotationDataExtract (name: string, annotationId: string, outFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/sound/{annotationId}/data/extract'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20391,8 +20391,8 @@ export class PdfApi {
      */
     public async putSquareAnnotation (name: string, annotationId: string, annotation: SquareAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquareAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/square/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20457,8 +20457,8 @@ export class PdfApi {
      */
     public async putSquigglyAnnotation (name: string, annotationId: string, annotation: SquigglyAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SquigglyAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/squiggly/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20523,8 +20523,8 @@ export class PdfApi {
      */
     public async putStampAnnotation (name: string, annotationId: string, annotation: StampAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/stamp/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20589,8 +20589,8 @@ export class PdfApi {
      */
     public async putStampAnnotationDataExtract (name: string, annotationId: string, outFilePath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/stamp/{annotationId}/data/extract'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20658,8 +20658,8 @@ export class PdfApi {
      */
     public async putStrikeOutAnnotation (name: string, annotationId: string, annotation: StrikeOutAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StrikeOutAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/strikeout/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20731,7 +20731,7 @@ export class PdfApi {
      */
     public async putSvgInStorageToPdf (name: string, srcPath: string, adjustPageSize?: boolean, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/svg'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20826,8 +20826,8 @@ export class PdfApi {
      */
     public async putTable (name: string, tableId: string, table: Table, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/tables/{tableId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'tableId' + '}', encodeURIComponent(String(tableId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20892,8 +20892,8 @@ export class PdfApi {
      */
     public async putTextAnnotation (name: string, annotationId: string, annotation: TextAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/text/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -20958,8 +20958,8 @@ export class PdfApi {
      */
     public async putTextBoxField (name: string, fieldName: string, field: TextBoxField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: TextBoxFieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/textbox/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21024,8 +21024,8 @@ export class PdfApi {
      */
     public async putUnderlineAnnotation (name: string, annotationId: string, annotation: UnderlineAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: UnderlineAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/underline/{annotationId}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21090,8 +21090,8 @@ export class PdfApi {
      */
     public async putUpdateField (name: string, fieldName: string, field: Field, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields/{fieldName}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21155,7 +21155,7 @@ export class PdfApi {
      */
     public async putUpdateFields (name: string, fields: Fields, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: FieldsResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/fields'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21221,7 +21221,7 @@ export class PdfApi {
      */
     public async putWebInStorageToPdf (name: string, url: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/web'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21369,7 +21369,7 @@ export class PdfApi {
      */
     public async putXfaPdfInStorageToAcroForm (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xfatoacroform'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21432,7 +21432,7 @@ export class PdfApi {
      */
     public async putXmlInStorageToPdf (name: string, srcPath: string, xslFilePath?: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21498,7 +21498,7 @@ export class PdfApi {
      */
     public async putXpsInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xps'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21560,7 +21560,7 @@ export class PdfApi {
      */
     public async putXslFoInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/xslfo'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21619,7 +21619,7 @@ export class PdfApi {
      */
     public async storageExists (storageName: string) : Promise<{ response: http.IncomingMessage; body: StorageExist;  }> {
         const localVarPath = this.basePath + '/pdf/storage/{storageName}/exist'
-            .replace('{' + 'storageName' + '}', encodeURIComponent(String(storageName)));
+            .replace('{' + 'storageName' + '}', encodeURIComponent(String(storageName)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
@@ -21663,7 +21663,7 @@ export class PdfApi {
      */
     public async uploadFile (path: string, file: Buffer, storageName?: string) : Promise<{ response: http.IncomingMessage; body: FilesUploadResult;  }> {
         const localVarPath = this.basePath + '/pdf/storage/file/{path}'
-            .replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            .replace('{' + 'path' + '}', encodeURIComponent(String(path)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
         let localVarFormParams: any = {};
