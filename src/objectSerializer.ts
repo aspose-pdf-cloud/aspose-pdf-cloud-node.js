@@ -26,6 +26,7 @@ import { AntialiasingProcessingType } from "./models/antialiasingProcessingType"
 import { AsposeResponse } from "./models/asposeResponse";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
 import { BorderInfo } from "./models/borderInfo";
+import { BoxStyle } from "./models/boxStyle";
 import { CapStyle } from "./models/capStyle";
 import { CaptionPosition } from "./models/captionPosition";
 import { CaretSymbol } from "./models/caretSymbol";
@@ -73,6 +74,7 @@ import { MergeDocuments } from "./models/mergeDocuments";
 import { ModelError } from "./models/modelError";
 import { ObjectExist } from "./models/objectExist";
 import { OptimizeOptions } from "./models/optimizeOptions";
+import { Option } from "./models/option";
 import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
@@ -127,6 +129,9 @@ import { BookmarksResponse } from "./models/bookmarksResponse";
 import { CaretAnnotationResponse } from "./models/caretAnnotationResponse";
 import { CaretAnnotations } from "./models/caretAnnotations";
 import { CaretAnnotationsResponse } from "./models/caretAnnotationsResponse";
+import { CheckBoxFieldResponse } from "./models/checkBoxFieldResponse";
+import { CheckBoxFields } from "./models/checkBoxFields";
+import { CheckBoxFieldsResponse } from "./models/checkBoxFieldsResponse";
 import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
 import { CircleAnnotations } from "./models/circleAnnotations";
 import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
@@ -181,6 +186,9 @@ import { PolygonAnnotationsResponse } from "./models/polygonAnnotationsResponse"
 import { PopupAnnotationResponse } from "./models/popupAnnotationResponse";
 import { PopupAnnotations } from "./models/popupAnnotations";
 import { PopupAnnotationsResponse } from "./models/popupAnnotationsResponse";
+import { RadioButtonFieldResponse } from "./models/radioButtonFieldResponse";
+import { RadioButtonFields } from "./models/radioButtonFields";
+import { RadioButtonFieldsResponse } from "./models/radioButtonFieldsResponse";
 import { RedactionAnnotationResponse } from "./models/redactionAnnotationResponse";
 import { RedactionAnnotations } from "./models/redactionAnnotations";
 import { RedactionAnnotationsResponse } from "./models/redactionAnnotationsResponse";
@@ -230,6 +238,8 @@ import { UnderlineAnnotations } from "./models/underlineAnnotations";
 import { UnderlineAnnotationsResponse } from "./models/underlineAnnotationsResponse";
 import { WordCountResponse } from "./models/wordCountResponse";
 import { AnnotationInfo } from "./models/annotationInfo";
+import { CheckBoxField } from "./models/checkBoxField";
+import { ChoiceField } from "./models/choiceField";
 import { ImageFooter } from "./models/imageFooter";
 import { ImageHeader } from "./models/imageHeader";
 import { ImageStamp } from "./models/imageStamp";
@@ -238,6 +248,7 @@ import { MovieAnnotation } from "./models/movieAnnotation";
 import { PageNumberStamp } from "./models/pageNumberStamp";
 import { PdfPageStamp } from "./models/pdfPageStamp";
 import { PopupAnnotation } from "./models/popupAnnotation";
+import { RadioButtonOptionField } from "./models/radioButtonOptionField";
 import { RedactionAnnotation } from "./models/redactionAnnotation";
 import { ScreenAnnotation } from "./models/screenAnnotation";
 import { SignatureField } from "./models/signatureField";
@@ -254,6 +265,7 @@ import { InkAnnotation } from "./models/inkAnnotation";
 import { LineAnnotation } from "./models/lineAnnotation";
 import { PolyAnnotation } from "./models/polyAnnotation";
 import { PopupAnnotationWithParent } from "./models/popupAnnotationWithParent";
+import { RadioButtonField } from "./models/radioButtonField";
 import { SoundAnnotation } from "./models/soundAnnotation";
 import { SquigglyAnnotation } from "./models/squigglyAnnotation";
 import { StampAnnotation } from "./models/stampAnnotation";
@@ -271,6 +283,7 @@ let enumsMap: {[index: string]: any} = {
     "AnnotationType": AnnotationType,
     "AntialiasingProcessingType": AntialiasingProcessingType,
     "BorderCornerStyle": BorderCornerStyle,
+    "BoxStyle": BoxStyle,
     "CapStyle": CapStyle,
     "CaptionPosition": CaptionPosition,
     "CaretSymbol": CaretSymbol,
@@ -340,6 +353,7 @@ let typeMap: {[index: string]: any} = {
     "ModelError": ModelError,
     "ObjectExist": ObjectExist,
     "OptimizeOptions": OptimizeOptions,
+    "Option": Option,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
     "Point": Point,
@@ -377,6 +391,9 @@ let typeMap: {[index: string]: any} = {
     "CaretAnnotationResponse": CaretAnnotationResponse,
     "CaretAnnotations": CaretAnnotations,
     "CaretAnnotationsResponse": CaretAnnotationsResponse,
+    "CheckBoxFieldResponse": CheckBoxFieldResponse,
+    "CheckBoxFields": CheckBoxFields,
+    "CheckBoxFieldsResponse": CheckBoxFieldsResponse,
     "CircleAnnotationResponse": CircleAnnotationResponse,
     "CircleAnnotations": CircleAnnotations,
     "CircleAnnotationsResponse": CircleAnnotationsResponse,
@@ -431,6 +448,9 @@ let typeMap: {[index: string]: any} = {
     "PopupAnnotationResponse": PopupAnnotationResponse,
     "PopupAnnotations": PopupAnnotations,
     "PopupAnnotationsResponse": PopupAnnotationsResponse,
+    "RadioButtonFieldResponse": RadioButtonFieldResponse,
+    "RadioButtonFields": RadioButtonFields,
+    "RadioButtonFieldsResponse": RadioButtonFieldsResponse,
     "RedactionAnnotationResponse": RedactionAnnotationResponse,
     "RedactionAnnotations": RedactionAnnotations,
     "RedactionAnnotationsResponse": RedactionAnnotationsResponse,
@@ -480,6 +500,8 @@ let typeMap: {[index: string]: any} = {
     "UnderlineAnnotationsResponse": UnderlineAnnotationsResponse,
     "WordCountResponse": WordCountResponse,
     "AnnotationInfo": AnnotationInfo,
+    "CheckBoxField": CheckBoxField,
+    "ChoiceField": ChoiceField,
     "ImageFooter": ImageFooter,
     "ImageHeader": ImageHeader,
     "ImageStamp": ImageStamp,
@@ -488,6 +510,7 @@ let typeMap: {[index: string]: any} = {
     "PageNumberStamp": PageNumberStamp,
     "PdfPageStamp": PdfPageStamp,
     "PopupAnnotation": PopupAnnotation,
+    "RadioButtonOptionField": RadioButtonOptionField,
     "RedactionAnnotation": RedactionAnnotation,
     "ScreenAnnotation": ScreenAnnotation,
     "SignatureField": SignatureField,
@@ -504,6 +527,7 @@ let typeMap: {[index: string]: any} = {
     "LineAnnotation": LineAnnotation,
     "PolyAnnotation": PolyAnnotation,
     "PopupAnnotationWithParent": PopupAnnotationWithParent,
+    "RadioButtonField": RadioButtonField,
     "SoundAnnotation": SoundAnnotation,
     "SquigglyAnnotation": SquigglyAnnotation,
     "StampAnnotation": StampAnnotation,

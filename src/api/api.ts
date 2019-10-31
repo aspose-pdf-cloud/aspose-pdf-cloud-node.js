@@ -26,6 +26,7 @@ import { AntialiasingProcessingType } from "../models/antialiasingProcessingType
 import { AsposeResponse } from "../models/asposeResponse";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
 import { BorderInfo } from "../models/borderInfo";
+import { BoxStyle } from "../models/boxStyle";
 import { CapStyle } from "../models/capStyle";
 import { CaptionPosition } from "../models/captionPosition";
 import { CaretSymbol } from "../models/caretSymbol";
@@ -73,6 +74,7 @@ import { MergeDocuments } from "../models/mergeDocuments";
 import { ModelError } from "../models/modelError";
 import { ObjectExist } from "../models/objectExist";
 import { OptimizeOptions } from "../models/optimizeOptions";
+import { Option } from "../models/option";
 import { PageWordCount } from "../models/pageWordCount";
 import { Paragraph } from "../models/paragraph";
 import { PartsEmbeddingModes } from "../models/partsEmbeddingModes";
@@ -127,6 +129,9 @@ import { BookmarksResponse } from "../models/bookmarksResponse";
 import { CaretAnnotationResponse } from "../models/caretAnnotationResponse";
 import { CaretAnnotations } from "../models/caretAnnotations";
 import { CaretAnnotationsResponse } from "../models/caretAnnotationsResponse";
+import { CheckBoxFieldResponse } from "../models/checkBoxFieldResponse";
+import { CheckBoxFields } from "../models/checkBoxFields";
+import { CheckBoxFieldsResponse } from "../models/checkBoxFieldsResponse";
 import { CircleAnnotationResponse } from "../models/circleAnnotationResponse";
 import { CircleAnnotations } from "../models/circleAnnotations";
 import { CircleAnnotationsResponse } from "../models/circleAnnotationsResponse";
@@ -181,6 +186,9 @@ import { PolygonAnnotationsResponse } from "../models/polygonAnnotationsResponse
 import { PopupAnnotationResponse } from "../models/popupAnnotationResponse";
 import { PopupAnnotations } from "../models/popupAnnotations";
 import { PopupAnnotationsResponse } from "../models/popupAnnotationsResponse";
+import { RadioButtonFieldResponse } from "../models/radioButtonFieldResponse";
+import { RadioButtonFields } from "../models/radioButtonFields";
+import { RadioButtonFieldsResponse } from "../models/radioButtonFieldsResponse";
 import { RedactionAnnotationResponse } from "../models/redactionAnnotationResponse";
 import { RedactionAnnotations } from "../models/redactionAnnotations";
 import { RedactionAnnotationsResponse } from "../models/redactionAnnotationsResponse";
@@ -230,6 +238,8 @@ import { UnderlineAnnotations } from "../models/underlineAnnotations";
 import { UnderlineAnnotationsResponse } from "../models/underlineAnnotationsResponse";
 import { WordCountResponse } from "../models/wordCountResponse";
 import { AnnotationInfo } from "../models/annotationInfo";
+import { CheckBoxField } from "../models/checkBoxField";
+import { ChoiceField } from "../models/choiceField";
 import { ImageFooter } from "../models/imageFooter";
 import { ImageHeader } from "../models/imageHeader";
 import { ImageStamp } from "../models/imageStamp";
@@ -238,6 +248,7 @@ import { MovieAnnotation } from "../models/movieAnnotation";
 import { PageNumberStamp } from "../models/pageNumberStamp";
 import { PdfPageStamp } from "../models/pdfPageStamp";
 import { PopupAnnotation } from "../models/popupAnnotation";
+import { RadioButtonOptionField } from "../models/radioButtonOptionField";
 import { RedactionAnnotation } from "../models/redactionAnnotation";
 import { ScreenAnnotation } from "../models/screenAnnotation";
 import { SignatureField } from "../models/signatureField";
@@ -254,6 +265,7 @@ import { InkAnnotation } from "../models/inkAnnotation";
 import { LineAnnotation } from "../models/lineAnnotation";
 import { PolyAnnotation } from "../models/polyAnnotation";
 import { PopupAnnotationWithParent } from "../models/popupAnnotationWithParent";
+import { RadioButtonField } from "../models/radioButtonField";
 import { SoundAnnotation } from "../models/soundAnnotation";
 import { SquigglyAnnotation } from "../models/squigglyAnnotation";
 import { StampAnnotation } from "../models/stampAnnotation";
@@ -1904,6 +1916,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document checkbox field by name.
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getCheckBoxField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CheckBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/checkbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getCheckBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling getCheckBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CheckBoxFieldResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page circle annotation by ID.
      * @param name The document name.
      * @param annotationId The annotation ID.
@@ -2316,6 +2387,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "CaretAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document checkbox fields.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentCheckBoxFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CheckBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/checkbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentCheckBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CheckBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -3006,6 +3129,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentPropertyResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document radiobutton fields.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentRadioButtonFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RadioButtonFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/radiobutton'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentRadioButtonFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "RadioButtonFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5627,6 +5802,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document page checkbox fields.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageCheckBoxFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CheckBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/checkbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageCheckBoxFields.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageCheckBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CheckBoxFieldsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page circle annotations.
      * @param name The document name.
      * @param pageNumber The page number.
@@ -6750,6 +6984,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "PopupAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page radiobutton fields.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageRadioButtonFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RadioButtonFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/radiobutton'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageRadioButtonFields.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageRadioButtonFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "RadioButtonFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8972,6 +9265,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document RadioButton field by name.
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getRadioButtonField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RadioButtonFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/radiobutton/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getRadioButtonField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling getRadioButtonField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "RadioButtonFieldResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document page redaction annotation by ID.
      * @param name The document name.
      * @param annotationId The annotation ID.
@@ -10844,6 +11196,65 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document checkbox fields.
+     * @param name The document name.
+     * @param fields The array of field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postCheckBoxFields (name: string, fields: Array<CheckBoxField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/checkbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postCheckBoxFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling postCheckBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fields, "Array<CheckBoxField>")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -13767,6 +14178,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Add document RadioButton fields.
+     * @param name The document name.
+     * @param fields The array of field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postRadioButtonFields (name: string, fields: Array<RadioButtonField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/radiobutton'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postRadioButtonFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling postRadioButtonFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fields, "Array<RadioButtonField>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Sign document.
      * @param name The document name.
      * @param sign Signature object containing signature data.
@@ -14417,6 +14887,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document checkbox field
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param field The field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putCheckBoxField (name: string, fieldName: string, field: CheckBoxField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: CheckBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/checkbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putCheckBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling putCheckBoxField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putCheckBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(field, "CheckBoxField")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "CheckBoxFieldResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -19842,6 +20378,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document RadioButton field
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param field The field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putRadioButtonField (name: string, fieldName: string, field: RadioButtonField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RadioButtonFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/radiobutton/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putRadioButtonField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling putRadioButtonField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putRadioButtonField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(field, "RadioButtonField")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "RadioButtonFieldResponse");
         return Promise.resolve({body: result, response});
     }
 
