@@ -24,6 +24,10 @@ import "mocha";
 import { Field } from "../src/models/field";
 import { FieldType } from "../src/models/fieldType";
 import { TextBoxField } from "../src/models/textBoxField";
+import { CheckBoxField } from "../src/models/checkBoxField";
+import { RadioButtonField } from "../src/models/radioButtonField";
+import { BoxStyle } from "../src/models/boxStyle";
+import { RadioButtonOptionField } from "../src/models/radioButtonOptionField";
 var assert = require('assert');
 
 describe("Fields Tests", () => {
@@ -333,7 +337,241 @@ describe("Fields Tests", () => {
                 });
             });
         });
+    });
 
-        
+    describe("CheckBoxField Tests", () => {
+
+        describe("GetDocumentCheckBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentCheckBoxFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageCheckBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const pageNumber = 1;
+
+                return BaseTest.getPdfApi().getPageCheckBoxFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetCheckBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "checkboxField";
+
+                return BaseTest.getPdfApi().getCheckBoxField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostCheckBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const field = new CheckBoxField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.checked = true;
+                field.rect = { lLX: 100, lLY: 100, uRX: 200, uRY: 200};
+                field.exportValue = "true";
+                field.partialName = "testField";
+                field.style = BoxStyle.Cross;
+                
+
+                return BaseTest.getPdfApi().postCheckBoxFields(name, [field], null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutCheckBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "checkboxField";
+
+                const field = new CheckBoxField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.checked = true;
+                field.rect = { lLX: 100, lLY: 100, uRX: 200, uRY: 200};
+                field.exportValue = "true";
+                field.partialName = "testField";
+                field.style = BoxStyle.Cross;
+                
+
+                return BaseTest.getPdfApi().putCheckBoxField(name, fieldName, field, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+    describe("RadioButtonField Tests", () => {
+
+        describe("GetDocumentRadioButtonFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentRadioButtonFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageRadioButtonFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const pageNumber = 1;
+
+                return BaseTest.getPdfApi().getPageRadioButtonFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetRadioButtonField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "radiobuttonField";
+
+                return BaseTest.getPdfApi().getRadioButtonField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostRadioButtonFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const option1 = new RadioButtonOptionField();
+                option1.pageIndex = 1;
+                option1.isGroup = false;
+                option1.optionName = "1";
+                option1.rect = { lLX: 100, lLY: 130, uRX: 160, uRY: 140};
+                option1.style = BoxStyle.Cross;
+
+                const option2 = new RadioButtonOptionField();
+                option2.pageIndex = 1;
+                option2.isGroup = false;
+                option2.optionName = "2";
+                option2.rect = { lLX: 150, lLY: 120, uRX: 160, uRY: 130};
+                option2.style = BoxStyle.Cross;
+
+                const field = new RadioButtonField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.selected = 1;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.style = BoxStyle.Cross;
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.radioButtonOptionsField = [
+                    option1, option2
+                ]
+                
+
+                return BaseTest.getPdfApi().postRadioButtonFields(name, [field], null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutRadioButtonField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "radiobuttonField";
+
+                const option1 = new RadioButtonOptionField();
+                option1.pageIndex = 1;
+                option1.isGroup = false;
+                option1.optionName = "1";
+                option1.rect = { lLX: 100, lLY: 130, uRX: 160, uRY: 140};
+                option1.style = BoxStyle.Cross;
+
+                const option2 = new RadioButtonOptionField();
+                option2.pageIndex = 1;
+                option2.isGroup = false;
+                option2.optionName = "2";
+                option2.rect = { lLX: 150, lLY: 120, uRX: 160, uRY: 130};
+                option2.style = BoxStyle.Cross;
+
+                const field = new RadioButtonField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.selected = 1;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.style = BoxStyle.Cross;
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.radioButtonOptionsField = [
+                    option1, option2
+                ]
+                
+
+                return BaseTest.getPdfApi().putRadioButtonField(name, fieldName, field, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
     });
 });
