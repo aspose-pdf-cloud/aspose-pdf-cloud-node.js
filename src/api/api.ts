@@ -135,6 +135,9 @@ import { CheckBoxFieldsResponse } from "../models/checkBoxFieldsResponse";
 import { CircleAnnotationResponse } from "../models/circleAnnotationResponse";
 import { CircleAnnotations } from "../models/circleAnnotations";
 import { CircleAnnotationsResponse } from "../models/circleAnnotationsResponse";
+import { ComboBoxFieldResponse } from "../models/comboBoxFieldResponse";
+import { ComboBoxFields } from "../models/comboBoxFields";
+import { ComboBoxFieldsResponse } from "../models/comboBoxFieldsResponse";
 import { Document } from "../models/document";
 import { DocumentPageResponse } from "../models/documentPageResponse";
 import { DocumentPagesResponse } from "../models/documentPagesResponse";
@@ -257,6 +260,7 @@ import { TextFooter } from "../models/textFooter";
 import { TextHeader } from "../models/textHeader";
 import { TextStamp } from "../models/textStamp";
 import { CaretAnnotation } from "../models/caretAnnotation";
+import { ComboBoxField } from "../models/comboBoxField";
 import { CommonFigureAnnotation } from "../models/commonFigureAnnotation";
 import { FileAttachmentAnnotation } from "../models/fileAttachmentAnnotation";
 import { FreeTextAnnotation } from "../models/freeTextAnnotation";
@@ -2034,6 +2038,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document combobox field by name.
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getComboBoxField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ComboBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/combobox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getComboBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling getComboBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ComboBoxFieldResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Get disc usage
      * @param storageName Storage name
      */
@@ -2491,6 +2554,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document combobox fields.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentComboBoxFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ComboBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/combobox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentComboBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ComboBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5914,6 +6029,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page combobox fields.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageComboBoxFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ComboBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/combobox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageComboBoxFields.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageComboBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ComboBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -11272,6 +11446,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Add document combobox fields.
+     * @param name The document name.
+     * @param fields The array of field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postComboBoxFields (name: string, fields: Array<ComboBoxField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/combobox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postComboBoxFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling postComboBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fields, "Array<ComboBoxField>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Create field.
      * @param name The document name.
      * @param page Document page number.
@@ -15019,6 +15252,72 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "CircleAnnotationResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document combobox field
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param field The field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putComboBoxField (name: string, fieldName: string, field: ComboBoxField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ComboBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/combobox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putComboBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling putComboBoxField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putComboBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(field, "ComboBoxField")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ComboBoxFieldResponse");
         return Promise.resolve({body: result, response});
     }
 

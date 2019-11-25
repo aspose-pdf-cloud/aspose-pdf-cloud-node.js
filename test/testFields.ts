@@ -28,6 +28,8 @@ import { CheckBoxField } from "../src/models/checkBoxField";
 import { RadioButtonField } from "../src/models/radioButtonField";
 import { BoxStyle } from "../src/models/boxStyle";
 import { RadioButtonOptionField } from "../src/models/radioButtonOptionField";
+import { Option } from "../src/models/option";
+import { ComboBoxField } from "../src/models/comboBoxField";
 var assert = require('assert');
 
 describe("Fields Tests", () => {
@@ -568,6 +570,128 @@ describe("Fields Tests", () => {
                 
 
                 return BaseTest.getPdfApi().putRadioButtonField(name, fieldName, field, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+
+    describe("ComboBoxField Tests", () => {
+
+        describe("GetDocumentComboBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentComboBoxFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageComboBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const pageNumber = 1;
+
+                return BaseTest.getPdfApi().getPageComboBoxFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetComboBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "comboboxField";
+
+                return BaseTest.getPdfApi().getComboBoxField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostComboBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const option1 = new Option();
+                option1.name = "one";
+                option1.value = "one";
+
+                const option2 = new Option();
+                option1.name = "two";
+                option1.value = "two";
+
+                const field = new ComboBoxField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.selected = 1;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.options = [
+                    option1, option2
+                ]
+                
+
+                return BaseTest.getPdfApi().postComboBoxFields(name, [field], null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutComboBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "comboboxField";
+
+                const option1 = new Option();
+                option1.name = "one";
+                option1.value = "one";
+
+                const option2 = new Option();
+                option1.name = "two";
+                option1.value = "two";
+
+                const field = new ComboBoxField();
+                field.pageIndex = 1; 
+                field.isGroup = false;
+                field.selected = 1;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.options = [
+                    option1, option2
+                ]
+                
+
+                return BaseTest.getPdfApi().putComboBoxField(name, fieldName, field, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
