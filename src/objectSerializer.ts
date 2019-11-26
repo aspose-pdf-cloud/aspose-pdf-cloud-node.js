@@ -135,6 +135,9 @@ import { CheckBoxFieldsResponse } from "./models/checkBoxFieldsResponse";
 import { CircleAnnotationResponse } from "./models/circleAnnotationResponse";
 import { CircleAnnotations } from "./models/circleAnnotations";
 import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
+import { ComboBoxFieldResponse } from "./models/comboBoxFieldResponse";
+import { ComboBoxFields } from "./models/comboBoxFields";
+import { ComboBoxFieldsResponse } from "./models/comboBoxFieldsResponse";
 import { Document } from "./models/document";
 import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
@@ -257,6 +260,7 @@ import { TextFooter } from "./models/textFooter";
 import { TextHeader } from "./models/textHeader";
 import { TextStamp } from "./models/textStamp";
 import { CaretAnnotation } from "./models/caretAnnotation";
+import { ComboBoxField } from "./models/comboBoxField";
 import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FileAttachmentAnnotation } from "./models/fileAttachmentAnnotation";
 import { FreeTextAnnotation } from "./models/freeTextAnnotation";
@@ -397,6 +401,9 @@ let typeMap: {[index: string]: any} = {
     "CircleAnnotationResponse": CircleAnnotationResponse,
     "CircleAnnotations": CircleAnnotations,
     "CircleAnnotationsResponse": CircleAnnotationsResponse,
+    "ComboBoxFieldResponse": ComboBoxFieldResponse,
+    "ComboBoxFields": ComboBoxFields,
+    "ComboBoxFieldsResponse": ComboBoxFieldsResponse,
     "Document": Document,
     "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
@@ -519,6 +526,7 @@ let typeMap: {[index: string]: any} = {
     "TextHeader": TextHeader,
     "TextStamp": TextStamp,
     "CaretAnnotation": CaretAnnotation,
+    "ComboBoxField": ComboBoxField,
     "CommonFigureAnnotation": CommonFigureAnnotation,
     "FileAttachmentAnnotation": FileAttachmentAnnotation,
     "FreeTextAnnotation": FreeTextAnnotation,

@@ -43,7 +43,7 @@ export function getPdfApi() {
     pdfApi = new PdfApi(
       "appSID",
       "appKey",
-      "https://api-qa.aspose.cloud/v3.0"
+      "https://api.aspose.cloud/v3.0"
     );
 
     pdfApi.configuration.debugMode = true;
