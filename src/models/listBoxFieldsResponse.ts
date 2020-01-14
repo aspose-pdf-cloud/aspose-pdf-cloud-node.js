@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,23 +19,29 @@
  *
  */
 
-import { FileVersion } from "./fileVersion";
+import { ListBoxFields } from "./listBoxFields";
 import { AsposeResponse } from "./asposeResponse";
 
-export class FileVersionsResponse extends AsposeResponse {
-    'fileVersions': Array<FileVersion>;
+/**
+* Represents response containing multiple listbox field objects
+*/
+export class ListBoxFieldsResponse extends AsposeResponse {
+    /**
+    * Listbox fields object
+    */
+    'fields': ListBoxFields;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "fileVersions",
-            "baseName": "FileVersions",
-            "type": "Array<FileVersion>"
+            "name": "fields",
+            "baseName": "Fields",
+            "type": "ListBoxFields"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FileVersionsResponse.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ListBoxFieldsResponse.attributeTypeMap);
     }
 }
 

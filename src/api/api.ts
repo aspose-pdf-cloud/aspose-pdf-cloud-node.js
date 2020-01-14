@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -24,8 +24,11 @@ import { AnnotationState } from "../models/annotationState";
 import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
 import { AsposeResponse } from "../models/asposeResponse";
+import { Border } from "../models/border";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
+import { BorderEffect } from "../models/borderEffect";
 import { BorderInfo } from "../models/borderInfo";
+import { BorderStyle } from "../models/borderStyle";
 import { BoxStyle } from "../models/boxStyle";
 import { CapStyle } from "../models/capStyle";
 import { CaptionPosition } from "../models/captionPosition";
@@ -37,10 +40,14 @@ import { ColorDepth } from "../models/colorDepth";
 import { ColumnAdjustment } from "../models/columnAdjustment";
 import { CompressionType } from "../models/compressionType";
 import { CryptoAlgorithm } from "../models/cryptoAlgorithm";
+import { Dash } from "../models/dash";
+import { DefaultPageConfig } from "../models/defaultPageConfig";
+import { Direction } from "../models/direction";
 import { DiscUsage } from "../models/discUsage";
 import { DocFormat } from "../models/docFormat";
 import { DocMDPAccessPermissionType } from "../models/docMDPAccessPermissionType";
 import { DocRecognitionMode } from "../models/docRecognitionMode";
+import { DocumentConfig } from "../models/documentConfig";
 import { DocumentPrivilege } from "../models/documentPrivilege";
 import { EpubRecognitionMode } from "../models/epubRecognitionMode";
 import { ErrorDetails } from "../models/errorDetails";
@@ -75,6 +82,8 @@ import { ModelError } from "../models/modelError";
 import { ObjectExist } from "../models/objectExist";
 import { OptimizeOptions } from "../models/optimizeOptions";
 import { Option } from "../models/option";
+import { PageLayout } from "../models/pageLayout";
+import { PageMode } from "../models/pageMode";
 import { PageWordCount } from "../models/pageWordCount";
 import { Paragraph } from "../models/paragraph";
 import { PartsEmbeddingModes } from "../models/partsEmbeddingModes";
@@ -138,6 +147,8 @@ import { CircleAnnotationsResponse } from "../models/circleAnnotationsResponse";
 import { ComboBoxFieldResponse } from "../models/comboBoxFieldResponse";
 import { ComboBoxFields } from "../models/comboBoxFields";
 import { ComboBoxFieldsResponse } from "../models/comboBoxFieldsResponse";
+import { DisplayProperties } from "../models/displayProperties";
+import { DisplayPropertiesResponse } from "../models/displayPropertiesResponse";
 import { Document } from "../models/document";
 import { DocumentPageResponse } from "../models/documentPageResponse";
 import { DocumentPagesResponse } from "../models/documentPagesResponse";
@@ -175,6 +186,9 @@ import { LinkAnnotation } from "../models/linkAnnotation";
 import { LinkAnnotationResponse } from "../models/linkAnnotationResponse";
 import { LinkAnnotations } from "../models/linkAnnotations";
 import { LinkAnnotationsResponse } from "../models/linkAnnotationsResponse";
+import { ListBoxFieldResponse } from "../models/listBoxFieldResponse";
+import { ListBoxFields } from "../models/listBoxFields";
+import { ListBoxFieldsResponse } from "../models/listBoxFieldsResponse";
 import { MovieAnnotationResponse } from "../models/movieAnnotationResponse";
 import { MovieAnnotations } from "../models/movieAnnotations";
 import { MovieAnnotationsResponse } from "../models/movieAnnotationsResponse";
@@ -267,6 +281,7 @@ import { FreeTextAnnotation } from "../models/freeTextAnnotation";
 import { HighlightAnnotation } from "../models/highlightAnnotation";
 import { InkAnnotation } from "../models/inkAnnotation";
 import { LineAnnotation } from "../models/lineAnnotation";
+import { ListBoxField } from "../models/listBoxField";
 import { PolyAnnotation } from "../models/polyAnnotation";
 import { PopupAnnotationWithParent } from "../models/popupAnnotationWithParent";
 import { RadioButtonField } from "../models/radioButtonField";
@@ -2612,6 +2627,58 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document display properties.
+     * @param name 
+     * @param storage 
+     * @param folder 
+     */
+    public async getDocumentDisplayProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DisplayPropertiesResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/displayproperties'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentDisplayProperties.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "DisplayPropertiesResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document FileAttachment annotations.
      * @param name The document name.
      * @param storage The document storage.
@@ -2866,6 +2933,58 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "LineAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document listbox fields.
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getDocumentListBoxFields (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ListBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/listbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentListBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ListBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -5581,6 +5700,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Read document listbox field by name.
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getListBoxField (name: string, fieldName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ListBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/listbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getListBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling getListBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ListBoxFieldResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Convert MD file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.md)
      * @param storage The document storage.
@@ -6922,6 +7100,65 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "LinkAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Read document page listbox fields.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async getPageListBoxFields (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ListBoxFieldsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/page/{pageNumber}/fields/listbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPageListBoxFields.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getPageListBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ListBoxFieldsResponse");
         return Promise.resolve({body: result, response});
     }
 
@@ -8387,8 +8624,9 @@ export class PdfApi {
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param flowLayoutParagraphFullWidth This attribute specifies full width paragraph text for Flow mode, FixedLayout &#x3D; false.
      */
-    public async getPdfInStorageToHtml (name: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToHtml (name: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string, flowLayoutParagraphFullWidth?: boolean) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -8518,6 +8756,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (flowLayoutParagraphFullWidth !== undefined && null !== flowLayoutParagraphFullWidth) {
+            localVarQueryParameters['flowLayoutParagraphFullWidth'] = ObjectSerializer.serialize(flowLayoutParagraphFullWidth, "boolean");
         }
 
 
@@ -11505,6 +11747,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Create empty document.
+     * @param name The new document name.
+     * @param documentConfig The document config for new document.
+     * @param storage The document storage.
+     * @param folder The new document folder.
+     */
+    public async postCreateDocument (name: string, documentConfig: DocumentConfig, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postCreateDocument.');
+        }
+
+        // verify required parameter 'documentConfig' is not null or undefined
+        if (documentConfig === null || documentConfig === undefined) {
+            throw new Error('Required parameter documentConfig was null or undefined when calling postCreateDocument.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(documentConfig, "DocumentConfig")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Create field.
      * @param name The document name.
      * @param page Document page number.
@@ -12474,6 +12775,65 @@ export class PdfApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add document listbox fields.
+     * @param name The document name.
+     * @param fields The array of field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postListBoxFields (name: string, fields: Array<ListBoxField>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/listbox'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postListBoxFields.');
+        }
+
+        // verify required parameter 'fields' is not null or undefined
+        if (fields === null || fields === undefined) {
+            throw new Error('Required parameter fields was null or undefined when calling postListBoxFields.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(fields, "Array<ListBoxField>")
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -15444,6 +15804,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Update document display properties.
+     * @param name The document name.
+     * @param displayProperties The display properties.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putDocumentDisplayProperties (name: string, displayProperties: DisplayProperties, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DisplayPropertiesResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/displayproperties'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putDocumentDisplayProperties.');
+        }
+
+        // verify required parameter 'displayProperties' is not null or undefined
+        if (displayProperties === null || displayProperties === undefined) {
+            throw new Error('Required parameter displayProperties was null or undefined when calling putDocumentDisplayProperties.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(displayProperties, "DisplayProperties")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "DisplayPropertiesResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Encrypt document from content.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.doc)
      * @param userPassword User password (encrypted Base64).
@@ -17303,6 +17722,72 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Replace document listbox field
+     * @param name The document name.
+     * @param fieldName The field name.
+     * @param field The field.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async putListBoxField (name: string, fieldName: string, field: ListBoxField, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: ListBoxFieldResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/fields/listbox/{fieldName}'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'fieldName' + '}', encodeURIComponent(String(fieldName)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putListBoxField.');
+        }
+
+        // verify required parameter 'fieldName' is not null or undefined
+        if (fieldName === null || fieldName === undefined) {
+            throw new Error('Required parameter fieldName was null or undefined when calling putListBoxField.');
+        }
+
+        // verify required parameter 'field' is not null or undefined
+        if (field === null || field === undefined) {
+            throw new Error('Required parameter field was null or undefined when calling putListBoxField.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(field, "ListBoxField")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ListBoxFieldResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Convert MD file (located on storage) to PDF format and upload resulting file to storage. 
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.md)
@@ -18346,9 +18831,10 @@ export class PdfApi {
      * @param specialFolderForSvgImages The path to directory to which must be saved only SVG-images if they are encountered during saving of document as HTML. If parameter is empty or null then SVG files(if any) wil be saved together with other image-files (near to output file) or in special folder for images (if it specified in SpecialImagesFolderIfAny option). It does not affect anything if CustomImageSavingStrategy property was successfully used to process relevant image file.
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param storage The document storage.
+     * @param flowLayoutParagraphFullWidth This attribute specifies full width paragraph text for Flow mode, FixedLayout &#x3D; false.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, storage?: string, flowLayoutParagraphFullWidth?: boolean, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/html';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18477,6 +18963,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (flowLayoutParagraphFullWidth !== undefined && null !== flowLayoutParagraphFullWidth) {
+            localVarQueryParameters['flowLayoutParagraphFullWidth'] = ObjectSerializer.serialize(flowLayoutParagraphFullWidth, "boolean");
         }
 
 
@@ -19435,8 +19925,9 @@ export class PdfApi {
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param flowLayoutParagraphFullWidth This attribute specifies full width paragraph text for Flow mode, FixedLayout &#x3D; false.
      */
-    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string, flowLayoutParagraphFullWidth?: boolean) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -19575,6 +20066,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (flowLayoutParagraphFullWidth !== undefined && null !== flowLayoutParagraphFullWidth) {
+            localVarQueryParameters['flowLayoutParagraphFullWidth'] = ObjectSerializer.serialize(flowLayoutParagraphFullWidth, "boolean");
         }
 
 

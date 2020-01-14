@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,28 +19,11 @@
  *
  */
 
-
-export class FileExist {
-    'isExist': boolean;
-    'isFolder': boolean;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "isExist",
-            "baseName": "IsExist",
-            "type": "boolean"
-        },
-        {
-            "name": "isFolder",
-            "baseName": "IsFolder",
-            "type": "boolean"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return FileExist.attributeTypeMap;
-    }
+export enum PageMode {
+    UseNone = 'UseNone',
+    UseOutlines = 'UseOutlines',
+    UseThumbs = 'UseThumbs',
+    FullScreen = 'FullScreen',
+    UseOC = 'UseOC',
+    UseAttachments = 'UseAttachments',
 }
-
-

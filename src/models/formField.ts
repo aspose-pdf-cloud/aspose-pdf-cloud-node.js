@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,6 +19,7 @@
  *
  */
 
+import { Border } from "./border";
 import { VerticalAlignment } from "./verticalAlignment";
 import { HorizontalAlignment } from "./horizontalAlignment";
 import { LinkHighlightingMode } from "./linkHighlightingMode";
@@ -100,6 +101,10 @@ export class FormField extends LinkElement {
     * Gets VerticalAlignment of the field.
     */
     'verticalAlignment': VerticalAlignment;
+    /**
+    * Gets or sets annotation border characteristics.
+    */
+    'border': Border;
 
     static discriminator = undefined;
 
@@ -188,6 +193,11 @@ export class FormField extends LinkElement {
             "name": "verticalAlignment",
             "baseName": "VerticalAlignment",
             "type": "VerticalAlignment"
+        },
+        {
+            "name": "border",
+            "baseName": "Border",
+            "type": "Border"
         }    ];
 
     static getAttributeTypeMap() {

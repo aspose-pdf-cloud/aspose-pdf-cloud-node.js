@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,24 +19,7 @@
  *
  */
 
-import { FileExist } from "./fileExist";
-import { AsposeResponse } from "./asposeResponse";
-
-export class FileExistResponse extends AsposeResponse {
-    'fileExist': FileExist;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "fileExist",
-            "baseName": "FileExist",
-            "type": "FileExist"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FileExistResponse.attributeTypeMap);
-    }
+export enum Direction {
+    L2R = 'L2R',
+    R2L = 'R2L',
 }
-
-

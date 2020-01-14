@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,23 +19,36 @@
  *
  */
 
-import { File } from "./file";
-import { AsposeResponse } from "./asposeResponse";
 
-export class FilesResponse extends AsposeResponse {
-    'files': Array<File>;
+/**
+* Provides link to DefaultPageConfig.
+*/
+export class DefaultPageConfig {
+    /**
+    * Sets default page Height
+    */
+    'height': number;
+    /**
+    * Sets default page Width
+    */
+    'width': number;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "files",
-            "baseName": "Files",
-            "type": "Array<File>"
+            "name": "height",
+            "baseName": "Height",
+            "type": "number"
+        },
+        {
+            "name": "width",
+            "baseName": "Width",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(FilesResponse.attributeTypeMap);
+        return DefaultPageConfig.attributeTypeMap;
     }
 }
 

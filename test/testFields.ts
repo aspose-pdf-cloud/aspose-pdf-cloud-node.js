@@ -30,6 +30,7 @@ import { BoxStyle } from "../src/models/boxStyle";
 import { RadioButtonOptionField } from "../src/models/radioButtonOptionField";
 import { Option } from "../src/models/option";
 import { ComboBoxField } from "../src/models/comboBoxField";
+import { ListBoxField } from "../src/models/listBoxField";
 var assert = require('assert');
 
 describe("Fields Tests", () => {
@@ -692,6 +693,141 @@ describe("Fields Tests", () => {
                 
 
                 return BaseTest.getPdfApi().putComboBoxField(name, fieldName, field, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+    describe("ListBoxField Tests", () => {
+
+        describe("GetDocumentListBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+    
+                return BaseTest.getPdfApi().getDocumentListBoxFields(name, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetPageListBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const pageNumber = 1;
+
+                return BaseTest.getPdfApi().getPageListBoxFields(name, pageNumber, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("GetListBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "listboxField";
+
+                return BaseTest.getPdfApi().getListBoxField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostListBoxFields Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const option1 = new Option();
+                option1.name = "one";
+                option1.value = "one";
+                
+                const option2 = new Option();
+                option2.name = "two";
+                option2.value = "two";
+                
+                const option3 = new Option();
+                option3.name = "three";
+                option3.value = "three";
+
+                const option4 = new Option();
+                option4.name = "four";
+                option4.value = "four";
+
+                const field = new ListBoxField();
+                field.selectedItems = [1, 4];
+                field.pageIndex = 1; 
+                field.multiSelect = true;
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.options = [
+                    option1, option2, option3, option4
+                ]
+                
+                return BaseTest.getPdfApi().postListBoxFields(name, [field], null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutListBoxField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "PdfWithAcroForm.pdf";
+                await BaseTest.uploadFile(name);
+                
+                const fieldName = "listboxField";
+
+                const option1 = new Option();
+                option1.name = "one";
+                option1.value = "one";
+                
+                const option2 = new Option();
+                option2.name = "two";
+                option2.value = "two";
+                
+                const option3 = new Option();
+                option3.name = "three";
+                option3.value = "three";
+
+                const option4 = new Option();
+                option4.name = "four";
+                option4.value = "four";
+
+                const field = new ListBoxField();
+                field.pageIndex = 1; 
+                field.multiSelect = true;
+                field.selectedItems = [1, 4];
+                field.color = {a: 255, r: 255, g: 0, b: 0};
+                field.rect = { lLX: 100, lLY: 100, uRX: 160, uRY: 140};
+                field.partialName = "testField";
+                field.margin = { bottom: 0, left: 0, right: 0, top: 0 };
+                field.options = [
+                    option1, option2, option3, option4
+                ]
+                
+                return BaseTest.getPdfApi().putListBoxField(name, fieldName, field, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
