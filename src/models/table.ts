@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -68,6 +68,10 @@ export class Table extends LinkElement {
     * Gets or sets the border.
     */
     'border': BorderInfo;
+    /**
+    * Gets or sets a outer margin for paragraph (for pdf generation)
+    */
+    'margin': MarginInfo;
     /**
     * Sets the rows of the table.
     */
@@ -167,6 +171,11 @@ export class Table extends LinkElement {
             "name": "border",
             "baseName": "Border",
             "type": "BorderInfo"
+        },
+        {
+            "name": "margin",
+            "baseName": "Margin",
+            "type": "MarginInfo"
         },
         {
             "name": "rows",

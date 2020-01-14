@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -29,6 +29,10 @@ export class ChoiceField extends FormField {
     * Gets or sets multiselection flag.
     */
     'multiSelect': boolean;
+    /**
+    * Gets or sets index of selected item. Numbering of items is started from 1.
+    */
+    'selected': number;
 
     static discriminator = undefined;
 
@@ -37,6 +41,11 @@ export class ChoiceField extends FormField {
             "name": "multiSelect",
             "baseName": "MultiSelect",
             "type": "boolean"
+        },
+        {
+            "name": "selected",
+            "baseName": "Selected",
+            "type": "number"
         }    ];
 
     static getAttributeTypeMap() {

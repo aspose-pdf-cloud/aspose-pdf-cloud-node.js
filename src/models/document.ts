@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -20,6 +20,7 @@
  */
 
 import { Pages } from "./pages";
+import { DisplayProperties } from "./displayProperties";
 import { DocumentProperties } from "./documentProperties";
 import { LinkElement } from "./linkElement";
 
@@ -32,6 +33,10 @@ export class Document extends LinkElement {
     */
     'documentProperties': DocumentProperties;
     /**
+    * Document display properties.
+    */
+    'displayProperties': DisplayProperties;
+    /**
     * Document pages.
     */
     'pages': Pages;
@@ -43,6 +48,11 @@ export class Document extends LinkElement {
             "name": "documentProperties",
             "baseName": "DocumentProperties",
             "type": "DocumentProperties"
+        },
+        {
+            "name": "displayProperties",
+            "baseName": "DisplayProperties",
+            "type": "DisplayProperties"
         },
         {
             "name": "pages",

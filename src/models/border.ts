@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,45 +19,76 @@
  *
  */
 
+import { Color } from "./color";
+import { Dash } from "./dash";
+import { BorderEffect } from "./borderEffect";
+import { BorderStyle } from "./borderStyle";
 
 /**
-* Class for appendDocument service request building.
+* Class representing characteristics of annotation border.
 */
-export class AppendDocument {
+export class Border {
     /**
-    * Document to append (server path).
+    * Gets or sets border width.
     */
-    'document': string;
+    'width': number;
     /**
-    * Appending start page.
+    * Gets or sets effect intencity. Valid range of value is [0..2].
     */
-    'startPage': number;
+    'effectIntensity': number;
     /**
-    * Appending end page.
+    * Gets or sets border style.
     */
-    'endPage': number;
+    'style': BorderStyle;
+    /**
+    * Gets or sets border effect.
+    */
+    'effect': BorderEffect;
+    /**
+    * Gets or sets dash pattern.
+    */
+    'dash': Dash;
+    /**
+    * Gets or sets border color.
+    */
+    'color': Color;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "document",
-            "baseName": "Document",
-            "type": "string"
-        },
-        {
-            "name": "startPage",
-            "baseName": "StartPage",
+            "name": "width",
+            "baseName": "Width",
             "type": "number"
         },
         {
-            "name": "endPage",
-            "baseName": "EndPage",
+            "name": "effectIntensity",
+            "baseName": "EffectIntensity",
             "type": "number"
+        },
+        {
+            "name": "style",
+            "baseName": "Style",
+            "type": "BorderStyle"
+        },
+        {
+            "name": "effect",
+            "baseName": "Effect",
+            "type": "BorderEffect"
+        },
+        {
+            "name": "dash",
+            "baseName": "Dash",
+            "type": "Dash"
+        },
+        {
+            "name": "color",
+            "baseName": "Color",
+            "type": "Color"
         }    ];
 
     static getAttributeTypeMap() {
-        return AppendDocument.attributeTypeMap;
+        return Border.attributeTypeMap;
     }
 }
 

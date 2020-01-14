@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -24,8 +24,11 @@ import { AnnotationState } from "./models/annotationState";
 import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AsposeResponse } from "./models/asposeResponse";
+import { Border } from "./models/border";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
+import { BorderEffect } from "./models/borderEffect";
 import { BorderInfo } from "./models/borderInfo";
+import { BorderStyle } from "./models/borderStyle";
 import { BoxStyle } from "./models/boxStyle";
 import { CapStyle } from "./models/capStyle";
 import { CaptionPosition } from "./models/captionPosition";
@@ -37,10 +40,14 @@ import { ColorDepth } from "./models/colorDepth";
 import { ColumnAdjustment } from "./models/columnAdjustment";
 import { CompressionType } from "./models/compressionType";
 import { CryptoAlgorithm } from "./models/cryptoAlgorithm";
+import { Dash } from "./models/dash";
+import { DefaultPageConfig } from "./models/defaultPageConfig";
+import { Direction } from "./models/direction";
 import { DiscUsage } from "./models/discUsage";
 import { DocFormat } from "./models/docFormat";
 import { DocMDPAccessPermissionType } from "./models/docMDPAccessPermissionType";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
+import { DocumentConfig } from "./models/documentConfig";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
 import { ErrorDetails } from "./models/errorDetails";
@@ -75,6 +82,8 @@ import { ModelError } from "./models/modelError";
 import { ObjectExist } from "./models/objectExist";
 import { OptimizeOptions } from "./models/optimizeOptions";
 import { Option } from "./models/option";
+import { PageLayout } from "./models/pageLayout";
+import { PageMode } from "./models/pageMode";
 import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
@@ -138,6 +147,8 @@ import { CircleAnnotationsResponse } from "./models/circleAnnotationsResponse";
 import { ComboBoxFieldResponse } from "./models/comboBoxFieldResponse";
 import { ComboBoxFields } from "./models/comboBoxFields";
 import { ComboBoxFieldsResponse } from "./models/comboBoxFieldsResponse";
+import { DisplayProperties } from "./models/displayProperties";
+import { DisplayPropertiesResponse } from "./models/displayPropertiesResponse";
 import { Document } from "./models/document";
 import { DocumentPageResponse } from "./models/documentPageResponse";
 import { DocumentPagesResponse } from "./models/documentPagesResponse";
@@ -175,6 +186,9 @@ import { LinkAnnotation } from "./models/linkAnnotation";
 import { LinkAnnotationResponse } from "./models/linkAnnotationResponse";
 import { LinkAnnotations } from "./models/linkAnnotations";
 import { LinkAnnotationsResponse } from "./models/linkAnnotationsResponse";
+import { ListBoxFieldResponse } from "./models/listBoxFieldResponse";
+import { ListBoxFields } from "./models/listBoxFields";
+import { ListBoxFieldsResponse } from "./models/listBoxFieldsResponse";
 import { MovieAnnotationResponse } from "./models/movieAnnotationResponse";
 import { MovieAnnotations } from "./models/movieAnnotations";
 import { MovieAnnotationsResponse } from "./models/movieAnnotationsResponse";
@@ -267,6 +281,7 @@ import { FreeTextAnnotation } from "./models/freeTextAnnotation";
 import { HighlightAnnotation } from "./models/highlightAnnotation";
 import { InkAnnotation } from "./models/inkAnnotation";
 import { LineAnnotation } from "./models/lineAnnotation";
+import { ListBoxField } from "./models/listBoxField";
 import { PolyAnnotation } from "./models/polyAnnotation";
 import { PopupAnnotationWithParent } from "./models/popupAnnotationWithParent";
 import { RadioButtonField } from "./models/radioButtonField";
@@ -287,6 +302,8 @@ let enumsMap: {[index: string]: any} = {
     "AnnotationType": AnnotationType,
     "AntialiasingProcessingType": AntialiasingProcessingType,
     "BorderCornerStyle": BorderCornerStyle,
+    "BorderEffect": BorderEffect,
+    "BorderStyle": BorderStyle,
     "BoxStyle": BoxStyle,
     "CapStyle": CapStyle,
     "CaptionPosition": CaptionPosition,
@@ -295,6 +312,7 @@ let enumsMap: {[index: string]: any} = {
     "ColumnAdjustment": ColumnAdjustment,
     "CompressionType": CompressionType,
     "CryptoAlgorithm": CryptoAlgorithm,
+    "Direction": Direction,
     "DocFormat": DocFormat,
     "DocMDPAccessPermissionType": DocMDPAccessPermissionType,
     "DocRecognitionMode": DocRecognitionMode,
@@ -316,6 +334,8 @@ let enumsMap: {[index: string]: any} = {
     "LineSpacing": LineSpacing,
     "LinkActionType": LinkActionType,
     "LinkHighlightingMode": LinkHighlightingMode,
+    "PageLayout": PageLayout,
+    "PageMode": PageMode,
     "PartsEmbeddingModes": PartsEmbeddingModes,
     "PdfAType": PdfAType,
     "PermissionsFlags": PermissionsFlags,
@@ -337,11 +357,15 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "AsposeResponse": AsposeResponse,
+    "Border": Border,
     "BorderInfo": BorderInfo,
     "Cell": Cell,
     "CellRecognized": CellRecognized,
     "Color": Color,
+    "Dash": Dash,
+    "DefaultPageConfig": DefaultPageConfig,
     "DiscUsage": DiscUsage,
+    "DocumentConfig": DocumentConfig,
     "DocumentPrivilege": DocumentPrivilege,
     "ErrorDetails": ErrorDetails,
     "FileVersions": FileVersions,
@@ -404,6 +428,8 @@ let typeMap: {[index: string]: any} = {
     "ComboBoxFieldResponse": ComboBoxFieldResponse,
     "ComboBoxFields": ComboBoxFields,
     "ComboBoxFieldsResponse": ComboBoxFieldsResponse,
+    "DisplayProperties": DisplayProperties,
+    "DisplayPropertiesResponse": DisplayPropertiesResponse,
     "Document": Document,
     "DocumentPageResponse": DocumentPageResponse,
     "DocumentPagesResponse": DocumentPagesResponse,
@@ -441,6 +467,9 @@ let typeMap: {[index: string]: any} = {
     "LinkAnnotationResponse": LinkAnnotationResponse,
     "LinkAnnotations": LinkAnnotations,
     "LinkAnnotationsResponse": LinkAnnotationsResponse,
+    "ListBoxFieldResponse": ListBoxFieldResponse,
+    "ListBoxFields": ListBoxFields,
+    "ListBoxFieldsResponse": ListBoxFieldsResponse,
     "MovieAnnotationResponse": MovieAnnotationResponse,
     "MovieAnnotations": MovieAnnotations,
     "MovieAnnotationsResponse": MovieAnnotationsResponse,
@@ -533,6 +562,7 @@ let typeMap: {[index: string]: any} = {
     "HighlightAnnotation": HighlightAnnotation,
     "InkAnnotation": InkAnnotation,
     "LineAnnotation": LineAnnotation,
+    "ListBoxField": ListBoxField,
     "PolyAnnotation": PolyAnnotation,
     "PopupAnnotationWithParent": PopupAnnotationWithParent,
     "RadioButtonField": RadioButtonField,

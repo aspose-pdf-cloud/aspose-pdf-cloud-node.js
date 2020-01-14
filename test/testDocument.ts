@@ -22,6 +22,13 @@
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
 import { OptimizeOptions } from "../src/models/optimizeOptions";
+import { DocumentConfig } from "../src/models/documentConfig";
+import { DocumentProperties } from "../src/models/documentProperties";
+import { DisplayProperties } from "../src/models/displayProperties";
+import { DefaultPageConfig } from "../src/models/defaultPageConfig";
+import { Direction } from "../src/models/direction";
+import { PageMode } from "../src/models/pageMode";
+import { PageLayout } from "../src/models/pageLayout";
 
 var assert = require('assert');
 
@@ -88,4 +95,71 @@ describe("Document Tests", () => {
         });
     });
   });
+
+  describe("Create Empty Document with config Test", () => {
+    
+    it("should return response with code 200", () => {
+
+      const name = "empty_post.pdf";
+      
+      const displayProperties = new DisplayProperties();
+      displayProperties.centerWindow = true;
+      displayProperties.hideMenuBar = true;
+
+      const defaultPageConfig = new DefaultPageConfig();
+      defaultPageConfig.height = 100;
+      defaultPageConfig.width = 100;
+
+      const config = new DocumentConfig();
+      config.pagesCount = 2;
+      config.documentProperties = { list: [{name: "prop1", value: "Val1", builtIn: false, links: null}], links: null};
+      config.displayProperties = displayProperties;
+      config.defaultPageConfig = defaultPageConfig;
+
+      return BaseTest.getPdfApi().postCreateDocument(name, config, null, BaseTest.remoteTempFolder)
+        .then((result) => {
+          assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("GetDocumentDisplayProperties Test", () => {
+            
+    it("should return response with code 200", async () => {
+
+        const name = "4pages.pdf";
+        await BaseTest.uploadFile(name);
+
+        return BaseTest.getPdfApi().getDocumentDisplayProperties(name, null, BaseTest.remoteTempFolder)
+            .then((result) => {
+                assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("PutDocumentDisplayProperties Test", () => {
+            
+    it("should return response with code 200", async () => {
+
+        const name = "4pages.pdf";
+        await BaseTest.uploadFile(name);
+
+        const displayProperties = new DisplayProperties();
+        displayProperties.centerWindow = true;
+        displayProperties.direction = Direction.L2R;
+        displayProperties.displayDocTitle = true;
+        displayProperties.hideMenuBar = true;
+        displayProperties.hideToolBar = true;
+        displayProperties.hideWindowUI = true;
+        displayProperties.nonFullScreenPageMode = PageMode.UseNone;
+        displayProperties.pageLayout = PageLayout.TwoPageLeft;
+        displayProperties.pageMode = PageMode.UseOC;
+
+        return BaseTest.getPdfApi().putDocumentDisplayProperties(name, displayProperties, null, BaseTest.remoteTempFolder)
+            .then((result) => {
+                assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
 });

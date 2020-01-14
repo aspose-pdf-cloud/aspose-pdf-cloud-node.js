@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2019 Aspose.PDF Cloud
+ *   Copyright (c) 2020 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -19,49 +19,12 @@
  *
  */
 
-
-/**
-* Represents file DTO.
-*/
-export class File {
-    'name': string;
-    'isFolder': boolean;
-    'modifiedDate': Date;
-    'size': number;
-    'path': string;
-
-    static discriminator = undefined;
-
-    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
-        {
-            "name": "name",
-            "baseName": "Name",
-            "type": "string"
-        },
-        {
-            "name": "isFolder",
-            "baseName": "IsFolder",
-            "type": "boolean"
-        },
-        {
-            "name": "modifiedDate",
-            "baseName": "ModifiedDate",
-            "type": "Date"
-        },
-        {
-            "name": "size",
-            "baseName": "Size",
-            "type": "number"
-        },
-        {
-            "name": "path",
-            "baseName": "Path",
-            "type": "string"
-        }    ];
-
-    static getAttributeTypeMap() {
-        return File.attributeTypeMap;
-    }
+export enum PageLayout {
+    SinglePage = 'SinglePage',
+    OneColumn = 'OneColumn',
+    TwoColumnLeft = 'TwoColumnLeft',
+    TwoColumnRight = 'TwoColumnRight',
+    TwoPageLeft = 'TwoPageLeft',
+    TwoPageRight = 'TwoPageRight',
+    Default = 'Default',
 }
-
-
