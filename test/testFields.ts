@@ -1,6 +1,6 @@
  /**
  *
- *   Copyright (c) 2019 Aspose.Pdf for Cloud
+ *   Copyright (c) 2020 Aspose.Pdf for Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -31,6 +31,9 @@ import { RadioButtonOptionField } from "../src/models/radioButtonOptionField";
 import { Option } from "../src/models/option";
 import { ComboBoxField } from "../src/models/comboBoxField";
 import { ListBoxField } from "../src/models/listBoxField";
+import { Signature } from "../src/models/signature";
+import { SignatureType } from "../src/models/signatureType";
+import { SignatureField } from "../src/models/signatureField";
 var assert = require('assert');
 
 describe("Fields Tests", () => {
@@ -234,6 +237,80 @@ describe("Fields Tests", () => {
                 const fieldName = "Signature1";
     
                 return BaseTest.getPdfApi().getSignatureField(name, fieldName, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostSignatureField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "4pages.pdf";
+                await BaseTest.uploadFile(name);
+
+                const signatureFileName = "33226.p12";
+                await BaseTest.uploadFile(signatureFileName);
+
+
+                const sign = new Signature();
+                sign.authority = "Sergey Smal";
+                sign.contact = "test@mail.ru"
+                sign.date = "08/01/2012 12:15:00.000 PM";
+                sign.formFieldName = "Signature1";
+                sign.location = "Ukraine";
+                sign.password = "sIikZSmz";
+                sign.rectangle = { lLX: 100, lLY: 100, uRX: 0, uRY: 0 };
+                sign.signaturePath = BaseTest.remoteTempFolder + "/" + signatureFileName;
+                sign.signatureType = SignatureType.PKCS7;
+                sign.visible = true;
+                sign.showProperties = false;
+
+                const field = new SignatureField();
+                field.pageIndex = 1;
+                field.partialName = "sign1";
+                field.signature = sign;
+                field.rect = { lLX: 100, lLY: 100, uRX: 0, uRY: 0 };
+
+                return BaseTest.getPdfApi().postSignatureField(name, field, null, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutSignatureField Test", () => {
+            
+            it("should return response with code 200", async () => {
+    
+                const name = "adbe.x509.rsa_sha1.valid.pdf";
+                await BaseTest.uploadFile(name);
+
+                const signatureFileName = "33226.p12";
+                await BaseTest.uploadFile(signatureFileName);
+
+
+                const sign = new Signature();
+                sign.authority = "Sergey Smal";
+                sign.contact = "test@mail.ru"
+                sign.date = "08/01/2012 12:15:00.000 PM";
+                sign.formFieldName = "Signature1";
+                sign.location = "Ukraine";
+                sign.password = "sIikZSmz";
+                sign.rectangle = { lLX: 100, lLY: 100, uRX: 0, uRY: 0 };
+                sign.signaturePath = BaseTest.remoteTempFolder + "/" + signatureFileName;
+                sign.signatureType = SignatureType.PKCS7;
+                sign.visible = true;
+                sign.showProperties = false;
+
+                const field = new SignatureField();
+                field.pageIndex = 1;
+                field.partialName = "sign1";
+                field.signature = sign;
+                field.rect = { lLX: 100, lLY: 100, uRX: 0, uRY: 0 };
+
+                return BaseTest.getPdfApi().putSignatureField(name, "Signature1", field, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
