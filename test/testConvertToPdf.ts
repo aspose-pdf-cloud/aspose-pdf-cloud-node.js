@@ -27,7 +27,6 @@ import { ImageSrcType } from "../src/models/imageSrcType";
 var assert = require('assert');
 
 describe("Convert To PDF Tests", () => {
-    
     describe("EPUB To PDF Tests", () => {
         
         const name = "4pages.epub";
@@ -453,6 +452,39 @@ describe("Convert To PDF Tests", () => {
             it("should return response with code 200", async () => {
 
                 return BaseTest.getPdfApi().putMarkdownInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+    describe("PDFA To PDF Tests", () => {
+                                        
+        const name = "4pagesPdfA.pdf";
+        const resFileName = "fromPdfA.pdf";
+        const srcPath = BaseTest.remoteTempFolder + "/" + name;
+        
+        before( async ()=> {
+            await BaseTest.uploadFile(name);
+        });
+
+        describe("GetPdfAInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getPdfAInStorageToPdf(srcPath)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+        
+        describe("PutPdfAInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().putPdfAInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
