@@ -8443,6 +8443,61 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Convert PDFA file (located on storage) to PDF format and return resulting file in response. 
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.pdf)
+     * @param dontOptimize If set, document resources will not be optimized.
+     * @param storage The document storage.
+     */
+    public async getPdfAInStorageToPdf (srcPath: string, dontOptimize?: boolean, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/create/pdfa';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling getPdfAInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (dontOptimize !== undefined && null !== dontOptimize) {
+            localVarQueryParameters['dontOptimize'] = ObjectSerializer.serialize(dontOptimize, "boolean");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Converts PDF document (located on storage) to DOC format and returns resulting file in response content
      * @param name The document name.
      * @param addReturnToLineEnd Add return to line end.
@@ -11483,7 +11538,7 @@ export class PdfApi {
      * 
      * @summary Add document bookmarks.
      * @param name The document name.
-     * @param bookmarkPath The bookmark path.
+     * @param bookmarkPath The parent bookmark path. Specify an empty string when adding a bookmark to the root.
      * @param bookmarks The array of bookmark.
      * @param folder The document folder.
      * @param storage The document storage.
@@ -18665,6 +18720,73 @@ export class PdfApi {
 
         if (dstFolder !== undefined && null !== dstFolder) {
             localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Convert PDFA file (located on storage) to PDF format and upload resulting file to storage. 
+     * @param name The document name.
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.pdf)
+     * @param dstFolder The destination document folder.
+     * @param dontOptimize If set, document resources will not be optimized.
+     * @param storage The document storage.
+     */
+    public async putPdfAInStorageToPdf (name: string, srcPath: string, dstFolder?: string, dontOptimize?: boolean, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/create/pdfa'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putPdfAInStorageToPdf.');
+        }
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling putPdfAInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (dstFolder !== undefined && null !== dstFolder) {
+            localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
+        }
+
+        if (dontOptimize !== undefined && null !== dontOptimize) {
+            localVarQueryParameters['dontOptimize'] = ObjectSerializer.serialize(dontOptimize, "boolean");
         }
 
         if (storage !== undefined && null !== storage) {
