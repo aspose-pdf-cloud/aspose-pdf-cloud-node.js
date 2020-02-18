@@ -27,7 +27,7 @@ import { ImageSrcType } from "../src/models/imageSrcType";
 var assert = require('assert');
 
 describe("Convert To PDF Tests", () => {
-    /*
+
     describe("EPUB To PDF Tests", () => {
         
         const name = "4pages.epub";
@@ -426,7 +426,7 @@ describe("Convert To PDF Tests", () => {
             });
         });
     });
-*/
+
     describe("Markdown To PDF Tests", () => {
                                         
         const name = "mixed.md";
@@ -459,7 +459,7 @@ describe("Convert To PDF Tests", () => {
             });
         });
     });
-/*
+
     describe("PDFA To PDF Tests", () => {
                                         
         const name = "4pagesPdfA.pdf";
@@ -491,5 +491,5 @@ describe("Convert To PDF Tests", () => {
                 });
             });
         });
-    });*/
+    });
 });
