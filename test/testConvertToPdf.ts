@@ -27,6 +27,7 @@ import { ImageSrcType } from "../src/models/imageSrcType";
 var assert = require('assert');
 
 describe("Convert To PDF Tests", () => {
+
     describe("EPUB To PDF Tests", () => {
         
         const name = "4pages.epub";
@@ -451,7 +452,7 @@ describe("Convert To PDF Tests", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().putMarkdownInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().putMarkdownInStorageToPdf(resFileName, srcPath, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
