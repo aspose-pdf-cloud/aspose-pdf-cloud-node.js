@@ -464,7 +464,7 @@ describe("Convert Tests", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().getPdfInStorageToLaTeX(simplePdf, null, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().getPdfInStorageToLaTeX(simplePdf, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -475,7 +475,7 @@ describe("Convert Tests", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().putPdfInStorageToLaTeX(simplePdf, outPath, null, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().putPdfInStorageToLaTeX(simplePdf, outPath, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -488,7 +488,7 @@ describe("Convert Tests", () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToLaTeX(outPath, null, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToLaTeX(outPath, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

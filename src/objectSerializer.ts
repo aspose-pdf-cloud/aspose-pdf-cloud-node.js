@@ -64,6 +64,7 @@ import { GraphInfo } from "./models/graphInfo";
 import { HorizontalAlignment } from "./models/horizontalAlignment";
 import { HtmlDocumentType } from "./models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "./models/htmlMarkupGenerationModes";
+import { ImageFragment } from "./models/imageFragment";
 import { ImageSrcType } from "./models/imageSrcType";
 import { ImageTemplate } from "./models/imageTemplate";
 import { ImageTemplatesRequest } from "./models/imageTemplatesRequest";
@@ -372,6 +373,7 @@ let typeMap: {[index: string]: any} = {
     "FilesList": FilesList,
     "FilesUploadResult": FilesUploadResult,
     "GraphInfo": GraphInfo,
+    "ImageFragment": ImageFragment,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
     "Link": Link,

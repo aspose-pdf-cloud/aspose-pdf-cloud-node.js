@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **border** | [**BorderInfo**](BorderInfo.md) | Gets or sets the border. | [optional]
 **backgroundColor** | [**Color**](Color.md) | Gets or sets the background color. | [optional]
 **backgroundImageFile** | **string** | Gets or sets the background image file. | [optional]
+**backgroundImageStorageFile** | **string** | Gets or sets path of the background image file from storage. | [optional]
 **alignment** | [**HorizontalAlignment**](HorizontalAlignment.md) | Gets or sets the alignment. | [optional]
 **defaultCellTextState** | [**TextState**](TextState.md) | Gets or sets the default cell text state. | [optional]
 **paragraphs** | [**Array&lt;TextRect&gt;**](TextRect.md) | Gets or sets the cell's formatted text. | [optional]
@@ -17,6 +18,8 @@ Name | Type | Description | Notes
 **colSpan** | **number** | Gets or sets the column span. | [optional]
 **rowSpan** | **number** | Gets or sets the row span. | [optional]
 **width** | **number** | Gets or sets the column width. | [optional]
+**htmlFragment** | **string** | Gets or sets Html fragment. | [optional]
+**images** | [**Array&lt;ImageFragment&gt;**](ImageFragment.md) | Gets or sets ImageFragment list. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/cell.ts)
 
