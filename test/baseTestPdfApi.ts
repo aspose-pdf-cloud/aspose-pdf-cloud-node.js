@@ -155,9 +155,8 @@ export function drawTable() {
           // change properties on paragraph AFTER first clearing and re-adding paragraphs
           else if (c == 4)
           {
-            cell.paragraphs[0].text = "y";
-            cell.paragraphs[0].textState = textState;
-            cell.paragraphs[0].textState.foregroundColor = { a: 0xFF, r: 0x00, g: 0x00, b: 0xFF };
+            cell.paragraphs = null;
+            cell.htmlFragment = '<ul><li>First</li><li>Second</li></ul>';
           }
           row.cells.push(cell);
           

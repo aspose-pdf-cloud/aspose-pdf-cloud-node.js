@@ -19,6 +19,7 @@
  *
  */
 
+import { ImageFragment } from "./imageFragment";
 import { VerticalAlignment } from "./verticalAlignment";
 import { TextRect } from "./textRect";
 import { TextState } from "./textState";
@@ -52,6 +53,10 @@ export class Cell {
     */
     'backgroundImageFile': string;
     /**
+    * Gets or sets path of the background image file from storage.
+    */
+    'backgroundImageStorageFile': string;
+    /**
     * Gets or sets the alignment.
     */
     'alignment': HorizontalAlignment;
@@ -83,6 +88,14 @@ export class Cell {
     * Gets or sets the column width.
     */
     'width': number;
+    /**
+    * Gets or sets Html fragment.
+    */
+    'htmlFragment': string;
+    /**
+    * Gets or sets ImageFragment list.
+    */
+    'images': Array<ImageFragment>;
 
     static discriminator = undefined;
 
@@ -110,6 +123,11 @@ export class Cell {
         {
             "name": "backgroundImageFile",
             "baseName": "BackgroundImageFile",
+            "type": "string"
+        },
+        {
+            "name": "backgroundImageStorageFile",
+            "baseName": "BackgroundImageStorageFile",
             "type": "string"
         },
         {
@@ -151,6 +169,16 @@ export class Cell {
             "name": "width",
             "baseName": "Width",
             "type": "number"
+        },
+        {
+            "name": "htmlFragment",
+            "baseName": "HtmlFragment",
+            "type": "string"
+        },
+        {
+            "name": "images",
+            "baseName": "Images",
+            "type": "Array<ImageFragment>"
         }    ];
 
     static getAttributeTypeMap() {

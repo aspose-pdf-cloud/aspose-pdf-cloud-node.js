@@ -526,6 +526,7 @@ Class | Description
 [**HtmlMarkupGenerationModes**](docs/HtmlMarkupGenerationModes.md) | Sometimes specific reqirments to created HTML are present. This enum defines HTML preparing modes that can be used during conversion of PDF to HTML to match such specific requirments. 
 [**Image**](docs/Image.md) | Represents image DTO.
 [**ImageFooter**](docs/ImageFooter.md) | Represents Pdf image footer.
+[**ImageFragment**](docs/ImageFragment.md) | Represents Image Fragment DTO.
 [**ImageHeader**](docs/ImageHeader.md) | Represents Pdf image header.
 [**ImageResponse**](docs/ImageResponse.md) | Represents response containing single image info
 [**Images**](docs/Images.md) | Represents list of images.

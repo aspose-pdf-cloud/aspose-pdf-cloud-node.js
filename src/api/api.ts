@@ -64,6 +64,7 @@ import { GraphInfo } from "../models/graphInfo";
 import { HorizontalAlignment } from "../models/horizontalAlignment";
 import { HtmlDocumentType } from "../models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "../models/htmlMarkupGenerationModes";
+import { ImageFragment } from "../models/imageFragment";
 import { ImageSrcType } from "../models/imageSrcType";
 import { ImageTemplate } from "../models/imageTemplate";
 import { ImageTemplatesRequest } from "../models/imageTemplatesRequest";
@@ -8846,11 +8847,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (located on storage) to LaTeX format and returns resulting file in response content
      * @param name The document name.
-     * @param pagesCount Pages count.
      * @param folder The document folder.
      * @param storage The document storage.
      */
-    public async getPdfInStorageToLaTeX (name: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToLaTeX (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -8860,10 +8860,6 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling getPdfInStorageToLaTeX.');
-        }
-
-        if (pagesCount !== undefined && null !== pagesCount) {
-            localVarQueryParameters['pagesCount'] = ObjectSerializer.serialize(pagesCount, "number");
         }
 
         if (folder !== undefined && null !== folder) {
@@ -19186,11 +19182,10 @@ export class PdfApi {
      * 
      * @summary Converts PDF document (in request content) to LaTeX format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
-     * @param pagesCount Pages count.
      * @param storage The document storage.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToLaTeX (outPath: string, pagesCount?: number, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToLaTeX (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/latex';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19203,10 +19198,6 @@ export class PdfApi {
 
         if (outPath !== undefined && null !== outPath) {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
-        }
-
-        if (pagesCount !== undefined && null !== pagesCount) {
-            localVarQueryParameters['pagesCount'] = ObjectSerializer.serialize(pagesCount, "number");
         }
 
         if (storage !== undefined && null !== storage) {
@@ -20283,11 +20274,10 @@ export class PdfApi {
      * @summary Converts PDF document (located on storage) to LaTeX format and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
-     * @param pagesCount Pages count.
      * @param folder The document folder.
      * @param storage The document storage.
      */
-    public async putPdfInStorageToLaTeX (name: string, outPath: string, pagesCount?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToLaTeX (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -20306,10 +20296,6 @@ export class PdfApi {
 
         if (outPath !== undefined && null !== outPath) {
             localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
-        }
-
-        if (pagesCount !== undefined && null !== pagesCount) {
-            localVarQueryParameters['pagesCount'] = ObjectSerializer.serialize(pagesCount, "number");
         }
 
         if (folder !== undefined && null !== folder) {

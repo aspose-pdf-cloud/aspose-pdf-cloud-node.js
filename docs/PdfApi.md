@@ -3700,7 +3700,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToLaTeX"></a>
 ## **getPdfInStorageToLaTeX**
-> getPdfInStorageToLaTeX(name, pagesCount, folder, storage)
+> getPdfInStorageToLaTeX(name, folder, storage)
 
 Converts PDF document (located on storage) to LaTeX format and returns resulting file in response content
 
@@ -3708,7 +3708,6 @@ Converts PDF document (located on storage) to LaTeX format and returns resulting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
-**pagesCount** | **number** | Pages count. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 
@@ -7435,7 +7434,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToLaTeX"></a>
 ## **putPdfInRequestToLaTeX**
-> putPdfInRequestToLaTeX(outPath, pagesCount, storage, file)
+> putPdfInRequestToLaTeX(outPath, storage, file)
 
 Converts PDF document (in request content) to LaTeX format and uploads resulting file to storage.
 
@@ -7443,7 +7442,6 @@ Converts PDF document (in request content) to LaTeX format and uploads resulting
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **outPath** | **string** | Full resulting filename (ex. /folder1/folder2/result.tex) | 
-**pagesCount** | **number** | Pages count. | [optional]
 **storage** | **string** | The document storage. | [optional]
 **file** | **Buffer** | A file to be converted. | [optional]
 
@@ -7789,7 +7787,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToLaTeX"></a>
 ## **putPdfInStorageToLaTeX**
-> putPdfInStorageToLaTeX(name, outPath, pagesCount, folder, storage)
+> putPdfInStorageToLaTeX(name, outPath, folder, storage)
 
 Converts PDF document (located on storage) to LaTeX format and uploads resulting file to storage
 
@@ -7798,7 +7796,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
 **outPath** | **string** | Full resulting filename (ex. /folder1/folder2/result.tex) | 
-**pagesCount** | **number** | Pages count. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 
