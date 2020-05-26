@@ -455,40 +455,40 @@ describe("Convert Tests", () => {
         });
     });
     
-    describe("To LaTeX Tests", () => {
+    describe("To TeX Tests", () => {
 
-        const resFileName = "result.latex";
+        const resFileName = "result.tex";
         const outPath = BaseTest.remoteTempFolder + "/" + resFileName;
         
-        describe("GetPdfInStorageToLaTeX Test", () => {
+        describe("GetPdfInStorageToTeX Test", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().getPdfInStorageToLaTeX(simplePdf, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().getPdfInStorageToTeX(simplePdf, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
             });
         });
 
-        describe("PutPdfInStorageToLaTeX Test", () => {
+        describe("PutPdfInStorageToTeX Test", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().putPdfInStorageToLaTeX(simplePdf, outPath, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().putPdfInStorageToTeX(simplePdf, outPath, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
             });
         });
 
-        describe("PutPdfInRequestToLaTeX Test", () => {
+        describe("PutPdfInRequestToTeX Test", () => {
 
             it("should return response with code 200", async () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToLaTeX(outPath, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToTeX(outPath, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

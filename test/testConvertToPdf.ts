@@ -89,32 +89,32 @@ describe("Convert To PDF Tests", () => {
         });
     });
     
-    describe("LaTex To PDF Tests", () => {
+    describe("Tex To PDF Tests", () => {
             
         const name = "sample.tex";
-        const resFileName = "fromLaTeX.pdf";
+        const resFileName = "fromTeX.pdf";
         const srcPath = BaseTest.remoteTempFolder + "/" + name;
         
         before( async ()=> {
             await BaseTest.uploadFile(name);
         });
 
-        describe("GetLaTeXInStorageToPdf Test", () => {
+        describe("GetTeXInStorageToPdf Test", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().getLaTeXInStorageToPdf(srcPath)
+                return BaseTest.getPdfApi().getTeXInStorageToPdf(srcPath)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
             });
         });
         
-        describe("PutLaTeXInStorageToPdf Test", () => {
+        describe("PutTeXInStorageToPdf Test", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().putLaTeXInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().putTeXInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
