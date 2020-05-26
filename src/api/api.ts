@@ -5533,7 +5533,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert LaTeX file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert TeX file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param storage The document storage.
      */
@@ -8845,7 +8845,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to LaTeX format and returns resulting file in response content
+     * @summary Converts PDF document (located on storage) to TeX format and returns resulting file in response content
      * @param name The document name.
      * @param folder The document folder.
      * @param storage The document storage.
@@ -9093,6 +9093,58 @@ export class PdfApi {
 
         if (compressOutputToZipArchive !== undefined && null !== compressOutputToZipArchive) {
             localVarQueryParameters['compressOutputToZipArchive'] = ObjectSerializer.serialize(compressOutputToZipArchive, "boolean");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (located on storage) to TeX format and returns resulting file in response content
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getPdfInStorageToTeX (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/convert/tex'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPdfInStorageToTeX.');
         }
 
         if (folder !== undefined && null !== folder) {
@@ -10583,6 +10635,56 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "TableRecognizedResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Convert TeX file (located on storage) to PDF format and return resulting file in response. 
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
+     * @param storage The document storage.
+     */
+    public async getTeXInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/create/tex';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling getTeXInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
     }
 
@@ -17638,7 +17740,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert LaTeX file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert TeX file (located on storage) to PDF format and upload resulting file to storage. 
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param dstFolder The destination document folder.
@@ -19180,7 +19282,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (in request content) to LaTeX format and uploads resulting file to storage.
+     * @summary Converts PDF document (in request content) to TeX format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
      * @param storage The document storage.
      * @param file A file to be converted.
@@ -19446,6 +19548,64 @@ export class PdfApi {
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('Required parameter outPath was null or undefined when calling putPdfInRequestToSvg.');
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (file !== undefined) {
+            localVarFormParams['file'] = file;
+            fileData = file;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (in request content) to TeX format and uploads resulting file to storage.
+     * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
+     * @param storage The document storage.
+     * @param file A file to be converted.
+     */
+    public async putPdfInRequestToTeX (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/convert/tex';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling putPdfInRequestToTeX.');
         }
 
         if (outPath !== undefined && null !== outPath) {
@@ -20271,7 +20431,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to LaTeX format and uploads resulting file to storage
+     * @summary Converts PDF document (located on storage) to TeX format and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
      * @param folder The document folder.
@@ -20560,6 +20720,68 @@ export class PdfApi {
         // verify required parameter 'outPath' is not null or undefined
         if (outPath === null || outPath === undefined) {
             throw new Error('Required parameter outPath was null or undefined when calling putPdfInStorageToSvg.');
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (located on storage) to TeX format and uploads resulting file to storage
+     * @param name The document name.
+     * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async putPdfInStorageToTeX (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/convert/tex'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putPdfInStorageToTeX.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling putPdfInStorageToTeX.');
         }
 
         if (outPath !== undefined && null !== outPath) {
@@ -22495,6 +22717,68 @@ export class PdfApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(table, "Table")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Convert TeX file (located on storage) to PDF format and upload resulting file to storage. 
+     * @param name The document name.
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
+     * @param dstFolder The destination document folder.
+     * @param storage The document storage.
+     */
+    public async putTeXInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/create/tex'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putTeXInStorageToPdf.');
+        }
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling putTeXInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (dstFolder !== undefined && null !== dstFolder) {
+            localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         if (Object.keys(localVarFormParams).length) {
