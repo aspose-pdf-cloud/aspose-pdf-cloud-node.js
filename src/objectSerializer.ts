@@ -83,6 +83,7 @@ import { ModelError } from "./models/modelError";
 import { ObjectExist } from "./models/objectExist";
 import { OptimizeOptions } from "./models/optimizeOptions";
 import { Option } from "./models/option";
+import { OutputFormat } from "./models/outputFormat";
 import { PageLayout } from "./models/pageLayout";
 import { PageMode } from "./models/pageMode";
 import { PageWordCount } from "./models/pageWordCount";
@@ -335,6 +336,7 @@ let enumsMap: {[index: string]: any} = {
     "LineSpacing": LineSpacing,
     "LinkActionType": LinkActionType,
     "LinkHighlightingMode": LinkHighlightingMode,
+    "OutputFormat": OutputFormat,
     "PageLayout": PageLayout,
     "PageMode": PageMode,
     "PartsEmbeddingModes": PartsEmbeddingModes,

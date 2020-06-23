@@ -38,6 +38,10 @@ export class FormField extends LinkElement {
     */
     'partialName': string;
     /**
+    * Full Field name.
+    */
+    'fullName': string;
+    /**
     * Field rectangle.
     */
     'rect': Rectangle;
@@ -112,6 +116,11 @@ export class FormField extends LinkElement {
         {
             "name": "partialName",
             "baseName": "PartialName",
+            "type": "string"
+        },
+        {
+            "name": "fullName",
+            "baseName": "FullName",
             "type": "string"
         },
         {
