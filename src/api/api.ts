@@ -83,6 +83,7 @@ import { ModelError } from "../models/modelError";
 import { ObjectExist } from "../models/objectExist";
 import { OptimizeOptions } from "../models/optimizeOptions";
 import { Option } from "../models/option";
+import { OutputFormat } from "../models/outputFormat";
 import { PageLayout } from "../models/pageLayout";
 import { PageMode } from "../models/pageMode";
 import { PageWordCount } from "../models/pageWordCount";
@@ -19111,9 +19112,10 @@ export class PdfApi {
      * @param trySaveTextUnderliningAndStrikeoutingInCss PDF itself does not contain underlining markers for texts. It emulated with line situated under text. This option allows converter try guess that this or that line is a text&#39;s underlining and put this info into CSS instead of drawing of underlining graphically.
      * @param storage The document storage.
      * @param flowLayoutParagraphFullWidth This attribute specifies full width paragraph text for Flow mode, FixedLayout &#x3D; false.
+     * @param outputFormat This parameter determines the type of result. The zip archive will be uploaded into the storage if the parameter is \&quot;Zip\&quot; or missed (default). In case of the \&quot;Folder\&quot;, all resulting files and directories will be uploaded to the folder of the resulting HTML file.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, storage?: string, flowLayoutParagraphFullWidth?: boolean, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToHtml (outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, storage?: string, flowLayoutParagraphFullWidth?: boolean, outputFormat?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/html';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19246,6 +19248,10 @@ export class PdfApi {
 
         if (flowLayoutParagraphFullWidth !== undefined && null !== flowLayoutParagraphFullWidth) {
             localVarQueryParameters['flowLayoutParagraphFullWidth'] = ObjectSerializer.serialize(flowLayoutParagraphFullWidth, "boolean");
+        }
+
+        if (outputFormat !== undefined && null !== outputFormat) {
+            localVarQueryParameters['outputFormat'] = ObjectSerializer.serialize(outputFormat, "string");
         }
 
 
@@ -20258,8 +20264,9 @@ export class PdfApi {
      * @param folder The document folder.
      * @param storage The document storage.
      * @param flowLayoutParagraphFullWidth This attribute specifies full width paragraph text for Flow mode, FixedLayout &#x3D; false.
+     * @param outputFormat This parameter determines the type of result. The zip archive will be uploaded into the storage if the parameter is \&quot;Zip\&quot; or missed (default). In case of the \&quot;Folder\&quot;, all resulting files and directories will be uploaded to the folder of the resulting HTML file.
      */
-    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string, flowLayoutParagraphFullWidth?: boolean) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToHtml (name: string, outPath: string, additionalMarginWidthInPoints?: number, compressSvgGraphicsIfAny?: boolean, convertMarkedContentToLayers?: boolean, defaultFontName?: string, documentType?: string, fixedLayout?: boolean, imageResolution?: number, minimalLineWidth?: number, preventGlyphsGrouping?: boolean, splitCssIntoPages?: boolean, splitIntoPages?: boolean, useZOrder?: boolean, antialiasingProcessing?: string, cssClassNamesPrefix?: string, explicitListOfSavedPages?: Array<number>, fontEncodingStrategy?: string, fontSavingMode?: string, htmlMarkupGenerationMode?: string, lettersPositioningMethod?: string, pagesFlowTypeDependsOnViewersScreenSize?: boolean, partsEmbeddingMode?: string, rasterImagesSavingMode?: string, removeEmptyAreasOnTopAndBottom?: boolean, saveShadowedTextsAsTransparentTexts?: boolean, saveTransparentTexts?: boolean, specialFolderForAllImages?: string, specialFolderForSvgImages?: string, trySaveTextUnderliningAndStrikeoutingInCss?: boolean, folder?: string, storage?: string, flowLayoutParagraphFullWidth?: boolean, outputFormat?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/html'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -20402,6 +20409,10 @@ export class PdfApi {
 
         if (flowLayoutParagraphFullWidth !== undefined && null !== flowLayoutParagraphFullWidth) {
             localVarQueryParameters['flowLayoutParagraphFullWidth'] = ObjectSerializer.serialize(flowLayoutParagraphFullWidth, "boolean");
+        }
+
+        if (outputFormat !== undefined && null !== outputFormat) {
+            localVarQueryParameters['outputFormat'] = ObjectSerializer.serialize(outputFormat, "string");
         }
 
 

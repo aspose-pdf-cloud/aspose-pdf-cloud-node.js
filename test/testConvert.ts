@@ -22,6 +22,7 @@
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
 import { PdfAType } from "../src/models/pdfAType";
+import { OutputFormat } from "../src/models/outputFormat";
 var assert = require('assert');
 var fs = require('fs');
 
@@ -350,7 +351,7 @@ describe("Convert Tests", () => {
 
                 return BaseTest.getPdfApi().putPdfInStorageToHtml(simplePdf, outPath, null, null, null, null, null, null, null, null, null, 
                         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-                        null, BaseTest.remoteTempFolder)
+                        null, BaseTest.remoteTempFolder, null, null, OutputFormat.Folder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -365,7 +366,7 @@ describe("Convert Tests", () => {
 
                 return BaseTest.getPdfApi().putPdfInRequestToHtml(outPath, null, null, null, null, null, null, null, null, null, 
                         null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-                        null, null, null, data)
+                        null, null, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **signature** | [**Signature**](Signature.md) | Gets signature object. This object contains signature data regarding public-key cryptographic standards. Classes PKCS1, PKCS7 and PKCS7Detached represent all supported types of signature objects. | [optional]
 **partialName** | **string** | Field name.<br />*Inherited from [FormField](FormField.md)* | [optional]
+**fullName** | **string** | Full Field name.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **rect** | [**Rectangle**](Rectangle.md) | Field rectangle.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **value** | **string** | Field value.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **pageIndex** | **number** | Page index.<br />*Inherited from [FormField](FormField.md)* | 

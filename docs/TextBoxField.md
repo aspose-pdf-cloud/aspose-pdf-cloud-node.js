@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **maxLen** | **number** | Gets or sets maximum length of text in the field. | [optional]
 **barcode** | **string** | Adds barcode 128 into the field. Field value will be changed onto the code and field become read only. | [optional]
 **partialName** | **string** | Field name.<br />*Inherited from [FormField](FormField.md)* | [optional]
+**fullName** | **string** | Full Field name.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **rect** | [**Rectangle**](Rectangle.md) | Field rectangle.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **value** | **string** | Field value.<br />*Inherited from [FormField](FormField.md)* | [optional]
 **pageIndex** | **number** | Page index.<br />*Inherited from [FormField](FormField.md)* | 

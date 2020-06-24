@@ -575,6 +575,7 @@ Class | Description
 [**ObjectExist**](docs/ObjectExist.md) | Object exists
 [**OptimizeOptions**](docs/OptimizeOptions.md) | Represents Pdf optimize options.
 [**Option**](docs/Option.md) | Provides form option.
+[**OutputFormat**](docs/OutputFormat.md) | Enumeration for output type format.
 [**Page**](docs/Page.md) | Provides link to page.
 [**PageLayout**](docs/PageLayout.md) | Descibes page layout.
 [**PageMode**](docs/PageMode.md) | Class descibes used components of the document page.
