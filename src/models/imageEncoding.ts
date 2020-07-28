@@ -19,8 +19,9 @@
  *
  */
 
-export enum PdfAType {
-    PDFA1A = 'PDFA1A',
-    PDFA1B = 'PDFA1B',
-    PDFA3A = 'PDFA3A',
+export enum ImageEncoding {
+    Unchanged = 'Unchanged',
+    Jpeg = 'Jpeg',
+    Flate = 'Flate',
+    Jpeg2000 = 'Jpeg2000',
 }

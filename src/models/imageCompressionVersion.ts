@@ -19,8 +19,8 @@
  *
  */
 
-export enum PdfAType {
-    PDFA1A = 'PDFA1A',
-    PDFA1B = 'PDFA1B',
-    PDFA3A = 'PDFA3A',
+export enum ImageCompressionVersion {
+    Standard = 'Standard',
+    Fast = 'Fast',
+    Mixed = 'Mixed',
 }

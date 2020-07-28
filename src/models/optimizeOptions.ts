@@ -19,6 +19,8 @@
  *
  */
 
+import { ImageCompressionVersion } from "./imageCompressionVersion";
+import { ImageEncoding } from "./imageEncoding";
 
 /**
 * Represents Pdf optimize options.
@@ -29,15 +31,15 @@ export class OptimizeOptions {
     */
     'allowReusePageContent': boolean;
     /**
-    * If this flag is set to true images will be compressed in the document. compression level is specfied with ImageQuality property.
+    * If this flag is set to true images will be compressed in the document. Compression level is specified with ImageQuality property.
     */
     'compressImages': boolean;
     /**
-    * Specifie slevel of image compression when CompressIamges flag is used.
+    * Specifies level of image compression when CompressImages flag is used.
     */
     'imageQuality': number;
     /**
-    * If this flag is set to true, Resource streams will be analyzed. If duplicate streams are found (i.e. if stream contents is equal), then thes streams will be stored as one object.  This allows to decrease document size in some cases (for example, when same document was concatenedted multiple times).
+    * If this flag is set to true, Resource streams will be analyzed. If duplicate streams are found (i.e. if stream contents is equal), then thees streams will be stored as one object.  This allows to decrease document size in some cases (for example, when same document was concatenated multiple times).
     */
     'linkDuplcateStreams': boolean;
     /**
@@ -52,6 +54,30 @@ export class OptimizeOptions {
     * Make fonts not embedded if set to true. 
     */
     'unembedFonts': boolean;
+    /**
+    * If this flag set to true and CompressImages is true images will be resized if image resolution is greater then specified MaxResolution parameter.
+    */
+    'resizeImages': boolean;
+    /**
+    * Specifies maximum resolution of images. If image has higher resolution it will be scaled.
+    */
+    'maxResolution': number;
+    /**
+    * Fonts will be converted into subsets if set to true.
+    */
+    'subsetFonts': boolean;
+    /**
+    * Remove private information (page piece info).
+    */
+    'removePrivateInfo': boolean;
+    /**
+    * Image encode which will be used.
+    */
+    'imageEncoding': ImageEncoding;
+    /**
+    * Version of compression algorithm. Possible values are: \"Standard\" - standard compression, \"Fast\" - fast (improved compression which is faster then standard but may be applicable not for all images), \"Mixed\" - mixed (standard compression is applied to images which can not be compressed by  faster algorithm, this may give best compression but more slow then \"Fast\" algorithm. Version \"Fast\" is not applicable for resizing images (standard method will be used). Default is \"Standard\".
+    */
+    'imageCompressionVersion': ImageCompressionVersion;
 
     static discriminator = undefined;
 
@@ -90,6 +116,36 @@ export class OptimizeOptions {
             "name": "unembedFonts",
             "baseName": "UnembedFonts",
             "type": "boolean"
+        },
+        {
+            "name": "resizeImages",
+            "baseName": "ResizeImages",
+            "type": "boolean"
+        },
+        {
+            "name": "maxResolution",
+            "baseName": "MaxResolution",
+            "type": "number"
+        },
+        {
+            "name": "subsetFonts",
+            "baseName": "SubsetFonts",
+            "type": "boolean"
+        },
+        {
+            "name": "removePrivateInfo",
+            "baseName": "RemovePrivateInfo",
+            "type": "boolean"
+        },
+        {
+            "name": "imageEncoding",
+            "baseName": "ImageEncoding",
+            "type": "ImageEncoding"
+        },
+        {
+            "name": "imageCompressionVersion",
+            "baseName": "ImageCompressionVersion",
+            "type": "ImageCompressionVersion"
         }    ];
 
     static getAttributeTypeMap() {

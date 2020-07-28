@@ -23,6 +23,7 @@ import { AnnotationFlags } from "./models/annotationFlags";
 import { AnnotationState } from "./models/annotationState";
 import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
+import { ApiInfo } from "./models/apiInfo";
 import { AsposeResponse } from "./models/asposeResponse";
 import { Border } from "./models/border";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
@@ -64,6 +65,8 @@ import { GraphInfo } from "./models/graphInfo";
 import { HorizontalAlignment } from "./models/horizontalAlignment";
 import { HtmlDocumentType } from "./models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "./models/htmlMarkupGenerationModes";
+import { ImageCompressionVersion } from "./models/imageCompressionVersion";
+import { ImageEncoding } from "./models/imageEncoding";
 import { ImageFragment } from "./models/imageFragment";
 import { ImageSrcType } from "./models/imageSrcType";
 import { ImageTemplate } from "./models/imageTemplate";
@@ -328,6 +331,8 @@ let enumsMap: {[index: string]: any} = {
     "HorizontalAlignment": HorizontalAlignment,
     "HtmlDocumentType": HtmlDocumentType,
     "HtmlMarkupGenerationModes": HtmlMarkupGenerationModes,
+    "ImageCompressionVersion": ImageCompressionVersion,
+    "ImageEncoding": ImageEncoding,
     "ImageSrcType": ImageSrcType,
     "Justification": Justification,
     "LettersPositioningMethods": LettersPositioningMethods,
@@ -359,6 +364,7 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "ApiInfo": ApiInfo,
     "AsposeResponse": AsposeResponse,
     "Border": Border,
     "BorderInfo": BorderInfo,
