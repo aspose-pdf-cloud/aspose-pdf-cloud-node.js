@@ -23,6 +23,7 @@ import { AnnotationFlags } from "../models/annotationFlags";
 import { AnnotationState } from "../models/annotationState";
 import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
+import { ApiInfo } from "../models/apiInfo";
 import { AsposeResponse } from "../models/asposeResponse";
 import { Border } from "../models/border";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
@@ -64,6 +65,8 @@ import { GraphInfo } from "../models/graphInfo";
 import { HorizontalAlignment } from "../models/horizontalAlignment";
 import { HtmlDocumentType } from "../models/htmlDocumentType";
 import { HtmlMarkupGenerationModes } from "../models/htmlMarkupGenerationModes";
+import { ImageCompressionVersion } from "../models/imageCompressionVersion";
+import { ImageEncoding } from "../models/imageEncoding";
 import { ImageFragment } from "../models/imageFragment";
 import { ImageSrcType } from "../models/imageSrcType";
 import { ImageTemplate } from "../models/imageTemplate";
@@ -1760,6 +1763,40 @@ export class PdfApi {
 
     /**
      * 
+     */
+    public async getApiInfo () : Promise<{ response: http.IncomingMessage; body: ApiInfo;  }> {
+        const localVarPath = this.basePath + '/pdf/info';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ApiInfo");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document bookmark.
      * @param name The document name.
      * @param bookmarkPath The bookmark path.
@@ -2206,7 +2243,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Read documant page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
+     * @summary Read document page annotations. Returns only FreeTextAnnotations, TextAnnotations, other annotations will implemented next releases.
      * @param name The document name.
      * @param storage The document storage.
      * @param folder The document folder.
@@ -11175,7 +11212,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document which contatins XFA form (located on storage) to PDF with AcroForm and returns resulting file response content
+     * @summary Converts PDF document which contains XFA form (located on storage) to PDF with AcroForm and returns resulting file response content
      * @param name The document name.
      * @param folder The document folder.
      * @param storage The document storage.
@@ -13740,7 +13777,7 @@ export class PdfApi {
      * @summary Add document page link annotations.
      * @param name The document name.
      * @param pageNumber The page number.
-     * @param links Array of link anotation.
+     * @param links Array of link annotation.
      * @param storage The document storage.
      * @param folder The document folder.
      */
@@ -15953,7 +15990,7 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.doc)
      * @param password The password (encrypted Base64).
      * @param storage The document storage.
-     * @param file A file to be derypted.
+     * @param file A file to be decrypted.
      */
     public async putDecryptDocument (outPath: string, password: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/decrypt';
@@ -17872,7 +17909,7 @@ export class PdfApi {
      * @summary Replace document page link annotations
      * @param name The document name.
      * @param linkId The link ID.
-     * @param link Link anotation.
+     * @param link Link annotation.
      * @param storage The document storage.
      * @param folder The document folder.
      */
@@ -18064,7 +18101,7 @@ export class PdfApi {
     /**
      * 
      * @summary Merge a list of documents.
-     * @param name Resulting documen name.
+     * @param name Resulting document name.
      * @param mergeDocuments MergeDocuments with a list of documents.
      * @param storage Resulting document storage.
      * @param folder Resulting document folder.
@@ -23227,7 +23264,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document which contatins XFA form (in request content) to PDF with AcroForm and uploads resulting file to storage.
+     * @summary Converts PDF document which contains XFA form (in request content) to PDF with AcroForm and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param storage The document storage.
      * @param file A file to be converted.
@@ -23285,7 +23322,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document which contatins XFA form (located on storage) to PDF with AcroForm and uploads resulting file to storage
+     * @summary Converts PDF document which contains XFA form (located on storage) to PDF with AcroForm and uploads resulting file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param folder The document folder.

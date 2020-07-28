@@ -19,8 +19,37 @@
  *
  */
 
-export enum PdfAType {
-    PDFA1A = 'PDFA1A',
-    PDFA1B = 'PDFA1B',
-    PDFA3A = 'PDFA3A',
+
+/**
+* Represents response for ApiInfo  DTO
+*/
+export class ApiInfo {
+    /**
+    * Product name.
+    */
+    'name': string;
+    /**
+    * API version.
+    */
+    'version': string;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "version",
+            "baseName": "Version",
+            "type": "string"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return ApiInfo.attributeTypeMap;
+    }
 }
+
+
