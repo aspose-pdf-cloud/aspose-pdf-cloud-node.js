@@ -39,7 +39,7 @@ let pdfApi: PdfApi;
 export function getPdfApi() {
   if (!pdfApi) {
 
-    //Get App key and App SID from https://aspose.cloud
+    // Get App key and App SID from https://aspose.cloud
     pdfApi = new PdfApi(
       "appSID",
       "appKey",
@@ -83,7 +83,8 @@ export function drawTable() {
     fontSize: 11,
     foregroundColor: { a: 0xFF, r: 0x00, g: 0xFF, b: 0x00 },
     backgroundColor: { a: 0xFF, r: 0xFF, g: 0x00, b: 0x00},
-    fontStyle: FontStyles.Bold
+    fontStyle: FontStyles.Bold,
+    fontFile: null
   };
 
   const numOfCols = 5;

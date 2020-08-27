@@ -31,7 +31,7 @@ export class TextState {
     */
     'fontSize': number;
     /**
-    * Gets or sets font of the text.
+    * Gets or sets font name of the text.
     */
     'font': string;
     /**
@@ -46,6 +46,10 @@ export class TextState {
     * Sets font style of the text.
     */
     'fontStyle': FontStyles;
+    /**
+    * Sets path of font file in storage.
+    */
+    'fontFile': string;
 
     static discriminator = undefined;
 
@@ -74,6 +78,11 @@ export class TextState {
             "name": "fontStyle",
             "baseName": "FontStyle",
             "type": "FontStyles"
+        },
+        {
+            "name": "fontFile",
+            "baseName": "FontFile",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

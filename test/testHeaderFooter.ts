@@ -61,7 +61,8 @@ describe("Header Footer Tests", () => {
                 fontSize: 14,
                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
-                fontStyle: FontStyles.Bold
+                fontStyle: FontStyles.Bold,
+                fontFile: null
             };
 
             const startPage = 2;
@@ -98,7 +99,8 @@ describe("Header Footer Tests", () => {
                 fontSize: 14,
                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
-                fontStyle: FontStyles.Bold
+                fontStyle: FontStyles.Bold,
+                fontFile: null
             };
 
             const startPage = 2;

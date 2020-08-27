@@ -93,6 +93,7 @@ describe("Stamps Tests", () => {
             
             const textState = new TextState();
             textState.fontSize = 14;
+            textState.font = 'Arial';
 
             const stamp = new TextStamp();
             stamp.background = true;
