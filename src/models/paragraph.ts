@@ -39,7 +39,7 @@ export class Paragraph {
     */
     'wrapMode': WrapMode;
     /**
-    * Horizontal alignment for the text inside paragrph's rectangle.
+    * Horizontal alignment for the text inside paragraph's rectangle.
     */
     'horizontalAlignment': TextHorizontalAlignment;
     /**
@@ -71,7 +71,7 @@ export class Paragraph {
     */
     'subsequentLinesIndent': number;
     /**
-    * Vertical alignment for the text inside paragrph's rectangle
+    * Vertical alignment for the text inside paragraph's rectangle
     */
     'verticalAlignment': VerticalAlignment;
     /**

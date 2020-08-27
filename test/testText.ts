@@ -68,7 +68,10 @@ describe("Text Tests", () => {
 
     describe("PutAddText Test", () => {
         
-        it("should return response with code 200", () => {
+        it("should return response with code 200", async() => {
+
+            let fontName = 'Righteous-Regular.ttf';
+            await BaseTest.uploadFile(fontName);
 
             const paragraph = new Paragraph();
             paragraph.rectangle = { lLX: 100, lLY: 100, uRX: 200, uRY: 200};
@@ -90,11 +93,12 @@ describe("Text Tests", () => {
                         {
                             value: "segment 1",
                             textState: {
-                                font: "Arial",
+                                font: "Righteous",
                                 fontSize: 10,
                                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
-                                fontStyle: FontStyles.Bold
+                                fontStyle: FontStyles.Bold,
+                                fontFile: BaseTest.remoteTempFolder + '/' + fontName
                             }
                         }
                     ]
