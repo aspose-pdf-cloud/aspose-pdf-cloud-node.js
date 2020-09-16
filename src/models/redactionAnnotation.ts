@@ -45,7 +45,7 @@ export class RedactionAnnotation extends Annotation {
     */
     'overlayText': string;
     /**
-    * If true overlay text will be repated on the annotation. 
+    * If true overlay text will be repeated on the annotation. 
     */
     'repeat': boolean;
     /**
