@@ -629,7 +629,7 @@ Class | Description
 [**Segment**](docs/Segment.md) | Represents segment of Pdf text.
 [**ShapeType**](docs/ShapeType.md) | This enum represents shape type for the extracted images.
 [**Signature**](docs/Signature.md) | Represents signature.
-[**SignatureCustomAppearance**](docs/SignatureCustomAppearance.md) | An abstract class which represents signature custon appearance object.
+[**SignatureCustomAppearance**](docs/SignatureCustomAppearance.md) | An abstract class which represents signature custom appearance object.
 [**SignatureField**](docs/SignatureField.md) | Provides SignatureField.
 [**SignatureFieldResponse**](docs/SignatureFieldResponse.md) | Represents response containing single signature field object
 [**SignatureFields**](docs/SignatureFields.md) | Object representing a list of signature fields.

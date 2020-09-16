@@ -41,6 +41,10 @@ export class TextStyle {
     * Sets background color of the text.
     */
     'backgroundColor': Color;
+    /**
+    * Sets path of font file in storage.
+    */
+    'fontFile': string;
 
     static discriminator = undefined;
 
@@ -64,6 +68,11 @@ export class TextStyle {
             "name": "backgroundColor",
             "baseName": "BackgroundColor",
             "type": "Color"
+        },
+        {
+            "name": "fontFile",
+            "baseName": "FontFile",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {

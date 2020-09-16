@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **fillColor** | [**Color**](Color.md) | Gets or sets color to fill annotation. | [optional]
 **borderColor** | [**Color**](Color.md) | Gets or sets color of border which is drawn when redaction is not active. | [optional]
 **overlayText** | **string** | Text to print on redact annotation. | [optional]
-**repeat** | **boolean** | If true overlay text will be repated on the annotation.  | [optional]
+**repeat** | **boolean** | If true overlay text will be repeated on the annotation.  | [optional]
 **textAlignment** | [**HorizontalAlignment**](HorizontalAlignment.md) | Gets or sets. Alignment of Overlay Text. | [optional]
 **color** | [**Color**](Color.md) | Color of the annotation.<br />*Inherited from [Annotation](Annotation.md)* | [optional]
 **contents** | **string** | Get the annotation content.<br />*Inherited from [Annotation](Annotation.md)* | [optional]

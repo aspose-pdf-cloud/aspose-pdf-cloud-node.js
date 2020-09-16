@@ -14110,8 +14110,9 @@ export class PdfApi {
      * @param annotations The array of annotation.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param apply Apply redaction immediately after adding.
      */
-    public async postPageRedactionAnnotations (name: string, pageNumber: number, annotations: Array<RedactionAnnotation>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postPageRedactionAnnotations (name: string, pageNumber: number, annotations: Array<RedactionAnnotation>, storage?: string, folder?: string, apply?: boolean) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/annotations/redaction'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -14140,6 +14141,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (apply !== undefined && null !== apply) {
+            localVarQueryParameters['apply'] = ObjectSerializer.serialize(apply, "boolean");
         }
 
 
@@ -21687,8 +21692,9 @@ export class PdfApi {
      * @param annotation Annotation.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param apply Apply redaction immediately after adding.
      */
-    public async putRedactionAnnotation (name: string, annotationId: string, annotation: RedactionAnnotation, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationResponse;  }> {
+    public async putRedactionAnnotation (name: string, annotationId: string, annotation: RedactionAnnotation, storage?: string, folder?: string, apply?: boolean) : Promise<{ response: http.IncomingMessage; body: RedactionAnnotationResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/annotations/redaction/{annotationId}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'annotationId' + '}', encodeURIComponent(String(annotationId)).replace('%2F', '/'));
@@ -21717,6 +21723,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (apply !== undefined && null !== apply) {
+            localVarQueryParameters['apply'] = ObjectSerializer.serialize(apply, "boolean");
         }
 
 
