@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2020 Aspose.PDF Cloud
+ * Copyright (c) 2021 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -23,7 +23,6 @@ import { AnnotationFlags } from "./models/annotationFlags";
 import { AnnotationState } from "./models/annotationState";
 import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
-import { ApiInfo } from "./models/apiInfo";
 import { AsposeResponse } from "./models/asposeResponse";
 import { Border } from "./models/border";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
@@ -364,7 +363,6 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
-    "ApiInfo": ApiInfo,
     "AsposeResponse": AsposeResponse,
     "Border": Border,
     "BorderInfo": BorderInfo,

@@ -1,6 +1,6 @@
 ﻿ /**
  *
- *   Copyright (c) 2020 Aspose.PDF Cloud
+ * Copyright (c) 2021 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -23,7 +23,6 @@ import { AnnotationFlags } from "../models/annotationFlags";
 import { AnnotationState } from "../models/annotationState";
 import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
-import { ApiInfo } from "../models/apiInfo";
 import { AsposeResponse } from "../models/asposeResponse";
 import { Border } from "../models/border";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
@@ -1757,40 +1756,6 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     */
-    public async getApiInfo () : Promise<{ response: http.IncomingMessage; body: ApiInfo;  }> {
-        const localVarPath = this.basePath + '/pdf/info';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "ApiInfo");
         return Promise.resolve({body: result, response});
     }
 
@@ -8883,59 +8848,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to TeX format and returns resulting file in response content
-     * @param name The document name.
-     * @param folder The document folder.
-     * @param storage The document storage.
-     */
-    public async getPdfInStorageToLaTeX (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling getPdfInStorageToLaTeX.');
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Converts PDF document (located on storage) to MOBIXML format and returns resulting file in response content
+     * @summary Converts PDF document (located on storage) to MOBIXML format and returns resulting ZIP archive file in response content.
      * @param name The document name.
      * @param folder The document folder.
      * @param storage The document storage.
@@ -19330,65 +19243,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (in request content) to TeX format and uploads resulting file to storage.
-     * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
-     * @param storage The document storage.
-     * @param file A file to be converted.
-     */
-    public async putPdfInRequestToLaTeX (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/convert/latex';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'outPath' is not null or undefined
-        if (outPath === null || outPath === undefined) {
-            throw new Error('Required parameter outPath was null or undefined when calling putPdfInRequestToLaTeX.');
-        }
-
-        if (outPath !== undefined && null !== outPath) {
-            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        if (file !== undefined) {
-            localVarFormParams['file'] = file;
-            fileData = file;
-        }
-        localVarUseFormData = true;
-        
-
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Converts PDF document (in request content) to MOBIXML format and uploads resulting file to storage.
+     * @summary Converts PDF document (in request content) to MOBIXML format and uploads resulting ZIP archive file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.mobixml)
      * @param storage The document storage.
      * @param file A file to be converted.
@@ -20484,69 +20339,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to TeX format and uploads resulting file to storage
-     * @param name The document name.
-     * @param outPath Full resulting filename (ex. /folder1/folder2/result.tex)
-     * @param folder The document folder.
-     * @param storage The document storage.
-     */
-    public async putPdfInStorageToLaTeX (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/convert/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling putPdfInStorageToLaTeX.');
-        }
-
-        // verify required parameter 'outPath' is not null or undefined
-        if (outPath === null || outPath === undefined) {
-            throw new Error('Required parameter outPath was null or undefined when calling putPdfInStorageToLaTeX.');
-        }
-
-        if (outPath !== undefined && null !== outPath) {
-            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
-        }
-
-        if (folder !== undefined && null !== folder) {
-            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
-     * @summary Converts PDF document (located on storage) to MOBIXML format and uploads resulting file to storage
+     * @summary Converts PDF document (located on storage) to MOBIXML format and uploads resulting ZIP archive file to storage
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.mobixml)
      * @param folder The document folder.

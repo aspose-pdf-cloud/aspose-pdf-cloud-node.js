@@ -1,6 +1,6 @@
  /**
  *
- *   Copyright (c) 2020 Aspose.Pdf for Cloud
+ * Copyright (c) 2021 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -20,8 +20,6 @@
  */
 import http = require('http');
 import { PdfApi } from "../src/api/api";
-import { AsposeResponse } from "../src/models/asposeResponse";
-import { TextState } from '../src/models/textState';
 import { FontStyles } from '../src/models/fontStyles';
 import { Table } from '../src/models/table';
 import { GraphInfo } from '../src/models/graphInfo';
