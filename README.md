@@ -22,18 +22,16 @@ Extract Text & Images of a PDF document online https://products.aspose.app/pdf/p
 - Extract various elements of PDF files & make PDF documents optimized.
 
 ## Read & Write PDF Formats
-
 PDF, EPUB, HTML, TeX, SVG, XML, XPS, FDF, XFDF
+
 ## Save PDF As
 XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
+
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Enhancements in Version 20.12
-- A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .Net.
-
-## Enhancements in Version 20.10
-- A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .Net.
+## Enhancements in Version 21.10
+- A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .NET.
 
 ## Enhancements in Version 20.9
 * Implemented custom fonts for Text API.
