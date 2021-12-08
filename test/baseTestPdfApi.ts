@@ -36,14 +36,9 @@ let pdfApi: PdfApi;
  */
 export function getPdfApi() {
   if (!pdfApi) {
-
-    // Get App key and App SID from https://aspose.cloud
-    pdfApi = new PdfApi(
-      "appSID",
-      "appKey",
-      "https://api.aspose.cloud/v3.0"
-    );
-
+    let servercreds_json = fs.readFileSync('../../Settings/servercreds.json', 'utf8')
+    let creds = JSON.parse(servercreds_json)
+    pdfApi = new PdfApi(creds.AppSID, creds.AppKey, creds.ProductUri);
     pdfApi.configuration.debugMode = true;
   }
   return pdfApi;
