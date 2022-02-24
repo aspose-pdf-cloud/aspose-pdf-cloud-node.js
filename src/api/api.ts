@@ -5536,56 +5536,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert TeX file (located on storage) to PDF format and return resulting file in response. 
-     * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
-     * @param storage The document storage.
-     */
-    public async getLaTeXInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
-        const localVarPath = this.basePath + '/pdf/create/latex';
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'srcPath' is not null or undefined
-        if (srcPath === null || srcPath === undefined) {
-            throw new Error('Required parameter srcPath was null or undefined when calling getLaTeXInStorageToPdf.');
-        }
-
-        if (srcPath !== undefined && null !== srcPath) {
-            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'GET',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            encoding: null,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Read document page line annotation by ID.
      * @param name The document name.
      * @param annotationId The annotation ID.
@@ -9264,7 +9214,7 @@ export class PdfApi {
      * @param name The document name.
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
@@ -9336,7 +9286,7 @@ export class PdfApi {
      * @param name The document name.
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
@@ -17696,68 +17646,6 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert TeX file (located on storage) to PDF format and upload resulting file to storage. 
-     * @param name The document name.
-     * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
-     * @param dstFolder The destination document folder.
-     * @param storage The document storage.
-     */
-    public async putLaTeXInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
-        const localVarPath = this.basePath + '/pdf/{name}/create/latex'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
-        let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-        let localVarFormParams: any = {};
-
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling putLaTeXInStorageToPdf.');
-        }
-
-        // verify required parameter 'srcPath' is not null or undefined
-        if (srcPath === null || srcPath === undefined) {
-            throw new Error('Required parameter srcPath was null or undefined when calling putLaTeXInStorageToPdf.');
-        }
-
-        if (srcPath !== undefined && null !== srcPath) {
-            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
-        }
-
-        if (dstFolder !== undefined && null !== dstFolder) {
-            localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
-        }
-
-        if (storage !== undefined && null !== storage) {
-            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
-        }
-
-
-        let localVarUseFormData = false;
-        let fileData = null;
-        let localVarRequestOptions: localVarRequest.Options = {
-            method: 'PUT',
-            qs: localVarQueryParameters,
-            headers: localVarHeaderParams,
-            uri: localVarPath,
-            useQuerystring: this._useQuerystring,
-            json: true,
-        };
-
-        if (Object.keys(localVarFormParams).length) {
-            if (localVarUseFormData) {
-                (<any>localVarRequestOptions).formData = localVarFormParams;
-            } else {
-                localVarRequestOptions.form = localVarFormParams;
-            }
-        }
-        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
-        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
-        return Promise.resolve({body: result, response});
-    }
-
-
-    /**
-     * 
      * @summary Replace document line annotation
      * @param name The document name.
      * @param annotationId The annotation ID.
@@ -19690,7 +19578,7 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xls)
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param storage The document storage.
      * @param file A file to be converted.
@@ -19768,7 +19656,7 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xlsx)
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param storage The document storage.
      * @param file A file to be converted.
@@ -20811,7 +20699,7 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xls)
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
@@ -20893,7 +20781,7 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.xlsx)
      * @param insertBlankColumnAtFirst Insert blank column at first
      * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
-     * @param scaleFactor Scale factor
+     * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
