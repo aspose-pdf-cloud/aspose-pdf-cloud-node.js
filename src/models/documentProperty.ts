@@ -26,7 +26,7 @@ import { LinkElement } from "./linkElement";
 */
 export class DocumentProperty extends LinkElement {
     /**
-    * Pame of the property.
+    * Name of the property.
     */
     'name': string;
     /**

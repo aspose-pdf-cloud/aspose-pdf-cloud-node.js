@@ -5,7 +5,7 @@ Pdf document property.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** | Pame of the property. | [optional]
+**name** | **string** | Name of the property. | [optional]
 **value** | **string** | Property value. | [optional]
 **builtIn** | **boolean** | Value indicating whether it is a built-in property. | 
 **links** | [**Array&lt;Link&gt;**](Link.md) | Link to the document.<br />*Inherited from [LinkElement](LinkElement.md)* | [optional]
