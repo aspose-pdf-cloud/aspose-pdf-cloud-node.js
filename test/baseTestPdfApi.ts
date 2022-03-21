@@ -77,7 +77,11 @@ export function drawTable() {
     foregroundColor: { a: 0xFF, r: 0x00, g: 0xFF, b: 0x00 },
     backgroundColor: { a: 0xFF, r: 0xFF, g: 0x00, b: 0x00},
     fontStyle: FontStyles.Bold,
-    fontFile: null
+    fontFile: null,
+    underline: false,
+    strikeOut: false,
+    superscript: false,
+    subscript: false,
   };
 
   const numOfCols = 5;

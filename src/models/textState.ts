@@ -50,6 +50,22 @@ export class TextState {
     * Sets path of font file in storage.
     */
     'fontFile': string;
+    /**
+    * Gets or sets underline of the text.
+    */
+    'underline': boolean;
+    /**
+    * Gets or sets strikeout of the text.
+    */
+    'strikeOut': boolean;
+    /**
+    * Gets or sets superscript mode of the text.
+    */
+    'superscript': boolean;
+    /**
+    * Gets or sets subscript mode of the text.
+    */
+    'subscript': boolean;
 
     static discriminator = undefined;
 
@@ -83,6 +99,26 @@ export class TextState {
             "name": "fontFile",
             "baseName": "FontFile",
             "type": "string"
+        },
+        {
+            "name": "underline",
+            "baseName": "Underline",
+            "type": "boolean"
+        },
+        {
+            "name": "strikeOut",
+            "baseName": "StrikeOut",
+            "type": "boolean"
+        },
+        {
+            "name": "superscript",
+            "baseName": "Superscript",
+            "type": "boolean"
+        },
+        {
+            "name": "subscript",
+            "baseName": "Subscript",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

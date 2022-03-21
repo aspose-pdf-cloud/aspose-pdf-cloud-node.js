@@ -62,7 +62,11 @@ describe("Header Footer Tests", () => {
                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
                 fontStyle: FontStyles.Bold,
-                fontFile: null
+                fontFile: null,
+                underline: false,
+                strikeOut: false,
+                superscript: false,
+                subscript: false,
             };
 
             const startPage = 2;
@@ -100,7 +104,11 @@ describe("Header Footer Tests", () => {
                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
                 fontStyle: FontStyles.Bold,
-                fontFile: null
+                fontFile: null,
+                underline: false,
+                strikeOut: false,
+                superscript: false,
+                subscript: false,
             };
 
             const startPage = 2;

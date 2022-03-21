@@ -98,7 +98,11 @@ describe("Text Tests", () => {
                                 foregroundColor: { a: 0x00, r: 0x00, g: 0xFF, b: 0x00 },
                                 backgroundColor: { a: 0x00, r: 0xFF, g: 0x00, b: 0x00},
                                 fontStyle: FontStyles.Bold,
-                                fontFile: BaseTest.remoteTempFolder + '/' + fontName
+                                fontFile: BaseTest.remoteTempFolder + '/' + fontName,
+                                underline: false,
+                                strikeOut: false,
+                                superscript: false,
+                                subscript: false,
                             }
                         }
                     ]
