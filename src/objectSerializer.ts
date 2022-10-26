@@ -88,6 +88,7 @@ import { Option } from "./models/option";
 import { OutputFormat } from "./models/outputFormat";
 import { PageLayout } from "./models/pageLayout";
 import { PageMode } from "./models/pageMode";
+import { PageRange } from "./models/pageRange";
 import { PageWordCount } from "./models/pageWordCount";
 import { Paragraph } from "./models/paragraph";
 import { PartsEmbeddingModes } from "./models/partsEmbeddingModes";
@@ -108,6 +109,7 @@ import { SignatureCustomAppearance } from "./models/signatureCustomAppearance";
 import { SignatureType } from "./models/signatureType";
 import { SoundEncoding } from "./models/soundEncoding";
 import { SoundIcon } from "./models/soundIcon";
+import { SplitRangePdfOptions } from "./models/splitRangePdfOptions";
 import { SplitResult } from "./models/splitResult";
 import { Stamp } from "./models/stamp";
 import { StampIcon } from "./models/stampIcon";
@@ -390,6 +392,7 @@ let typeMap: {[index: string]: any} = {
     "ObjectExist": ObjectExist,
     "OptimizeOptions": OptimizeOptions,
     "Option": Option,
+    "PageRange": PageRange,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
     "Point": Point,
@@ -400,6 +403,7 @@ let typeMap: {[index: string]: any} = {
     "Segment": Segment,
     "Signature": Signature,
     "SignatureCustomAppearance": SignatureCustomAppearance,
+    "SplitRangePdfOptions": SplitRangePdfOptions,
     "SplitResult": SplitResult,
     "Stamp": Stamp,
     "StorageExist": StorageExist,
