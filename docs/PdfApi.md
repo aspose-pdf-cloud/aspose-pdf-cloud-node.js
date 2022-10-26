@@ -145,7 +145,7 @@ Method | HTTP request | Description
 *PdfApi* | [**getPageUnderlineAnnotations**](PdfApi.md#getPageUnderlineAnnotations) | **GET** /pdf/\{name}/pages/\{pageNumber}/annotations/underline | Read document page underline annotations.
 *PdfApi* | [**getPclInStorageToPdf**](PdfApi.md#getPclInStorageToPdf) | **GET** /pdf/create/pcl | Convert PCL file (located on storage) to PDF format and return resulting file in response. 
 *PdfApi* | [**getPdfAInStorageToPdf**](PdfApi.md#getPdfAInStorageToPdf) | **GET** /pdf/create/pdfa | Convert PDFA file (located on storage) to PDF format and return resulting file in response. 
-*PdfApi* | [**getPdfInStorageToDoc**](PdfApi.md#getPdfInStorageToDoc) | **GET** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and returns resulting file in response content
+*PdfApi* | [**getPdfInStorageToDoc**](PdfApi.md#getPdfInStorageToDoc) | **GET** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and returns resulting file in response content.
 *PdfApi* | [**getPdfInStorageToEpub**](PdfApi.md#getPdfInStorageToEpub) | **GET** /pdf/\{name}/convert/epub | Converts PDF document (located on storage) to EPUB format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToHtml**](PdfApi.md#getPdfInStorageToHtml) | **GET** /pdf/\{name}/convert/html | Converts PDF document (located on storage) to Html format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToMobiXml**](PdfApi.md#getPdfInStorageToMobiXml) | **GET** /pdf/\{name}/convert/mobixml | Converts PDF document (located on storage) to MOBIXML format and returns resulting ZIP archive file in response content.
@@ -246,6 +246,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postSignDocument**](PdfApi.md#postSignDocument) | **POST** /pdf/\{name}/sign | Sign document.
 *PdfApi* | [**postSignPage**](PdfApi.md#postSignPage) | **POST** /pdf/\{name}/pages/\{pageNumber}/sign | Sign page.
 *PdfApi* | [**postSplitDocument**](PdfApi.md#postSplitDocument) | **POST** /pdf/\{name}/split | Split document to parts.
+*PdfApi* | [**postSplitRangePdfDocument**](PdfApi.md#postSplitRangePdfDocument) | **POST** /pdf/\{name}/splitrangepdf | 
 *PdfApi* | [**postTextBoxFields**](PdfApi.md#postTextBoxFields) | **POST** /pdf/\{name}/fields/textbox | Add document text box fields.
 *PdfApi* | [**putAddNewPage**](PdfApi.md#putAddNewPage) | **PUT** /pdf/\{name}/pages | Add new page to end of the document.
 *PdfApi* | [**putAddText**](PdfApi.md#putAddText) | **PUT** /pdf/\{name}/pages/\{pageNumber}/text | Add text to PDF document page.
@@ -312,7 +313,7 @@ Method | HTTP request | Description
 *PdfApi* | [**putPdfInRequestToXlsx**](PdfApi.md#putPdfInRequestToXlsx) | **PUT** /pdf/convert/xlsx | Converts PDF document (in request content) to XLSX format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToXml**](PdfApi.md#putPdfInRequestToXml) | **PUT** /pdf/convert/xml | Converts PDF document (in request content) to XML format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInRequestToXps**](PdfApi.md#putPdfInRequestToXps) | **PUT** /pdf/convert/xps | Converts PDF document (in request content) to XPS format and uploads resulting file to storage.
-*PdfApi* | [**putPdfInStorageToDoc**](PdfApi.md#putPdfInStorageToDoc) | **PUT** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and uploads resulting file to storage
+*PdfApi* | [**putPdfInStorageToDoc**](PdfApi.md#putPdfInStorageToDoc) | **PUT** /pdf/\{name}/convert/doc | Converts PDF document (located on storage) to DOC format and uploads resulting file to storage.
 *PdfApi* | [**putPdfInStorageToEpub**](PdfApi.md#putPdfInStorageToEpub) | **PUT** /pdf/\{name}/convert/epub | Converts PDF document (located on storage) to EPUB format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToHtml**](PdfApi.md#putPdfInStorageToHtml) | **PUT** /pdf/\{name}/convert/html | Converts PDF document (located on storage) to Html format and uploads resulting file to storage
 *PdfApi* | [**putPdfInStorageToMobiXml**](PdfApi.md#putPdfInStorageToMobiXml) | **PUT** /pdf/\{name}/convert/mobixml | Converts PDF document (located on storage) to MOBIXML format and uploads resulting ZIP archive file to storage
@@ -2731,7 +2732,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToBmp"></a>
 ## **getPageConvertToBmp**
-> getPageConvertToBmp(name, pageNumber, width, height, folder, storage)
+> getPageConvertToBmp(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Bmp image and return resulting file in response.
 
@@ -2744,6 +2745,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -2756,7 +2758,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToEmf"></a>
 ## **getPageConvertToEmf**
-> getPageConvertToEmf(name, pageNumber, width, height, folder, storage)
+> getPageConvertToEmf(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Emf image and return resulting file in response.
 
@@ -2769,6 +2771,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -2781,7 +2784,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToGif"></a>
 ## **getPageConvertToGif**
-> getPageConvertToGif(name, pageNumber, width, height, folder, storage)
+> getPageConvertToGif(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Gif image and return resulting file in response.
 
@@ -2794,6 +2797,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -2806,7 +2810,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToJpeg"></a>
 ## **getPageConvertToJpeg**
-> getPageConvertToJpeg(name, pageNumber, width, height, folder, storage)
+> getPageConvertToJpeg(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Jpeg image and return resulting file in response.
 
@@ -2819,6 +2823,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -2831,7 +2836,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToPng"></a>
 ## **getPageConvertToPng**
-> getPageConvertToPng(name, pageNumber, width, height, folder, storage)
+> getPageConvertToPng(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Png image and return resulting file in response.
 
@@ -2844,6 +2849,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -2856,7 +2862,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageConvertToTiff"></a>
 ## **getPageConvertToTiff**
-> getPageConvertToTiff(name, pageNumber, width, height, folder, storage)
+> getPageConvertToTiff(name, pageNumber, width, height, folder, storage, password)
 
 Convert document page to Tiff image and return resulting file in response.
 
@@ -2869,6 +2875,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -3575,9 +3582,9 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToDoc"></a>
 ## **getPdfInStorageToDoc**
-> getPdfInStorageToDoc(name, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage)
+> getPdfInStorageToDoc(name, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage, password)
 
-Converts PDF document (located on storage) to DOC format and returns resulting file in response content
+Converts PDF document (located on storage) to DOC format and returns resulting file in response content.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -3593,6 +3600,7 @@ Name | Type | Description  | Notes
 **relativeHorizontalProximity** | **number** | Relative horizontal proximity. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -6015,6 +6023,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="postSplitRangePdfDocument"></a>
+## **postSplitRangePdfDocument**
+> postSplitRangePdfDocument(name, options, storage, folder)
+
+
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** |  | 
+**options** | [**SplitRangePdfOptions**](SplitRangePdfOptions.md) |  | 
+**storage** | **string** |  | [optional]
+**folder** | **string** |  | [optional]
+
+### Return type
+
+[**SplitResultResponse**](SplitResultResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postTextBoxFields"></a>
 ## **postTextBoxFields**
 > postTextBoxFields(name, fields, storage, folder)
@@ -7105,7 +7136,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToBmp"></a>
 ## **putPageConvertToBmp**
-> putPageConvertToBmp(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToBmp(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to bmp image and upload resulting file to storage.
 
@@ -7119,6 +7150,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7131,7 +7163,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToEmf"></a>
 ## **putPageConvertToEmf**
-> putPageConvertToEmf(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToEmf(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to emf image and upload resulting file to storage.
 
@@ -7145,6 +7177,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7157,7 +7190,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToGif"></a>
 ## **putPageConvertToGif**
-> putPageConvertToGif(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToGif(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to gif image and upload resulting file to storage.
 
@@ -7171,6 +7204,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7183,7 +7217,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToJpeg"></a>
 ## **putPageConvertToJpeg**
-> putPageConvertToJpeg(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToJpeg(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to Jpeg image and upload resulting file to storage.
 
@@ -7197,6 +7231,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7209,7 +7244,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToPng"></a>
 ## **putPageConvertToPng**
-> putPageConvertToPng(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToPng(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to png image and upload resulting file to storage.
 
@@ -7223,6 +7258,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7235,7 +7271,7 @@ Name | Type | Description  | Notes
 
 <a name="putPageConvertToTiff"></a>
 ## **putPageConvertToTiff**
-> putPageConvertToTiff(name, pageNumber, outPath, width, height, folder, storage)
+> putPageConvertToTiff(name, pageNumber, outPath, width, height, folder, storage, password)
 
 Convert document page to Tiff image and upload resulting file to storage.
 
@@ -7249,6 +7285,7 @@ Name | Type | Description  | Notes
 **height** | **number** | The converted image height. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7308,7 +7345,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToDoc"></a>
 ## **putPdfInRequestToDoc**
-> putPdfInRequestToDoc(outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, storage, file)
+> putPdfInRequestToDoc(outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, storage, password, file)
 
 Converts PDF document (in request content) to DOC format and uploads resulting file to storage.
 
@@ -7325,6 +7362,7 @@ Name | Type | Description  | Notes
 **recognizeBullets** | **boolean** | Recognize bullets. | [optional]
 **relativeHorizontalProximity** | **number** | Relative horizontal proximity. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 **file** | **Buffer** | A file to be converted. | [optional]
 
 ### Return type
@@ -7659,9 +7697,9 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToDoc"></a>
 ## **putPdfInStorageToDoc**
-> putPdfInStorageToDoc(name, outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage)
+> putPdfInStorageToDoc(name, outPath, addReturnToLineEnd, format, imageResolutionX, imageResolutionY, maxDistanceBetweenTextLines, mode, recognizeBullets, relativeHorizontalProximity, folder, storage, password)
 
-Converts PDF document (located on storage) to DOC format and uploads resulting file to storage
+Converts PDF document (located on storage) to DOC format and uploads resulting file to storage.
 
 ### Parameters
 Name | Type | Description  | Notes
@@ -7678,6 +7716,7 @@ Name | Type | Description  | Notes
 **relativeHorizontalProximity** | **number** | Relative horizontal proximity. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 

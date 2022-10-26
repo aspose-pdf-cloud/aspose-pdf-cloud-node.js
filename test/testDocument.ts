@@ -22,6 +22,8 @@
 import * as BaseTest from "./baseTestPdfApi";
 import "mocha";
 import { OptimizeOptions } from "../src/models/optimizeOptions";
+import { SplitRangePdfOptions } from "../src/models/splitRangePdfOptions";
+import { PageRange } from "../src/models/pageRange";
 import { DocumentConfig } from "../src/models/documentConfig";
 import { DocumentProperties } from "../src/models/documentProperties";
 import { DisplayProperties } from "../src/models/displayProperties";
@@ -47,11 +49,9 @@ describe("Document Tests", () => {
     });
   });
   
-  describe("PostOptimizeDocument Test", () => {
-    
+  describe("PostOptimizeDocument Test", () => {    
     it("should return response with code 200", async () => {
       const name = "4pages.pdf";
-
       let optimizeOptions = new OptimizeOptions();
       optimizeOptions.allowReusePageContent = false;
       optimizeOptions.compressImages = true;
@@ -60,9 +60,7 @@ describe("Document Tests", () => {
       optimizeOptions.removeUnusedObjects = true;
       optimizeOptions.removeUnusedStreams = true;
       optimizeOptions.unembedFonts = true;
-
       await BaseTest.uploadFile(name);
-
       return BaseTest.getPdfApi().postOptimizeDocument(name, optimizeOptions, null, BaseTest.remoteTempFolder)
         .then((result) => {
           assert.equal(result.response.statusCode, 200);
@@ -70,12 +68,10 @@ describe("Document Tests", () => {
     });
   });
 
-  describe("PostSplitDocument Test", () => {
-    
+  describe("PostSplitDocument Test", () => {    
     it("should return response with code 200", async () => {
       const name = "4pages.pdf";
       await BaseTest.uploadFile(name);
-
       return BaseTest.getPdfApi().postSplitDocument(name, null, null, null, null, BaseTest.remoteTempFolder)
         .then((result) => {
           assert.equal(result.response.statusCode, 200);
@@ -83,12 +79,29 @@ describe("Document Tests", () => {
     });
   });
 
-  describe("Create Empty Document Test", () => {
-    
+  describe("PostSplitRangePdfDocument Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pages.pdf";
+      await BaseTest.uploadFile(name);
+      let pageRange1 = new PageRange();
+      pageRange1.to = 2;
+      let pageRange2 = new PageRange();
+      pageRange2.from = 3;
+      let pageRange3 = new PageRange();
+      pageRange3.from = 2;
+      pageRange3.to = 3;
+      let rangeOptions = new SplitRangePdfOptions();
+      rangeOptions.pageRanges = [pageRange1, pageRange2, pageRange3];
+      return BaseTest.getPdfApi().postSplitRangePdfDocument(name, rangeOptions, null, BaseTest.remoteTempFolder)
+        .then((result) => {
+          assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("Create Empty Document Test", () => {    
     it("should return response with code 200", () => {
-
       const name = "empty_node.pdf";
-
       return BaseTest.getPdfApi().putCreateDocument(name, null, BaseTest.remoteTempFolder)
         .then((result) => {
           assert.equal(result.response.statusCode, 200);

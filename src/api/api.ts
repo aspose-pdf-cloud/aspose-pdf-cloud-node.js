@@ -88,6 +88,7 @@ import { Option } from "../models/option";
 import { OutputFormat } from "../models/outputFormat";
 import { PageLayout } from "../models/pageLayout";
 import { PageMode } from "../models/pageMode";
+import { PageRange } from "../models/pageRange";
 import { PageWordCount } from "../models/pageWordCount";
 import { Paragraph } from "../models/paragraph";
 import { PartsEmbeddingModes } from "../models/partsEmbeddingModes";
@@ -108,6 +109,7 @@ import { SignatureCustomAppearance } from "../models/signatureCustomAppearance";
 import { SignatureType } from "../models/signatureType";
 import { SoundEncoding } from "../models/soundEncoding";
 import { SoundIcon } from "../models/soundIcon";
+import { SplitRangePdfOptions } from "../models/splitRangePdfOptions";
 import { SplitResult } from "../models/splitResult";
 import { Stamp } from "../models/stamp";
 import { StampIcon } from "../models/stampIcon";
@@ -6233,8 +6235,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToBmp (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToBmp (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6266,6 +6269,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -6302,8 +6309,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToEmf (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToEmf (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6335,6 +6343,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -6371,8 +6383,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToGif (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6404,6 +6417,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -6440,8 +6457,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToJpeg (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6473,6 +6491,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -6509,8 +6531,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToPng (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6542,6 +6565,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -6578,8 +6605,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPageConvertToTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPageConvertToTiff (name: string, pageNumber: number, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -6611,6 +6639,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -8452,7 +8484,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to DOC format and returns resulting file in response content
+     * @summary Converts PDF document (located on storage) to DOC format and returns resulting file in response content.
      * @param name The document name.
      * @param addReturnToLineEnd Add return to line end.
      * @param format Allows to specify .doc or .docx file format.
@@ -8464,8 +8496,9 @@ export class PdfApi {
      * @param relativeHorizontalProximity Relative horizontal proximity.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPdfInStorageToDoc (name: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToDoc (name: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -8515,6 +8548,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -15140,6 +15177,64 @@ export class PdfApi {
 
     /**
      * 
+     * @param name 
+     * @param options 
+     * @param storage 
+     * @param folder 
+     */
+    public async postSplitRangePdfDocument (name: string, options: SplitRangePdfOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/splitrangepdf'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postSplitRangePdfDocument.');
+        }
+
+        // verify required parameter 'options' is not null or undefined
+        if (options === null || options === undefined) {
+            throw new Error('Required parameter options was null or undefined when calling postSplitRangePdfDocument.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(options, "SplitRangePdfOptions")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SplitResultResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Add document text box fields.
      * @param name The document name.
      * @param fields The array of field.
@@ -18167,8 +18262,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToBmp (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToBmp (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/bmp'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18211,6 +18307,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -18246,8 +18346,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToEmf (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToEmf (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/emf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18290,6 +18391,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -18325,8 +18430,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToGif (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToGif (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/gif'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18369,6 +18475,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -18404,8 +18514,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToJpeg (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToJpeg (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/jpeg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18448,6 +18559,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -18483,8 +18598,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToPng (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToPng (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/png'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18527,6 +18643,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -18562,8 +18682,9 @@ export class PdfApi {
      * @param height The converted image height.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPageConvertToTiff (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPageConvertToTiff (name: string, pageNumber: number, outPath: string, width?: number, height?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/convert/tiff'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -18604,6 +18725,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -18774,8 +18899,9 @@ export class PdfApi {
      * @param relativeHorizontalProximity Relative horizontal proximity.
      * @param storage The document storage.
      * @param file A file to be converted.
+     * @param password The password (Base64).
      */
-    public async putPdfInRequestToDoc (outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToDoc (outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, storage?: string, file?: Buffer, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/doc';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -18824,6 +18950,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19846,7 +19976,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Converts PDF document (located on storage) to DOC format and uploads resulting file to storage
+     * @summary Converts PDF document (located on storage) to DOC format and uploads resulting file to storage.
      * @param name The document name.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.doc)
      * @param addReturnToLineEnd Add return to line end.
@@ -19859,8 +19989,9 @@ export class PdfApi {
      * @param relativeHorizontalProximity Relative horizontal proximity.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPdfInStorageToDoc (name: string, outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToDoc (name: string, outPath: string, addReturnToLineEnd?: boolean, format?: string, imageResolutionX?: number, imageResolutionY?: number, maxDistanceBetweenTextLines?: number, mode?: string, recognizeBullets?: boolean, relativeHorizontalProximity?: number, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/doc'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -19919,6 +20050,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
