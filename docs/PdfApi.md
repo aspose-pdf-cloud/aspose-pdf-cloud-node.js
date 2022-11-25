@@ -246,7 +246,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postSignDocument**](PdfApi.md#postSignDocument) | **POST** /pdf/\{name}/sign | Sign document.
 *PdfApi* | [**postSignPage**](PdfApi.md#postSignPage) | **POST** /pdf/\{name}/pages/\{pageNumber}/sign | Sign page.
 *PdfApi* | [**postSplitDocument**](PdfApi.md#postSplitDocument) | **POST** /pdf/\{name}/split | Split document to parts.
-*PdfApi* | [**postSplitRangePdfDocument**](PdfApi.md#postSplitRangePdfDocument) | **POST** /pdf/\{name}/splitrangepdf | 
+*PdfApi* | [**postSplitRangePdfDocument**](PdfApi.md#postSplitRangePdfDocument) | **POST** /pdf/\{name}/splitrangepdf | Split document into ranges.
 *PdfApi* | [**postTextBoxFields**](PdfApi.md#postTextBoxFields) | **POST** /pdf/\{name}/fields/textbox | Add document text box fields.
 *PdfApi* | [**putAddNewPage**](PdfApi.md#putAddNewPage) | **PUT** /pdf/\{name}/pages | Add new page to end of the document.
 *PdfApi* | [**putAddText**](PdfApi.md#putAddText) | **PUT** /pdf/\{name}/pages/\{pageNumber}/text | Add text to PDF document page.
@@ -6027,15 +6027,15 @@ Name | Type | Description  | Notes
 ## **postSplitRangePdfDocument**
 > postSplitRangePdfDocument(name, options, storage, folder)
 
-
+Split document into ranges.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**options** | [**SplitRangePdfOptions**](SplitRangePdfOptions.md) |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**options** | [**SplitRangePdfOptions**](SplitRangePdfOptions.md) | The splitting options. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
 
 ### Return type
 

@@ -15177,10 +15177,11 @@ export class PdfApi {
 
     /**
      * 
-     * @param name 
-     * @param options 
-     * @param storage 
-     * @param folder 
+     * @summary Split document into ranges.
+     * @param name The document name.
+     * @param options The splitting options.
+     * @param storage The document storage.
+     * @param folder The document folder.
      */
     public async postSplitRangePdfDocument (name: string, options: SplitRangePdfOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/splitrangepdf'
