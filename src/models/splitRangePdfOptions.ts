@@ -21,6 +21,9 @@
 
 import { PageRange } from "./pageRange";
 
+/**
+* Represents Pdf split into ranges options.
+*/
 export class SplitRangePdfOptions {
     'pageRanges': Array<PageRange>;
 
