@@ -46,6 +46,10 @@ export class TextReplace {
     * Rectangle area where searched original text.
     */
     'rect': Rectangle;
+    /**
+    * The text after replacement is centered horizontally relative to the text being replaced.
+    */
+    'centerTextHorizontally': boolean;
 
     static discriminator = undefined;
 
@@ -74,6 +78,11 @@ export class TextReplace {
             "name": "rect",
             "baseName": "Rect",
             "type": "Rectangle"
+        },
+        {
+            "name": "centerTextHorizontally",
+            "baseName": "CenterTextHorizontally",
+            "type": "boolean"
         }    ];
 
     static getAttributeTypeMap() {

@@ -33,11 +33,12 @@ describe("TextReplace Tests", () => {
     const rect: Rectangle = { lLX: 100, lLY: 100, uRX: 300, uRY: 300 };
     
     const textReplace: TextReplace = { 
-        oldValue: "market", 
-        newValue: "m_a_r_k_e_t", 
-        regex: false, 
-        textState: null, 
-        rect: rect 
+        oldValue: "market",
+        newValue: "m_a_r_k_e_t",
+        regex: false,
+        textState: null,
+        rect: rect,
+        centerTextHorizontally: false
     };
     
     beforeEach( async () => {

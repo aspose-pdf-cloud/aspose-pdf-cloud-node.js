@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **regex** | **boolean** | Gets or sets a value indicating whether search text is regular expression. | 
 **textState** | [**TextState**](TextState.md) | Text properties of a new text. | [optional]
 **rect** | [**Rectangle**](Rectangle.md) | Rectangle area where searched original text. | [optional]
+**centerTextHorizontally** | **boolean** | The text after replacement is centered horizontally relative to the text being replaced. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md) [[View Source]](../src/models/textReplace.ts)
 
