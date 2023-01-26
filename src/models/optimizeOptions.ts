@@ -1,6 +1,6 @@
 ﻿ /**
  *
- * Copyright (c) 2022 Aspose.PDF Cloud
+ * Copyright (c) 2023 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -26,6 +26,10 @@ import { ImageEncoding } from "./imageEncoding";
 * Represents Pdf optimize options.
 */
 export class OptimizeOptions {
+    /**
+    * Specifies document password (if any) encoded with base-64.
+    */
+    'password': string;
     /**
     * If true page contents will be reused when document is optimized for equal pages.
     */
@@ -82,6 +86,11 @@ export class OptimizeOptions {
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "password",
+            "baseName": "Password",
+            "type": "string"
+        },
         {
             "name": "allowReusePageContent",
             "baseName": "AllowReusePageContent",
