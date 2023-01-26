@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2022 Aspose.PDF Cloud
+ * Copyright (c) 2023 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -53,6 +53,26 @@ describe("Document Tests", () => {
     it("should return response with code 200", async () => {
       const name = "4pages.pdf";
       let optimizeOptions = new OptimizeOptions();
+      optimizeOptions.allowReusePageContent = false;
+      optimizeOptions.compressImages = true;
+      optimizeOptions.imageQuality = 100;
+      optimizeOptions.linkDuplcateStreams = true;
+      optimizeOptions.removeUnusedObjects = true;
+      optimizeOptions.removeUnusedStreams = true;
+      optimizeOptions.unembedFonts = true;
+      await BaseTest.uploadFile(name);
+      return BaseTest.getPdfApi().postOptimizeDocument(name, optimizeOptions, null, BaseTest.remoteTempFolder)
+        .then((result) => {
+          assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("PostOptimizeDocument with password Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pagesEncrypted.pdf";
+      let optimizeOptions = new OptimizeOptions();
+      optimizeOptions.password = BaseTest.toBase64("user $^Password!&");
       optimizeOptions.allowReusePageContent = false;
       optimizeOptions.compressImages = true;
       optimizeOptions.imageQuality = 100;
