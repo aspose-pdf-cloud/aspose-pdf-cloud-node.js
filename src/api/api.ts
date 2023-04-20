@@ -85,6 +85,8 @@ import { ModelError } from "../models/modelError";
 import { ObjectExist } from "../models/objectExist";
 import { OptimizeOptions } from "../models/optimizeOptions";
 import { Option } from "../models/option";
+import { OrganizeDocumentData } from "../models/organizeDocumentData";
+import { OrganizeDocumentRequest } from "../models/organizeDocumentRequest";
 import { OutputFormat } from "../models/outputFormat";
 import { PageLayout } from "../models/pageLayout";
 import { PageMode } from "../models/pageMode";
@@ -13053,6 +13055,135 @@ export class PdfApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(options, "OptimizeOptions")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Merge selected pages of a document.
+     * @param name The original document name.
+     * @param pages 1-based page numbers of the source document that make up the resulting document.
+     * @param outPath Full filename of the resulting document.
+     * @param storage The documents storage.
+     * @param folder The source document folder.
+     */
+    public async postOrganizeDocument (name: string, pages: string, outPath: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/organize'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postOrganizeDocument.');
+        }
+
+        // verify required parameter 'pages' is not null or undefined
+        if (pages === null || pages === undefined) {
+            throw new Error('Required parameter pages was null or undefined when calling postOrganizeDocument.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling postOrganizeDocument.');
+        }
+
+        if (pages !== undefined && null !== pages) {
+            localVarQueryParameters['pages'] = ObjectSerializer.serialize(pages, "string");
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Merge selected pages of different documents.
+     * @param organizeDocuments Array of OrganizeDocumentData to make up the resulting document.
+     * @param outPath Full filename of the resulting document.
+     * @param storage The documents storage.
+     */
+    public async postOrganizeDocuments (organizeDocuments: OrganizeDocumentRequest, outPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/organize';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'organizeDocuments' is not null or undefined
+        if (organizeDocuments === null || organizeDocuments === undefined) {
+            throw new Error('Required parameter organizeDocuments was null or undefined when calling postOrganizeDocuments.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling postOrganizeDocuments.');
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(organizeDocuments, "OrganizeDocumentRequest")
         };
 
         if (Object.keys(localVarFormParams).length) {

@@ -19,27 +19,28 @@
  *
  */
 
+import { OrganizeDocumentData } from "./organizeDocumentData";
 
-export class PageRange {
-    'from': number;
-    'to': number;
+/**
+* Documents data for organizing.
+*/
+export class OrganizeDocumentRequest {
+    /**
+    * List of document data for organizing.
+    */
+    'list': Array<OrganizeDocumentData>;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "from",
-            "baseName": "From",
-            "type": "number"
-        },
-        {
-            "name": "to",
-            "baseName": "To",
-            "type": "number"
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<OrganizeDocumentData>"
         }    ];
 
     static getAttributeTypeMap() {
-        return PageRange.attributeTypeMap;
+        return OrganizeDocumentRequest.attributeTypeMap;
     }
 }
 

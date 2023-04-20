@@ -93,7 +93,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "23.3.0");
+    sa.set("x-aspose-client-version", "23.4.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};

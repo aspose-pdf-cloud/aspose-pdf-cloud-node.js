@@ -214,6 +214,8 @@ Method | HTTP request | Description
 *PdfApi* | [**postListBoxFields**](PdfApi.md#postListBoxFields) | **POST** /pdf/\{name}/fields/listbox | Add document listbox fields.
 *PdfApi* | [**postMovePage**](PdfApi.md#postMovePage) | **POST** /pdf/\{name}/pages/\{pageNumber}/movePage | Move page to new position.
 *PdfApi* | [**postOptimizeDocument**](PdfApi.md#postOptimizeDocument) | **POST** /pdf/\{name}/optimize | Optimize document.
+*PdfApi* | [**postOrganizeDocument**](PdfApi.md#postOrganizeDocument) | **POST** /pdf/\{name}/organize | Merge selected pages of a document.
+*PdfApi* | [**postOrganizeDocuments**](PdfApi.md#postOrganizeDocuments) | **POST** /pdf/organize | Merge selected pages of different documents.
 *PdfApi* | [**postPageCaretAnnotations**](PdfApi.md#postPageCaretAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/caret | Add document page caret annotations.
 *PdfApi* | [**postPageCertify**](PdfApi.md#postPageCertify) | **POST** /pdf/\{name}/pages/\{pageNumber}/certify | Certify document page.
 *PdfApi* | [**postPageCircleAnnotations**](PdfApi.md#postPageCircleAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/circle | Add document page circle annotations.
@@ -5245,6 +5247,52 @@ Name | Type | Description  | Notes
 **options** | [**OptimizeOptions**](OptimizeOptions.md) | The optimization options. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postOrganizeDocument"></a>
+## **postOrganizeDocument**
+> postOrganizeDocument(name, pages, outPath, storage, folder)
+
+Merge selected pages of a document.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The original document name. | 
+**pages** | **string** | 1-based page numbers of the source document that make up the resulting document. | 
+**outPath** | **string** | Full filename of the resulting document. | 
+**storage** | **string** | The documents storage. | [optional]
+**folder** | **string** | The source document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postOrganizeDocuments"></a>
+## **postOrganizeDocuments**
+> postOrganizeDocuments(organizeDocuments, outPath, storage)
+
+Merge selected pages of different documents.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**organizeDocuments** | [**OrganizeDocumentRequest**](OrganizeDocumentRequest.md) | Array of OrganizeDocumentData to make up the resulting document. | 
+**outPath** | **string** | Full filename of the resulting document. | 
+**storage** | **string** | The documents storage. | [optional]
 
 ### Return type
 
