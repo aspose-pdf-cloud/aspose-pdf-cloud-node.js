@@ -31,6 +31,7 @@ import { DefaultPageConfig } from "../src/models/defaultPageConfig";
 import { Direction } from "../src/models/direction";
 import { PageMode } from "../src/models/pageMode";
 import { PageLayout } from "../src/models/pageLayout";
+import { OrganizeDocumentRequest } from "../src/models/organizeDocumentRequest";
 
 var assert = require('assert');
 
@@ -191,6 +192,36 @@ describe("Document Tests", () => {
         return BaseTest.getPdfApi().putDocumentDisplayProperties(name, displayProperties, null, BaseTest.remoteTempFolder)
             .then((result) => {
                 assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("PostOrganizeDocument Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pages.pdf";
+      await BaseTest.uploadFile(name);
+      return BaseTest.getPdfApi().postOrganizeDocument(name, "1,4-2", BaseTest.remoteTempFolder + "/" + name, null, BaseTest.remoteTempFolder)
+        .then((result) => {
+          assert.equal(result.response.statusCode, 200);
+        });
+    });
+  });
+
+  describe("PostOrganizeDocuments Test", () => {    
+    it("should return response with code 200", async () => {
+      const name1 = "4pages.pdf";
+      await BaseTest.uploadFile(name1);
+      const name2 = "marketing.pdf";
+      await BaseTest.uploadFile(name2);
+      const request = new OrganizeDocumentRequest();
+      request.list = [
+        {path: BaseTest.remoteTempFolder + "/" + name1, pages: "4-2"},
+        {path: BaseTest.remoteTempFolder + "/" + name2, pages: "2"},
+        {path: BaseTest.remoteTempFolder + "/" + name1, pages: "3,1"},
+      ];
+      return BaseTest.getPdfApi().postOrganizeDocuments(request, BaseTest.remoteTempFolder + "/OrganizeMany.pdf")
+        .then((result) => {
+          assert.equal(result.response.statusCode, 200);
         });
     });
   });

@@ -20,26 +20,35 @@
  */
 
 
-export class PageRange {
-    'from': number;
-    'to': number;
+/**
+* Data for document organizing.
+*/
+export class OrganizeDocumentData {
+    /**
+    * Full filename of the document for organizing.
+    */
+    'path': string;
+    /**
+    * 1-based page numbers of the document that make up the resulting document.
+    */
+    'pages': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "from",
-            "baseName": "From",
-            "type": "number"
+            "name": "path",
+            "baseName": "Path",
+            "type": "string"
         },
         {
-            "name": "to",
-            "baseName": "To",
-            "type": "number"
+            "name": "pages",
+            "baseName": "Pages",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return PageRange.attributeTypeMap;
+        return OrganizeDocumentData.attributeTypeMap;
     }
 }
 

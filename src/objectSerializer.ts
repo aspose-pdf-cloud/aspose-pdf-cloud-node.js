@@ -85,6 +85,8 @@ import { ModelError } from "./models/modelError";
 import { ObjectExist } from "./models/objectExist";
 import { OptimizeOptions } from "./models/optimizeOptions";
 import { Option } from "./models/option";
+import { OrganizeDocumentData } from "./models/organizeDocumentData";
+import { OrganizeDocumentRequest } from "./models/organizeDocumentRequest";
 import { OutputFormat } from "./models/outputFormat";
 import { PageLayout } from "./models/pageLayout";
 import { PageMode } from "./models/pageMode";
@@ -392,6 +394,8 @@ let typeMap: {[index: string]: any} = {
     "ObjectExist": ObjectExist,
     "OptimizeOptions": OptimizeOptions,
     "Option": Option,
+    "OrganizeDocumentData": OrganizeDocumentData,
+    "OrganizeDocumentRequest": OrganizeDocumentRequest,
     "PageRange": PageRange,
     "PageWordCount": PageWordCount,
     "Paragraph": Paragraph,
