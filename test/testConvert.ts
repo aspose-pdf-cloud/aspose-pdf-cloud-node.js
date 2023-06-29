@@ -421,9 +421,7 @@ describe("Convert Tests", () => {
         const outPath = BaseTest.remoteTempFolder + "/" + resFileName;
         
         describe("GetPdfInStorageToPptx Test", () => {
-
             it("should return response with code 200", async () => {
-
                 return BaseTest.getPdfApi().getPdfInStorageToPptx(simplePdf, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
@@ -431,10 +429,20 @@ describe("Convert Tests", () => {
             });
         });
 
-        describe("PutPdfInStorageToPptx Test", () => {
-
+        describe("GetPdfInStorageToPptxWithPassword Test", () => {
             it("should return response with code 200", async () => {
+                const name = "4pagesEncrypted.pdf";
+                await BaseTest.uploadFile(name);
+                const userPassword = 'user $^Password!&';
+                return BaseTest.getPdfApi().getPdfInStorageToPptx(name, null, null, BaseTest.remoteTempFolder, null, BaseTest.toBase64(userPassword))
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
 
+        describe("PutPdfInStorageToPptx Test", () => {
+            it("should return response with code 200", async () => {
                 return BaseTest.getPdfApi().putPdfInStorageToPptx(simplePdf, outPath, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
@@ -442,13 +450,34 @@ describe("Convert Tests", () => {
             });
         });
 
-        describe("PutPdfInRequestToPptx Test", () => {
-
+        describe("PutPdfInStorageToPptxWithPassword Test", () => {
             it("should return response with code 200", async () => {
+                const name = "4pagesEncrypted.pdf";
+                await BaseTest.uploadFile(name);
+                const userPassword = 'user $^Password!&';
+                return BaseTest.getPdfApi().putPdfInStorageToPptx(simplePdf, outPath, null, null, BaseTest.remoteTempFolder, null, BaseTest.toBase64(userPassword))
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
 
+        describe("PutPdfInRequestToPptx Test", () => {
+            it("should return response with code 200", async () => {
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
+                return BaseTest.getPdfApi().putPdfInRequestToPptx(outPath, null, null, null, null, data)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
 
-                return BaseTest.getPdfApi().putPdfInRequestToPptx(outPath, null, null, null, data)
+        describe("PutPdfInRequestToPptxWithPassword Test", () => {
+            it("should return response with code 200", async () => {
+                const name = "4pagesEncrypted.pdf";
+                const userPassword = 'user $^Password!&';
+                var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + name);
+                return BaseTest.getPdfApi().putPdfInRequestToPptx(outPath, null, null, null, BaseTest.toBase64(userPassword), data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

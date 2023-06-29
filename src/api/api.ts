@@ -8957,8 +8957,9 @@ export class PdfApi {
      * @param slidesAsImages Slides as images.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password Base64 encoded password.
      */
-    public async getPdfInStorageToPptx (name: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToPptx (name: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -8984,6 +8985,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19524,9 +19529,10 @@ export class PdfApi {
      * @param separateImages Separate images.
      * @param slidesAsImages Slides as images.
      * @param storage The document storage.
+     * @param password Base64 encoded password.
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToPptx (outPath: string, separateImages?: boolean, slidesAsImages?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToPptx (outPath: string, separateImages?: boolean, slidesAsImages?: boolean, storage?: string, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/pptx';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19551,6 +19557,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -20635,8 +20645,9 @@ export class PdfApi {
      * @param slidesAsImages Slides as images.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password Base64 encoded password.
      */
-    public async putPdfInStorageToPptx (name: string, outPath: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToPptx (name: string, outPath: string, separateImages?: boolean, slidesAsImages?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pptx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -20671,6 +20682,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
