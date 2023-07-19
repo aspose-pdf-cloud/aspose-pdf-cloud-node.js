@@ -32,6 +32,10 @@ export class Field extends LinkElement {
     */
     'name': string;
     /**
+    * Mapping name.
+    */
+    'mappingName': string;
+    /**
     * Selected items.
     */
     'selectedItems': Array<number>;
@@ -54,6 +58,11 @@ export class Field extends LinkElement {
         {
             "name": "name",
             "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "mappingName",
+            "baseName": "MappingName",
             "type": "string"
         },
         {
