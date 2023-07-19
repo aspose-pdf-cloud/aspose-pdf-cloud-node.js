@@ -105,12 +105,13 @@ describe("Fields Tests", () => {
             const fieldName = "textField";
             
             const field = {
+                links: null,
                 name: fieldName,
-                type: FieldType.Text,
-                values: ["Text field updated value."],
+                mappingName: null,
                 selectedItems: null,
+                type: FieldType.Text,
                 rect: null,
-                links: null
+                values: ["Text field updated value."]
             }
 
             return BaseTest.getPdfApi().putUpdateField(name, fieldName, field, null, BaseTest.remoteTempFolder)
@@ -130,12 +131,13 @@ describe("Fields Tests", () => {
             const fieldName = "textField";
             
             const field = {
+                links: null,
                 name: fieldName,
-                type: FieldType.Text,
-                values: ["Text field updated value."],
+                mappingName: null,
                 selectedItems: null,
+                type: FieldType.Text,
                 rect: null,
-                links: null
+                values: ["Text field updated value."]
             }
 
             const fields = {links: null, list: [field]}
