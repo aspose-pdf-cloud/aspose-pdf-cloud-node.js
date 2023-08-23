@@ -9262,8 +9262,9 @@ export class PdfApi {
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPdfInStorageToXls (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToXls (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -9297,6 +9298,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -9334,8 +9339,9 @@ export class PdfApi {
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPdfInStorageToXlsx (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToXlsx (name: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xlsx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -9369,6 +9375,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -15253,8 +15263,9 @@ export class PdfApi {
      * @param to End page if defined.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postSplitDocument (name: string, format?: string, from?: number, to?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
+    public async postSplitDocument (name: string, format?: string, from?: number, to?: number, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/split'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -15284,6 +15295,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -15318,8 +15333,9 @@ export class PdfApi {
      * @param options The splitting options.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postSplitRangePdfDocument (name: string, options: SplitRangePdfOptions, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
+    public async postSplitRangePdfDocument (name: string, options: SplitRangePdfOptions, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/splitrangepdf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -15342,6 +15358,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19853,9 +19873,10 @@ export class PdfApi {
      * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param storage The document storage.
+     * @param password The password (Base64).
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToXls (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToXls (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, storage?: string, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xls';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19890,6 +19911,9 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -19898,8 +19922,6 @@ export class PdfApi {
             fileData = file;
         }
         localVarUseFormData = true;
-        
-
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
             qs: localVarQueryParameters,
@@ -19921,7 +19943,6 @@ export class PdfApi {
         return Promise.resolve({body: result, response});
     }
 
-
     /**
      * 
      * @summary Converts PDF document (in request content) to XLSX format and uploads resulting file to storage.
@@ -19931,9 +19952,10 @@ export class PdfApi {
      * @param scaleFactor Scale factor (Obsolete)
      * @param uniformWorksheets Uniform worksheets
      * @param storage The document storage.
+     * @param password The password (Base64).
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToXlsx (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToXlsx (outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, storage?: string, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/xlsx';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19966,6 +19988,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -20985,8 +21011,9 @@ export class PdfApi {
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPdfInStorageToXls (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToXls (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xls'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -21031,6 +21058,10 @@ export class PdfApi {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
         }
 
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
 
         let localVarUseFormData = false;
         let fileData = null;
@@ -21067,8 +21098,9 @@ export class PdfApi {
      * @param uniformWorksheets Uniform worksheets
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPdfInStorageToXlsx (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToXlsx (name: string, outPath: string, insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, scaleFactor?: number, uniformWorksheets?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/xlsx'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -21111,6 +21143,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -21786,6 +21822,81 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "ImageResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Replace document multiple image.
+     * @param name The document name.
+     * @param imageIds The image IDs.
+     * @param imageFilePath Path to image file if specified. Request content is used otherwise.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param image Image file.
+     */
+    public async putReplaceMultipleImage (name: string, imageIds: Array<string>, imageFilePath?: string, storage?: string, folder?: string, image?: Buffer) : Promise<{ response: http.IncomingMessage; body: ImagesResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/images/replace'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putReplaceMultipleImage.');
+        }
+
+        // verify required parameter 'imageIds' is not null or undefined
+        if (imageIds === null || imageIds === undefined) {
+            throw new Error('Required parameter imageIds was null or undefined when calling putReplaceMultipleImage.');
+        }
+
+        if (imageIds !== undefined && null !== imageIds) {
+            localVarQueryParameters['imageIds'] = ObjectSerializer.serialize(imageIds, "Array<string>");
+        }
+
+        if (imageFilePath !== undefined && null !== imageFilePath) {
+            localVarQueryParameters['imageFilePath'] = ObjectSerializer.serialize(imageFilePath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (image !== undefined) {
+            localVarFormParams['image'] = image;
+            fileData = image;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "ImagesResponse");
         return Promise.resolve({body: result, response});
     }
 

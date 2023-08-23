@@ -278,7 +278,7 @@ describe("Convert Tests", () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToXls(outPath, null, null, null, null, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToXls(outPath, null, null, null, null, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -319,7 +319,7 @@ describe("Convert Tests", () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToXlsx(outPath, null, null, null, null, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToXlsx(outPath, null, null, null, null, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

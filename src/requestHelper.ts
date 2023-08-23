@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2022 Aspose.PDF Cloud
+ * Copyright (c) 2023 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -70,6 +70,8 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
  */
 async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean, postData?: Buffer): Promise<request.RequestResponse> {
 
+console.log("requestOptions[\"uri\"]: " + requestOptions["uri"]);
+
     let sa = superagent(requestOptions.method, requestOptions["uri"]);
     
     const auth = confguration.authentication;
@@ -87,13 +89,14 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     } else if (requestOptions.body) {
         sa.send(requestOptions.body);
     }
+
     // query params
     sa.query(requestOptions.qs);
     
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "23.7.0");
+    sa.set("x-aspose-client-version", "23.8.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};
@@ -109,7 +112,6 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
         sa.responseType('blob')
     }
 
-    
     return new Promise<request.RequestResponse>((resolve, reject) => {
         sa.catch(async err => {
             if (err.status === 401 && !notApplyAuthToRequest) {
@@ -117,9 +119,8 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                 reject(new NeedRepeatException());
             } else {
                 reject(err);
-            }
-            
-         });
+            }            
+        });
         
         sa.then(async (response) => {
             if (response.status >= 200 && response.status <= 299) {
