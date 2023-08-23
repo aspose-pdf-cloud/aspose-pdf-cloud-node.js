@@ -75,14 +75,11 @@ describe("Images Tests", () => {
     describe("PutReplaceImage Test", () => {
         
         it("should return response with code 200", async () => {
-
             const imageName = "Koala.jpg";
             await BaseTest.uploadFile(imageName);
             const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
-
             const result = await BaseTest.getPdfApi().getImages(name, pageNumber, null, BaseTest.remoteTempFolder);
             const imageId = result.body.images.list[0].id;
-
             return BaseTest.getPdfApi().putReplaceImage(name, imageId, imageFile, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
@@ -90,15 +87,26 @@ describe("Images Tests", () => {
         });
     });
 
-    describe("PostInsertImage Test", () => {
-        
+    describe("PutReplaceMultipleImage Test", () => {        
         it("should return response with code 200", async () => {
+            const name = "PdfWithImages.pdf";
+            await BaseTest.uploadFile(name);
+            const imageName = "butterfly.jpg";
+            await BaseTest.uploadFile(imageName);
+            const imageIds = ["GE5TENJVGQZTWMJYGQWDINRUFQ2DCMRMGY4TC", "GE5TIMJSGY3TWMJXG4WDIMBZFQ2DCOJMGQ3DK"];
+            const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
+            return BaseTest.getPdfApi().putReplaceMultipleImage(name, imageIds, imageFile, null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
 
+    describe("PostInsertImage Test", () => {        
+        it("should return response with code 200", async () => {
             const imageName = "Koala.jpg";
             await BaseTest.uploadFile(imageName);
             const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
-
-
             return BaseTest.getPdfApi().postInsertImage(name, pageNumber, 10, 10, 100, 100, imageFile, null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
