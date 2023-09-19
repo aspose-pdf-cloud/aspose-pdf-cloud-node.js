@@ -69,9 +69,6 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
  * @param notApplyAuthToRequest if setted to true, auth is not applied to request
  */
 async function invokeApiMethodInternal(requestOptions: request.Options, confguration: Configuration, notApplyAuthToRequest?: boolean, postData?: Buffer): Promise<request.RequestResponse> {
-
-console.log("requestOptions[\"uri\"]: " + requestOptions["uri"]);
-
     let sa = superagent(requestOptions.method, requestOptions["uri"]);
     
     const auth = confguration.authentication;
@@ -96,7 +93,7 @@ console.log("requestOptions[\"uri\"]: " + requestOptions["uri"]);
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "23.8.0");
+    sa.set("x-aspose-client-version", "23.9.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};

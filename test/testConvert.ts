@@ -109,7 +109,7 @@ describe("Convert Tests", () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToPdfA(outPath, PdfAType.PDFA1A, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToPdfA(outPath, PdfAType.PDFA1A, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

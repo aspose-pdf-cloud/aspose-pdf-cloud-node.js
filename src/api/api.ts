@@ -8894,8 +8894,9 @@ export class PdfApi {
      * @param type Type of PdfA format.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPdfInStorageToPdfA (name: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToPdfA (name: string, type: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -8922,6 +8923,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19480,9 +19485,10 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.pdf)
      * @param type Type of PdfA format.
      * @param storage The document storage.
+     * @param password The password (Base64).
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToPdfA (outPath: string, type: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToPdfA (outPath: string, type: string, storage?: string, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/pdfa';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19508,6 +19514,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19915,6 +19925,7 @@ export class PdfApi {
             localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
+
         let localVarUseFormData = false;
         let fileData = null;
         if (file !== undefined) {
@@ -19922,6 +19933,8 @@ export class PdfApi {
             fileData = file;
         }
         localVarUseFormData = true;
+        
+
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
             qs: localVarQueryParameters,
@@ -19942,6 +19955,7 @@ export class PdfApi {
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
+
 
     /**
      * 
@@ -20598,8 +20612,9 @@ export class PdfApi {
      * @param type Type of PdfA format.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPdfInStorageToPdfA (name: string, outPath: string, type: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToPdfA (name: string, outPath: string, type: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/pdfa'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -20635,6 +20650,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
