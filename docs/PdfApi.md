@@ -3712,7 +3712,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToPdfA"></a>
 ## **getPdfInStorageToPdfA**
-> getPdfInStorageToPdfA(name, type, folder, storage)
+> getPdfInStorageToPdfA(name, type, folder, storage, password)
 
 Converts PDF document (located on storage) to PdfA format and returns resulting file in response content
 
@@ -3723,6 +3723,7 @@ Name | Type | Description  | Notes
 **type** | [**PdfAType**](PdfAType.md) | Type of PdfA format. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7527,7 +7528,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToPdfA"></a>
 ## **putPdfInRequestToPdfA**
-> putPdfInRequestToPdfA(outPath, type, storage, file)
+> putPdfInRequestToPdfA(outPath, type, storage, password, file)
 
 Converts PDF document (in request content) to PdfA format and uploads resulting file to storage.
 
@@ -7537,6 +7538,7 @@ Name | Type | Description  | Notes
 **outPath** | **string** | Full resulting filename (ex. /folder1/folder2/result.pdf) | 
 **type** | [**PdfAType**](PdfAType.md) | Type of PdfA format. | 
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 **file** | **Buffer** | A file to be converted. | [optional]
 
 ### Return type
@@ -7886,7 +7888,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToPdfA"></a>
 ## **putPdfInStorageToPdfA**
-> putPdfInStorageToPdfA(name, outPath, type, folder, storage)
+> putPdfInStorageToPdfA(name, outPath, type, folder, storage, password)
 
 Converts PDF document (located on storage) to PdfA format and uploads resulting file to storage
 
@@ -7898,6 +7900,7 @@ Name | Type | Description  | Notes
 **type** | [**PdfAType**](PdfAType.md) | Type of PdfA format. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
