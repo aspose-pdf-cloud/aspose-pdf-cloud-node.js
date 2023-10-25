@@ -191,6 +191,7 @@ Method | HTTP request | Description
 *PdfApi* | [**moveFile**](PdfApi.md#moveFile) | **PUT** /pdf/storage/file/move/\{srcPath} | Move file
 *PdfApi* | [**moveFolder**](PdfApi.md#moveFolder) | **PUT** /pdf/storage/folder/move/\{srcPath} | Move folder
 *PdfApi* | [**objectExists**](PdfApi.md#objectExists) | **GET** /pdf/storage/exist/\{path} | Check if file or folder exists
+*PdfApi* | [**postAddDocumentAttachment**](PdfApi.md#postAddDocumentAttachment) | **POST** /pdf/\{name}/attachments | Adds a file attachment to the PDF document.
 *PdfApi* | [**postAppendDocument**](PdfApi.md#postAppendDocument) | **POST** /pdf/\{name}/appendDocument | Append document to existing one.
 *PdfApi* | [**postBookmark**](PdfApi.md#postBookmark) | **POST** /pdf/\{name}/bookmarks/bookmark/\{bookmarkPath} | Add document bookmarks.
 *PdfApi* | [**postChangePasswordDocumentInStorage**](PdfApi.md#postChangePasswordDocumentInStorage) | **POST** /pdf/\{name}/changepassword | Change document password in storage.
@@ -547,7 +548,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteDocumentStamps"></a>
 ## **deleteDocumentStamps**
-> deleteDocumentStamps(name, storage, folder)
+> deleteDocumentStamps(name, storage, folder, password)
 
 Delete all stamps from the document
 
@@ -557,6 +558,7 @@ Name | Type | Description  | Notes
 **name** | **string** | The document name. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -773,7 +775,7 @@ Name | Type | Description  | Notes
 
 <a name="deletePageStamps"></a>
 ## **deletePageStamps**
-> deletePageStamps(name, pageNumber, storage, folder)
+> deletePageStamps(name, pageNumber, storage, folder, password)
 
 Delete all stamps from the page
 
@@ -784,6 +786,7 @@ Name | Type | Description  | Notes
 **pageNumber** | **number** | The page number. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -864,7 +867,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteStamp"></a>
 ## **deleteStamp**
-> deleteStamp(name, stampId, storage, folder)
+> deleteStamp(name, stampId, storage, folder, password)
 
 Delete document stamp by ID
 
@@ -875,6 +878,7 @@ Name | Type | Description  | Notes
 **stampId** | **string** | The stamp ID. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -1090,7 +1094,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocument"></a>
 ## **getDocument**
-> getDocument(name, storage, folder)
+> getDocument(name, storage, folder, password)
 
 Read common document info.
 
@@ -1100,6 +1104,7 @@ Name | Type | Description  | Notes
 **name** | **string** | The document name. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -3374,7 +3379,7 @@ Name | Type | Description  | Notes
 
 <a name="getPageStamps"></a>
 ## **getPageStamps**
-> getPageStamps(name, pageNumber, storage, folder)
+> getPageStamps(name, pageNumber, storage, folder, password)
 
 Read page document stamps.
 
@@ -3385,6 +3390,7 @@ Name | Type | Description  | Notes
 **pageNumber** | **number** | The page number. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -4704,6 +4710,29 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+<a name="postAddDocumentAttachment"></a>
+## **postAddDocumentAttachment**
+> postAddDocumentAttachment(name, attachmentInfo, storage, folder)
+
+Adds a file attachment to the PDF document.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**attachmentInfo** | [**AttachmentInfo**](AttachmentInfo.md) | AttachmentInfoAttachmentInfo instance. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AttachmentsResponse**](AttachmentsResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="postAppendDocument"></a>
 ## **postAppendDocument**
 > postAppendDocument(name, appendFile, startPage, endPage, storage, folder)
@@ -4946,7 +4975,7 @@ Name | Type | Description  | Notes
 
 <a name="postDocumentPageNumberStamps"></a>
 ## **postDocumentPageNumberStamps**
-> postDocumentPageNumberStamps(name, stamp, startPageNumber, endPageNumber, storage, folder)
+> postDocumentPageNumberStamps(name, stamp, startPageNumber, endPageNumber, storage, folder, password)
 
 Add document page number stamps.
 
@@ -4959,6 +4988,7 @@ Name | Type | Description  | Notes
 **endPageNumber** | **number** | The end page number. | [optional]
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -5455,7 +5485,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageImageStamps"></a>
 ## **postPageImageStamps**
-> postPageImageStamps(name, pageNumber, stamps, storage, folder)
+> postPageImageStamps(name, pageNumber, stamps, storage, folder, password)
 
 Add document page image stamps.
 
@@ -5467,6 +5497,7 @@ Name | Type | Description  | Notes
 **stamps** | [**Array&lt;ImageStamp&gt;**](ImageStamp.md) | The array of stamp. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -5575,7 +5606,7 @@ Name | Type | Description  | Notes
 
 <a name="postPagePdfPageStamps"></a>
 ## **postPagePdfPageStamps**
-> postPagePdfPageStamps(name, pageNumber, stamps, storage, folder)
+> postPagePdfPageStamps(name, pageNumber, stamps, storage, folder, password)
 
 Add document pdf page stamps.
 
@@ -5587,6 +5618,7 @@ Name | Type | Description  | Notes
 **stamps** | [**Array&lt;PdfPageStamp&gt;**](PdfPageStamp.md) | The array of stamp. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 
@@ -5888,7 +5920,7 @@ Name | Type | Description  | Notes
 
 <a name="postPageTextStamps"></a>
 ## **postPageTextStamps**
-> postPageTextStamps(name, pageNumber, stamps, storage, folder)
+> postPageTextStamps(name, pageNumber, stamps, storage, folder, password)
 
 Add document page text stamps.
 
@@ -5900,6 +5932,7 @@ Name | Type | Description  | Notes
 **stamps** | [**Array&lt;TextStamp&gt;**](TextStamp.md) | The array of stamp. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
 
 ### Return type
 

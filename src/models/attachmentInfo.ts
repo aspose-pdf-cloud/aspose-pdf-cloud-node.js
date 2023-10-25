@@ -19,38 +19,54 @@
  *
  */
 
-import { Rectangle } from "./rectangle";
-import { LinkElement } from "./linkElement";
 
 /**
-* Provides link to page.
+* Attachment Info.
 */
-export class Page extends LinkElement {
+export class AttachmentInfo {
     /**
-    * Page's id.
+    * Attachment file path.
     */
-    'id': number;
+    'path': string;
     /**
-    * Page's rectangle
+    * Attachment file description.
     */
-    'rectangle': Rectangle;
+    'description': string;
+    /**
+    * Attachment file name.
+    */
+    'name': string;
+    /**
+    * Attachment file MIME type.
+    */
+    'mimeType': string;
 
     static discriminator = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "id",
-            "baseName": "Id",
-            "type": "number"
+            "name": "path",
+            "baseName": "Path",
+            "type": "string"
         },
         {
-            "name": "rectangle",
-            "baseName": "Rectangle",
-            "type": "Rectangle"
+            "name": "description",
+            "baseName": "Description",
+            "type": "string"
+        },
+        {
+            "name": "name",
+            "baseName": "Name",
+            "type": "string"
+        },
+        {
+            "name": "mimeType",
+            "baseName": "MimeType",
+            "type": "string"
         }    ];
 
     static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(Page.attributeTypeMap);
+        return AttachmentInfo.attributeTypeMap;
     }
 }
 
