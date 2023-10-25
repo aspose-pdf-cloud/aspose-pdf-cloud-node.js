@@ -24,6 +24,7 @@ import { AnnotationState } from "./models/annotationState";
 import { AnnotationType } from "./models/annotationType";
 import { AntialiasingProcessingType } from "./models/antialiasingProcessingType";
 import { AsposeResponse } from "./models/asposeResponse";
+import { AttachmentInfo } from "./models/attachmentInfo";
 import { Border } from "./models/border";
 import { BorderCornerStyle } from "./models/borderCornerStyle";
 import { BorderEffect } from "./models/borderEffect";
@@ -368,6 +369,7 @@ let enumsMap: {[index: string]: any} = {
 
 let typeMap: {[index: string]: any} = {
     "AsposeResponse": AsposeResponse,
+    "AttachmentInfo": AttachmentInfo,
     "Border": Border,
     "BorderInfo": BorderInfo,
     "Cell": Cell,

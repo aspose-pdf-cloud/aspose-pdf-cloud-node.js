@@ -24,6 +24,7 @@ import { AnnotationState } from "../models/annotationState";
 import { AnnotationType } from "../models/annotationType";
 import { AntialiasingProcessingType } from "../models/antialiasingProcessingType";
 import { AsposeResponse } from "../models/asposeResponse";
+import { AttachmentInfo } from "../models/attachmentInfo";
 import { Border } from "../models/border";
 import { BorderCornerStyle } from "../models/borderCornerStyle";
 import { BorderEffect } from "../models/borderEffect";
@@ -809,8 +810,9 @@ export class PdfApi {
      * @param name The document name.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async deleteDocumentStamps (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteDocumentStamps (name: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -828,6 +830,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1372,8 +1378,9 @@ export class PdfApi {
      * @param pageNumber The page number.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async deletePageStamps (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deletePageStamps (name: string, pageNumber: number, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -1397,6 +1404,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1601,8 +1612,9 @@ export class PdfApi {
      * @param stampId The stamp ID.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async deleteStamp (name: string, stampId: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteStamp (name: string, stampId: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps/{stampId}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'stampId' + '}', encodeURIComponent(String(stampId)).replace('%2F', '/'));
@@ -1626,6 +1638,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -2164,8 +2180,9 @@ export class PdfApi {
      * @param name The document name.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async getDocument (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
+    public async getDocument (name: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: DocumentResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -2183,6 +2200,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -7866,8 +7887,9 @@ export class PdfApi {
      * @param pageNumber The page number.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async getPageStamps (name: string, pageNumber: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: StampsInfoResponse;  }> {
+    public async getPageStamps (name: string, pageNumber: number, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: StampsInfoResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -7891,6 +7913,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -11522,6 +11548,65 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Adds a file attachment to the PDF document.
+     * @param name The document name.
+     * @param attachmentInfo AttachmentInfoAttachmentInfo instance.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     */
+    public async postAddDocumentAttachment (name: string, attachmentInfo: AttachmentInfo, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AttachmentsResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/attachments'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postAddDocumentAttachment.');
+        }
+
+        // verify required parameter 'attachmentInfo' is not null or undefined
+        if (attachmentInfo === null || attachmentInfo === undefined) {
+            throw new Error('Required parameter attachmentInfo was null or undefined when calling postAddDocumentAttachment.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(attachmentInfo, "AttachmentInfo")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AttachmentsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Append document to existing one.
      * @param name The original document name.
      * @param appendFile Append file server path.
@@ -12195,8 +12280,9 @@ export class PdfApi {
      * @param endPageNumber The end page number.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postDocumentPageNumberStamps (name: string, stamp: PageNumberStamp, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postDocumentPageNumberStamps (name: string, stamp: PageNumberStamp, startPageNumber?: number, endPageNumber?: number, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/stamps/pagenumber'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -12227,6 +12313,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -13633,8 +13723,9 @@ export class PdfApi {
      * @param stamps The array of stamp.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postPageImageStamps (name: string, pageNumber: number, stamps: Array<ImageStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postPageImageStamps (name: string, pageNumber: number, stamps: Array<ImageStamp>, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/image'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -13663,6 +13754,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -13963,8 +14058,9 @@ export class PdfApi {
      * @param stamps The array of stamp.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postPagePdfPageStamps (name: string, pageNumber: number, stamps: Array<PdfPageStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postPagePdfPageStamps (name: string, pageNumber: number, stamps: Array<PdfPageStamp>, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/pdfpage'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -13993,6 +14089,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -14826,8 +14926,9 @@ export class PdfApi {
      * @param stamps The array of stamp.
      * @param storage The document storage.
      * @param folder The document folder.
+     * @param password Base64 encoded password.
      */
-    public async postPageTextStamps (name: string, pageNumber: number, stamps: Array<TextStamp>, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async postPageTextStamps (name: string, pageNumber: number, stamps: Array<TextStamp>, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/stamps/text'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
@@ -14856,6 +14957,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
