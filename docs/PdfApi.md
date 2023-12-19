@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteBookmark"></a>
 ## **deleteBookmark**
-> deleteBookmark(name, bookmarkPath, folder, storage)
+> deleteBookmark(name, bookmarkPath, folder, storage, password)
 
 Delete document bookmark by ID.
 
@@ -470,6 +470,7 @@ Name | Type | Description  | Notes
 **bookmarkPath** | **string** | The bookmark path. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -504,7 +505,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteDocumentBookmarks"></a>
 ## **deleteDocumentBookmarks**
-> deleteDocumentBookmarks(name, folder, storage)
+> deleteDocumentBookmarks(name, folder, storage, password)
 
 Delete all document bookmarks.
 
@@ -514,6 +515,7 @@ Name | Type | Description  | Notes
 **name** | **string** | The document name. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -822,16 +824,17 @@ Name | Type | Description  | Notes
 
 <a name="deleteProperties"></a>
 ## **deleteProperties**
-> deleteProperties(name, storage, folder)
+> deleteProperties(name, storage, folder, password)
 
 Delete custom document properties.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -844,17 +847,18 @@ Name | Type | Description  | Notes
 
 <a name="deleteProperty"></a>
 ## **deleteProperty**
-> deleteProperty(name, propertyName, storage, folder)
+> deleteProperty(name, propertyName, storage, folder, password)
 
 Delete document property.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**propertyName** | **string** |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**propertyName** | **string** | Property name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -936,7 +940,7 @@ Name | Type | Description  | Notes
 
 <a name="getBookmark"></a>
 ## **getBookmark**
-> getBookmark(name, bookmarkPath, folder, storage)
+> getBookmark(name, bookmarkPath, folder, storage, password)
 
 Read document bookmark.
 
@@ -947,6 +951,7 @@ Name | Type | Description  | Notes
 **bookmarkPath** | **string** | The bookmark path. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -959,7 +964,7 @@ Name | Type | Description  | Notes
 
 <a name="getBookmarks"></a>
 ## **getBookmarks**
-> getBookmarks(name, bookmarkPath, folder, storage)
+> getBookmarks(name, bookmarkPath, folder, storage, password)
 
 Read document bookmarks node list.
 
@@ -970,6 +975,7 @@ Name | Type | Description  | Notes
 **bookmarkPath** | **string** | The bookmark path. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -1184,7 +1190,7 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentBookmarks"></a>
 ## **getDocumentBookmarks**
-> getDocumentBookmarks(name, folder, storage)
+> getDocumentBookmarks(name, folder, storage, password)
 
 Read document bookmarks tree.
 
@@ -1194,6 +1200,7 @@ Name | Type | Description  | Notes
 **name** | **string** | The document name. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -1559,16 +1566,17 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentProperties"></a>
 ## **getDocumentProperties**
-> getDocumentProperties(name, storage, folder)
+> getDocumentProperties(name, storage, folder, password)
 
 Read document properties.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -1581,17 +1589,18 @@ Name | Type | Description  | Notes
 
 <a name="getDocumentProperty"></a>
 ## **getDocumentProperty**
-> getDocumentProperty(name, propertyName, storage, folder)
+> getDocumentProperty(name, propertyName, storage, folder, password)
 
 Read document property by name.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**propertyName** | **string** |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**propertyName** | **string** | Property name. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -4760,7 +4769,7 @@ Name | Type | Description  | Notes
 
 <a name="postBookmark"></a>
 ## **postBookmark**
-> postBookmark(name, bookmarkPath, bookmarks, folder, storage)
+> postBookmark(name, bookmarkPath, bookmarks, folder, storage, password)
 
 Add document bookmarks.
 
@@ -4772,6 +4781,7 @@ Name | Type | Description  | Notes
 **bookmarks** | [**Array&lt;Bookmark&gt;**](Bookmark.md) | The array of bookmark. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -6230,7 +6240,7 @@ Name | Type | Description  | Notes
 
 <a name="putBookmark"></a>
 ## **putBookmark**
-> putBookmark(name, bookmarkPath, bookmark, folder, storage)
+> putBookmark(name, bookmarkPath, bookmark, folder, storage, password)
 
 Update document bookmark.
 
@@ -6242,6 +6252,7 @@ Name | Type | Description  | Notes
 **bookmark** | [**Bookmark**](Bookmark.md) | The bookmark. | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -8446,18 +8457,19 @@ Name | Type | Description  | Notes
 
 <a name="putSetProperty"></a>
 ## **putSetProperty**
-> putSetProperty(name, propertyName, value, storage, folder)
+> putSetProperty(name, propertyName, value, storage, folder, password)
 
 Add/update document property.
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**name** | **string** |  | 
-**propertyName** | **string** |  | 
-**value** | **string** |  | 
-**storage** | **string** |  | [optional]
-**folder** | **string** |  | [optional]
+**name** | **string** | The document name. | 
+**propertyName** | **string** | Property name. | 
+**value** | **string** | Property value. | 
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 

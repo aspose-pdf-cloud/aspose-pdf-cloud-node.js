@@ -596,8 +596,9 @@ export class PdfApi {
      * @param bookmarkPath The bookmark path.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async deleteBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
@@ -621,6 +622,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -706,8 +711,9 @@ export class PdfApi {
      * @param name The document name.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async deleteDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteDocumentBookmarks (name: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -725,6 +731,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1497,11 +1507,12 @@ export class PdfApi {
     /**
      * 
      * @summary Delete custom document properties.
-     * @param name 
-     * @param storage 
-     * @param folder 
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password The password (Base64).
      */
-    public async deleteProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteProperties (name: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -1519,6 +1530,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1549,12 +1564,13 @@ export class PdfApi {
     /**
      * 
      * @summary Delete document property.
-     * @param name 
-     * @param propertyName 
-     * @param storage 
-     * @param folder 
+     * @param name The document name.
+     * @param propertyName Property name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password The password (Base64).
      */
-    public async deleteProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async deleteProperty (name: string, propertyName: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
@@ -1578,6 +1594,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1787,8 +1807,9 @@ export class PdfApi {
      * @param bookmarkPath The bookmark path.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
+    public async getBookmark (name: string, bookmarkPath: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
@@ -1812,6 +1833,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -1846,8 +1871,9 @@ export class PdfApi {
      * @param bookmarkPath The bookmark path.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getBookmarks (name: string, bookmarkPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+    public async getBookmarks (name: string, bookmarkPath: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/list/{bookmarkPath}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
@@ -1871,6 +1897,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -2400,8 +2430,9 @@ export class PdfApi {
      * @param name The document name.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getDocumentBookmarks (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+    public async getDocumentBookmarks (name: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/tree'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -2419,6 +2450,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -3288,11 +3323,12 @@ export class PdfApi {
     /**
      * 
      * @summary Read document properties.
-     * @param name 
-     * @param storage 
-     * @param folder 
+     * @param name The document name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password The password (Base64).
      */
-    public async getDocumentProperties (name: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertiesResponse;  }> {
+    public async getDocumentProperties (name: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertiesResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -3310,6 +3346,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -3340,12 +3380,13 @@ export class PdfApi {
     /**
      * 
      * @summary Read document property by name.
-     * @param name 
-     * @param propertyName 
-     * @param storage 
-     * @param folder 
+     * @param name The document name.
+     * @param propertyName Property name.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password The password (Base64).
      */
-    public async getDocumentProperty (name: string, propertyName: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
+    public async getDocumentProperty (name: string, propertyName: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
@@ -3369,6 +3410,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -11685,8 +11730,9 @@ export class PdfApi {
      * @param bookmarks The array of bookmark.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async postBookmark (name: string, bookmarkPath: string, bookmarks: Array<Bookmark>, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
+    public async postBookmark (name: string, bookmarkPath: string, bookmarks: Array<Bookmark>, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: BookmarksResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
@@ -11715,6 +11761,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -15752,8 +15802,9 @@ export class PdfApi {
      * @param bookmark The bookmark.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putBookmark (name: string, bookmarkPath: string, bookmark: Bookmark, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
+    public async putBookmark (name: string, bookmarkPath: string, bookmark: Bookmark, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: BookmarkResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/bookmarks/bookmark/{bookmarkPath}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'bookmarkPath' + '}', encodeURIComponent(String(bookmarkPath)).replace('%2F', '/'));
@@ -15782,6 +15833,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -22220,13 +22275,14 @@ export class PdfApi {
     /**
      * 
      * @summary Add/update document property.
-     * @param name 
-     * @param propertyName 
-     * @param value 
-     * @param storage 
-     * @param folder 
+     * @param name The document name.
+     * @param propertyName Property name.
+     * @param value Property value.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password The password (Base64).
      */
-    public async putSetProperty (name: string, propertyName: string, value: string, storage?: string, folder?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
+    public async putSetProperty (name: string, propertyName: string, value: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: DocumentPropertyResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/documentproperties/{propertyName}'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
             .replace('{' + 'propertyName' + '}', encodeURIComponent(String(propertyName)).replace('%2F', '/'));
@@ -22259,6 +22315,10 @@ export class PdfApi {
 
         if (folder !== undefined && null !== folder) {
             localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
