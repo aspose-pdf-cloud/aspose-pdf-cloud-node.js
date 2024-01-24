@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2023 Aspose.PDF Cloud
+ * Copyright (c) 2024 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -196,7 +196,7 @@ describe("Convert Tests", () => {
 
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
-                return BaseTest.getPdfApi().putPdfInRequestToSvg(outPath, null, data)
+                return BaseTest.getPdfApi().putPdfInRequestToSvg(outPath, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

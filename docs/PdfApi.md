@@ -3776,7 +3776,7 @@ Name | Type | Description  | Notes
 
 <a name="getPdfInStorageToSvg"></a>
 ## **getPdfInStorageToSvg**
-> getPdfInStorageToSvg(name, compressOutputToZipArchive, folder, storage)
+> getPdfInStorageToSvg(name, compressOutputToZipArchive, folder, storage, password)
 
 Converts PDF document (located on storage) to SVG format and returns resulting file in response content
 
@@ -3787,6 +3787,7 @@ Name | Type | Description  | Notes
 **compressOutputToZipArchive** | **boolean** | Specifies whether output will be created as one zip-archive. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 
@@ -7621,7 +7622,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInRequestToSvg"></a>
 ## **putPdfInRequestToSvg**
-> putPdfInRequestToSvg(outPath, storage, file)
+> putPdfInRequestToSvg(outPath, storage, password, file)
 
 Converts PDF document (in request content) to SVG format and uploads resulting file to storage.
 
@@ -7630,6 +7631,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **outPath** | **string** | Full resulting filename (ex. /folder1/folder2/result.svg) | 
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 **file** | **Buffer** | A file to be converted. | [optional]
 
 ### Return type
@@ -7983,7 +7985,7 @@ Name | Type | Description  | Notes
 
 <a name="putPdfInStorageToSvg"></a>
 ## **putPdfInStorageToSvg**
-> putPdfInStorageToSvg(name, outPath, folder, storage)
+> putPdfInStorageToSvg(name, outPath, folder, storage, password)
 
 Converts PDF document (located on storage) to SVG format and uploads resulting file to storage
 
@@ -7994,6 +7996,7 @@ Name | Type | Description  | Notes
 **outPath** | **string** | Full resulting filename (ex. /folder1/folder2/result.svg) | 
 **folder** | **string** | The document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
+**password** | **string** | The password (Base64). | [optional]
 
 ### Return type
 

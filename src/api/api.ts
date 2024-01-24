@@ -1,6 +1,6 @@
 ﻿ /**
  *
- * Copyright (c) 2023 Aspose.PDF Cloud
+ * Copyright (c) 2024 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -9099,8 +9099,9 @@ export class PdfApi {
      * @param compressOutputToZipArchive Specifies whether output will be created as one zip-archive.
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async getPdfInStorageToSvg (name: string, compressOutputToZipArchive?: boolean, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getPdfInStorageToSvg (name: string, compressOutputToZipArchive?: boolean, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -9122,6 +9123,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -19790,9 +19795,10 @@ export class PdfApi {
      * @summary Converts PDF document (in request content) to SVG format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.svg)
      * @param storage The document storage.
+     * @param password The password (Base64).
      * @param file A file to be converted.
      */
-    public async putPdfInRequestToSvg (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInRequestToSvg (outPath: string, storage?: string, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/convert/svg';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -19809,6 +19815,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 
@@ -20925,8 +20935,9 @@ export class PdfApi {
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.svg)
      * @param folder The document folder.
      * @param storage The document storage.
+     * @param password The password (Base64).
      */
-    public async putPdfInStorageToSvg (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putPdfInStorageToSvg (name: string, outPath: string, folder?: string, storage?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/convert/svg'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -20953,6 +20964,10 @@ export class PdfApi {
 
         if (storage !== undefined && null !== storage) {
             localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
         }
 
 

@@ -1,6 +1,6 @@
 {
     "name": "asposepdfcloud",
-    "version": "23.12.0",
+    "version": "24.1.0",
     "description": "Aspose.PDF Cloud is a REST API for creating and editing PDF files. Most popular features proposed by Aspose.PDF Cloud: PDF to Word, Convert PDF to Image, Merge PDF, Split PDF, Add Images to PDF, Rotate PDF. It can also be used to convert PDF files to different formats like DOC, HTML, XPS, TIFF and many more. Aspose.PDF Cloud gives you control: create PDFs from scratch or from HTML, XML, template, database, XPS or an image. Render PDFs to image formats such as JPEG, PNG, GIF, BMP, TIFF and many others. Aspose.PDF Cloud helps you manipulate elements of a PDF file like text, annotations, watermarks, signatures, bookmarks, stamps and so on. Its REST API also allows you to manage PDF pages by using features like merging, splitting, and inserting. Add images to a PDF file or convert PDF pages to images.",
     "homepage": "https://products.aspose.cloud/pdf/cloud",
     "author": {
