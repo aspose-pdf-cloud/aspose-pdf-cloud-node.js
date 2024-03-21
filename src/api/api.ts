@@ -328,16 +328,22 @@ export class PdfApi {
     public configuration: Configuration;
     
     /**
+     * @param baseUrl SelfHost Base api Url.
+     */
+    constructor(baseUrl: string);
+
+    /**
      * @param appSID App SID.
      * @param appKey App key.
-     * @param baseUrl Base api Url.
      */
-    constructor(appSID: string, appKey: string, baseUrl?: string) {
-        if (baseUrl === null || baseUrl === undefined)
-        {
-            baseUrl = defaultBasePath;   
-        }
-        this.configuration = new Configuration(appSID, appKey, baseUrl);
+    constructor(appSID: string, appKey: string);
+
+    constructor(...arr: string[]){
+        if (arr.length === 1) {
+            this.configuration = new Configuration(true, "", "", arr[0]);
+        } else if (arr.length === 2) {
+            this.configuration = new Configuration(false, arr[0], arr[1], defaultBasePath);
+        } 
     }
 
     set useQuerystring(value: boolean) {

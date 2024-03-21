@@ -30,8 +30,7 @@ XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Enhancements in Version 24.2
-- Memory leak when converting PDF to DOCX.
+## Enhancements in Version 24.3
 - A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .NET.
 
 ## Installation
@@ -44,7 +43,6 @@ From the command line:
 $ npm install asposepdfcloud --save
 ```
 ## Get PDF Page Annotations in Node.Js
-
 ```js
 	// Get your ClientId and ClientSecret from https://dashboard.aspose.cloud (free registration required).
 	const pdfApi = new PdfApi("MY_CLIENT_ID", "MY_CLIENT_SECRET");
@@ -60,6 +58,11 @@ $ npm install asposepdfcloud --save
 	});
 ```
 
+## SelfHost Aspose.PDF Cloud
+Create *PdfApi* object with one **baseUrl** parameter:
+```js
+	const pdfApi = new PdfApi("MY_SELFHOST_URL");
+```
 
 ## Unit Tests
 Aspose PDF SDK includes a suite of unit tests within the "test" subdirectory. These Unit Tests also serves as examples of how to use the Aspose PDF SDK.

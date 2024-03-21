@@ -38,7 +38,14 @@ export function getPdfApi() {
   if (!pdfApi) {
     let servercreds_json = fs.readFileSync('../../Settings/servercreds.json', 'utf8')
     let creds = JSON.parse(servercreds_json)
-    pdfApi = new PdfApi(creds.AppSID, creds.AppKey, creds.ProductUri);
+    if (!creds.SelfHost) {
+      creds.SelfHost = false
+    }
+    if (creds.SelfHost){
+      pdfApi = new PdfApi(creds.ProductUri);
+    } else {
+      pdfApi = new PdfApi(creds.AppSID, creds.AppKey);
+    }
     pdfApi.configuration.debugMode = true;
   }
   return pdfApi;
