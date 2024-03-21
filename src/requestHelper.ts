@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2023 Aspose.PDF Cloud
+ * Copyright (c) 2024 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -72,9 +72,11 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     let sa = superagent(requestOptions.method, requestOptions["uri"]);
     
     const auth = confguration.authentication;
-    if (!notApplyAuthToRequest) {
-        await auth.applyToRequest(requestOptions, confguration);
-    } 
+    if (!confguration.selfHost) {
+        if (!notApplyAuthToRequest) {
+            await auth.applyToRequest(requestOptions, confguration);
+        } 
+    }
     
     if (requestOptions.form) {
         sa.type('form');
@@ -93,14 +95,16 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "24.2.0");
+    sa.set("x-aspose-client-version", "24.3.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};
     } 
     
-    if (!notApplyAuthToRequest) {
-        sa.set("Authorization", requestOptions.headers.Authorization);
+    if (!confguration.selfHost) {
+        if (!notApplyAuthToRequest) {
+            sa.set("Authorization", requestOptions.headers.Authorization);
+        }
     }
     
     if (requestOptions.json){

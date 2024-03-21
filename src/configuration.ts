@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2023 Aspose.PDF Cloud
+ * Copyright (c) 2024 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -26,6 +26,11 @@ import { IAuthentication, OAuth  } from "./auth";
  */
 export class Configuration {
     /**
+     * SelfHost.
+     */
+    public selfHost: boolean;
+
+    /**
      * Authentication.
      */
     public authentication: IAuthentication;
@@ -50,15 +55,14 @@ export class Configuration {
      */
     public debugMode: boolean;
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
+    constructor(selfHost: boolean, appSID: string, appKey: string, baseUrl?: string, debugMode?: boolean) {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         }
-
+        this.selfHost = selfHost;
         this.appSID = appSID;
         this.appKey = appKey;
         this.debugMode = debugMode;
-
         this.authentication = new OAuth() as IAuthentication;
     }
 
