@@ -9214,6 +9214,58 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Converts PDF document (located on storage) to Text format and returns resulting file in response content
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getPdfInStorageToText (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/convert/text'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPdfInStorageToText.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Converts PDF document (located on storage) to TIFF format and returns resulting file in response content
      * @param name The document name.
      * @param brightness Image brightness.
@@ -15112,6 +15164,69 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (in request content) to XLSX format and uploads and returns resulting file in response content.
+     * @param insertBlankColumnAtFirst Insert blank column at first
+     * @param minimizeTheNumberOfWorksheets Minimize the number of worksheets
+     * @param uniformWorksheets Uniform worksheets
+     * @param password The password (Base64).
+     * @param file A file to be converted.
+     */
+    public async postPdfToXlsx (insertBlankColumnAtFirst?: boolean, minimizeTheNumberOfWorksheets?: boolean, uniformWorksheets?: boolean, password?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/convert/xlsx';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (insertBlankColumnAtFirst !== undefined && null !== insertBlankColumnAtFirst) {
+            localVarQueryParameters['insertBlankColumnAtFirst'] = ObjectSerializer.serialize(insertBlankColumnAtFirst, "boolean");
+        }
+
+        if (minimizeTheNumberOfWorksheets !== undefined && null !== minimizeTheNumberOfWorksheets) {
+            localVarQueryParameters['minimizeTheNumberOfWorksheets'] = ObjectSerializer.serialize(minimizeTheNumberOfWorksheets, "boolean");
+        }
+
+        if (uniformWorksheets !== undefined && null !== uniformWorksheets) {
+            localVarQueryParameters['uniformWorksheets'] = ObjectSerializer.serialize(uniformWorksheets, "boolean");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (file !== undefined) {
+            localVarFormParams['file'] = file;
+            fileData = file;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
         return Promise.resolve({body: result, response});
     }
 

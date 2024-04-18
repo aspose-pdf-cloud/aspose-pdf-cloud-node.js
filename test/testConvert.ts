@@ -292,9 +292,7 @@ describe("Convert Tests", () => {
         const outPath = BaseTest.remoteTempFolder + "/" + resFileName;
         
         describe("GetPdfInStorageToXlsx Test", () => {
-
             it("should return response with code 200", async () => {
-
                 return BaseTest.getPdfApi().getPdfInStorageToXlsx(simplePdf, null, null, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
@@ -303,9 +301,7 @@ describe("Convert Tests", () => {
         });
 
         describe("PutPdfInStorageToXlsx Test", () => {
-
             it("should return response with code 200", async () => {
-
                 return BaseTest.getPdfApi().putPdfInStorageToXlsx(simplePdf, outPath, null, null, null, null, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
@@ -314,12 +310,19 @@ describe("Convert Tests", () => {
         });
 
         describe("PutPdfInRequestToXlsx Test", () => {
-
             it("should return response with code 200", async () => {
-
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
-
                 return BaseTest.getPdfApi().putPdfInRequestToXlsx(outPath, null, null, null, null, null, null, data)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PostPdfToXlsx Test", () => {
+            it("should return response with code 200", async () => {
+                var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
+                return BaseTest.getPdfApi().postPdfToXlsx(null, null, null, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -642,6 +645,17 @@ describe("Convert Tests", () => {
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
                 return BaseTest.getPdfApi().putPdfInRequestToXml(outPath, null, data)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+
+    describe("To Text Tests", () => {
+        describe("GetPdfInStorageToDoc Test", () => {
+            it("should return response with code 200", async () => {
+                return BaseTest.getPdfApi().getPdfInStorageToText(simplePdf, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

@@ -153,6 +153,7 @@ Method | HTTP request | Description
 *PdfApi* | [**getPdfInStorageToPptx**](PdfApi.md#getPdfInStorageToPptx) | **GET** /pdf/\{name}/convert/pptx | Converts PDF document (located on storage) to PPTX format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToSvg**](PdfApi.md#getPdfInStorageToSvg) | **GET** /pdf/\{name}/convert/svg | Converts PDF document (located on storage) to SVG format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToTeX**](PdfApi.md#getPdfInStorageToTeX) | **GET** /pdf/\{name}/convert/tex | Converts PDF document (located on storage) to TeX format and returns resulting file in response content
+*PdfApi* | [**getPdfInStorageToText**](PdfApi.md#getPdfInStorageToText) | **GET** /pdf/\{name}/convert/text | Converts PDF document (located on storage) to Text format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToTiff**](PdfApi.md#getPdfInStorageToTiff) | **GET** /pdf/\{name}/convert/tiff | Converts PDF document (located on storage) to TIFF format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToXls**](PdfApi.md#getPdfInStorageToXls) | **GET** /pdf/\{name}/convert/xls | Converts PDF document (located on storage) to XLS format and returns resulting file in response content
 *PdfApi* | [**getPdfInStorageToXlsx**](PdfApi.md#getPdfInStorageToXlsx) | **GET** /pdf/\{name}/convert/xlsx | Converts PDF document (located on storage) to XLSX format and returns resulting file in response content
@@ -243,6 +244,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postPageTextReplace**](PdfApi.md#postPageTextReplace) | **POST** /pdf/\{name}/pages/\{pageNumber}/text/replace | Page's replace text method.
 *PdfApi* | [**postPageTextStamps**](PdfApi.md#postPageTextStamps) | **POST** /pdf/\{name}/pages/\{pageNumber}/stamps/text | Add document page text stamps.
 *PdfApi* | [**postPageUnderlineAnnotations**](PdfApi.md#postPageUnderlineAnnotations) | **POST** /pdf/\{name}/pages/\{pageNumber}/annotations/underline | Add document page underline annotations.
+*PdfApi* | [**postPdfToXlsx**](PdfApi.md#postPdfToXlsx) | **POST** /pdf/convert/xlsx | Converts PDF document (in request content) to XLSX format and uploads and returns resulting file in response content.
 *PdfApi* | [**postPopupAnnotation**](PdfApi.md#postPopupAnnotation) | **POST** /pdf/\{name}/annotations/\{annotationId}/popup | Add document popup annotations.
 *PdfApi* | [**postRadioButtonFields**](PdfApi.md#postRadioButtonFields) | **POST** /pdf/\{name}/fields/radiobutton | Add document RadioButton fields.
 *PdfApi* | [**postSignatureField**](PdfApi.md#postSignatureField) | **POST** /pdf/\{name}/fields/signature | Add document signature field.
@@ -3820,6 +3822,28 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: multipart/form-data
 
+<a name="getPdfInStorageToText"></a>
+## **getPdfInStorageToText**
+> getPdfInStorageToText(name, folder, storage)
+
+Converts PDF document (located on storage) to Text format and returns resulting file in response content
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**folder** | **string** | The document folder. | [optional]
+**storage** | **string** | The document storage. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: multipart/form-data
+
 <a name="getPdfInStorageToTiff"></a>
 ## **getPdfInStorageToTiff**
 > getPdfInStorageToTiff(name, brightness, compression, colorDepth, leftMargin, rightMargin, topMargin, bottomMargin, orientation, skipBlankPages, width, height, xResolution, yResolution, pageIndex, pageCount, folder, storage)
@@ -5977,6 +6001,30 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+<a name="postPdfToXlsx"></a>
+## **postPdfToXlsx**
+> postPdfToXlsx(insertBlankColumnAtFirst, minimizeTheNumberOfWorksheets, uniformWorksheets, password, file)
+
+Converts PDF document (in request content) to XLSX format and uploads and returns resulting file in response content.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**insertBlankColumnAtFirst** | **boolean** | Insert blank column at first | [optional]
+**minimizeTheNumberOfWorksheets** | **boolean** | Minimize the number of worksheets | [optional]
+**uniformWorksheets** | **boolean** | Uniform worksheets | [optional]
+**password** | **string** | The password (Base64). | [optional]
+**file** | **Buffer** | A file to be converted. | [optional]
+
+### Return type
+
+**Buffer**
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: multipart/form-data
 
 <a name="postPopupAnnotation"></a>
 ## **postPopupAnnotation**
