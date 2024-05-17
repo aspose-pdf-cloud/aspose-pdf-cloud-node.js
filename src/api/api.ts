@@ -12816,6 +12816,81 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Convert HTML file (zip archive in request content) to PDF format and return resulting file in response. 
+     * @param htmlFileName Name of HTML file in ZIP.
+     * @param height Page height
+     * @param width Page width
+     * @param isLandscape Is page landscaped
+     * @param marginLeft Page margin left
+     * @param marginBottom Page margin bottom
+     * @param marginRight Page margin right
+     * @param marginTop Page margin top
+     */
+    public async postHtmlToPdf (htmlFileName?: string, height?: number, width?: number, isLandscape?: boolean, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/create/html';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        if (htmlFileName !== undefined && null !== htmlFileName) {
+            localVarQueryParameters['htmlFileName'] = ObjectSerializer.serialize(htmlFileName, "string");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (isLandscape !== undefined && null !== isLandscape) {
+            localVarQueryParameters['isLandscape'] = ObjectSerializer.serialize(isLandscape, "boolean");
+        }
+
+        if (marginLeft !== undefined && null !== marginLeft) {
+            localVarQueryParameters['marginLeft'] = ObjectSerializer.serialize(marginLeft, "number");
+        }
+
+        if (marginBottom !== undefined && null !== marginBottom) {
+            localVarQueryParameters['marginBottom'] = ObjectSerializer.serialize(marginBottom, "number");
+        }
+
+        if (marginRight !== undefined && null !== marginRight) {
+            localVarQueryParameters['marginRight'] = ObjectSerializer.serialize(marginRight, "number");
+        }
+
+        if (marginTop !== undefined && null !== marginTop) {
+            localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Update fields from FDF file in request.
      * @param name The document name.
      * @param storage The document storage.
