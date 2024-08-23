@@ -82,8 +82,30 @@ export class OAuth implements IAuthentication {
             },
         };
         
-        const response = await invokeApiMethod(requestOptions, configuration, true);
-        this.accessToken = response.body.access_token;
+        try {
+            const response = await invokeApiMethod(requestOptions, configuration, true);
+            if (!response.body.access_token || response.body.access_token.trim() == "") {
+                this._handleResponseError(response)
+            }
+
+            this.accessToken = response.body.access_token;
+        }
+        catch(err) {
+            if (err.response) {
+                this._handleResponseError(err.response)
+            } else {
+                throw err
+            }
+        }
+
         return Promise.resolve();
+    }
+
+    private _handleResponseError(response: request.RequestResponse) {
+        if (typeof response.body == 'string' && response.body.trim() != '') {
+            throw new Error(response.body)
+        } else {
+            throw new Error(`empty token (${JSON.stringify(response.body)})`)
+        }
     }
 }

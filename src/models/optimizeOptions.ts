@@ -31,7 +31,7 @@ export class OptimizeOptions {
     */
     'password': string;
     /**
-    * If true page contents will be reused when document is optimized for equal pages.
+    * If true page contents will be reused when document is optimized for equal pages. LinkDuplcateStreams option must be set to true.
     */
     'allowReusePageContent': boolean;
     /**
@@ -55,7 +55,7 @@ export class OptimizeOptions {
     */
     'removeUnusedStreams': boolean;
     /**
-    * Make fonts not embedded if set to true. 
+    * Make fonts not embedded if set to true. Unembedding a font means removing the embedded byte stream data of the font included in a PDF document.
     */
     'unembedFonts': boolean;
     /**
@@ -67,7 +67,7 @@ export class OptimizeOptions {
     */
     'maxResolution': number;
     /**
-    * Fonts will be converted into subsets if set to true.
+    * Fonts will be converted into subsets if set to true. Only those characters that are actually used in the layout are stored in the PDF. 
     */
     'subsetFonts': boolean;
     /**

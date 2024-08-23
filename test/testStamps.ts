@@ -121,6 +121,39 @@ describe("Stamps Tests", () => {
         });
     });
 
+    describe("Post Document Text Stamps Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            const textState = new TextState();
+            textState.fontSize = 14;
+            textState.font = 'Arial';
+
+            const stamp = new TextStamp();
+            stamp.background = true;
+            stamp.leftMargin = 1;
+            stamp.rightMargin = 2;
+            stamp.topMargin = 3;
+            stamp.bottomMargin = 4;
+            stamp.horizontalAlignment = HorizontalAlignment.Center;
+            stamp.verticalAlignment = VerticalAlignment.Center;
+            stamp.opacity = 1;
+            stamp.rotate = Rotation.None;
+            stamp.rotateAngle = 0;
+            stamp.xIndent = 0;
+            stamp.yIndent = 0;
+            stamp.zoom = 1;
+            stamp.textAlignment = HorizontalAlignment.Center;
+            stamp.value = "Text Stamp";
+            stamp.textState = textState;
+
+            return BaseTest.getPdfApi().postDocumentTextStamps(name, [stamp], null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
     describe("Post Page Image Stamps Test", () => {
 
         it("should return response with code 200", async () => {
@@ -145,6 +178,35 @@ describe("Stamps Tests", () => {
 
 
             return BaseTest.getPdfApi().postPageImageStamps(name, pageNumber, [stamp], null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Post Document Image Stamps Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            await BaseTest.uploadFile(imageFile);
+
+            const stamp = new ImageStamp();
+            stamp.background = true;
+            stamp.leftMargin = 1;
+            stamp.rightMargin = 2;
+            stamp.topMargin = 3;
+            stamp.bottomMargin = 4;
+            stamp.horizontalAlignment = HorizontalAlignment.Center;
+            stamp.verticalAlignment = VerticalAlignment.Center;
+            stamp.opacity = 1;
+            stamp.rotate = Rotation.None;
+            stamp.rotateAngle = 0;
+            stamp.xIndent = 0;
+            stamp.yIndent = 0;
+            stamp.zoom = 1;
+            stamp.fileName = BaseTest.remoteTempFolder + '/' + imageFile;
+
+            return BaseTest.getPdfApi().postDocumentImageStamps(name, [stamp], null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
