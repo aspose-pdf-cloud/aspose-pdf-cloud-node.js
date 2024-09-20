@@ -49,6 +49,7 @@ import { DocFormat } from "./models/docFormat";
 import { DocMDPAccessPermissionType } from "./models/docMDPAccessPermissionType";
 import { DocRecognitionMode } from "./models/docRecognitionMode";
 import { DocumentConfig } from "./models/documentConfig";
+import { DocumentLayers } from "./models/documentLayers";
 import { DocumentPrivilege } from "./models/documentPrivilege";
 import { EpubRecognitionMode } from "./models/epubRecognitionMode";
 import { ErrorDetails } from "./models/errorDetails";
@@ -72,6 +73,7 @@ import { ImageSrcType } from "./models/imageSrcType";
 import { ImageTemplate } from "./models/imageTemplate";
 import { ImageTemplatesRequest } from "./models/imageTemplatesRequest";
 import { Justification } from "./models/justification";
+import { LayerInfo } from "./models/layerInfo";
 import { LettersPositioningMethods } from "./models/lettersPositioningMethods";
 import { LineEnding } from "./models/lineEnding";
 import { LineIntent } from "./models/lineIntent";
@@ -379,6 +381,7 @@ let typeMap: {[index: string]: any} = {
     "DefaultPageConfig": DefaultPageConfig,
     "DiscUsage": DiscUsage,
     "DocumentConfig": DocumentConfig,
+    "DocumentLayers": DocumentLayers,
     "DocumentPrivilege": DocumentPrivilege,
     "ErrorDetails": ErrorDetails,
     "FileVersions": FileVersions,
@@ -388,6 +391,7 @@ let typeMap: {[index: string]: any} = {
     "ImageFragment": ImageFragment,
     "ImageTemplate": ImageTemplate,
     "ImageTemplatesRequest": ImageTemplatesRequest,
+    "LayerInfo": LayerInfo,
     "Link": Link,
     "LinkElement": LinkElement,
     "MarginInfo": MarginInfo,
