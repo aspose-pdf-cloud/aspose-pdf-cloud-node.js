@@ -49,6 +49,7 @@ import { DocFormat } from "../models/docFormat";
 import { DocMDPAccessPermissionType } from "../models/docMDPAccessPermissionType";
 import { DocRecognitionMode } from "../models/docRecognitionMode";
 import { DocumentConfig } from "../models/documentConfig";
+import { DocumentLayers } from "../models/documentLayers";
 import { DocumentPrivilege } from "../models/documentPrivilege";
 import { EpubRecognitionMode } from "../models/epubRecognitionMode";
 import { ErrorDetails } from "../models/errorDetails";
@@ -72,6 +73,7 @@ import { ImageSrcType } from "../models/imageSrcType";
 import { ImageTemplate } from "../models/imageTemplate";
 import { ImageTemplatesRequest } from "../models/imageTemplatesRequest";
 import { Justification } from "../models/justification";
+import { LayerInfo } from "../models/layerInfo";
 import { LettersPositioningMethods } from "../models/lettersPositioningMethods";
 import { LineEnding } from "../models/lineEnding";
 import { LineIntent } from "../models/lineIntent";
@@ -741,6 +743,83 @@ export class PdfApi {
 
         if (password !== undefined && null !== password) {
             localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'DELETE',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Remove document layer.
+     * @param name The document name.
+     * @param pageNumber Layer page.
+     * @param layerId Layer Id.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async deleteDocumentLayer (name: string, pageNumber: number, layerId: string, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/layers'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteDocumentLayer.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling deleteDocumentLayer.');
+        }
+
+        // verify required parameter 'layerId' is not null or undefined
+        if (layerId === null || layerId === undefined) {
+            throw new Error('Required parameter layerId was null or undefined when calling deleteDocumentLayer.');
+        }
+
+        if (pageNumber !== undefined && null !== pageNumber) {
+            localVarQueryParameters['pageNumber'] = ObjectSerializer.serialize(pageNumber, "number");
+        }
+
+        if (layerId !== undefined && null !== layerId) {
+            localVarQueryParameters['layerId'] = ObjectSerializer.serialize(layerId, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
         }
 
 
@@ -2951,6 +3030,63 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "InkAnnotationsResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Gets document layers.
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async getDocumentLayers (name: string, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: DocumentLayers;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/layers'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getDocumentLayers.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "DocumentLayers");
         return Promise.resolve({body: result, response});
     }
 
@@ -16594,6 +16730,93 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "DocumentResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Create a separate PDF from a PDF Layer and upload resulting file to storage.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param outPath The out path of result image.
+     * @param layerId Layer Id.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async putCreatePdfFromLayer (name: string, pageNumber: number, outPath: string, layerId: string, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/layers'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putCreatePdfFromLayer.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling putCreatePdfFromLayer.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling putCreatePdfFromLayer.');
+        }
+
+        // verify required parameter 'layerId' is not null or undefined
+        if (layerId === null || layerId === undefined) {
+            throw new Error('Required parameter layerId was null or undefined when calling putCreatePdfFromLayer.');
+        }
+
+        if (pageNumber !== undefined && null !== pageNumber) {
+            localVarQueryParameters['pageNumber'] = ObjectSerializer.serialize(pageNumber, "number");
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (layerId !== undefined && null !== layerId) {
+            localVarQueryParameters['layerId'] = ObjectSerializer.serialize(layerId, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
         return Promise.resolve({body: result, response});
     }
 
