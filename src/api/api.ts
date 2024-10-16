@@ -135,6 +135,8 @@ import { TimestampSettings } from "../models/timestampSettings";
 import { VerticalAlignment } from "../models/verticalAlignment";
 import { WordCount } from "../models/wordCount";
 import { WrapMode } from "../models/wrapMode";
+import { XmpMetadata } from "../models/xmpMetadata";
+import { XmpMetadataProperty } from "../models/xmpMetadataProperty";
 import { Annotation } from "../models/annotation";
 import { AnnotationsInfo } from "../models/annotationsInfo";
 import { AnnotationsInfoResponse } from "../models/annotationsInfoResponse";
@@ -11511,6 +11513,120 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Gets document XMP Metadata as JSON.
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async getXmpMetadataJson (name: string, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: XmpMetadata;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/xmpmetadata/json'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getXmpMetadataJson.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "XmpMetadata");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Gets document XMP Metadata as XML file.
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async getXmpMetadataXml (name: string, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/xmpmetadata/xml'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getXmpMetadataXml.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Convert XPS file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param storage The document storage.
@@ -16059,6 +16175,70 @@ export class PdfApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(fields, "Array<TextBoxField>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Add or remove XMP Metadata properties.
+     * @param name The document name.
+     * @param metadata XmpMetadata instance.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     * @param passBase64 The password (Base64).
+     */
+    public async postXmpMetadata (name: string, metadata: XmpMetadata, folder?: string, storage?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/xmpmetadata'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postXmpMetadata.');
+        }
+
+        // verify required parameter 'metadata' is not null or undefined
+        if (metadata === null || metadata === undefined) {
+            throw new Error('Required parameter metadata was null or undefined when calling postXmpMetadata.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(metadata, "XmpMetadata")
         };
 
         if (Object.keys(localVarFormParams).length) {

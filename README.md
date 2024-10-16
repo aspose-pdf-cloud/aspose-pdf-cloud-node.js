@@ -30,7 +30,7 @@ XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Enhancements in Version 24.9
+## Enhancements in Version 24.10
 - Develop DeleteDocumentLayer Method.
 - Develop GetDocumentLayers Method.
 - How to extract PDF layer elements and create a new PDF

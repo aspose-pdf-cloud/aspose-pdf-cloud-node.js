@@ -135,6 +135,8 @@ import { TimestampSettings } from "./models/timestampSettings";
 import { VerticalAlignment } from "./models/verticalAlignment";
 import { WordCount } from "./models/wordCount";
 import { WrapMode } from "./models/wrapMode";
+import { XmpMetadata } from "./models/xmpMetadata";
+import { XmpMetadataProperty } from "./models/xmpMetadataProperty";
 import { Annotation } from "./models/annotation";
 import { AnnotationsInfo } from "./models/annotationsInfo";
 import { AnnotationsInfoResponse } from "./models/annotationsInfoResponse";
@@ -427,6 +429,8 @@ let typeMap: {[index: string]: any} = {
     "TextStyle": TextStyle,
     "TimestampSettings": TimestampSettings,
     "WordCount": WordCount,
+    "XmpMetadata": XmpMetadata,
+    "XmpMetadataProperty": XmpMetadataProperty,
     "Annotation": Annotation,
     "AnnotationsInfo": AnnotationsInfo,
     "AnnotationsInfoResponse": AnnotationsInfoResponse,
