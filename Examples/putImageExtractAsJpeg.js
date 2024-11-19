@@ -1,16 +1,38 @@
 const { PdfApi } = require("asposepdfcloud");
-const { PdfAType } = require("asposepdfcloud/src/models/fieldType");
 
+const api = new PdfApi("http://172.17.0.1:5000/v3.0");
 
-pdfApi = new PdfApi("XXXX", "XXXXXXX")
+// The document name.
+const fileName = "PdfWithImages2.pdf";
+// Use default storage.
+const storage = null;
+// Width of coverted image.
+const width = 100;
+// Heigth of coverted image.
+const heigth = 100;
+// Set document folder.
+const folder = "Documents";
+// Set extracted image folder.
+const destFolder = "Images";
 
-console.log('running example');
+async function main()
+{
+    // Read document images.
+    const imagesResult = await api.getImages(fileName, 1, storage, folder);
+    const imageId = imagesResult.body.images.list[0].id;
+    // Swagger method definition available at
+    //     https://reference.aspose.cloud/pdf/#/Images/PutImageExtractAsJpeg
+    // Extract document image in JPEG format to folder.
+    const result = await api.putImageExtractAsJpeg(
+        fileName,
+        imageId,
+        width,
+        heigth,
+        storage,
+        folder,
+        destFolder);
 
+    console.log(result.body.status)
+}
 
-const result = await BaseTest.getPdfApi().getImages("PdfWithImages2.pdf", 1, null, null);
-imageId = result.body.images.list[0].id;
-
-pdfApi.putImageExtractAsJpeg("PdfWithImages2.pdf", imageId, null, null, null, null, null)
-    .then((result) => {
-        console.log(result.response);
-    });
+main();
