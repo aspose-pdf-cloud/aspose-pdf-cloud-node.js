@@ -3,8 +3,7 @@ const fs = require("fs");
 const { PdfApi } = require("asposepdfcloud");
 
 // The initialization assumes that the necessary credentials (Application ID and Application Key) from https://dashboard.aspose.cloud/
-// const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
-const api = new PdfApi("http://172.17.0.1:5000/v3.0");
+const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
 
 // The document name.
 const fileName = "4pages.pdf";

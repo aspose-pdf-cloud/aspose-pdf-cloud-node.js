@@ -1,8 +1,8 @@
 // Import necessary classes from the Aspose PDF Cloud library
 const fs = require("fs");
-const { PdfApi } = require("../src/api/api");
-const { Color } = require("../src/models/color");
-const { FontStyles } = require("../src/models/fontStyles");
+const { PdfApi } = require("asposepdfcloud");
+const { Color } = require("asposepdfcloud/src/models/color");
+const { FontStyles } = require("asposepdfcloud/src/models/fontStyles");
 const { Rectangle } = require("asposepdfcloud/src/models/rectangle");
 const { TextState } = require("asposepdfcloud/src/models/textState");
 const { TextReplace } = require("asposepdfcloud/src/models/textReplace");

@@ -1,6 +1,6 @@
 // Import necessary classes from the Aspose PDF Cloud library
 const fs = require("fs");
-const { PdfApi } = require("../src/api/api");
+const { PdfApi } = require("asposepdfcloud");
 const { TextReplace } = require("asposepdfcloud/src/models/textReplace");
 const { TextReplaceListRequest } = require("asposepdfcloud/src/models/textReplaceListRequest");
 

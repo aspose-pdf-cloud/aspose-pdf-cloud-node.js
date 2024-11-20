@@ -1,13 +1,13 @@
 // Import necessary classes from the Aspose PDF Cloud library
 const fs = require("fs");
-const { PdfApi } = require("../src/api/api");
-const { Color } = require("../src/models/color");
-const { FontStyles } = require("../src/models/fontStyles");
-const { LineSpacing } = require("../src/models/lineSpacing");
-const { Paragraph } = require("../src/models/paragraph");
-const { TextHorizontalAlignment } = require("../src/models/textHorizontalAlignment");
-const { VerticalAlignment } = require("../src/models/verticalAlignment");
-const { WrapMode } = require("../src/models/wrapMode");
+const { PdfApi } = require("asposepdfcloud");
+const { Color } = require("asposepdfcloud/src/models/color");
+const { FontStyles } = require("asposepdfcloud/src/models/fontStyles");
+const { LineSpacing } = require("asposepdfcloud/src/models/lineSpacing");
+const { Paragraph } = require("asposepdfcloud/src/models/paragraph");
+const { TextHorizontalAlignment } = require("asposepdfcloud/src/models/textHorizontalAlignment");
+const { VerticalAlignment } = require("asposepdfcloud/src/models/verticalAlignment");
+const { WrapMode } = require("asposepdfcloud/src/models/wrapMode");
 const { TextLine } = require("asposepdfcloud/src/models/textLine");
 const { Segment } = require("asposepdfcloud/src/models/segment");
 const { Rectangle } = require("asposepdfcloud/src/models/rectangle");
