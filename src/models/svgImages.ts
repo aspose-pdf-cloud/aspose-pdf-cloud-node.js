@@ -19,8 +19,29 @@
  *
  */
 
-export enum DocRecognitionMode {
-    Textbox = 'Textbox',
-    Flow = 'Flow',
-    EnhancedFlow = 'EnhancedFlow',
+import { AsposeResponse } from "./asposeResponse";
+
+/**
+* SvgImages class
+*/
+export class SvgImages extends AsposeResponse {
+    /**
+    * List of SVG images
+    */
+    'list': Array<string>;
+
+    static discriminator = undefined;
+
+    static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
+        {
+            "name": "list",
+            "baseName": "List",
+            "type": "Array<string>"
+        }    ];
+
+    static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(SvgImages.attributeTypeMap);
+    }
 }
+
+
