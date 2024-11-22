@@ -1,16 +1,21 @@
 const { PdfApi } = require("asposepdfcloud");
-const { PdfAType } = require("asposepdfcloud/src/models/freeTextAnnotation");
 
+const api = new PdfApi("http://172.17.0.1:5000/v3.0");
 
+// The document name.
+const fileName = "PdfWithImages2.pdf";
+// Use default storage.
+const storage = null;
+// Set document folder.
+const folder = "Documents";
 
-pdfApi = new PdfApi("XXXX", "XXXXXXX")
+async function main()
+{
+    // Swagger method definition available at
+    //     https://reference.aspose.cloud/pdf/#/Images/GetImages
+    // Read document images.
+    const result = await api.getImages(fileName, 1, storage, folder);
+    console.log(result.body.status);
+}
 
-console.log('running example');
-
-pdfApi.getImages("PdfWithImages2.pdf", 1, null, null);
-const imageId = result.body.images.list[0].id;
-
-pdfApi.getImage("PdfWithImages2.pdf", imageId, null, null)
-    .then((result) => {
-        console.log(result.response);
-    });
+main();

@@ -250,6 +250,7 @@ import { StampsInfoResponse } from "../models/stampsInfoResponse";
 import { StrikeOutAnnotationResponse } from "../models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "../models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "../models/strikeOutAnnotationsResponse";
+import { SvgImages } from "../models/svgImages";
 import { Table } from "../models/table";
 import { TableRecognized } from "../models/tableRecognized";
 import { TableRecognizedResponse } from "../models/tableRecognizedResponse";
@@ -5499,6 +5500,70 @@ export class PdfApi {
         }
         const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
         const result =  ObjectSerializer.deserialize(response.body, "ImagesResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Extract SVG images from document page.
+     * @param name The document name.
+     * @param pageNumber The page number.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param passBase64 The password (Base64).
+     */
+    public async getImagesExtractSvg (name: string, pageNumber: number, storage?: string, folder?: string, passBase64?: string) : Promise<{ response: http.IncomingMessage; body: SvgImages;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/pages/{pageNumber}/images/extract/svg'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'))
+            .replace('{' + 'pageNumber' + '}', encodeURIComponent(String(pageNumber)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getImagesExtractSvg.');
+        }
+
+        // verify required parameter 'pageNumber' is not null or undefined
+        if (pageNumber === null || pageNumber === undefined) {
+            throw new Error('Required parameter pageNumber was null or undefined when calling getImagesExtractSvg.');
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (passBase64 !== undefined && null !== passBase64) {
+            localVarQueryParameters['passBase64'] = ObjectSerializer.serialize(passBase64, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "SvgImages");
         return Promise.resolve({body: result, response});
     }
 

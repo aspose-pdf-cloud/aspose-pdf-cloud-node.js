@@ -273,5 +273,17 @@ describe("Images Tests", () => {
                 });
             });
         });
+
+        describe("GetImagesExtractAsSvg Test", () => {
+            
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getImagesExtractSvg("Alfa.pdf", pageNumber, null, BaseTest.remoteTempFolder, null)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                        assert.equal(13, result.body.list.length);
+                });
+            });
+        });
     });
 });

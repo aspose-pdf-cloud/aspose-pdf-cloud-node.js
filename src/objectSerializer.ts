@@ -250,6 +250,7 @@ import { StampsInfoResponse } from "./models/stampsInfoResponse";
 import { StrikeOutAnnotationResponse } from "./models/strikeOutAnnotationResponse";
 import { StrikeOutAnnotations } from "./models/strikeOutAnnotations";
 import { StrikeOutAnnotationsResponse } from "./models/strikeOutAnnotationsResponse";
+import { SvgImages } from "./models/svgImages";
 import { Table } from "./models/table";
 import { TableRecognized } from "./models/tableRecognized";
 import { TableRecognizedResponse } from "./models/tableRecognizedResponse";
@@ -544,6 +545,7 @@ let typeMap: {[index: string]: any} = {
     "StrikeOutAnnotationResponse": StrikeOutAnnotationResponse,
     "StrikeOutAnnotations": StrikeOutAnnotations,
     "StrikeOutAnnotationsResponse": StrikeOutAnnotationsResponse,
+    "SvgImages": SvgImages,
     "Table": Table,
     "TableRecognized": TableRecognized,
     "TableRecognizedResponse": TableRecognizedResponse,
