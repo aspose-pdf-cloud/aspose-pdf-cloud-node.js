@@ -6,7 +6,7 @@
  * 2. Reads a PDF file from the local file system.
  * 3. Uploads the PDF file to the Aspose.PDF Cloud storage.
  * 4. Splitting document to pages using the Aspose.PDF Cloud API.
- * 5. Logs the result to the console.
+ * 5. Write the split result to the local file system.
  *
  */
 
@@ -22,7 +22,8 @@ const { PdfApi } = require("asposepdfcloud");
 async function splitDocument()
 {
     // The initialization assumes that the necessary credentials (Application ID and Application Key) from https://dashboard.aspose.cloud/
-    const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
+    // const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
+    const api = new PdfApi("http://172.17.0.1:5000/v3.0");
 
     // Set the document name.
     const fileName = "4pages.pdf";
@@ -56,12 +57,17 @@ async function splitDocument()
 
     // Log the response to console.
     console.log(result.body.status);
-    // Log split result.
-    result.body.result.documents.forEach((document, index) =>
-        {
-            console.log(index + 1 + ") " + document.href);
-        });
+    // Write the split result to the local file system.
+    for (const [index, page] of result.body.result.documents.entries())
+    {
+        // Download the PDF file from cloud storage.
+        const file = await api.downloadFile(page.href, storage);
+        const filePath = `testOutput/page${index + 1}.pdf`;
+        // Write the file to the local file system.
+        fs.writeFileSync(filePath, file.body);
+        console.log(index + 1 + ") " + filePath);
     }
+}
 
 // Execute the splitDocument function.
 splitDocument();

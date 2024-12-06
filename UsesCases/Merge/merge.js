@@ -23,7 +23,8 @@ const { MergeDocuments } = require("asposepdfcloud/src/models/mergeDocuments");
 async function mergeDocument()
 {
     // The initialization assumes that the necessary credentials (Application ID and Application Key) from https://dashboard.aspose.cloud/
-    const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
+    // const api = new PdfApi("YOUR_API_SID", "YOUR_API_KEY");
+    const api = new PdfApi("http://172.17.0.1:5000/v3.0");
 
     const fileName = "merged.pdf";
     // Set the document names to merge.
@@ -60,11 +61,12 @@ async function mergeDocument()
 
     // Log the response to console.
     console.log(result.body.status);
-    // Log split result.
-    result.body.result.documents.forEach((document, index) =>
-    {
-        console.log(index + 1 + ") " + document.href);
-    });
+    // Download the PDF file from cloud storage.
+    const file = await api.downloadFile(folder + result.body.document.links[0].href, storage);
+    const filePath = `testOutput/merged.pdf`;
+    // Write the file to the local file system.
+    fs.writeFileSync(filePath, file.body);
+    console.log("downloaded: " + filePath);
 }
 
 // Execute the mergeDocument function.
