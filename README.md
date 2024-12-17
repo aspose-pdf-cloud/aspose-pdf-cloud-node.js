@@ -30,10 +30,8 @@ XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Enhancements in Version 24.11
-- Develop DeleteDocumentLayer Method.
-- Develop GetDocumentLayers Method.
-- How to extract PDF layer elements and create a new PDF
+## Enhancements in Version 24.12
+- Add support for PDF to PDF 3B conversion.
 - A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .NET.
 
 ## Installation
