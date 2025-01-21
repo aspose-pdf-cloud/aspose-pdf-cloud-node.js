@@ -47,7 +47,7 @@ async function getPdfDocumentAttachments(api, pdfFilePath, pdfFileName)
     
     if (result.statusCode == 200)
     {
-        const attachments = result.body;
+        const attachments = result.body.attachments;
 				
         await ProcessPdfAttachments(attachments);
     }
