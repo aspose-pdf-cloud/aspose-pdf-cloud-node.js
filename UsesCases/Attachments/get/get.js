@@ -1,7 +1,7 @@
 /**************************************************************************************************
     1. Load your Application Secret and Key from the JSON file or set credentials in another way
-    2. Create a Storage API object for uploading Pdf file
-    3. Create an object to connect to the Pdf.Cloud API
+    2. Create an object to connect to the Pdf.Cloud API
+    3. Upload your document file using UploadFile() function of the Storage API object
     4. Upload your document file using PutCreate() function of the Storage API object
     5. To extract attachments from a PDF document, using getDocumentAttachments() function
     6. Check result and perform some actions with result.body object
