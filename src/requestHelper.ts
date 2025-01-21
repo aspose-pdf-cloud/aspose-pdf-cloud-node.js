@@ -1,6 +1,6 @@
  /**
  *
- * Copyright (c) 2024 Aspose.PDF Cloud
+ * Copyright (c) 2025 Aspose.PDF Cloud
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "24.12.0");
+    sa.set("x-aspose-client-version", "25.1.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};
