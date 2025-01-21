@@ -1,10 +1,11 @@
 /*****************************************************************************************************************
     1. Load your Application Secret and Key from the JSON file or set credentials in another way
     2. Create an object to connect to the Pdf.Cloud API
-    3. Create an AttachmentInfo object, which maust be inserted into Pdf file
-    4. Perform append attachment into Pdf document using postAddDocumentAttachment() function and (AttachmentInfo) 
+    3. Upload your document file using pdfApi.UploadFile() function of the Storage API object
+    4. Create an AttachmentInfo object, which maust be inserted into Pdf file
+    5. Perform append attachment into Pdf document using postAddDocumentAttachment() function and (AttachmentInfo) 
         object [https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js/blob/master/docs/AttachmentInfo.md]
-    5. Check result and perform some actions with result.body object in 
+    6. Check result and perform some actions with result.body object in 
         in format (Attachment)[https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js/blob/master/docs/Attachment.md]
 
     All values of variables starting with "YOUR_****" should be replaced by real user values
