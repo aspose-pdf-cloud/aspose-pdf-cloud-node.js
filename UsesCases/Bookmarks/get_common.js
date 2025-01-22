@@ -40,33 +40,33 @@ else
 const bookmarkPath = "2";
 
 const linkBookmark = {
-    Href : "0",
-    Rel : "self"
+    href : "0",
+    rel : "self"
 };
       
 const colorBookmark = {
-    A : 255,
-    R : 0,
-    G : 255,
-    B : 0
+    a : 255,
+    r : 0,
+    g : 255,
+    b : 0
 };
 
 const newBookmark = {
-    Title               : "New Bookmark",
-    Italic              : true,
-    Bold                :  false,
-    Links               :  [ linkBookmark ],
-    Color               : colorBookmark,
-    Action              : "GoTo",
-    Level               : 1,
-    Destination         : "",
-    PageDisplay         : "Appended bookmark",
-    PageDisplayBottom   : 0,
-    PageDisplayLeft     : 100,
-    PageDisplayRight    :  0,
-    PageDisplayTop      : 700,
-    PageDisplayZoom     : 2,
-    PageNumber          : 1
+    title               : "New Bookmark",
+    italic              : true,
+    bold                :  false,
+    links               :  [ linkBookmark ],
+    color               : colorBookmark,
+    action              : "GoTo",
+    level               : 1,
+    destination         : "",
+    pageDisplay         : "Appended bookmark",
+    pageDisplayBottom   : 0,
+    pageDisplayLeft     : 100,
+    pageDisplayRight    :  0,
+    pageDisplayTop      : 700,
+    pageDisplayZoom     : 2,
+    pageNumber          : 1
   };
   
 const newBookmarks = [ newBookmark ];
