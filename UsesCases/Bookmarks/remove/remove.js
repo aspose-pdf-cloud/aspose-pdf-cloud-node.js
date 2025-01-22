@@ -27,7 +27,7 @@ const bookmarkPath = "2";
 
 const dropResponse = await deleteBookmark(STORAGE_PATH + PDF_DOCUMENT_NAME, bookmarkPath, folder, storage, null);
 
-if (fropResponse.status == 200)
+if (dropResponse.status == 200)
 {
     const changedPdfData = pdfApi.downloadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, storage);
 
