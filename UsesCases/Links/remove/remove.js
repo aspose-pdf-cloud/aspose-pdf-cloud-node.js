@@ -7,34 +7,96 @@
 
 import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+
+    LINK_FIND_ID: "GI5UO32UN5KVESKBMN2GS33OHMZTEMJMGUYDQLBTGYYCYNJSGE",
+
+    PAGE_NUMBER: 2,     // Your document page number...
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfLinks = {
+    uploadFiles: async function (fileName) {
+        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+        await pdfApi.uploadFile(fileName, pdfFileData);
+    },
 
-const folder = "Documents";
+    downloadFiles: async function (local_path, fileName) {
+        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+        const filePath = path.join(local_path, fileName);
 
-const linkId = "YOUR_LINK_ANNOTATION_ID";
+        await fs.writeFile(filePath, changedPdfData.body);
+        console.log("downloaded: " + filePath);
+    },
 
-const dropResponse = await deleteLinkAnnotation(STORAGE_PATH + PDF_DOCUMENT_NAME, linkId, storage, folder);
+    uploadDocument: async function () {
+        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-if (dropResponse.status == 200)
-{
-    const changedPdfData = pdfApi.downloadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, storage);
+    getAllLinks: async function () {
+        const resultLinks = await pdfApi.getPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER);
 
-    const filePath = "YOUR_LOCAL_OUTPUT_FOLDER/ResultDropBookmarkFile.pdf";
+        if (resultLinks.body.code == 200 && resultLinks.body.links.list) {
+            if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
+                throw new Error("Unexpected error : links is null or empty!!!");
+            }
+            return resultLinks.body.links.list;
+        }
+        else
+            throw new Error("Unexpected error : can't get links!!!");
+    },
 
-    await fs.writeFile(filePath, changedPdfData.body);
-    console.log("downloaded: " + filePath);
+    showLinks: function(links, prefix) {
+        if (Array.isArray(links) && links.length > 0)
+        {
+            links.forEach(function(link) {
+                console.log(prefix +" => '" + link.id + "', '" + link.action);
+            });
+        }
+        else
+            console.error("showLinks() error: array of links is empty!")
+    },
+
+    removeLink: async function (linkId) {
+        const resultDelete = await pdfApi.deleteLinkAnnotation(configParams.PDF_DOCUMENT_NAME, linkId);
+
+        if (resultDelete.body.code == 200) {
+            return linkId;
+        }
+        else
+            throw new Error("Unexpected error : can't get link !!!");
+    }
+
 }
-else
-    throw new Error("Unexpected error : can't delete bookmark!!!");
+
+export default pdfLinks;
+
+await pdfLinks.uploadDocument()
+    .then(async () =>{
+        return await pdfLinks.getAllLinks();
+    })
+    .then((links) =>{
+        pdfLinks.showLinks(links, "in");
+    })
+    .then(async () => {
+        return await pdfLinks.removeLink(configParams.LINK_FIND_ID);
+    })
+    .then((linkId) =>{
+        console.log("Link '" + linkId + "' was deleted!");
+    })
+    .then(async () =>{
+        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
