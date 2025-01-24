@@ -5,33 +5,87 @@
 // 6. Perform some action after successful retrieving the Bookmark from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import { PdfApi } from "asposepdfcloud";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    BOOKMARK_PATH: "/1"
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfBookmarks = {
+    uploadFiles: async function (fileName) {
+        try
+        {
+            const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+            await pdfApi.uploadFile(fileName, pdfFileData);
+        }
+        catch (e) {
+            console.log("Unexpected error : can't upload file - " + e.message);
+            throw e;
+        }
+    },
 
-const folder = "Documents";
+    uploadDocument: async function () {
+        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+    getAllBookmarks: async function () {
+        const resultBookmarks = await pdfApi.getDocumentBookmarks(configParams.PDF_DOCUMENT_NAME);
 
-const bookmarkPath = "1";
+        if (resultBookmarks.body.code == 200 && resultBookmarks.body.bookmarks)
+        {
+            if (!Array.isArray(resultBookmarks.body.bookmarks.list) || resultBookmarks.body.bookmarks.list.length === 0) {
+                throw new Error("Unexpected error : bookmarks list is null or empty!!!");
+            }
+            return resultBookmarks.body.bookmarks;
+        }
+        else
+            throw new Error("Unexpected error : can't get bookmarks list!!!");
+    },
 
-const getResponse = await getBookmark(STORAGE_PATH + PDF_DOCUMENT_NAME, bookmarkPath, folder, storage, null);
+    getBookmarkByPath: async function (boomarkPath) {
+        const resultBookmark = await pdfApi.getBookmark(configParams.PDF_DOCUMENT_NAME, boomarkPath);
 
-if (getResponse.status == 200)
-{
-    var bookmark = getResponse.body.Bookmark;
-	console.log("Bookmark Title " + bookmark.Title);
-    console.log("Bookmark Level " + bookmark.Level);
+        if (resultBookmark.body.code == 200 && resultBookmark.body.bookmark)
+        {
+            return resultBookmark.body.bookmark;
+        }
+        else
+            throw new Error("Unexpected error : can't get bookmark!!!");
+    },
+
+    showBookmarks: function(bookmarks, prefix) {
+        if (Array.isArray(bookmarks.list) && bookmarks.list.length > 0)
+        {
+            bookmarks.list.forEach(function(bookmark) {
+                console.log(prefix +" => '" + bookmark.title + "'");
+            });
+        }
+    },
 }
-else
-    throw new Error("Unexpected error : can't delete bookmark!!!");
+
+export default pdfBookmarks;
+
+await pdfBookmarks.uploadDocument()
+    .then(async () =>{
+        return await pdfBookmarks.getAllBookmarks();
+    })
+    .then((bookmarks) =>{
+        pdfBookmarks.showBookmarks(bookmarks, "in");
+    })
+    .then(async () =>{
+        return pdfBookmarks.getBookmarkByPath(configParams.BOOKMARK_PATH);
+    })
+    .then((bookmark) =>{
+        console.log("Found: " + bookmark.title);
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
