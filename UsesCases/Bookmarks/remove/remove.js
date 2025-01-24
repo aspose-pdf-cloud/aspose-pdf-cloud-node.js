@@ -5,7 +5,7 @@
 // 6. Perform some action after successful removing the Bookmark from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
