@@ -5,36 +5,77 @@
 // 6. Perform some action after successful removing the Bookmark from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+
+    DROP_BOOKMARK_PATH: "/1"
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfBookmarks = {
+    uploadFiles: async function (fileName) {
+        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+        await pdfApi.uploadFile(fileName, pdfFileData);
+    },
 
-const folder = "Documents";
+    downloadFiles: async function (local_path, fileName) {
+        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+        const filePath = path.join(local_path, fileName);
 
-const bookmarkPath = "2";
+        await fs.writeFile(filePath, changedPdfData.body);
+        console.log("downloaded: " + filePath);
+    },
 
-const dropResponse = await deleteBookmark(STORAGE_PATH + PDF_DOCUMENT_NAME, bookmarkPath, folder, storage, null);
+    uploadDocument: async function () {
+        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-if (dropResponse.status == 200)
-{
-    const changedPdfData = pdfApi.downloadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, storage);
+    showBookmarks: function(bookmarks, prefix) {
+        if (Array.isArray(bookmarks.list) && bookmarks.list.length > 0)
+        {
+            bookmarks.list.forEach(function(bookmark) {
+                console.log(prefix +" => '" + bookmark.title + "'");
+            });
+        }
+        else
+            console.error("showBoormarks() error: array of bookmark is empty!")
+    },
 
-    const filePath = "YOUR_LOCAL_OUTPUT_FOLDER/ResultDropBookmarkFile.pdf";
-
-    await fs.writeFile(filePath, changedPdfData.body);
-    console.log("downloaded: " + filePath);
+    deleteBookmark: async function(bookmarkPath){
+        const dropResult = await pdfApi.deleteBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath);
+        
+        if (dropResult.body.code == 200) {
+            
+            return true;
+        }
+        else
+            throw new Error("Unexpected error : can't get bookmarks list!!!");
+    },
 }
-else
-    throw new Error("Unexpected error : can't delete bookmark!!!");
+
+export default pdfBookmarks;
+
+await pdfBookmarks.uploadDocument()
+    .then(async () => {
+        return await pdfBookmarks.deleteBookmark(configParams.DROP_BOOKMARK_PATH);
+    })
+    .then((dropResult) => {
+        console.log("Bookmark '" + configParams.DROP_BOOKMARK_PATH + "' successfully deleted!");
+    })
+    .then(async () =>{
+        await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
