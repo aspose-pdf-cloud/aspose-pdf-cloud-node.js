@@ -12,10 +12,10 @@ import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
-import { Color } from "asposepdfcloud";
-import { Link } from "asposepdfcloud";
-import { Bookmark } from "asposepdfcloud";
-import { Bookmarks } from "asposepdfcloud";
+import { Color } from "asposepdfcloud/models/color.js";
+import { Link } from "asposepdfcloud/models/link.js";
+import { Bookmark } from "asposepdfcloud/models/bookmark.js";
+import { Bookmarks } from "asposepdfcloud/models/bookmarks.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
