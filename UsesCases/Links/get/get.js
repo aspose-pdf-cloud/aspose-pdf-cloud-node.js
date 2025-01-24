@@ -9,30 +9,80 @@ import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import { PdfApi } from "asposepdfcloud";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+
+    PAGE_NUMBER: 2,     // Your document page number...
+
+    LINK_FIND_ID: "GI5UO32UN5KVESKBMN2GS33OHMZTEMJMGUYDQLBTGYYCYNJSGE",
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfLinks = {
+    uploadFiles: async function (fileName) {
+        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+        await pdfApi.uploadFile(fileName, pdfFileData);
+    },
 
-const folder = "Documents";
+    uploadDocument: async function () {
+        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+    getAllLinks: async function () {
+        const resultLinks = await pdfApi.getPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER);
 
-const pageNumber = 1;
-const linkId = "YOUR_LINK_ANNOTATION_ID";
+        if (resultLinks.body.code == 200 && resultLinks.body.links.list) {
+            if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
+                throw new Error("Unexpected error : links is null or empty!!!");
+            }
+            return resultLinks.body.links.list;
+        }
+        else
+            throw new Error("Unexpected error : can't get links!!!");
+    },
 
-const getResponse = await getPageLinkAnnotation(STORAGE_PATH + PDF_DOCUMENT_NAME, pageNumber, linkId, storage, folder);
+    getLinkById: async function (linkId) {
+        const resultLinks = await pdfApi.getPageLinkAnnotation(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, linkId);
 
-if (getResponse.status == 200)
-{
-    var link = getResponse.body.link;
-	console.log("Link Id =  " + link.id);
-    console.log("Bookmark Level " + link.action);
+        if (resultLinks.body.code == 200 && resultLinks.body.link) {
+            return resultLinks.body.link;
+        }
+        else
+            throw new Error("Unexpected error : can't get link !!!");
+    },
+
+    showLinks: function(links, prefix) {
+        if (Array.isArray(links) && links.length > 0)
+        {
+            links.forEach(function(link) {
+                console.log(prefix +" => '" + link.id + "', '" + link.action);
+            });
+        }
+        else
+            console.error("showLinks() error: array of links is empty!")
+    },
 }
-else
-    throw new Error("Unexpected error : can't delete bookmark!!!");
+
+export default pdfLinks;
+
+await pdfLinks.uploadDocument()
+    .then(async () =>{
+        return await pdfLinks.getAllLinks();
+    })
+    .then((links) =>{
+        pdfLinks.showLinks(links, "all");
+    })
+    .then(async () => {
+        return await pdfLinks.getLinkById(configParams.LINK_FIND_ID);
+    })
+    .then((link) =>{
+        pdfLinks.showLinks( [ link ], "found");
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
