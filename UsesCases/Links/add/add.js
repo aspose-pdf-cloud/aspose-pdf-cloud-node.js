@@ -8,67 +8,104 @@
 
 import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
+import { Color } from "asposepdfcloud/src/models/color.js";
+import { Link } from "asposepdfcloud/src/models/link.js";
+import { Rectangle } from "asposepdfcloud/src/models/rectangle.js";
+import { LinkAnnotation } from "asposepdfcloud/src/models/linkAnnotation.js";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+
+    NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
+
+    PAGE_NUMBER: 2,     // Your document page number...
+
+    LINK_POS_LLX: 244.914,
+
+    LINK_POS_LLY: 488.622,
+
+    LINK_POS_URX: 284.776,
+
+    LINK_POS_URY: 498.588,
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfLinks = {
+    uploadFiles: async function (fileName) {
+        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+        await pdfApi.uploadFile(fileName, pdfFileData);
+    },
 
-const folder = "Documents";
+    downloadFiles: async function (local_path, fileName) {
+        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+        const filePath = path.join(local_path, fileName);
 
-const pageNumber = "1";
+        await fs.writeFile(filePath, changedPdfData.body);
+        console.log("downloaded: " + filePath);
+    },
 
-const linkColor = {
-    a : 255,
-    r : 0,
-    g : 255,
-    b : 0
-};
+    uploadDocument: async function () {
+        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-const linkRectangle = {
-    llx: 100,
-    lly: 100,
-    urx: 200,
-    ury: 150
-};
+    appendLink: async function () {
 
-const linkItem = {
-    href: "https://reference.aspose.cloud/pdf/#/",
-    rel: "",
-    type: "text/html",
-    title: "Aspose.PDF Cloud API Reference"
-};
+        const linkColor = new Color();
+        linkColor.a = 255;
+        linkColor.r = 0;
+        linkColor.g = 255;
+        linkColor.b = 0;
 
-const newLink = 
-    [
-        {
-          links: [ linkItem ],
-          actionType: "GoToURIAction",
-          action: "https://reference.aspose.cloud/pdf/#/",
-          highlighting: "Invert",
-          color: linkColor,
-          rect: linkRectangle
-        }
-    ];
+        const linkRectangle = new Rectangle();
+        linkRectangle.lLX = configParams.LINK_POS_LLX;
+        linkRectangle.lLY = configParams.LINK_POS_LLY;
+        linkRectangle.uRX = configParams.LINK_POS_URX;
+        linkRectangle.uRY = configParams.LINK_POS_URY;
 
-const addResponse = await postPageLinkAnnotations(STORAGE_PATH + PDF_DOCUMENT_NAME, pageNumber, newLink, storage, folder);
+       const linkItem = new Link();
+       linkItem.href = "";
+       linkItem.rel = "self";
+       linkItem.type = null;
+       linkItem.title = null;
 
-if (addResponse.status == 200)
-{
-    const changedPdfData = pdfApi.downloadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, storage);
+        const newLink = new LinkAnnotation();
+        newLink.links = [ linkItem ];
+        newLink.actionType = "GoToURIAction";
+        newLink.action = configParams.NEW_LINK_ACTION,
+        newLink.highlighting = "Invert";
+        newLink.color = linkColor;
+        newLink.rect = linkRectangle;
+        
+        var addResponse = await pdfApi.postPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, [ newLink ]);
 
-    const filePath = "YOUR_LOCAL_OUTPUT_FOLDER/ResultChangedFile.pdf";
+        if (addResponse.body.code == 200)
+            return true;
+        else
+            throw new Error("Unexpected error : can't append link!!!");
+    },
 
-    await fs.writeFile(filePath, changedPdfData.body);
-    console.log("downloaded: " + filePath);
 }
-else
-    throw new Error("Unexpected error : can't append new link annotation!!!");
+
+export default pdfLinks;
+
+await pdfLinks.uploadDocument()
+    .then(async () => {
+        return await pdfLinks.appendLink();
+    })
+    .then((complete) =>{
+        console.log("Append link successful!");
+    })
+    .then(async () =>{
+        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
