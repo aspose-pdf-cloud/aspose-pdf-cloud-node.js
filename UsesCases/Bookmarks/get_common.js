@@ -5,82 +5,134 @@
 // 5. Check result and perform some actions with result.body object
 // 6. Create a new Bookmarks with the required properties
 // 7. Append new Bookmarks to the document using postBookmark() function
-// 8. Perform some action after successful addition
+// 8. After successful addition, perform some action - upload the modified document, for example.
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
 import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
+import { Color } from "asposepdfcloud";
+import { Link } from "asposepdfcloud";
+import { Bookmark } from "asposepdfcloud";
+import { Bookmarks } from "asposepdfcloud";
 
-const LOCAL_PATH = "C:\\Samples\\";
-const PDF_DOCUMENT_NAME = "Sample-Document.pdf";
+const configParams = {
+    LOCAL_PATH: "C:\\Samples\\",
 
-const STORAGE_PATH = "YOUR_REMOTE_PATH/";
+    PDF_DOCUMENT_NAME: "sample.pdf",
+
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+
+    NEW_BOOKMARK_TITLE: "YOUR_BOOKMARK_TITLE",
+
+    NEW_BOOKMARK_PAGE_NUMBER: 2,    // Your bookmark page number...
+};
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const storage = null;
+const pdfBookmarks = {
+    uploadFiles: async function (fileName) {
+        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
+        await pdfApi.uploadFile(fileName, pdfFileData);
+    },
 
-const folder = "Documents";
+    downloadFiles: async function (local_path, fileName) {
+        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
 
-const pdfFileData = fs.readFileSync(LOCAL_PATH + PDF_DOCUMENT_NAME);
-await api.uploadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, pdfFileData, storage);
+        const filePath = path.join(local_path, fileName);
 
-const resultBookmarks = await pdfApi.getDocumentBookmarks(STORAGE_PATH + PDF_DOCUMENT_NAME, folder, storage);
+        await fs.writeFile(filePath, changedPdfData.body);
+        console.log("downloaded: " + filePath);
+    },
 
-if (resultBookmarks.status == 200)
-{
-    resultBookmarks.body.Bookmarks.List.forEach(function(bookmark) {
-        console.log("Boorkmark Href = '" + bookmark.Links[0].Href + "'");
-    });
-}
-else
-    throw new Error("Unexpected error : can't get bookmarks list!!!");
+    uploadDocument: async function () {
+        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+    },
 
-const bookmarkPath = "2";
+    getAllBookmarks: async function () {
+        const resultBookmarks = await pdfApi.getDocumentBookmarks(configParams.PDF_DOCUMENT_NAME);
 
-const linkBookmark = {
-    href : "0",
-    rel : "self"
-};
+        if (resultBookmarks.body.code == 200 && resultBookmarks.body.bookmarks) {
+            if (!Array.isArray(resultBookmarks.body.bookmarks.list) || resultBookmarks.body.bookmarks.list.length === 0) {
+                throw new Error("Unexpected error : bookmarks list is null or empty!!!");
+            }
+            return resultBookmarks.body.bookmarks;
+        }
+        else
+            throw new Error("Unexpected error : can't get bookmarks list!!!");
+    },
+
+    showBookmarks: function(bookmarks, prefix) {
+        if (Array.isArray(bookmarks.list) && bookmarks.list.length > 0)
+        {
+            bookmarks.list.forEach(function(bookmark) {
+                console.log(prefix +" => '" + bookmark.title + "'");
+            });
+        }
+        else
+            console.error("showBoormarks() error: array of bookmark is empty!")
+    },
+
+    appendBookmark: async function (bookmarkPath) {
+        
+        const linkBookmark = new Link();
+        linkBookmark.rel = "self";
       
-const colorBookmark = {
-    a : 255,
-    r : 0,
-    g : 255,
-    b : 0
-};
+        const colorBookmark = new Color();
+        colorBookmark.a = 255;
+        colorBookmark.r = 0;
+        colorBookmark.g = 255;
+        colorBookmark.b = 0;
 
-const newBookmark = {
-    title               : "New Bookmark",
-    italic              : true,
-    bold                :  false,
-    links               :  [ linkBookmark ],
-    color               : colorBookmark,
-    action              : "GoTo",
-    level               : 1,
-    destination         : "",
-    pageDisplay         : "Appended bookmark",
-    pageDisplayBottom   : 0,
-    pageDisplayLeft     : 100,
-    pageDisplayRight    :  0,
-    pageDisplayTop      : 700,
-    pageDisplayZoom     : 2,
-    pageNumber          : 1
-  };
-  
-const newBookmarks = [ newBookmark ];
+        const newBookmark = new Bookmark();
+        newBookmark.title = configParams.NEW_BOOKMARK_TITLE,
+        newBookmark.italic = true,
+        newBookmark.bold = false,
+        newBookmark.links = [ linkBookmark ];
+        newBookmark.color = colorBookmark;
+        newBookmark.action = "GoTo";
+        newBookmark.level = 1;
+        newBookmark.destination = "";
+        newBookmark.pageDisplay = "XYZ";
+        newBookmark.pageDisplayBottom = null;
+        newBookmark.pageDisplayLeft = 83;
+        newBookmark.pageDisplayRight = null;
+        newBookmark.pageDisplayTop = 751;
+        newBookmark.pageDisplayZoom = 2;
+        newBookmark.pageNumber = configParams.NEW_BOOKMARK_PAGE_NUMBER;
+        
+        const newBookmarks = new Bookmarks()
+        newBookmarks.list = [ newBookmark ];
 
-const addResponse = await postBookmark(STORAGE_PATH + PDF_DOCUMENT_NAME, bookmarkPath, newBookmarks, folder, storage, null);
+        var addResponse = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath, [ newBookmark ], null, null, null);
 
-if (addResponse.status == 200)
-{
-    const changedPdfData = pdfApi.downloadFile(STORAGE_PATH + PDF_DOCUMENT_NAME, storage);
+        if (addResponse.body.code == 200 && addResponse.body.bookmarks)
+            return addResponse.body.bookmarks.list[addResponse.body.bookmarks.list.length - 1];
+        else
+            throw new Error("Unexpected error : can't append bookmarks list!!!");
+    },
 
-    const filePath = "YOUR_LOCAL_OUTPUT_FOLDER/ResultChangedFile.pdf";
-
-    await fs.writeFile(filePath, changedPdfData.body);
-    console.log("downloaded: " + filePath);
 }
-else
-    throw new Error("Unexpected error : can't append new bookmark!!!");
+
+export default pdfBookmarks;
+
+await pdfBookmarks.uploadDocument()
+    .then(async () =>{
+        return await pdfBookmarks.getAllBookmarks();
+    })
+    .then((bookmarks) =>{
+        pdfBookmarks.showBookmarks(bookmarks, "in");
+    })
+    .then(async () => {
+        return await pdfBookmarks.appendBookmark("");
+    })
+    .then((bookmark) =>{
+        console.log("Appended bookmark: " + bookmark.links[0].href + " => " + bookmark.title);
+    })
+    .then(async () =>{
+        await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+    })
+    .catch((message) =>{
+        console.log(message);
+    });
