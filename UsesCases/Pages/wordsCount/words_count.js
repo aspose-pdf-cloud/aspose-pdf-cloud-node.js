@@ -50,6 +50,7 @@ const pdfPages = {
                 if (!Array.isArray(resultPages.body.wordsPerPage.list) || resultPages.body.wordsPerPage.list.length === 0) {
                     throw new Error("Unexpected error : pages is null or empty!!!");
                 }
+                pdfPages.showWordsCount(resultPages.body.wordsPerPage.list);
                 return resultPages.body.wordsPerPage.list;
             }
             else
@@ -74,16 +75,7 @@ const pdfPages = {
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.getWordsCount();
-    })
-    .then((words_array) =>{
-        pdfPages.showWordsCount(words_array);
-    })
-    .then(async () =>{
-        await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+(async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.getWordsCount();
+})().catch((error) => { console.log(error.message); });
