@@ -16,15 +16,15 @@ import { Bookmark } from "asposepdfcloud/src/models/bookmark.js";
 import { Bookmarks } from "asposepdfcloud/src/models/bookmarks.js";
 
 const configParams = {
-    LOCAL_PATH: "C:\\Samples\\",
+    LOCAL_PATH: "C:\\Samples\\",  
 
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    PDF_DOCUMENT_NAME: "sample.pdf",       
 
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf", 
 
-    NEW_BOOKMARK_TITLE: "WOUR_BOOKMARK_TITLE",
+    NEW_BOOKMARK_TITLE: "• Підвищення продуктивності",
 
-    NEW_BOOKMARK_PAGE_NUMBER: 2,    // Your bookmark page number...
+    NEW_BOOKMARK_PAGE_NUMBER: 2, // Your bookmark page number...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -97,8 +97,14 @@ const pdfBookmarks = {
         try {
             var addResponse = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath, [ newBookmark ], null, null, null);
 
-            if (addResponse.body.code == 200 && addResponse.body.bookmarks)
-                return addResponse.body.bookmarks.list[addResponse.body.bookmarks.list.length - 1];
+            if (addResponse.body.code == 200 && addResponse.body.bookmarks && addResponse.body.bookmarks) {
+                if (!Array.isArray(addResponse.body.bookmarks.list) || addResponse.body.bookmarks.list.length === 0) {
+                    throw new Error("Unexpected error : bookmarks is null or empty!!!");
+                };
+                const addedBookmark = addResponse.body.bookmarks.list[addResponse.body.bookmarks.list.length - 1];
+                console.log("Appended bookmark: " + addedBookmark.links[0].href + " => " + addedBookmark.title);
+                return addedBookmark;
+            }
             else
                 throw new Error("Unexpected error : can't append bookmarks list!!!");
         }
@@ -107,21 +113,12 @@ const pdfBookmarks = {
             throw e;
         }
     },
-
 }
 
 export default pdfBookmarks;
 
-await pdfBookmarks.uploadDocument()
-    .then(async () =>{
-        return await pdfBookmarks.appendBookmark("");
-    })
-    .then((bookmark) =>{
-        console.log("Appended bookmark: " + bookmark.links[0].href + " => " + bookmark.title);
-    })
-    .then(async () => {
-        await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfBookmarks.uploadDocument();
+    await pdfBookmarks.appendBookmark("");
+    await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
