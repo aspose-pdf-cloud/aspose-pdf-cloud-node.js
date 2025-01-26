@@ -71,16 +71,9 @@ const pdfHederFooter = {
 
 export default pdfHederFooter;
 
-await pdfHederFooter.uploadDocument()
-    .then(async () =>{
-        await pdfHederFooter.adddTextHeader();
-    })
-    .then(async () =>{
-        await pdfHederFooter.adddTextFooter();
-    })
-    .then(async () =>{
-        await pdfHederFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfHederFooter.uploadDocument();
+    await pdfHederFooter.adddTextHeader();
+    await pdfHederFooter.adddTextFooter();
+    await pdfHederFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
