@@ -16,7 +16,7 @@ const configParams = {
     PDF_DOCUMENT_NAME: "sample.pdf",
 
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
+    
     DROP_BOOKMARK_PATH: "/1"
 };
 
@@ -41,6 +41,19 @@ const pdfBookmarks = {
         await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
+    getAllBookmarks: async function () {
+        const resultBookmarks = await pdfApi.getDocumentBookmarks(configParams.PDF_DOCUMENT_NAME);
+
+        if (resultBookmarks.body.code == 200 && resultBookmarks.body.bookmarks) {
+            if (!Array.isArray(resultBookmarks.body.bookmarks.list) || resultBookmarks.body.bookmarks.list.length === 0) {
+                throw new Error("Unexpected error : bookmarks list is null or empty!!!");
+            }
+            return resultBookmarks.body.bookmarks;
+        }
+        else
+            throw new Error("Unexpected error : can't get bookmarks list!!!");
+    },
+
     showBookmarks: function(bookmarks, prefix) {
         if (Array.isArray(bookmarks.list) && bookmarks.list.length > 0)
         {
@@ -56,7 +69,7 @@ const pdfBookmarks = {
         const dropResult = await pdfApi.deleteBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath);
         
         if (dropResult.body.code == 200) {
-            
+            console.log("Bookmark '" + configParams.DROP_BOOKMARK_PATH + "' successfully deleted!");
             return true;
         }
         else
@@ -66,16 +79,8 @@ const pdfBookmarks = {
 
 export default pdfBookmarks;
 
-await pdfBookmarks.uploadDocument()
-    .then(async () => {
-        return await pdfBookmarks.deleteBookmark(configParams.DROP_BOOKMARK_PATH);
-    })
-    .then((dropResult) => {
-        console.log("Bookmark '" + configParams.DROP_BOOKMARK_PATH + "' successfully deleted!");
-    })
-    .then(async () =>{
-        await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfBookmarks.uploadDocument();
+    await pdfBookmarks.deleteBookmark(configParams.DROP_BOOKMARK_PATH);
+    await pdfBookmarks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
