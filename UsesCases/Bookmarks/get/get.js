@@ -10,9 +10,9 @@ import fs from 'node:fs/promises';
 import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
-    LOCAL_PATH: "C:\\Samples\\",
+    LOCAL_PATH: "C:\\Samples\\",                        //"YOUR_LOCAL_PATH",
 
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    PDF_DOCUMENT_NAME: "sample.pdf",                    //"YPUR_INPUT_PDF",
 
     BOOKMARK_PATH: "/1"
 };
@@ -44,6 +44,7 @@ const pdfBookmarks = {
             if (!Array.isArray(resultBookmarks.body.bookmarks.list) || resultBookmarks.body.bookmarks.list.length === 0) {
                 throw new Error("Unexpected error : bookmarks list is null or empty!!!");
             }
+            pdfBookmarks.showBookmarks(resultBookmarks.body.bookmarks, "in");
             return resultBookmarks.body.bookmarks;
         }
         else
@@ -55,6 +56,7 @@ const pdfBookmarks = {
 
         if (resultBookmark.body.code == 200 && resultBookmark.body.bookmark)
         {
+            console.log("Found bookmark title: " + resultBookmark.body.bookmark.title);
             return resultBookmark.body.bookmark;
         }
         else
@@ -73,19 +75,8 @@ const pdfBookmarks = {
 
 export default pdfBookmarks;
 
-await pdfBookmarks.uploadDocument()
-    .then(async () =>{
-        return await pdfBookmarks.getAllBookmarks();
-    })
-    .then((bookmarks) =>{
-        pdfBookmarks.showBookmarks(bookmarks, "in");
-    })
-    .then(async () =>{
-        return pdfBookmarks.getBookmarkByPath(configParams.BOOKMARK_PATH);
-    })
-    .then((bookmark) =>{
-        console.log("Found: " + bookmark.title);
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfBookmarks.uploadDocument();
+    await pdfBookmarks.getAllBookmarks();
+    await pdfBookmarks.getBookmarkByPath(configParams.BOOKMARK_PATH);
+})().catch((error) => { console.log(error.message); });
