@@ -25,10 +25,9 @@ const configParams = {
     IMAGE_HEADER_FILE: "sample.png",
 
     IMAGE_FOOTER_FILE: "sample.png",
-    
-    IMAGE_WIDTH: 24,
 
-    IMAGE_HEIGHT: 24,
+    PAGE_NUMBER: 2,     // Your document page number...
+
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -58,8 +57,8 @@ const pdfHederFooter = {
         imageHeader.value = "TEST HEADER VALUE";
         imageHeader.horizontalAlignment = "Center";
         imageHeader.fileName = configParams.IMAGE_HEADER_FILE;
-        imageHeader.width = configParams.IMAGE_WIDTH;
-        imageHeader.height = configParams.IMAGE_HEIGHT;
+        imageHeader.width = 24;
+        imageHeader.height = 24;
 
         const resultLinks = await pdfApi.postDocumentImageHeader(configParams.PDF_DOCUMENT_NAME, imageHeader);
 
@@ -76,8 +75,8 @@ const pdfHederFooter = {
         imageHeader.value = "TEST FOOTER VALUE";
         imageHeader.horizontalAlignment = "Center";
         imageHeader.fileName = configParams.IMAGE_HEADER_FILE;
-        imageHeader.width = configParams.IMAGE_WIDTH;
-        imageHeader.height = configParams.IMAGE_HEIGHT;
+        imageHeader.width = 24;
+        imageHeader.height = 24;
 
         const resultLinks = await pdfApi.postDocumentImageFooter(configParams.PDF_DOCUMENT_NAME, imageHeader);
 
@@ -87,27 +86,16 @@ const pdfHederFooter = {
         else
             throw new Error("Unexpected error : can't append Text Header!");
     },
-
 }
 
 export default pdfHederFooter;
 
-await pdfHederFooter.uploadDocument()
-    .then(async () => {
-        await pdfHederFooter.uploadFiles(configParams.IMAGE_HEADER_FILE);
-    })
-    .then(async () => {
-        await pdfHederFooter.uploadFiles(configParams.IMAGE_FOOTER_FILE);
-    })
-    .then(async () =>{
-        await pdfHederFooter.adddImageHeader();
-    })
-    .then(async () =>{
-        await pdfHederFooter.addImageFooter();
-    })
-    .then(async () =>{
-        await pdfHederFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+
+await (async () => {
+    await pdfHederFooter.uploadDocument();
+    await pdfHederFooter.uploadFiles(configParams.IMAGE_HEADER_FILE);
+    await pdfHederFooter.uploadFiles(configParams.IMAGE_FOOTER_FILE);
+    await pdfHederFooter.adddImageHeader();
+    await pdfHederFooter.addImageFooter();
+    await pdfHederFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
