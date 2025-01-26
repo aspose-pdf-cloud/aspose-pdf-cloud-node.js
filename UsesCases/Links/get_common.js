@@ -80,7 +80,7 @@ const pdfLinks = {
             });
         }
         else
-            console.error("showBoormarks() error: array of bookmark is empty!")
+            console.error("showLinks() error: array of links is empty!")
     },
 
     appendLink: async function () {
