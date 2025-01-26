@@ -48,6 +48,7 @@ const pdfPages = {
             if (!Array.isArray(resultPages.body.pages.list) || resultPages.body.pages.list.length === 0) {
                 throw new Error("Unexpected error : pages is null or empty!!!");
             }
+            pdfPages.showPages(resultPages.body.pages.list, "in");
             return resultPages.body.pages.list;
         }
         else
@@ -58,6 +59,7 @@ const pdfPages = {
         const resultPages = await pdfApi.getPage(configParams.PDF_DOCUMENT_NAME, pageNumber);
 
         if (resultPages.body.code == 200 && resultPages.body.page) {
+            pdfPages.showPages( [ resultPages.body.page ], "pg");
             return resultPages.body.page;
         }
         else
@@ -74,24 +76,12 @@ const pdfPages = {
         else
             console.error("showPages() error: array of pages is empty!")
     },
-
 }
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.getPagesInfo();
-    })
-    .then((pages) =>{
-        pdfPages.showPages(pages, "in");
-    })
-    .then(async () =>{
-        return await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
-    })
-    .then((page) =>{
-        pdfPages.showPages( [ page ], "pg");
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.getPagesInfo();
+    await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
+})().catch((error) => { console.log(error.message); });
