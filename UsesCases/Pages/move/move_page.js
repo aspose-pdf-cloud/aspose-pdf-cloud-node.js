@@ -46,6 +46,7 @@ const pdfPages = {
         const resultPages = await pdfApi.postMovePage(configParams.PDF_DOCUMENT_NAME, pageNumber, newPageNumber);
 
         if (resultPages.body.code == 200) {
+            console.log("Page '" + pageNumber + "' moved !");
             return true;
         }
         else
@@ -56,16 +57,8 @@ const pdfPages = {
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.movePage(configParams.PAGE_NUMBER, configParams.PAGE_NUMBER + 1);
-    })
-    .then((complete) =>{
-        console.log("Page '" + configParams.PAGE_NUMBER + "' moved !");
-    })
-    .then(async () =>{
-        await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.movePage(configParams.PAGE_NUMBER, configParams.PAGE_NUMBER + 1);
+    await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
