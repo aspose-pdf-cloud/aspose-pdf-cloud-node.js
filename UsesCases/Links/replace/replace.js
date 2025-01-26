@@ -64,8 +64,10 @@ const pdfLinks = {
         
         var updResponse = await pdfApi.putLinkAnnotation(configParams.PDF_DOCUMENT_NAME, linkId, link);
 
-        if (updResponse.body.code == 200 && updResponse.body.link)
+        if (updResponse.body.code == 200 && updResponse.body.link) {
+            pdfLinks.showLinks( [ updResponse.body.link ], "add");
             return updResponse.body.link;
+        }
         else
             throw new Error("Unexpected error : can't append link!!!");
     },
@@ -80,21 +82,12 @@ const pdfLinks = {
         else
             console.error("showLinks() error: array of links is empty!")
     },
-
 }
 
 export default pdfLinks;
 
-await pdfLinks.uploadDocument()
-    .then(async () => {
-        return await pdfLinks.replaceLink(configParams.LINK_FIND_ID);
-    })
-    .then((link) =>{
-        pdfLinks.showLinks( [ link ], "add");
-    })
-    .then(async () =>{
-        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfLinks.uploadDocument();
+    await pdfLinks.replaceLink(configParams.LINK_FIND_ID);
+    await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
