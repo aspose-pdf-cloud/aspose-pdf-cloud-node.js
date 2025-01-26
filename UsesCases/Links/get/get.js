@@ -62,7 +62,7 @@ const pdfLinks = {
         if (Array.isArray(links) && links.length > 0)
         {
             links.forEach(function(link) {
-                console.log(prefix +" => '" + link.id + "', '" + link.action);
+                console.log(prefix +" => '" + link.id + "', '" + link.action + "'");
             });
         }
         else
