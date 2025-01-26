@@ -51,7 +51,7 @@ const pdfPages = {
         await pdfPages.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
-    addPageTextStamp: async function () {
+    addPageTextStamp: async function (pageNumber) {
 
         const pageStamp = new Stamp();
         pageStamp.type = "Text";
@@ -61,16 +61,17 @@ const pdfPages = {
         pageStamp.value = "NEW TEXT STAMP";
         pageStamp.pageIndex = configParams.PAGE_NUMBER;
         
-        const resultPages = await pdfApi.putPageAddStamp(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, pageStamp);
+        const resultPages = await pdfApi.putPageAddStamp(configParams.PDF_DOCUMENT_NAME, pageNumber, pageStamp);
 
         if (resultPages.body.code == 200) {
+            console.log("Text Stamp added!");
             return true;
         }
         else
             throw new Error("Unexpected error : can't get pages!!!");
     },
 
-    addPageImageStamp: async function () {
+    addPageImageStamp: async function (pageNumber) {
 
         const pageStamp = new Stamp();
         pageStamp.type = "Image";
@@ -84,38 +85,23 @@ const pdfPages = {
         pageStamp.width = configParams.IMAGE_STAMP_WIDTH;
         pageStamp.height = configParams.IMAGE_STAMP_HEIGHT;
         
-        const resultPages = await pdfApi.putPageAddStamp(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, pageStamp);
+        const resultPages = await pdfApi.putPageAddStamp(configParams.PDF_DOCUMENT_NAME, pageNumber, pageStamp);
 
         if (resultPages.body.code == 200) {
+            console.log("Image Stamp added!");
             return true;
         }
         else
             throw new Error("Unexpected error : can't get pages!!!");
     },
-
 }
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.addPageTextStamp();
-    })
-    .then(() =>{
-        console.log("Text Stamp added!");
-    })
-    .then(async () => {
-        await pdfPages.uploadFiles(configParams.IMAGE_STAMP_FILE);
-    })
-    .then(async () => {
-        await pdfPages.addPageImageStamp();
-    })
-    .then(() =>{
-        console.log("Image Stamp added!");
-    })
-    .then(async () =>{
-        await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.addPageTextStamp(configParams.PAGE_NUMBER);
+    await pdfPages.uploadFiles(configParams.IMAGE_STAMP_FILE);
+    await pdfPages.addPageImageStamp(configParams.PAGE_NUMBER);
+    await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
