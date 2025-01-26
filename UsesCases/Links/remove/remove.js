@@ -50,6 +50,7 @@ const pdfLinks = {
             if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
                 throw new Error("Unexpected error : links is null or empty!!!");
             }
+            pdfLinks.showLinks(resultLinks.body.links.list, "in");
             return resultLinks.body.links.list;
         }
         else
@@ -71,6 +72,7 @@ const pdfLinks = {
         const resultDelete = await pdfApi.deleteLinkAnnotation(configParams.PDF_DOCUMENT_NAME, linkId);
 
         if (resultDelete.body.code == 200) {
+            console.log("Link '" + linkId + "' was deleted!");
             return linkId;
         }
         else
@@ -81,22 +83,9 @@ const pdfLinks = {
 
 export default pdfLinks;
 
-await pdfLinks.uploadDocument()
-    .then(async () =>{
-        return await pdfLinks.getAllLinks();
-    })
-    .then((links) =>{
-        pdfLinks.showLinks(links, "in");
-    })
-    .then(async () => {
-        return await pdfLinks.removeLink(configParams.LINK_FIND_ID);
-    })
-    .then((linkId) =>{
-        console.log("Link '" + linkId + "' was deleted!");
-    })
-    .then(async () =>{
-        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfLinks.uploadDocument();
+    await pdfLinks.getAllLinks();
+    await pdfLinks.removeLink(configParams.LINK_FIND_ID);
+    await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
