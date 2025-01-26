@@ -65,6 +65,7 @@ const pdfLinks = {
             if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
                 throw new Error("Unexpected error : links is null or empty!!!");
             }
+            pdfLinks.showLinks(resultLinks.body.links.list, "in");
             return resultLinks.body.links.list;
         }
         else
@@ -79,7 +80,7 @@ const pdfLinks = {
             });
         }
         else
-            console.error("showLinks() error: array of links is empty!")
+            console.error("showBoormarks() error: array of bookmark is empty!")
     },
 
     appendLink: async function () {
@@ -112,29 +113,23 @@ const pdfLinks = {
         
         var addResponse = await pdfApi.postPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, [ newLink ]);
 
-        if (addResponse.body.code == 200)
+        if (addResponse.body.code == 200) {
+            pdfLinks.showLinks( [ newLink ], "add");
             return newLink;
+        }
         else
             throw new Error("Unexpected error : can't append link!!!");
     },
-
 }
 
 export default pdfLinks;
 
-await pdfLinks.uploadDocument()
-    .then(async () =>{
-        return await pdfLinks.getAllLinks();
-    })
-    .then((links) =>{
-        pdfLinks.showLinks(links, "in");
-    })
-    .then(async () => {
-        return await pdfLinks.appendLink();
-    })
-    .then((link) =>{
-        pdfLinks.showLinks( [ link ], "add");
-    })
+await (async () => {
+    await pdfLinks.uploadDocument();
+    await pdfLinks.getAllLinks();
+    await pdfLinks.appendLink();
+    await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
     .then(async () =>{
         await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
     })
