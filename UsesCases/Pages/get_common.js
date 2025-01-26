@@ -48,6 +48,7 @@ const pdfPages = {
             if (!Array.isArray(resultPages.body.pages.list) || resultPages.body.pages.list.length === 0) {
                 throw new Error("Unexpected error : pages is null or empty!!!");
             }
+            pdfPages.showPages(resultPages.body.pages.list, "in");
             return resultPages.body.pages.list;
         }
         else
@@ -58,6 +59,7 @@ const pdfPages = {
         const resultPages = await pdfApi.getPage(configParams.PDF_DOCUMENT_NAME, pageNumber);
 
         if (resultPages.body.code == 200 && resultPages.body.page) {
+            pdfPages.showPages( [ resultPages.body.page ], "pg");
             return resultPages.body.page;
         }
         else
@@ -71,6 +73,7 @@ const pdfPages = {
             if (!Array.isArray(resultPages.body.pages.list) || resultPages.body.pages.list.length === 0) {
                 throw new Error("Unexpected error : pages is null or empty!!!");
             }
+            pdfPages.showPages( [ resultPages.body.pages.list[resultPages.body.pages.list.length - 1] ], "add");
             return resultPages.body.pages.list[resultPages.body.pages.list.length - 1];
         }
         else
@@ -81,6 +84,7 @@ const pdfPages = {
         const resultPages = await pdfApi.deletePage(configParams.PDF_DOCUMENT_NAME, pageNumber);
 
         if (resultPages.body.code == 200) {
+            console.log("Page '" + configParams.PAGE_NUMBER + "' deleted!");
             return true;
         }
         else
@@ -102,34 +106,11 @@ const pdfPages = {
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.getPagesInfo();
-    })
-    .then((pages) =>{
-        pdfPages.showPages(pages, "in");
-    })
-    .then(async () =>{
-        return await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
-    })
-    .then((page) =>{
-        pdfPages.showPages( [ page ], "pg");
-    })
-    .then(async () =>{
-        return await pdfPages.addPage();
-    })
-    .then((page) =>{
-        pdfPages.showPages( [ page ], "add");
-    })
-    .then(async () =>{
-        return await pdfPages.deletePage(configParams.PAGE_NUMBER);
-    })
-    .then((complete) =>{
-        console.log("Page '" + configParams.PAGE_NUMBER + "' deleted!");
-    })
-    .then(async () =>{
-        await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+(async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.getPagesInfo();
+    await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
+    await pdfPages.addPage();
+    await pdfPages.deletePage(configParams.PAGE_NUMBER);
+    await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
