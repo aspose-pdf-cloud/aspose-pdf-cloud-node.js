@@ -45,6 +45,7 @@ const pdfPages = {
         const resultPages = await pdfApi.deletePage(configParams.PDF_DOCUMENT_NAME, pageNumber);
 
         if (resultPages.body.code == 200) {
+            console.log("Page '" + pageNumber + "' deleted!");
             return true;
         }
         else
@@ -55,16 +56,8 @@ const pdfPages = {
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.deletePage(configParams.PAGE_NUMBER);
-    })
-    .then((complete) =>{
-        console.log("Page '" + configParams.PAGE_NUMBER + "' deleted!");
-    })
-    .then(async () =>{
-        await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+(async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.deletePage(configParams.PAGE_NUMBER);
+    await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
