@@ -86,26 +86,19 @@ const pdfLinks = {
         
         var addResponse = await pdfApi.postPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, [ newLink ]);
 
-        if (addResponse.body.code == 200)
+        if (addResponse.body.code == 200) {
+            console.log("Append link successful!");
             return true;
+        }
         else
             throw new Error("Unexpected error : can't append link!!!");
     },
-
 }
 
 export default pdfLinks;
 
-await pdfLinks.uploadDocument()
-    .then(async () => {
-        return await pdfLinks.appendLink();
-    })
-    .then((complete) =>{
-        console.log("Append link successful!");
-    })
-    .then(async () =>{
-        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfLinks.uploadDocument();
+    await pdfLinks.appendLink();
+    await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
