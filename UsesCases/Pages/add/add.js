@@ -49,6 +49,7 @@ const pdfPages = {
             if (!Array.isArray(resultPages.body.pages.list) || resultPages.body.pages.list.length === 0) {
                 throw new Error("Unexpected error : pages is null or empty!!!");
             }
+            pdfPages.showPages( [ resultPages.body.pages.list[resultPages.body.pages.list.length - 1] ], "add");
             return resultPages.body.pages.list[resultPages.body.pages.list.length - 1];
         }
         else
@@ -65,18 +66,12 @@ const pdfPages = {
         else
             console.error("showPages() error: array of pages is empty!")
     },
-
 }
 
 export default pdfPages;
 
-await pdfPages.uploadDocument()
-    .then(async () =>{
-        return await pdfPages.addPage();
-    })
-    .then((page) =>{
-        pdfPages.showPages( [ page ], "add");
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfPages.uploadDocument();
+    await pdfPages.addPage();
+    await pdfPages.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+})().catch((error) => { console.log(error.message); });
