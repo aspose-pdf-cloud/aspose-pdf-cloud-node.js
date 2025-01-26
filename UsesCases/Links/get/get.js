@@ -40,6 +40,7 @@ const pdfLinks = {
             if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
                 throw new Error("Unexpected error : links is null or empty!!!");
             }
+            pdfLinks.showLinks(resultLinks.body.links.list, "all");
             return resultLinks.body.links.list;
         }
         else
@@ -50,6 +51,7 @@ const pdfLinks = {
         const resultLinks = await pdfApi.getPageLinkAnnotation(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, linkId);
 
         if (resultLinks.body.code == 200 && resultLinks.body.link) {
+            pdfLinks.showLinks( [ resultLinks.body.link ], "found");
             return resultLinks.body.link;
         }
         else
@@ -66,26 +68,12 @@ const pdfLinks = {
         else
             console.error("showLinks() error: array of links is empty!")
     },
-
-    
-
 }
 
 export default pdfLinks;
 
-await pdfLinks.uploadDocument()
-    .then(async () =>{
-        return await pdfLinks.getAllLinks();
-    })
-    .then((links) =>{
-        pdfLinks.showLinks(links, "all");
-    })
-    .then(async () => {
-        return await pdfLinks.getLinkById(configParams.LINK_FIND_ID);
-    })
-    .then((link) =>{
-        pdfLinks.showLinks( [ link ], "found");
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
+await (async () => {
+    await pdfLinks.uploadDocument();
+    await pdfLinks.getAllLinks();
+    await pdfLinks.getLinkById(configParams.LINK_FIND_ID);
+})().catch((error) => { console.log(error.message); });
