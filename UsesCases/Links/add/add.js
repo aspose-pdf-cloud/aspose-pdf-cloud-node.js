@@ -45,7 +45,7 @@ const pdfLinks = {
     },
 
     uploadDocument: async function () {
-        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     appendLink: async function () {
