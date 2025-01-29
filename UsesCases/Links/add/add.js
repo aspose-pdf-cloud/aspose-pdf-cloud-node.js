@@ -17,21 +17,13 @@ import { LinkAnnotation } from "asposepdfcloud/src/models/linkAnnotation.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
     LINK_POS_LLX: 244.914,
-
     LINK_POS_LLY: 488.622,
-
     LINK_POS_URX: 284.776,
-
     LINK_POS_URY: 498.588,
 };
 
@@ -97,6 +89,7 @@ const pdfLinks = {
 
 export default pdfLinks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfLinks.uploadDocument();
     await pdfLinks.appendLink();
