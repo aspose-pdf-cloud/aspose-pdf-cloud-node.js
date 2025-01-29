@@ -17,13 +17,9 @@ import { Bookmarks } from "asposepdfcloud/src/models/bookmarks.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",  
-
     PDF_DOCUMENT_NAME: "sample.pdf",       
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf", 
-
-    NEW_BOOKMARK_TITLE: "• Підвищення продуктивності",
-
+    NEW_BOOKMARK_TITLE: "• Productivity Improvement",
     NEW_BOOKMARK_PAGE_NUMBER: 2, // Your bookmark page number...
 };
 
@@ -52,7 +48,7 @@ const pdfBookmarks = {
     },
 
     uploadDocument: async function () {
-        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     showBookmarks: function(bookmarks, prefix) {
@@ -117,6 +113,7 @@ const pdfBookmarks = {
 
 export default pdfBookmarks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfBookmarks.uploadDocument();
     await pdfBookmarks.appendBookmark("");
