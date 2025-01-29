@@ -19,21 +19,13 @@ import { LinkAnnotation } from "asposepdfcloud/src/models/linkAnnotation.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
     LINK_POS_LLX: 244.914,
-
     LINK_POS_LLY: 488.622,
-
     LINK_POS_URX: 284.776,
-
     LINK_POS_URY: 498.588,
 };
 
@@ -55,7 +47,7 @@ const pdfLinks = {
     },
 
     uploadDocument: async function () {
-        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getAllLinks: async function () {
@@ -65,7 +57,7 @@ const pdfLinks = {
             if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
                 throw new Error("Unexpected error : links is null or empty!!!");
             }
-            pdfLinks.showLinks(resultLinks.body.links.list, "in");
+            this.showLinks(resultLinks.body.links.list, "in");
             return resultLinks.body.links.list;
         }
         else
@@ -114,7 +106,7 @@ const pdfLinks = {
         var addResponse = await pdfApi.postPageLinkAnnotations(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, [ newLink ]);
 
         if (addResponse.body.code == 200) {
-            pdfLinks.showLinks( [ newLink ], "add");
+            this.showLinks( [ newLink ], "add");
             return newLink;
         }
         else
@@ -124,15 +116,10 @@ const pdfLinks = {
 
 export default pdfLinks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfLinks.uploadDocument();
     await pdfLinks.getAllLinks();
     await pdfLinks.appendLink();
     await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
 })().catch((error) => { console.log(error.message); });
-    .then(async () =>{
-        await pdfLinks.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-    })
-    .catch((message) =>{
-        console.log(message);
-    });
