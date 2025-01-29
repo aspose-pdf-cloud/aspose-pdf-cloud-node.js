@@ -11,13 +11,9 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
     LINK_FIND_ID: "GI5UO32UN5KVESKBMN2GS33OHMZTEMJMGUYDQLBTGYYCYNJSGE",
 };
 
@@ -30,7 +26,7 @@ const pdfLinks = {
     },
 
     uploadDocument: async function () {
-        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getAllLinks: async function () {
@@ -40,7 +36,7 @@ const pdfLinks = {
             if (!Array.isArray(resultLinks.body.links.list) || resultLinks.body.links.list.length === 0) {
                 throw new Error("Unexpected error : links is null or empty!!!");
             }
-            pdfLinks.showLinks(resultLinks.body.links.list, "all");
+            this.showLinks(resultLinks.body.links.list, "all");
             return resultLinks.body.links.list;
         }
         else
@@ -51,7 +47,7 @@ const pdfLinks = {
         const resultLinks = await pdfApi.getPageLinkAnnotation(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, linkId);
 
         if (resultLinks.body.code == 200 && resultLinks.body.link) {
-            pdfLinks.showLinks( [ resultLinks.body.link ], "found");
+            this.showLinks( [ resultLinks.body.link ], "found");
             return resultLinks.body.link;
         }
         else
@@ -72,6 +68,7 @@ const pdfLinks = {
 
 export default pdfLinks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfLinks.uploadDocument();
     await pdfLinks.getAllLinks();
