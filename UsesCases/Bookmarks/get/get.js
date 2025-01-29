@@ -10,10 +10,8 @@ import fs from 'node:fs/promises';
 import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
-    LOCAL_PATH: "C:\\Samples\\",                        //"YOUR_LOCAL_PATH",
-
-    PDF_DOCUMENT_NAME: "sample.pdf",                    //"YPUR_INPUT_PDF",
-
+    LOCAL_PATH: "C:\\Samples\\",
+    PDF_DOCUMENT_NAME: "sample.pdf",
     BOOKMARK_PATH: "/1"
 };
 
@@ -33,7 +31,7 @@ const pdfBookmarks = {
     },
 
     uploadDocument: async function () {
-        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getAllBookmarks: async function () {
@@ -75,6 +73,7 @@ const pdfBookmarks = {
 
 export default pdfBookmarks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfBookmarks.uploadDocument();
     await pdfBookmarks.getAllBookmarks();
