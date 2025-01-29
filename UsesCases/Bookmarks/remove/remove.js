@@ -12,11 +12,8 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    
     DROP_BOOKMARK_PATH: "/1"
 };
 
@@ -38,7 +35,7 @@ const pdfBookmarks = {
     },
 
     uploadDocument: async function () {
-        await pdfBookmarks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getAllBookmarks: async function () {
@@ -79,6 +76,7 @@ const pdfBookmarks = {
 
 export default pdfBookmarks;
 
+// Demonstrating the class functionality
 await (async () => {
     await pdfBookmarks.uploadDocument();
     await pdfBookmarks.deleteBookmark(configParams.DROP_BOOKMARK_PATH);
