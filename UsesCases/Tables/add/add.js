@@ -100,13 +100,10 @@ const pdfTables = {
         for (let r = 0; r < numOfRows; r++)
         {
             const row = new Row();
-
             row.cells = [];
-    
             for (let c = 0; c < numOfCols; c++)
             {
                 const cell = new Cell();
-                
                 cell.defaultCellTextState = commonTextState;
 
                 if (r == 0)  // header cells
