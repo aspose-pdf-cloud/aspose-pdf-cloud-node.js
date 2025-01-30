@@ -43,8 +43,8 @@ const pdfTables = {
             throw new Error("Unexpected error : can't get tables!!!");
     },
 
-    getTableById: async function (params) {
-        const resultTabs = await pdfApi.getTable(configParams.PDF_DOCUMENT_NAME, configParams.TABLE_ID);
+    getTableById: async function (table_id) {
+        const resultTabs = await pdfApi.getTable(configParams.PDF_DOCUMENT_NAME, table_id);
 
         if (resultTabs.body.code == 200 && resultTabs.body.table) {
             this.showLTablesInfo( [ resultTabs.body.table ], "byId");
@@ -72,5 +72,5 @@ export default pdfTables;
 await (async () => {
     await pdfTables.uploadDocument();
     await pdfTables.getAllTables();
-    await pdfTables.getTableById();
+    await pdfTables.getTableById(configParams.TABLE_ID);
   })().catch((error) => { console.log(error.message); });
