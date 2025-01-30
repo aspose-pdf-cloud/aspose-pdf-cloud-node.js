@@ -19,11 +19,8 @@ import { TextRect } from "asposepdfcloud/src/models/textRect.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
 };
 
@@ -45,7 +42,7 @@ const pdfTables = {
     },
 
     uploadDocument: async function () {
-        await pdfTables.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     initTable: function () {
@@ -136,7 +133,7 @@ const pdfTables = {
     },
 
     addTableOnPage: async function (pageNum) {
-        const jsonTable = pdfTables.initTable();
+        const jsonTable = this.initTable();
 
         const resultTabs = await pdfApi.postPageTables(configParams.PDF_DOCUMENT_NAME, pageNum, [ jsonTable ]);
 
@@ -151,6 +148,7 @@ const pdfTables = {
 
 export default pdfTables;
 
+// Demonstrating functionality
 await (async () => {
     await pdfTables.uploadDocument();
     await pdfTables.addTableOnPage(configParams.PAGE_NUMBER);
