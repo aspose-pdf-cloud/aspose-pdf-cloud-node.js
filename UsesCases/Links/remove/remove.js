@@ -79,6 +79,7 @@ const pdfLinks = {
 
 export default pdfLinks;
 
+// Demonstrating functionality
 await (async () => {
     await pdfLinks.uploadDocument();
     await pdfLinks.getAllLinks();
