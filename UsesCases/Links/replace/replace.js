@@ -13,17 +13,11 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
     LINK_FIND_ID: "GI5UO32UN5KVESKBMN2GS33OHMZTEMJMGUYDQLBTGYYCYNJSGE",
-
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -44,7 +38,7 @@ const pdfLinks = {
     },
 
     uploadDocument: async function () {
-        await pdfLinks.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getLinkById: async function (linkId) {
@@ -58,14 +52,14 @@ const pdfLinks = {
     },
 
     replaceLink: async function (linkId) {
-        const link = await pdfLinks.getLinkById(linkId);
+        const link = await this.getLinkById(linkId);
 
         link.action = configParams.NEW_LINK_ACTION;
         
         var updResponse = await pdfApi.putLinkAnnotation(configParams.PDF_DOCUMENT_NAME, linkId, link);
 
         if (updResponse.body.code == 200 && updResponse.body.link) {
-            pdfLinks.showLinks( [ updResponse.body.link ], "add");
+            this.showLinks( [ updResponse.body.link ], "add");
             return updResponse.body.link;
         }
         else
@@ -86,6 +80,7 @@ const pdfLinks = {
 
 export default pdfLinks;
 
+// Demonstrating functionality
 await (async () => {
     await pdfLinks.uploadDocument();
     await pdfLinks.replaceLink(configParams.LINK_FIND_ID);
