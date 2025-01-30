@@ -12,14 +12,10 @@ import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
-    PAGE_NUMBER: 1,     // Your document page number...
-
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
+    PAGE_NUMBER: 1,                                 // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table Id to be processing...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -31,7 +27,7 @@ const pdfTables = {
     },
 
     uploadDocument: async function () {
-        await pdfTables.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     downloadFiles: async function (local_path, fileName) {
@@ -50,7 +46,7 @@ const pdfTables = {
             if (!Array.isArray(resultTabs.body.tables.list) || resultTabs.body.tables.list.length === 0) {
                 console.log("Unexpected error : tables is null or empty!!!");
             }
-            pdfTables.showTablesInfo(resultTabs.body.tables.list, prefix);
+            this.showTablesInfo(resultTabs.body.tables.list, prefix);
             return resultTabs.body.tables.list;
         }
         else
@@ -92,13 +88,12 @@ const pdfTables = {
 
 export default pdfTables;
 
+// Demonstrating functionality
 await (async () => {
     await pdfTables.uploadDocument();
     await pdfTables.deleteTable();
-
     await pdfTables.getAllTables("initial");
     await pdfTables.deleteTables(configParams.PAGE_NUMBER);
     await pdfTables.getAllTables("after");
-
     await pdfTables.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
   })().catch((error) => { console.log(error.message); });
