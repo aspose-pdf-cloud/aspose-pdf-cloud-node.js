@@ -14,14 +14,11 @@ import { PdfPageStamp } from "asposepdfcloud/src/models/pdfPageStamp.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     PDF_STAMP_FILE: "pdf_stamp.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
-    PAGE_NUMBER: 2,     // Your document page number...
+    PAGE_NUMBER: 2,             // Your document page number...
+    STAMP_ID: "GE5TCOZQ",       // Your Stamp Id to be deleted...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -42,38 +39,40 @@ const pdfStamps = {
     },
 
     uploadDocument: async function () {
-        await pdfStamps.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
-    addPdfStamp: async function () {
-
-        const pdfStamp = new PdfPageStamp();
-        pdfStamp.background = true;
-        pdfStamp.horizontalAlignment = "Right";
-        pdfStamp.value = "PDF TEXT STAMP";
-        pdfStamp.fileName = configParams.PDF_STAMP_FILE;
-        pdfStamp.pageIndex = 1;
-        pdfStamp.zoom = 0.1;
-        pdfStamp.yIndent = 750;
-
-        const addResult = await pdfApi.postPagePdfPageStamps(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER, [ pdfStamp ]);
+    deletePageStamps: async function () {
+        const addResult = await pdfApi.deletePageStamps(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER);
 
         if (addResult.body.code == 200) {
-            console.log("Pdf file stamp added!");
+            console.log("Pdf page stamps deleted!");
             return true;
         }
         else
             throw new Error("Unexpected error : can't get pages!!!");
-        
     },
 
+    deletePageStampById: async function (stamp_id) {
+
+        const addResult = await pdfApi.deleteStamp(configParams.PDF_DOCUMENT_NAME, stamp_id);
+
+        if (addResult.body.code == 200) {
+            console.log("Pdf stamps " + stamp_id + " deleted!");
+            return true;
+        }
+        else
+            throw new Error("Unexpected error : can't get pages!!!");
+    },
 }
 
 export default pdfStamps;
 
+// Demonstrating functionality
 (async () => {
     await pdfStamps.uploadDocument();
     await pdfStamps.uploadFiles(configParams.PDF_STAMP_FILE);
-    await pdfStamps.addPdfStamp();
+    await pdfStamps.deletePageStampById(configParams.STAMP_ID);
+    await pdfStamps.deletePageStamps();
     await pdfStamps.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
 })().catch((error) => { console.log(error.message); });
