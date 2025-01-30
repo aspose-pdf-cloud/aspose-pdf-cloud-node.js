@@ -6,11 +6,10 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { PdfPageStamp } from "../../../src/models/pdfPageStamp.js";
+import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
@@ -55,7 +54,6 @@ const pdfStamps = {
     },
 
     deletePageStampById: async function (stamp_id) {
-
         const addResult = await pdfApi.deleteStamp(configParams.PDF_DOCUMENT_NAME, stamp_id);
 
         if (addResult.body.code == 200) {
@@ -65,7 +63,6 @@ const pdfStamps = {
         else
             throw new Error("Unexpected error : can't get pages!!!");
     },
-
 }
 
 export default pdfStamps;
