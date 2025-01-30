@@ -13,11 +13,8 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
 };
 
@@ -39,7 +36,7 @@ const pdfPages = {
     },
 
     uploadDocument: async function () {
-        await pdfPages.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getWordsCount: async function () {
@@ -50,7 +47,7 @@ const pdfPages = {
                 if (!Array.isArray(resultPages.body.wordsPerPage.list) || resultPages.body.wordsPerPage.list.length === 0) {
                     throw new Error("Unexpected error : pages is null or empty!!!");
                 }
-                pdfPages.showWordsCount(resultPages.body.wordsPerPage.list);
+                this.showWordsCount(resultPages.body.wordsPerPage.list);
                 return resultPages.body.wordsPerPage.list;
             }
             else
@@ -75,6 +72,7 @@ const pdfPages = {
 
 export default pdfPages;
 
+// Demonstrating functionality
 (async () => {
     await pdfPages.uploadDocument();
     await pdfPages.getWordsCount();
