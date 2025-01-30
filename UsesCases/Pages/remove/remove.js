@@ -12,11 +12,8 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
 };
 
@@ -38,7 +35,7 @@ const pdfPages = {
     },
 
     uploadDocument: async function () {
-        await pdfPages.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     deletePage: async function (pageNumber) {
@@ -51,11 +48,11 @@ const pdfPages = {
         else
             throw new Error("Unexpected error : can't get pages!!!");
     },
-
 }
 
 export default pdfPages;
 
+// Demonstrating functionality
 (async () => {
     await pdfPages.uploadDocument();
     await pdfPages.deletePage(configParams.PAGE_NUMBER);
