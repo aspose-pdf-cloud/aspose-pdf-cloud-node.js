@@ -14,19 +14,12 @@ import { Stamp } from "asposepdfcloud/src/models/stamp.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     IMAGE_STAMP_FILE: "sample.png",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
     IMAGE_STAMP_LLY: 800,
-
     IMAGE_STAMP_WIDTH: 24,
-
     IMAGE_STAMP_HEIGHT: 24,
 };
 
@@ -48,7 +41,7 @@ const pdfPages = {
     },
 
     uploadDocument: async function () {
-        await pdfPages.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     addPageTextStamp: async function (pageNumber) {
@@ -98,6 +91,7 @@ const pdfPages = {
 
 export default pdfPages;
 
+// Demonstrating functionality
 await (async () => {
     await pdfPages.uploadDocument();
     await pdfPages.addPageTextStamp(configParams.PAGE_NUMBER);
