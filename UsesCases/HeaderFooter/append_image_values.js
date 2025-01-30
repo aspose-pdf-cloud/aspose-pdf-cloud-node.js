@@ -17,22 +17,16 @@ import { ImageFooter } from "asposepdfcloud/src/models/imageFooter.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     IMAGE_HEADER_FILE: "sample.png",
-
     IMAGE_FOOTER_FILE: "sample.png",
-
     PAGE_NUMBER: 2,     // Your document page number...
-
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const pdfHederFooter = {
+const pdfHeaderFooter = {
     uploadFiles: async function (fileName) {
         const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
         await pdfApi.uploadFile(fileName, pdfFileData);
@@ -48,7 +42,7 @@ const pdfHederFooter = {
     },
 
     uploadDocument: async function () {
-        await pdfHederFooter.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     adddImageHeader: async function () {
@@ -88,14 +82,14 @@ const pdfHederFooter = {
     },
 }
 
-export default pdfHederFooter;
+export default pdfHeaderFooter;
 
-
+// Demonstrating functionality
 await (async () => {
-    await pdfHederFooter.uploadDocument();
-    await pdfHederFooter.uploadFiles(configParams.IMAGE_HEADER_FILE);
-    await pdfHederFooter.uploadFiles(configParams.IMAGE_FOOTER_FILE);
-    await pdfHederFooter.adddImageHeader();
-    await pdfHederFooter.addImageFooter();
-    await pdfHederFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
+    await pdfHeaderFooter.uploadDocument();
+    await pdfHeaderFooter.uploadFiles(configParams.IMAGE_HEADER_FILE);
+    await pdfHeaderFooter.uploadFiles(configParams.IMAGE_FOOTER_FILE);
+    await pdfHeaderFooter.adddImageHeader();
+    await pdfHeaderFooter.addImageFooter();
+    await pdfHeaderFooter.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
 })().catch((error) => { console.log(error.message); });
