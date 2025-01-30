@@ -12,11 +12,8 @@ import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
     PAGE_NUMBER: 2,     // Your document page number...
 };
 
@@ -38,7 +35,7 @@ const pdfPages = {
     },
 
     uploadDocument: async function () {
-        await pdfPages.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getPagesInfo: async function () {
@@ -48,7 +45,7 @@ const pdfPages = {
             if (!Array.isArray(resultPages.body.pages.list) || resultPages.body.pages.list.length === 0) {
                 throw new Error("Unexpected error : pages is null or empty!!!");
             }
-            pdfPages.showPages(resultPages.body.pages.list, "in");
+            this.showPages(resultPages.body.pages.list, "in");
             return resultPages.body.pages.list;
         }
         else
@@ -59,7 +56,7 @@ const pdfPages = {
         const resultPages = await pdfApi.getPage(configParams.PDF_DOCUMENT_NAME, pageNumber);
 
         if (resultPages.body.code == 200 && resultPages.body.page) {
-            pdfPages.showPages( [ resultPages.body.page ], "pg");
+            this.showPages( [ resultPages.body.page ], "pg");
             return resultPages.body.page;
         }
         else
@@ -80,6 +77,7 @@ const pdfPages = {
 
 export default pdfPages;
 
+// Demonstrating functionality
 await (async () => {
     await pdfPages.uploadDocument();
     await pdfPages.getPagesInfo();
