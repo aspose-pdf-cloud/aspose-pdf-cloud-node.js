@@ -11,14 +11,10 @@ import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
-    PAGE_NUMBER: 2,     // Your document page number...
-
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
+    PAGE_NUMBER: 2,                                 // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table Id to be processing...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -40,7 +36,7 @@ const pdfTables = {
             if (!Array.isArray(resultTabs.body.tables.list) || resultTabs.body.tables.list.length === 0) {
                 throw new Error("Unexpected error : tables is null or empty!!!");
             }
-            pdfTables.showLTablesInfo(resultTabs.body.tables.list, "all");
+            this.showLTablesInfo(resultTabs.body.tables.list, "all");
             return resultTabs.body.tables.list;
         }
         else
@@ -51,7 +47,7 @@ const pdfTables = {
         const resultTabs = await pdfApi.getTable(configParams.PDF_DOCUMENT_NAME, configParams.TABLE_ID);
 
         if (resultTabs.body.code == 200 && resultTabs.body.table) {
-            pdfTables.showLTablesInfo( [ resultTabs.body.table ], "byId");
+            this.showLTablesInfo( [ resultTabs.body.table ], "byId");
             return resultTabs.body.table;
         }
         else
@@ -72,6 +68,7 @@ const pdfTables = {
 
 export default pdfTables;
 
+// Demonstrating functionality
 await (async () => {
     await pdfTables.uploadDocument();
     await pdfTables.getAllTables();
