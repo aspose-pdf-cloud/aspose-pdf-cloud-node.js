@@ -21,14 +21,10 @@ import { TextRect } from "asposepdfcloud/src/models/textRect.js";
 
 const configParams = {
     LOCAL_PATH: "C:\\Samples\\",
-
     PDF_DOCUMENT_NAME: "sample.pdf",
-
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-
-    PAGE_NUMBER: 2,     // Your document page number...
-
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
+    PAGE_NUMBER: 2,                                 // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table Id to be processing...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -49,7 +45,7 @@ const pdfTables = {
     },
 
     uploadDocument: async function () {
-        await pdfTables.uploadFiles(configParams.PDF_DOCUMENT_NAME);
+        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
     },
 
     getAllTables: async function () {
@@ -59,7 +55,7 @@ const pdfTables = {
             if (!Array.isArray(resultTabs.body.tables.list) || resultTabs.body.tables.list.length === 0) {
                 throw new Error("Unexpected error : tables is null or empty!!!");
             }
-            pdfTables.showTablesInfo(resultTabs.body.tables.list, "all");
+            this.showTablesInfo(resultTabs.body.tables.list, "all");
             return resultTabs.body.tables.list;
         }
         else
@@ -70,7 +66,7 @@ const pdfTables = {
         const resultTabs = await pdfApi.getTable(configParams.PDF_DOCUMENT_NAME, configParams.TABLE_ID);
 
         if (resultTabs.body.code == 200 && resultTabs.body.table) {
-            pdfTables.showTablesInfo( [ resultTabs.body.table ], "byId");
+            this.showTablesInfo( [ resultTabs.body.table ], "byId");
             return resultTabs.body.table;
         }
         else
@@ -132,13 +128,11 @@ const pdfTables = {
         for (let r = 0; r < numOfRows; r++)
         {
             const row = new Row();
-
             row.cells = [];
     
             for (let c = 0; c < numOfCols; c++)
             {
                 const cell = new Cell();
-                
                 cell.defaultCellTextState = commonTextState;
 
                 if (r == 0)  // header cells
@@ -165,7 +159,7 @@ const pdfTables = {
     },
 
     addTableOnPage: async function (pageNum) {
-        const jsonTable = pdfTables.initTable();
+        const jsonTable = this.initTable();
 
         const resultTabs = await pdfApi.postPageTables(configParams.PDF_DOCUMENT_NAME, pageNum, [ jsonTable ]);
 
