@@ -20,6 +20,7 @@ const configParams = {
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     NEW_BOOKMARK_TITLE: "• Підвищення продуктивності",
+    PARENT_BOOKMARK_FOR_APPEND: "",     //The parent bookmark path. Specify an empty string when adding a bookmark to the root.
     NEW_BOOKMARK_PAGE_NUMBER: 2,
 };
 
@@ -39,7 +40,7 @@ const pdfBookmarks = {
         console.log("Downloaded: " + filePath);
     },
 
-    async appendBookmarkLink(bookmarkPath) {
+    async appendBookmarkLink() {
         const bookmarkLink = new Link({ rel: "self" });
         const bookmarkColor = new Color({ a: 255, r: 0, g: 255, b: 0 });
 
@@ -56,7 +57,7 @@ const pdfBookmarks = {
         newBookmark.pageDisplayZoom = 2;
         newBookmark.pageNumber = configParams.NEW_BOOKMARK_PAGE_NUMBER;
 
-        const response = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath, [newBookmark]);
+        const response = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, "", [newBookmark]);
         const { code, bookmarks } = response.body;
 
         if (code === 200 && bookmarks) {
@@ -73,7 +74,7 @@ const pdfBookmarks = {
 async function main() {
     try {
         await pdfBookmarks.uploadDocument();
-        await pdfBookmarks.appendBookmarkLink("");
+        await pdfBookmarks.appendBookmarkLink();
         await pdfBookmarks.downloadResult();
     } catch (error) {
         console.error("Error:", error.message);
