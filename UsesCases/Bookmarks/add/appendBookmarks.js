@@ -57,13 +57,10 @@ const pdfBookmarks = {
         newBookmark.pageDisplayZoom = 2;
         newBookmark.pageNumber = configParams.NEW_BOOKMARK_PAGE_NUMBER;
 
-        const response = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, "", [newBookmark]);
+        const response = await pdfApi.postBookmark(configParams.PDF_DOCUMENT_NAME, configParams.PARENT_BOOKMARK_FOR_APPEND, [newBookmark]);
         const { code, bookmarks } = response.body;
 
         if (code === 200 && bookmarks) {
-            if (!Array.isArray(bookmarks.list) || bookmarks.list.length === 0) {
-                throw new Error("Unexpected error: bookmarks is null or empty!!!");
-            }
             const addedBookmark = bookmarks.list[bookmarks.list.length - 1];
             console.log("Appended bookmark: " + addedBookmark.links[0].href + " => " + addedBookmark.title);
             return addedBookmark;
