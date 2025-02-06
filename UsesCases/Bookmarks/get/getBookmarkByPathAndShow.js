@@ -5,10 +5,10 @@
 // 6. Perform some action after successful retrieving the Bookmark from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json" with { type: "json" };
-import fs from "node:fs/promises";
+import credentials from "credentials.json"  with { type: "json" }; // json-file in this format: { "id": "*****", "key": "*******" }
+import fs from 'node:fs/promises';
 import path from "node:path";
-import { PdfApi } from "../../../src/api/api.js";
+import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
