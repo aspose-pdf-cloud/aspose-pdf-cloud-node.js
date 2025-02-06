@@ -19,7 +19,7 @@ const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    NEW_BOOKMARK_TITLE: "• Підвищення продуктивності",
+    NEW_BOOKMARK_TITLE: "• Productivity improvement",
     PARENT_BOOKMARK_FOR_APPEND: "",     //The parent bookmark path. Specify an empty string when adding a bookmark to the root.
     NEW_BOOKMARK_PAGE_NUMBER: 2,
 };
