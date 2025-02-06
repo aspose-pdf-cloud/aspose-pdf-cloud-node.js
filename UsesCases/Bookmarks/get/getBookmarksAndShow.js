@@ -29,25 +29,8 @@ const pdfBookmarks = {
         const resultBookmarks = await pdfApi.getDocumentBookmarks(configParams.PDF_DOCUMENT_NAME);
         const { code, bookmarks } = resultBookmarks.body;
 
-        if (code === 200 && bookmarks) {
-            if (!Array.isArray(bookmarks.list) || bookmarks.list.length === 0) {
-                throw new Error("Unexpected error: bookmarks list is null or empty!!!");
-            }
-            this.showBookmarks(bookmarks, "all");
-            return bookmarks;
-        }
-        throw new Error("Unexpected error: can't get bookmarks list!!!");
-    },
-
-    async getBookmarkByPath(bookmarkPath) {
-        const resultBookmark = await pdfApi.getBookmark(configParams.PDF_DOCUMENT_NAME, bookmarkPath);
-        const { code, bookmark } = resultBookmark.body;
-
-        if (code !== 200 || !bookmark) {
-            throw new Error("Unexpected error: can't get bookmark!!!");
-        }
-        console.log(`Found bookmark title: ${bookmark.title}`);
-        return bookmark;
+        this.showBookmarks(bookmarks, "all");
+        return bookmarks;
     },
 
     async showBookmarks(bookmarks, prefix) {
@@ -63,7 +46,6 @@ async function main() {
     try {
         await pdfBookmarks.uploadDocument();
         await pdfBookmarks.getAllBookmarks();
-        await pdfBookmarks.getBookmarkByPath(configParams.BOOKMARK_PATH);
     } catch (error) {
         console.error("Error:", error.message);
     }
