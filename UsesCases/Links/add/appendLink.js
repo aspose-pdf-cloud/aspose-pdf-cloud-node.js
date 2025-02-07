@@ -6,16 +6,16 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { Color } from "../../../src/models/color.js";
-import { Link } from "../../../src/models/link.js";
-import { Rectangle } from "../../../src/models/rectangle.js";
-import { LinkAnnotation } from "../../../src/models/linkAnnotation.js";
-import { LinkHighlightingMode} from "../../../src/models/linkHighlightingMode.js";
-import { LinkActionType } from "../../../src/models/linkActionType.js";
+import { PdfApi } from "asposepdfcloud";
+import { Color } from "asposepdfcloud/src/models/color.js";
+import { Link } from "asposepdfcloud/src/models/link.js";
+import { Rectangle } from "asposepdfcloud/src/models/rectangle.js";
+import { LinkAnnotation } from "asposepdfcloud/src/models/linkAnnotation.js";
+import { LinkHighlightingMode} from "asposepdfcloud/src/models/linkHighlightingMode.js";
+import { LinkActionType } from "asposepdfcloud/src/models/linkActionType.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
