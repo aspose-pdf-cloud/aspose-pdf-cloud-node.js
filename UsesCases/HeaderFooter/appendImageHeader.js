@@ -8,11 +8,12 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { ImageHeader } from "../../src/models/imageHeader.js";
+import { PdfApi } from "asposepdfcloud";
+import { ImageHeader } from "asposepdfcloud/src/models/imageHeader.js";
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
