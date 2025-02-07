@@ -8,14 +8,12 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { TextHeader } from "../../src/models/textHeader.js";
-import { TextFooter } from "../../src/models/textFooter.js";
-
-import { HorizontalAlignment } from "../../src/models/horizontalAlignment.js";
+import { PdfApi } from "asposepdfcloud";
+import { TextFooter } from "asposepdfcloud/src/models/textFooter.js";
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
@@ -27,9 +25,10 @@ const configParams = {
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
 const pdfHederFooter = {
-    async uploadFile (fileName) {
-        const pdfFileData = await fs.readFile(configParams.LOCAL_FOLDER + fileName);
-        await pdfApi.uploadFile(fileName, pdfFileData);
+    async uploadDocument() {
+        const pdfFilePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
+        const pdfFileData = await fs.readFile(pdfFilePath);
+        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
     },
 
     async downloadResult() {
@@ -37,10 +36,6 @@ const pdfHederFooter = {
         const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
         await fs.writeFile(filePath, changedPdfData.body);
         console.log("Downloaded: " + filePath);
-    },
-
-    async uploadDocument () {
-        await pdfHederFooter.uploadFile(configParams.PDF_DOCUMENT_NAME);
     },
 
     async adddTextFooter () {
