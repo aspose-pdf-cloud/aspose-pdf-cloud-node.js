@@ -46,7 +46,6 @@ const pdfLinks = {
     },
 
     async appendLink () {
-
         const linkColor = new Color({ a: 255, r: 0, g: 255, b: 0 });
 
         const linkRectangle = new Rectangle();
