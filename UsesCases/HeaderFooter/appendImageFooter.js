@@ -8,11 +8,12 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { ImageFooter } from "../../src/models/imageFooter.js";
+import { PdfApi } from "asposepdfcloud";
+import { ImageFooter } from "asposepdfcloud/src/models/imageFooter.js";
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
@@ -45,7 +46,7 @@ const pdfHederFooter = {
         const imageFooter = new ImageFooter();
         imageFooter.background = true;
         imageFooter.value = "TEST FOOTER VALUE";
-        imageFooter.horizontalAlignment = "Center";
+        imageFooter.horizontalAlignment = HorizontalAlignment.Center;
         imageFooter.fileName = configParams.IMAGE_FOOTER_FILE;
         imageFooter.width = 24;
         imageFooter.height = 24;
