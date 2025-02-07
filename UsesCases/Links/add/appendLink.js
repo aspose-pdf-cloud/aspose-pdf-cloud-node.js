@@ -72,7 +72,6 @@ const pdfLinks = {
             return true;
         }
     },
-
 }
 
 async function main() {
