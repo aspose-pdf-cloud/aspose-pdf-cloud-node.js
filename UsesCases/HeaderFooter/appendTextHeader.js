@@ -8,14 +8,12 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { TextHeader } from "../../src/models/textHeader.js";
-import { TextFooter } from "../../src/models/textFooter.js";
-
-import { HorizontalAlignment } from "../../src/models/horizontalAlignment.js";
+import { PdfApi } from "asposepdfcloud";
+import { TextHeader } from "asposepdfcloud/src/models/textHeader.js";
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
@@ -50,15 +48,6 @@ const pdfHederFooter = {
         textHeader.horizontalAlignment = HorizontalAlignment.Center;
 
         await pdfApi.postDocumentTextHeader(configParams.PDF_DOCUMENT_NAME, textHeader);
-    },
-
-    async adddTextFooter () {
-        const textFooter = new TextFooter();
-        textFooter.background = true;
-        textFooter.value = configParams.FOOTER_VALUE;
-        textFooter.horizontalAlignment = "Center";
-
-        await pdfApi.postDocumentTextFooter(configParams.PDF_DOCUMENT_NAME, textFooter);
     },
 }
 
