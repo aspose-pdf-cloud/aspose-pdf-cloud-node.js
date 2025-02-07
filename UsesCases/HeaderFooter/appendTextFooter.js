@@ -19,7 +19,7 @@ const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-        FOOTER_VALUE: "New Footer Value",
+    FOOTER_VALUE: "New Footer Value",
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
