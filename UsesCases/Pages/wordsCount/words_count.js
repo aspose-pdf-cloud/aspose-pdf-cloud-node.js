@@ -6,13 +6,13 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
+import { PdfApi } from "../../../src/api/api.js";
 
 const configParams = {
-    LOCAL_PATH: "C:\\Samples\\",
+    LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     PAGE_NUMBER: 2,     // Your document page number...
@@ -21,40 +21,25 @@ const configParams = {
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
 const pdfPages = {
-    uploadFiles: async function (fileName) {
-        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
-        await pdfApi.uploadFile(fileName, pdfFileData);
+    async uploadDocument () {
+        const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
+        const pdfFileData = await fs.readFile(fileNamePath);
+        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
     },
 
-    downloadFiles: async function (local_path, fileName) {
-        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-
-        const filePath = path.join(local_path, fileName);
-
-        await fs.writeFile(filePath, changedPdfData.body);
-        console.log("downloaded: " + filePath);
-    },
-
-    uploadDocument: async function () {
-        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
-    },
-
-    getWordsCount: async function () {
+    async getWordsCount () {
         const resultPages = await pdfApi.getWordsPerPage(configParams.PDF_DOCUMENT_NAME);
 
         if (resultPages.body.code == 200) {
             if (resultPages.body.code == 200 && resultPages.body.wordsPerPage) {
-                if (!Array.isArray(resultPages.body.wordsPerPage.list) || resultPages.body.wordsPerPage.list.length === 0) {
-                    throw new Error("Unexpected error : pages is null or empty!!!");
-                }
                 this.showWordsCount(resultPages.body.wordsPerPage.list);
                 return resultPages.body.wordsPerPage.list;
             }
             else
-                throw new Error("Unexpected error : can't get pages!!!");
+                console.error("Unexpected error : can't get pages!!!");
         }
         else
-            throw new Error("Unexpected error : can't move page!!!");
+            console.error("Unexpected error : can't move page!!!");
     },
 
     showWordsCount: function(wordsCountArray) {
@@ -72,7 +57,6 @@ const pdfPages = {
 
 export default pdfPages;
 
-// Demonstrating functionality
 (async () => {
     await pdfPages.uploadDocument();
     await pdfPages.getWordsCount();
