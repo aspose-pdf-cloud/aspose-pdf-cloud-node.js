@@ -6,11 +6,11 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { Stamp } from "../../../src/models/stamp.js"; 
+import { PdfApi } from "asposepdfcloud";
+import { Stamp } from "asposepdfcloud/src/models/stamp.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
@@ -43,8 +43,7 @@ const pdfStamps = {
         await this.uploadFile(configParams.PDF_DOCUMENT_NAME);
     },
 
-    addStamps: async function () {
-
+    async addStamps () {
         const textStamp = new Stamp();
         textStamp.type = "Text";
         textStamp.background = true;
