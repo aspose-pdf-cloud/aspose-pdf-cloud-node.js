@@ -6,16 +6,16 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { Table } from "../../../src/models/table.js";
-import { Cell } from "../../../src/models/cell.js";
-import { FontStyles } from "../../../src/models/fontStyles.js";
-import { GraphInfo } from "../../../src/models/graphInfo.js";
-import { Row } from "../../../src/models/row.js";
-import { TextRect } from "../../../src/models/textRect.js";
+import { PdfApi } from "asposepdfcloud./src/api/api.js";
+import { Table } from "asposepdfcloud/src/models/table.js";
+import { Cell } from "asposepdfcloud/src/models/cell.js";
+import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
+import { GraphInfo } from "asposepdfcloud/src/models/graphInfo.js";
+import { Row } from "asposepdfcloud./src/models/row.js";
+import { TextRect } from "asposepdfcloud/src/models/textRect.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
