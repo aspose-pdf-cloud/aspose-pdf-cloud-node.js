@@ -6,47 +6,42 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
-import { Table } from "asposepdfcloud/src/models/table.js";
-import { Cell } from "asposepdfcloud/src/models/cell.js";
-import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
-import { GraphInfo } from "asposepdfcloud/src/models/graphInfo.js";
-import { Row } from "asposepdfcloud/src/models/row.js";
-import { TextRect } from "asposepdfcloud/src/models/textRect.js";
+import { PdfApi } from "../../../src/api/api.js";
+import { Table } from "../../../src/models/table.js";
+import { Cell } from "../../../src/models/cell.js";
+import { FontStyles } from "../../../src/models/fontStyles.js";
+import { GraphInfo } from "../../../src/models/graphInfo.js";
+import { Row } from "../../../src/models/row.js";
+import { TextRect } from "../../../src/models/textRect.js";
 
 const configParams = {
-    LOCAL_PATH: "C:\\Samples\\",
+    LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 2,                                 // Your document page number...
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table id to be processing...
+    PAGE_NUMBER: 2,     // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
 const pdfTables = {
-    uploadFiles: async function (fileName) {
-        const pdfFileData = await fs.readFile(configParams.LOCAL_PATH + fileName);
-        await pdfApi.uploadFile(fileName, pdfFileData);
+    async uploadDocument () {
+        const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
+        const pdfFileData = await fs.readFile(fileNamePath);
+        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
     },
-
-    downloadFiles: async function (local_path, fileName) {
+                           
+    async downloadResult () {
         const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-
-        const filePath = path.join(local_path, fileName);
-
+        const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
         await fs.writeFile(filePath, changedPdfData.body);
-        console.log("downloaded: " + filePath);
+        console.log("Downloaded: " + filePath);
     },
 
-    uploadDocument: async function () {
-        await this.uploadFiles(configParams.PDF_DOCUMENT_NAME);
-    },
-
-    initTable: function () {
+    initTable () {
         const numOfCols = 5;
         const numOfRows = 5;
 
@@ -55,29 +50,19 @@ const pdfTables = {
             fontSize: 11,
             foregroundColor: { a: 0xFF, r: 0xFF, g: 0xFF, b: 0xFF },
             fontStyle: FontStyles.Bold,
-            fontFile: null,
-            underline: false,
-            strikeOut: false,
-            superscript: false,
-            subscript: false,
         };
 
         const commonTextState = {
             font: "Arial Bold",
             fontSize: 11,
             foregroundColor: { a: 0xFF, r: 0x70, g: 0x70, b: 0x70 },
-            fontFile: null,
-            underline: false,
-            strikeOut: false,
-            superscript: false,
-            subscript: false,
         };
     
         const table = new Table();
         table.rows = [];
     
         let colWidths = "";
-        for (let c = 0; c < numOfCols; c++)
+        for (let colIndex = 0; colIndex < numOfCols; colIndex++)
         {
             colWidths += " 70";
         }
@@ -98,19 +83,19 @@ const pdfTables = {
         table.left = 150;
         table.top = 250;
     
-        for (let r = 0; r < numOfRows; r++)
+        for (let rowIndex = 0; rowIndex < numOfRows; rowIndex++)
         {
             const row = new Row();
 
             row.cells = [];
     
-            for (let c = 0; c < numOfCols; c++)
+            for (let colIndex = 0; colIndex < numOfCols; colIndex++)
             {
                 const cell = new Cell();
                 
                 cell.defaultCellTextState = commonTextState;
 
-                if (r == 0)  // header cells
+                if (rowIndex == 0)  // header cells
                 {
                     cell.backgroundColor = { a: 0xFF, r: 0x80, g: 0x80, b: 0x80 };
                     cell.defaultCellTextState = headerTextState;
@@ -120,10 +105,10 @@ const pdfTables = {
                 };
               
                 const textRect = new TextRect();
-                if (r == 0)
-                    textRect.text = "header #" + c;
+                if (rowIndex == 0)
+                    textRect.text = "header #" + colIndex;
                 else
-                    textRect.text = "value";
+                    textRect.text = "value #'(" + rowIndex + "," + colIndex + "')";
                 cell.paragraphs = [textRect];
 
                 row.cells.push(cell);
@@ -133,7 +118,7 @@ const pdfTables = {
         return table;
     },
 
-    replaceTable: async function () {
+    async replaceTable () {
         const jsonTable = this.initTable();
 
         const resultTabs = await pdfApi.putTable(configParams.PDF_DOCUMENT_NAME, configParams.TABLE_ID, jsonTable);
@@ -143,15 +128,18 @@ const pdfTables = {
             return resultTabs.body.table;
         }
         else
-            throw new Error("Unexpected error : can't get tables!!!");
+            console.error("Unexpected error : can't get tables!!!");
     },
 }
 
-export default pdfTables;
+async function main() {
+    try {
+        await pdfTables.uploadDocument();
+        await pdfTables.replaceTable();
+        await pdfTables.downloadResult();
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
+}
 
-// Demonstrating functionality
-await (async () => {
-    await pdfTables.uploadDocument();
-    await pdfTables.replaceTable();
-    await pdfTables.downloadFiles( configParams.LOCAL_PATH, configParams.LOCAL_RESULT_DOCUMENT_NAME );
-})().catch((error) => { console.log(error.message); });
+main();
