@@ -9,7 +9,7 @@
 import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud./src/api/api.js";
+import { PdfApi } from "asposepdfcloud";
 import { Table } from "asposepdfcloud/src/models/table.js";
 import { Cell } from "asposepdfcloud/src/models/cell.js";
 import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
