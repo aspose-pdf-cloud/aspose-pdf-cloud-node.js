@@ -13,7 +13,7 @@ import { Table } from "asposepdfcloud/src/models/table.js";
 import { Cell } from "asposepdfcloud/src/models/cell.js";
 import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
 import { GraphInfo } from "asposepdfcloud/src/models/graphInfo.js";
-import { Row } from "asposepdfcloud./src/models/row.js";
+import { Row } from "asposepdfcloud/src/models/row.js";
 import { TextRect } from "asposepdfcloud/src/models/textRect.js";
 
 const configParams = {
