@@ -8,7 +8,7 @@
 import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud./src/api/api.js";
+import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
