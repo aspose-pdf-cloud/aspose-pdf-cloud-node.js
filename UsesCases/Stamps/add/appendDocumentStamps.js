@@ -18,6 +18,8 @@ const configParams = {
     IMAGE_STAMP_FILE: "sample.png",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     PAGE_NUMBER: 2,     // Your document page number...
+    TEXT_STAMP_VALUE: "NEW TEXT STAMP",
+    IMAGE_TEXT_STAMP_VALUE: "NEW IMAGE STAMP",
     IMAGE_STAMP_LLY: 800,
     IMAGE_STAMP_WIDTH: 24,
     IMAGE_STAMP_HEIGHT: 24,
@@ -45,22 +47,22 @@ const pdfStamps = {
 
     async addStamps () {
         const textStamp = new Stamp();
-        textStamp.type = "Text";
+        textStamp.type = StampType.Text;
         textStamp.background = true;
-        textStamp.horizontalAlignment = "Center";
-        textStamp.textAlignment = "Center";
-        textStamp.value = "NEW TEXT STAMP";
+        textStamp.horizontalAlignment = HorizontalAlignment.Center;
+        textStamp.textAlignment = HorizontalAlignment.Center;
+        textStamp.value = configParams.TEXT_STAMP_VALUE;
 
         const imageStamp = new Stamp();
-        imageStamp.type = "Image";
-        imageStamp.background = true;
-        imageStamp.horizontalAlignment = "Center";
-        imageStamp.textAlignment = "Center";
-        imageStamp.value = "NEW IMAGE STAMP";
-        imageStamp.fileName = configParams.IMAGE_STAMP_FILE;
-        imageStamp.yIndent = configParams.IMAGE_STAMP_LLY;
-        imageStamp.width = configParams.IMAGE_STAMP_WIDTH;
-        imageStamp.height = configParams.IMAGE_STAMP_HEIGHT;
+            imageStamp.type =StampType.Image;
+            imageStamp.background = true;
+            imageStamp.horizontalAlignment = HorizontalAlignment.Center;
+            imageStamp.textAlignment = HorizontalAlignment.Center;
+            imageStamp.value = configParams.IMAGE_TEXT_STAMP_VALUE;
+            imageStamp.fileName = configParams.IMAGE_STAMP_FILE;
+            imageStamp.yIndent = configParams.IMAGE_STAMP_LLY;
+            imageStamp.width = configParams.IMAGE_STAMP_WIDTH;
+            imageStamp.height = configParams.IMAGE_STAMP_HEIGHT;
 
         const addResult = await pdfApi.postDocumentTextStamps(configParams.PDF_DOCUMENT_NAME, [ textStamp ])
             .then(async () => {
