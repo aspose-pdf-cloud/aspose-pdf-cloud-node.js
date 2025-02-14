@@ -54,7 +54,7 @@ const pdfStamps = {
         textStamp.value = configParams.TEXT_STAMP_VALUE;
 
         const imageStamp = new Stamp();
-            imageStamp.type =StampType.Image;
+            imageStamp.type = StampType.Image;
             imageStamp.background = true;
             imageStamp.horizontalAlignment = HorizontalAlignment.Center;
             imageStamp.textAlignment = HorizontalAlignment.Center;
