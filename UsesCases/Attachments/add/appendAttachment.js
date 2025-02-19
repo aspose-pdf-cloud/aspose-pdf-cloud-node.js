@@ -7,11 +7,11 @@
 // 7. Download result file after appending Attachment
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json" with { type: "json" }; // json-file in this format: { "id": "*****", "key": "*******" }
-import fs from "node:fs/promises";
-import path from "node:path";
-import { PdfApi } from "../../../src/api/api.js";
-import { AttachmentInfo } from "../../../src/models/attachmentInfo.js"; 
+import credentials from "./credentials.json"  with { type: "json" };
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { PdfApi } from "asposepdfcloud";
+import { AttachmentInfo } from "asposepdfcloud/src/models/attachmentInfo.js"; 
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
