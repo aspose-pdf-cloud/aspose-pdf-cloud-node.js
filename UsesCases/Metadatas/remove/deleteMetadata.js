@@ -50,7 +50,7 @@ const pdfMetadatas = {
     async deleteMetadata () {
         const prop = new XmpMetadataProperty();
         prop.key = 'dc:creator';
-        prop.value = null;
+        prop.value = null;        // null value means delete property...
         prop.namespaceUri = 'http://purl.org/dc/elements/1.1/';
 
         const metadata = new XmpMetadata();
