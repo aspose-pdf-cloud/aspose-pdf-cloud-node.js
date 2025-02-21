@@ -6,23 +6,17 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { XmpMetadata } from "../../../src/models/xmpMetadata.js";
-import { XmpMetadataProperty } from "../../../src/models/xmpMetadataProperty.js";
+import { PdfApi } from "asposepdfcloud";
+import { XmpMetadata } from "asposepdfcloud/src/models/xmpMetadata.js";
+import { XmpMetadataProperty } from "asposepdfcloud/src/models/xmpMetadataProperty.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
-    PAGE_NUMBER: 2,     // Your document page number...
-    LINK_POS_LLX: 244.914,
-    LINK_POS_LLY: 488.622,
-    LINK_POS_URX: 284.776,
-    LINK_POS_URY: 498.588,
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -47,15 +41,13 @@ const pdfMetadatas = {
         if (responseMetadata.response.status == 200)
         {
             const props = responseMetadata.body.properties;
-            for (var i = 0; i < props.length; i++)
-            {
-                console.log(props[i]);
-            }
+            props.forEach((prop) =>{
+                console.log(prop.key);
+            });
         }
     },
 
     async deleteMetadata () {
-
         const prop = new XmpMetadataProperty();
         prop.key = 'dc:creator';
         prop.value = null;
@@ -71,7 +63,6 @@ const pdfMetadatas = {
             return true;
         }
     },
-
 }
 
 async function main() {
