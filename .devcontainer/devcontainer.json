@@ -1,0 +1,23 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"postCreateCommand": "npm install --no-bin-links",
+	"workspaceFolder": "/SDKs/Node.JS",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/SDKs/Node.JS,type=bind,consistency=cached",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"mochaExplorer.files": "test/*.ts",
+				"mochaExplorer.require": "ts-node/register",	
+				"mochaExplorer.timeout": 60000
+			},
+			"extensions": [
+				"hbenl.vscode-mocha-test-adapter"
+			]
+		}
+	},
+	"mounts": [
+		"source=${localWorkspaceFolder}/../../Settings,target=/Settings,type=bind,consistency=cached"
+	]
+
+}
