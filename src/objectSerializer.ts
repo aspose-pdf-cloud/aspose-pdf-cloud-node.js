@@ -293,6 +293,7 @@ import { CommonFigureAnnotation } from "./models/commonFigureAnnotation";
 import { FileAttachmentAnnotation } from "./models/fileAttachmentAnnotation";
 import { FreeTextAnnotation } from "./models/freeTextAnnotation";
 import { HighlightAnnotation } from "./models/highlightAnnotation";
+import { ImageStampPageSpecified } from "./models/imageStampPageSpecified";
 import { InkAnnotation } from "./models/inkAnnotation";
 import { LineAnnotation } from "./models/lineAnnotation";
 import { ListBoxField } from "./models/listBoxField";
@@ -304,6 +305,7 @@ import { SquigglyAnnotation } from "./models/squigglyAnnotation";
 import { StampAnnotation } from "./models/stampAnnotation";
 import { StrikeOutAnnotation } from "./models/strikeOutAnnotation";
 import { TextAnnotation } from "./models/textAnnotation";
+import { TextStampPageSpecified } from "./models/textStampPageSpecified";
 import { UnderlineAnnotation } from "./models/underlineAnnotation";
 import { CircleAnnotation } from "./models/circleAnnotation";
 import { PolyLineAnnotation } from "./models/polyLineAnnotation";
@@ -588,6 +590,7 @@ let typeMap: {[index: string]: any} = {
     "FileAttachmentAnnotation": FileAttachmentAnnotation,
     "FreeTextAnnotation": FreeTextAnnotation,
     "HighlightAnnotation": HighlightAnnotation,
+    "ImageStampPageSpecified": ImageStampPageSpecified,
     "InkAnnotation": InkAnnotation,
     "LineAnnotation": LineAnnotation,
     "ListBoxField": ListBoxField,
@@ -599,6 +602,7 @@ let typeMap: {[index: string]: any} = {
     "StampAnnotation": StampAnnotation,
     "StrikeOutAnnotation": StrikeOutAnnotation,
     "TextAnnotation": TextAnnotation,
+    "TextStampPageSpecified": TextStampPageSpecified,
     "UnderlineAnnotation": UnderlineAnnotation,
     "CircleAnnotation": CircleAnnotation,
     "PolyLineAnnotation": PolyLineAnnotation,
