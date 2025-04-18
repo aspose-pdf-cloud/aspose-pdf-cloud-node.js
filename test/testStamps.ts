@@ -30,6 +30,8 @@ import { TextState } from "../src/models/textState";
 import { ImageStamp } from "../src/models/imageStamp";
 import { PdfPageStamp } from "../src/models/pdfPageStamp";
 import { PageNumberStamp } from "../src/models/pageNumberStamp";
+import { TextStampPageSpecified } from "../src/models/textStampPageSpecified";
+import { ImageStampPageSpecified } from "../src/models/imageStampPageSpecified";
 
 describe("Stamps Tests", () => {
 
@@ -154,6 +156,59 @@ describe("Stamps Tests", () => {
         });
     });
 
+    describe("Post Document Text Stamps Page Specified Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            const textState = new TextState();
+            textState.fontSize = 14;
+            textState.font = 'Arial';
+
+            const stamp1 = new TextStampPageSpecified();
+            stamp1.pageNumber = 2;
+            stamp1.background = true;
+            stamp1.leftMargin = 1;
+            stamp1.rightMargin = 2;
+            stamp1.topMargin = 3;
+            stamp1.bottomMargin = 4;
+            stamp1.horizontalAlignment = HorizontalAlignment.Center;
+            stamp1.verticalAlignment = VerticalAlignment.Center;
+            stamp1.opacity = 1;
+            stamp1.rotate = Rotation.None;
+            stamp1.rotateAngle = 0;
+            stamp1.xIndent = 0;
+            stamp1.yIndent = 0;
+            stamp1.zoom = 1;
+            stamp1.textAlignment = HorizontalAlignment.Center;
+            stamp1.value = "Text Stamp 1";
+            stamp1.textState = textState;
+
+            const stamp2 = new TextStampPageSpecified();
+            stamp2.pageNumber = 2;
+            stamp2.background = true;
+            stamp2.leftMargin = 1;
+            stamp2.rightMargin = 2;
+            stamp2.topMargin = 3;
+            stamp2.bottomMargin = 4;
+            stamp2.horizontalAlignment = HorizontalAlignment.Center;
+            stamp2.verticalAlignment = VerticalAlignment.Center;
+            stamp2.opacity = 1;
+            stamp2.rotate = Rotation.None;
+            stamp2.rotateAngle = 0;
+            stamp2.xIndent = 0;
+            stamp2.yIndent = 0;
+            stamp2.zoom = 1;
+            stamp2.textAlignment = HorizontalAlignment.Center;
+            stamp2.value = "Text Stamp 2";
+            stamp2.textState = textState;
+
+            return BaseTest.getPdfApi().postDocumentTextStamps(name, [stamp1, stamp2], null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
     describe("Post Page Image Stamps Test", () => {
 
         it("should return response with code 200", async () => {
@@ -207,6 +262,53 @@ describe("Stamps Tests", () => {
             stamp.fileName = BaseTest.remoteTempFolder + '/' + imageFile;
 
             return BaseTest.getPdfApi().postDocumentImageStamps(name, [stamp], null, BaseTest.remoteTempFolder)
+                .then((result) => {
+                    assert.equal(result.response.statusCode, 200);
+            });
+        });
+    });
+
+    describe("Post Document Image Stamps Page Specified Test", () => {
+
+        it("should return response with code 200", async () => {
+            
+            await BaseTest.uploadFile(imageFile);
+
+            const stamp1 = new ImageStampPageSpecified();
+            stamp1.pageNumber = 2;
+            stamp1.background = true;
+            stamp1.leftMargin = 1;
+            stamp1.rightMargin = 2;
+            stamp1.topMargin = 3;
+            stamp1.bottomMargin = 4;
+            stamp1.horizontalAlignment = HorizontalAlignment.Center;
+            stamp1.verticalAlignment = VerticalAlignment.Center;
+            stamp1.opacity = 1;
+            stamp1.rotate = Rotation.None;
+            stamp1.rotateAngle = 0;
+            stamp1.xIndent = 0;
+            stamp1.yIndent = 0;
+            stamp1.zoom = 1;
+            stamp1.fileName = BaseTest.remoteTempFolder + '/' + imageFile;
+
+            const stamp2 = new ImageStampPageSpecified();
+            stamp2.pageNumber = 2;
+            stamp2.background = true;
+            stamp2.leftMargin = 1;
+            stamp2.rightMargin = 2;
+            stamp2.topMargin = 3;
+            stamp2.bottomMargin = 4;
+            stamp2.horizontalAlignment = HorizontalAlignment.Center;
+            stamp2.verticalAlignment = VerticalAlignment.Center;
+            stamp2.opacity = 1;
+            stamp2.rotate = Rotation.None;
+            stamp2.rotateAngle = 0;
+            stamp2.xIndent = 0;
+            stamp2.yIndent = 0;
+            stamp2.zoom = 1;
+            stamp2.fileName = BaseTest.remoteTempFolder + '/' + imageFile;
+
+            return BaseTest.getPdfApi().postDocumentImageStamps(name, [stamp1, stamp2], null, BaseTest.remoteTempFolder)
                 .then((result) => {
                     assert.equal(result.response.statusCode, 200);
             });
