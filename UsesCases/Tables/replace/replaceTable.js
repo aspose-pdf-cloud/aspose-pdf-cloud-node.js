@@ -5,23 +5,26 @@
 // 5. Append new Link Annotation to the document using postPageLinkAnnotations() function
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
-import credentials from "./credentials.json"  with { type: "json" };
+
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
-import { Table } from "asposepdfcloud/src/models/table.js";
-import { Cell } from "asposepdfcloud/src/models/cell.js";
-import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
-import { GraphInfo } from "asposepdfcloud/src/models/graphInfo.js";
-import { Row } from "asposepdfcloud/src/models/row.js";
-import { TextRect } from "asposepdfcloud/src/models/textRect.js";
+import { PdfApi } from "../../../src/api/api.js";
+import { Table } from "../../../src/models/table.js";
+import { Cell } from "../../../src/models/cell.js";
+import { FontStyles } from "../../../src/models/fontStyles.js";
+import { GraphInfo } from "../../../src/models/graphInfo.js";
+import { Row } from "../../../src/models/row.js";
+import { TextRect } from "../../../src/models/textRect.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 2,     // Your document page number...
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
+    PAGE_NUMBER: 2,                                 // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table id...
+    TABLE_ROWS: 5,
+    TABLE_COLUMNS: 5,
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -31,6 +34,7 @@ const pdfTables = {
         const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
         const pdfFileData = await fs.readFile(fileNamePath);
         await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+        console.log("File '" + configParams.PDF_DOCUMENT_NAME + "' successfully uploaded!");
     },
                            
     async downloadResult () {
@@ -41,8 +45,8 @@ const pdfTables = {
     },
 
     initTable () {
-        const numOfCols = 5;
-        const numOfRows = 5;
+        const numOfCols = configParams.TABLE_COLUMNS;
+        const numOfRows = configParams.TABLE_ROWS;
 
         const headerTextState = {
             font: "Arial Bold",
