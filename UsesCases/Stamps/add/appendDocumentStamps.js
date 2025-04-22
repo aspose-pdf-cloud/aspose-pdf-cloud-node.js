@@ -1,16 +1,10 @@
-// 1. Load your Application Secret and Key from the JSON file or set credentials in another way
-// 2. Create an object to connect to the Pdf.Cloud API
-// 3. Upload your document file
-// 4. Create a new Link Annotation with the required properties
-// 5. Append new Link Annotation to the document using postPageLinkAnnotations() function
-// 6. Perform some action after successful addition
-// All values of variables starting with "YOUR_****" should be replaced by real user values
-
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
-import { Stamp } from "asposepdfcloud/src/models/stamp.js";
+import { PdfApi } from "../../../src/api/api.js";
+import { Stamp } from "../../../src/models/stamp.js"; 
+import { StampType } from "../../../src/models/stampType.js";
+import { HorizontalAlignment } from "../../../src/models/horizontalAlignment.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
@@ -32,6 +26,7 @@ const pdfStamps = {
         const fileNamePath = path.join(configParams.LOCAL_FOLDER, fileName);
         const pdfFileData = await fs.readFile(fileNamePath);
         await pdfApi.uploadFile(fileName, pdfFileData);
+        console.log("File '" + fileName + "' successfully uploaded!");
     },
                     
     async downloadResult () {
@@ -54,11 +49,9 @@ const pdfStamps = {
         textStamp.value = configParams.TEXT_STAMP_VALUE;
 
         const imageStamp = new Stamp();
-            imageStamp.type = StampType.Image;
+            imageStamp.type =StampType.Image;
             imageStamp.background = true;
             imageStamp.horizontalAlignment = HorizontalAlignment.Center;
-            imageStamp.textAlignment = HorizontalAlignment.Center;
-            imageStamp.value = configParams.IMAGE_TEXT_STAMP_VALUE;
             imageStamp.fileName = configParams.IMAGE_STAMP_FILE;
             imageStamp.yIndent = configParams.IMAGE_STAMP_LLY;
             imageStamp.width = configParams.IMAGE_STAMP_WIDTH;
