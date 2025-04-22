@@ -1,21 +1,14 @@
-// 1. Load your Application Secret and Key from the JSON file or set credentials in another way
-// 2. Create an object to connect to the Pdf.Cloud API
-// 3. Upload your document file
-// 4. Delete required Link Annotation from the document using deleteLinkAnnotation() function
-// 6. Perform some action after successful removing the Link Annotation from document
-// All values of variables starting with "YOUR_****" should be replaced by real user values
-
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
+import { PdfApi } from "../../../src/api/api.js"
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 1,     // Your document page number...
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",
+    PAGE_NUMBER: 1,                                 // Your document page number...
+    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",     // Your table id...
 };
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
@@ -25,6 +18,7 @@ const pdfTables = {
         const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
         const pdfFileData = await fs.readFile(fileNamePath);
         await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+        console.log("File '" + configParams.PDF_DOCUMENT_NAME + "' successfully uploaded!");
     },
                             
      async downloadResult () {
@@ -38,14 +32,13 @@ const pdfTables = {
         const resultTabs = await pdfApi.getDocumentTables(configParams.PDF_DOCUMENT_NAME);
     
         if (resultTabs.body.code == 200 && resultTabs.body.tables) {
-            if (!Array.isArray(resultTabs.body.tables.list) || resultTabs.body.tables.list.length === 0) {
-                console.log("Unexpected error : tables is null or empty!!!");
-            }
-            this.showTablesInfo(resultTabs.body.tables.list, prefix);
-            return resultTabs.body.tables.list;
+            if (!Array.isArray(resultTabs.body.tables.list) || resultTabs.body.tables.list.length === 0)
+                console.log(prefix + " => Unexpected error : tables is null or empty!!!");
+            else
+                this.showTablesInfo(resultTabs.body.tables.list, prefix);
         }
         else
-            console.error("Unexpected error : can't get links!!!");
+            console.error(prefix + " => Unexpected error : can't get tables!!!");
     },
 
     async deleteTable () {
@@ -91,6 +84,8 @@ async function main() {
 
         await pdfTables.deleteTables(configParams.PAGE_NUMBER);
         await pdfTables.getAllTables("Tables after drop all");
+
+        await pdfTables.downloadResult();
     } catch (error) {
         console.error("Error:", error.message);
     }
