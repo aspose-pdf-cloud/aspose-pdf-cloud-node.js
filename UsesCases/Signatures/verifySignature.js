@@ -27,9 +27,9 @@ const pdfSignatures = {
 
             if (response.body.code == 200) {
                 if (response.body.valid == true)
-                    console.log("verifySignature(): Signature is VALID for the '" + configParams.PDF_DOCUMENT_NAME + "' documen.");
+                    console.log("verifySignature(): Signature is VALID for the '" + configParams.PDF_DOCUMENT_NAME + "' document.");
                 else
-                console.log("verifySignature(): Signature is NOT VALID for the '" + configParams.PDF_DOCUMENT_NAME + "' documen.");
+                console.log("verifySignature(): Signature is NOT VALID for the '" + configParams.PDF_DOCUMENT_NAME + "' document.");
             }
             else
                 console.error("verifySignature(): Failed to extract signatures in the document. Response code: " + response.body.code);
