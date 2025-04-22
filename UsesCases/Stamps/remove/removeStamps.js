@@ -1,20 +1,11 @@
-// 1. Load your Application Secret and Key from the JSON file or set credentials in another way
-// 2. Create an object to connect to the Pdf.Cloud API
-// 3. Upload your document file
-// 4. Create a new Link Annotation with the required properties
-// 5. Append new Link Annotation to the document using postPageLinkAnnotations() function
-// 6. Perform some action after successful addition
-// All values of variables starting with "YOUR_****" should be replaced by real user values
-
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "asposepdfcloud";
+import { PdfApi } from "../../../src/api/api.js";
 
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
-    PDF_STAMP_FILE: "pdf_stamp.pdf",
+    PDF_DOCUMENT_NAME: "pdf_stamp.pdf", 
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     PAGE_NUMBER: 2,             // Your document page number...
     STAMP_ID: "GE5TCOZQ",       // Your Stamp Id to be deleted...
@@ -27,6 +18,7 @@ const pdfStamps = {
         const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
         const pdfFileData = await fs.readFile(fileNamePath);
         await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+        console.log("File '" + configParams.PDF_DOCUMENT_NAME + "' successfully uploaded!");
     },
                         
     async downloadResult () {
