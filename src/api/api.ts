@@ -6054,7 +6054,7 @@ export class PdfApi {
      * @param marginTop Page margin top
      * @param storage The document storage.
      */
-    public async getMhtInStorageToPdf (srcPath: string, height: number, width: number, marginLeft: number, marginBottom: number, marginRight: number, marginTop: number, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getMhtInStorageToPdf (srcPath: string, height?: number, width?: number, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/mht';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6063,36 +6063,6 @@ export class PdfApi {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('Required parameter srcPath was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'height' is not null or undefined
-        if (height === null || height === undefined) {
-            throw new Error('Required parameter height was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'width' is not null or undefined
-        if (width === null || width === undefined) {
-            throw new Error('Required parameter width was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginLeft' is not null or undefined
-        if (marginLeft === null || marginLeft === undefined) {
-            throw new Error('Required parameter marginLeft was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginBottom' is not null or undefined
-        if (marginBottom === null || marginBottom === undefined) {
-            throw new Error('Required parameter marginBottom was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginRight' is not null or undefined
-        if (marginRight === null || marginRight === undefined) {
-            throw new Error('Required parameter marginRight was null or undefined when calling getMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginTop' is not null or undefined
-        if (marginTop === null || marginTop === undefined) {
-            throw new Error('Required parameter marginTop was null or undefined when calling getMhtInStorageToPdf.');
         }
 
         if (srcPath !== undefined && null !== srcPath) {
@@ -19451,7 +19421,7 @@ export class PdfApi {
      * @param dstFolder The destination document folder.
      * @param storage The document storage.
      */
-    public async putMhtInStorageToPdf (name: string, srcPath: string, height: number, width: number, marginLeft: number, marginBottom: number, marginRight: number, marginTop: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putMhtInStorageToPdf (name: string, srcPath: string, height?: number, width?: number, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/mht'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -19466,36 +19436,6 @@ export class PdfApi {
         // verify required parameter 'srcPath' is not null or undefined
         if (srcPath === null || srcPath === undefined) {
             throw new Error('Required parameter srcPath was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'height' is not null or undefined
-        if (height === null || height === undefined) {
-            throw new Error('Required parameter height was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'width' is not null or undefined
-        if (width === null || width === undefined) {
-            throw new Error('Required parameter width was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginLeft' is not null or undefined
-        if (marginLeft === null || marginLeft === undefined) {
-            throw new Error('Required parameter marginLeft was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginBottom' is not null or undefined
-        if (marginBottom === null || marginBottom === undefined) {
-            throw new Error('Required parameter marginBottom was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginRight' is not null or undefined
-        if (marginRight === null || marginRight === undefined) {
-            throw new Error('Required parameter marginRight was null or undefined when calling putMhtInStorageToPdf.');
-        }
-
-        // verify required parameter 'marginTop' is not null or undefined
-        if (marginTop === null || marginTop === undefined) {
-            throw new Error('Required parameter marginTop was null or undefined when calling putMhtInStorageToPdf.');
         }
 
         if (srcPath !== undefined && null !== srcPath) {

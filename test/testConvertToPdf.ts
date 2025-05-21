@@ -136,7 +136,7 @@ describe("Convert To PDF Tests", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().getMhtInStorageToPdf(srcPath)
+                return BaseTest.getPdfApi().getMhtInStorageToPdf(srcPath, undefined, undefined, undefined, undefined, undefined, undefined)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });
@@ -147,7 +147,7 @@ describe("Convert To PDF Tests", () => {
 
             it("should return response with code 200", async () => {
 
-                return BaseTest.getPdfApi().putMhtInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                return BaseTest.getPdfApi().putMhtInStorageToPdf(resFileName, srcPath, undefined, undefined, undefined, undefined, undefined, undefined, BaseTest.remoteTempFolder)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

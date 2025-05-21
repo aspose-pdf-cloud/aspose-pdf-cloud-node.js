@@ -123,7 +123,7 @@
     "main": "src/api/api.js",
     "types": "src/api/api.d.ts",
     "scripts": {
-        "clean": "rm -Rf node_modules/ typings/ *.js",
+        "clean": "find src test -type f -name '*.js' -delete -o -name '*.d.ts' -delete -o -name '*.js.map' -delete",
         "build": "tsc",
         "test": "mocha -r ts-node/register test/test*.ts --timeout 600000"
     },

@@ -2662,12 +2662,12 @@ Convert MHT file (located on storage) to PDF format and return resulting file in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **srcPath** | **string** | Full source filename (ex. /folder1/folder2/template.mht) | 
-**height** | **number** | Page height | 
-**width** | **number** | Page width | 
-**marginLeft** | **number** | Page margin left | 
-**marginBottom** | **number** | Page margin bottom | 
-**marginRight** | **number** | Page margin right | 
-**marginTop** | **number** | Page margin top | 
+**height** | **number** | Page height | [optional]
+**width** | **number** | Page width | [optional]
+**marginLeft** | **number** | Page margin left | [optional]
+**marginBottom** | **number** | Page margin bottom | [optional]
+**marginRight** | **number** | Page margin right | [optional]
+**marginTop** | **number** | Page margin top | [optional]
 **storage** | **string** | The document storage. | [optional]
 
 ### Return type
@@ -7555,12 +7555,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
 **srcPath** | **string** | Full source filename (ex. /folder1/folder2/template.mht) | 
-**height** | **number** | Page height | 
-**width** | **number** | Page width | 
-**marginLeft** | **number** | Page margin left | 
-**marginBottom** | **number** | Page margin bottom | 
-**marginRight** | **number** | Page margin right | 
-**marginTop** | **number** | Page margin top | 
+**height** | **number** | Page height | [optional]
+**width** | **number** | Page width | [optional]
+**marginLeft** | **number** | Page margin left | [optional]
+**marginBottom** | **number** | Page margin bottom | [optional]
+**marginRight** | **number** | Page margin right | [optional]
+**marginTop** | **number** | Page margin top | [optional]
 **dstFolder** | **string** | The destination document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 
