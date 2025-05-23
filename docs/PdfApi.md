@@ -203,6 +203,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postChangePasswordDocumentInStorage**](PdfApi.md#postChangePasswordDocumentInStorage) | **POST** /pdf/\{name}/changepassword | Change document password in storage.
 *PdfApi* | [**postCheckBoxFields**](PdfApi.md#postCheckBoxFields) | **POST** /pdf/\{name}/fields/checkbox | Add document checkbox fields.
 *PdfApi* | [**postComboBoxFields**](PdfApi.md#postComboBoxFields) | **POST** /pdf/\{name}/fields/combobox | Add document combobox fields.
+*PdfApi* | [**postComparePdf**](PdfApi.md#postComparePdf) | **POST** /pdf/compare | Compare two PDF documents.
 *PdfApi* | [**postCreateDocument**](PdfApi.md#postCreateDocument) | **POST** /pdf/\{name} | Create empty document.
 *PdfApi* | [**postCreateField**](PdfApi.md#postCreateField) | **POST** /pdf/\{name}/fields | Create field.
 *PdfApi* | [**postDecryptDocumentInStorage**](PdfApi.md#postDecryptDocumentInStorage) | **POST** /pdf/\{name}/decrypt | Decrypt document in storage.
@@ -2653,7 +2654,7 @@ Name | Type | Description  | Notes
 
 <a name="getMhtInStorageToPdf"></a>
 ## **getMhtInStorageToPdf**
-> getMhtInStorageToPdf(srcPath, storage)
+> getMhtInStorageToPdf(srcPath, height, width, marginLeft, marginBottom, marginRight, marginTop, storage)
 
 Convert MHT file (located on storage) to PDF format and return resulting file in response. 
 
@@ -2661,6 +2662,12 @@ Convert MHT file (located on storage) to PDF format and return resulting file in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **srcPath** | **string** | Full source filename (ex. /folder1/folder2/template.mht) | 
+**height** | **number** | Page height | [optional]
+**width** | **number** | Page width | [optional]
+**marginLeft** | **number** | Page margin left | [optional]
+**marginBottom** | **number** | Page margin bottom | [optional]
+**marginRight** | **number** | Page margin right | [optional]
+**marginTop** | **number** | Page margin top | [optional]
 **storage** | **string** | The document storage. | [optional]
 
 ### Return type
@@ -5008,6 +5015,29 @@ Name | Type | Description  | Notes
 **fields** | [**Array&lt;ComboBoxField&gt;**](ComboBoxField.md) | The array of field. | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postComparePdf"></a>
+## **postComparePdf**
+> postComparePdf(path1, path2, outPath, storage)
+
+Compare two PDF documents.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**path1** | **string** | Path to first PDF document. | 
+**path2** | **string** | Path to second PDF document. | 
+**outPath** | **string** | Full filename of the resulting document. | 
+**storage** | **string** | The documents storage. | [optional]
 
 ### Return type
 
@@ -7516,7 +7546,7 @@ Name | Type | Description  | Notes
 
 <a name="putMhtInStorageToPdf"></a>
 ## **putMhtInStorageToPdf**
-> putMhtInStorageToPdf(name, srcPath, dstFolder, storage)
+> putMhtInStorageToPdf(name, srcPath, height, width, marginLeft, marginBottom, marginRight, marginTop, dstFolder, storage)
 
 Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
 
@@ -7525,6 +7555,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **name** | **string** | The document name. | 
 **srcPath** | **string** | Full source filename (ex. /folder1/folder2/template.mht) | 
+**height** | **number** | Page height | [optional]
+**width** | **number** | Page width | [optional]
+**marginLeft** | **number** | Page margin left | [optional]
+**marginBottom** | **number** | Page margin bottom | [optional]
+**marginRight** | **number** | Page margin right | [optional]
+**marginTop** | **number** | Page margin top | [optional]
 **dstFolder** | **string** | The destination document folder. | [optional]
 **storage** | **string** | The document storage. | [optional]
 

@@ -6046,9 +6046,15 @@ export class PdfApi {
      * 
      * @summary Convert MHT file (located on storage) to PDF format and return resulting file in response. 
      * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
+     * @param height Page height
+     * @param width Page width
+     * @param marginLeft Page margin left
+     * @param marginBottom Page margin bottom
+     * @param marginRight Page margin right
+     * @param marginTop Page margin top
      * @param storage The document storage.
      */
-    public async getMhtInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    public async getMhtInStorageToPdf (srcPath: string, height?: number, width?: number, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
         const localVarPath = this.basePath + '/pdf/create/mht';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
@@ -6061,6 +6067,30 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (marginLeft !== undefined && null !== marginLeft) {
+            localVarQueryParameters['marginLeft'] = ObjectSerializer.serialize(marginLeft, "number");
+        }
+
+        if (marginBottom !== undefined && null !== marginBottom) {
+            localVarQueryParameters['marginBottom'] = ObjectSerializer.serialize(marginBottom, "number");
+        }
+
+        if (marginRight !== undefined && null !== marginRight) {
+            localVarQueryParameters['marginRight'] = ObjectSerializer.serialize(marginRight, "number");
+        }
+
+        if (marginTop !== undefined && null !== marginTop) {
+            localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
         }
 
         if (storage !== undefined && null !== storage) {
@@ -12360,6 +12390,76 @@ export class PdfApi {
             useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(fields, "Array<ComboBoxField>")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Compare two PDF documents.
+     * @param path1 Path to first PDF document.
+     * @param path2 Path to second PDF document.
+     * @param outPath Full filename of the resulting document.
+     * @param storage The documents storage.
+     */
+    public async postComparePdf (path1: string, path2: string, outPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/compare';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'path1' is not null or undefined
+        if (path1 === null || path1 === undefined) {
+            throw new Error('Required parameter path1 was null or undefined when calling postComparePdf.');
+        }
+
+        // verify required parameter 'path2' is not null or undefined
+        if (path2 === null || path2 === undefined) {
+            throw new Error('Required parameter path2 was null or undefined when calling postComparePdf.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling postComparePdf.');
+        }
+
+        if (path1 !== undefined && null !== path1) {
+            localVarQueryParameters['path1'] = ObjectSerializer.serialize(path1, "string");
+        }
+
+        if (path2 !== undefined && null !== path2) {
+            localVarQueryParameters['path2'] = ObjectSerializer.serialize(path2, "string");
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
         };
 
         if (Object.keys(localVarFormParams).length) {
@@ -19312,10 +19412,16 @@ export class PdfApi {
      * @summary Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
+     * @param height Page height
+     * @param width Page width
+     * @param marginLeft Page margin left
+     * @param marginBottom Page margin bottom
+     * @param marginRight Page margin right
+     * @param marginTop Page margin top
      * @param dstFolder The destination document folder.
      * @param storage The document storage.
      */
-    public async putMhtInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+    public async putMhtInStorageToPdf (name: string, srcPath: string, height?: number, width?: number, marginLeft?: number, marginBottom?: number, marginRight?: number, marginTop?: number, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/create/mht'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -19334,6 +19440,30 @@ export class PdfApi {
 
         if (srcPath !== undefined && null !== srcPath) {
             localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (marginLeft !== undefined && null !== marginLeft) {
+            localVarQueryParameters['marginLeft'] = ObjectSerializer.serialize(marginLeft, "number");
+        }
+
+        if (marginBottom !== undefined && null !== marginBottom) {
+            localVarQueryParameters['marginBottom'] = ObjectSerializer.serialize(marginBottom, "number");
+        }
+
+        if (marginRight !== undefined && null !== marginRight) {
+            localVarQueryParameters['marginRight'] = ObjectSerializer.serialize(marginRight, "number");
+        }
+
+        if (marginTop !== undefined && null !== marginTop) {
+            localVarQueryParameters['marginTop'] = ObjectSerializer.serialize(marginTop, "number");
         }
 
         if (dstFolder !== undefined && null !== dstFolder) {
