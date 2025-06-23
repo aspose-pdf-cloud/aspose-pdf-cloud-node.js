@@ -32,6 +32,7 @@ import { Direction } from "../src/models/direction";
 import { PageMode } from "../src/models/pageMode";
 import { PageLayout } from "../src/models/pageLayout";
 import { OrganizeDocumentRequest } from "../src/models/organizeDocumentRequest";
+import { Rotation } from "../src/models/rotation"
 
 var assert = require('assert');
 
@@ -226,4 +227,12 @@ describe("Document Tests", () => {
     });
   });
 
+  describe("PostDocumentPagesRotate Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pages.pdf";
+      await BaseTest.uploadFile(name);
+      const result = await BaseTest.getPdfApi().postDocumentPagesRotate(name, Rotation.on90, "2-3", null, BaseTest.remoteTempFolder)
+      assert.equal(result.response.statusCode, 200);
+    });
+  });
 });

@@ -93,7 +93,12 @@ describe("Images Tests", () => {
             await BaseTest.uploadFile(name);
             const imageName = "butterfly.jpg";
             await BaseTest.uploadFile(imageName);
-            const imageIds = ["GE5TENJVGQZTWMJYGQWDINRUFQ2DCMRMGY4TC", "GE5TIMJSGY3TWMJXG4WDIMBZFQ2DCOJMGQ3DK"];
+ 
+            const result1 = await BaseTest.getPdfApi().getImages(name, 1, null, BaseTest.remoteTempFolder);
+            const imageId1 = result1.body.images.list[0].id;
+            const result2 = await BaseTest.getPdfApi().getImages(name, 16, null, BaseTest.remoteTempFolder);
+            const imageId2 = result2.body.images.list[0].id;
+            const imageIds = [imageId1, imageId2];
             const imageFile = BaseTest.remoteTempFolder + "/" + imageName;
             return BaseTest.getPdfApi().putReplaceMultipleImage(name, imageIds, imageFile, null, BaseTest.remoteTempFolder)
                 .then((result) => {
