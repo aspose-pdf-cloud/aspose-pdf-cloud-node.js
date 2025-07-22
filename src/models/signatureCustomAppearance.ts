@@ -19,6 +19,9 @@
  *
  */
 
+import { SignatureSubjectNameElements } from "./signatureSubjectNameElements";
+import { Color } from "./color";
+import { Rotation } from "./rotation";
 
 /**
 * An abstract class which represents signature custom appearance object.
@@ -32,6 +35,10 @@ export class SignatureCustomAppearance {
     * Gets/sets font size. Default value: 10.
     */
     'fontSize': number;
+    /**
+    * Gets or sets signature rotation.
+    */
+    'rotation': Rotation;
     /**
     * Gets/sets contact info visibility. Default value: true.
     */
@@ -72,6 +79,22 @@ export class SignatureCustomAppearance {
     * Gets/sets datetime format. Default value: \"yyyy.MM.dd HH:mm:ss\".
     */
     'dateTimeFormat': string;
+    /**
+    * Gets/sets background color.
+    */
+    'backgroundColor': Color;
+    /**
+    * Gets/sets foreground color.
+    */
+    'foregroundColor': Color;
+    /**
+    * Gets/sets subject format usage.
+    */
+    'useDigitalSubjectFormat': boolean;
+    /**
+    * Gets/sets subject format.
+    */
+    'digitalSubjectFormat': Array<SignatureSubjectNameElements>;
 
     static discriminator = undefined;
 
@@ -85,6 +108,11 @@ export class SignatureCustomAppearance {
             "name": "fontSize",
             "baseName": "FontSize",
             "type": "number"
+        },
+        {
+            "name": "rotation",
+            "baseName": "Rotation",
+            "type": "Rotation"
         },
         {
             "name": "showContactInfo",
@@ -135,6 +163,26 @@ export class SignatureCustomAppearance {
             "name": "dateTimeFormat",
             "baseName": "DateTimeFormat",
             "type": "string"
+        },
+        {
+            "name": "backgroundColor",
+            "baseName": "BackgroundColor",
+            "type": "Color"
+        },
+        {
+            "name": "foregroundColor",
+            "baseName": "ForegroundColor",
+            "type": "Color"
+        },
+        {
+            "name": "useDigitalSubjectFormat",
+            "baseName": "UseDigitalSubjectFormat",
+            "type": "boolean"
+        },
+        {
+            "name": "digitalSubjectFormat",
+            "baseName": "DigitalSubjectFormat",
+            "type": "Array<SignatureSubjectNameElements>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -111,6 +111,7 @@ import { Segment } from "./models/segment";
 import { ShapeType } from "./models/shapeType";
 import { Signature } from "./models/signature";
 import { SignatureCustomAppearance } from "./models/signatureCustomAppearance";
+import { SignatureSubjectNameElements } from "./models/signatureSubjectNameElements";
 import { SignatureType } from "./models/signatureType";
 import { SoundEncoding } from "./models/soundEncoding";
 import { SoundIcon } from "./models/soundIcon";
@@ -362,6 +363,7 @@ let enumsMap: {[index: string]: any} = {
     "RasterImagesSavingModes": RasterImagesSavingModes,
     "Rotation": Rotation,
     "ShapeType": ShapeType,
+    "SignatureSubjectNameElements": SignatureSubjectNameElements,
     "SignatureType": SignatureType,
     "SoundEncoding": SoundEncoding,
     "SoundIcon": SoundIcon,
