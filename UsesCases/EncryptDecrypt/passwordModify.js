@@ -6,7 +6,7 @@ import { PdfApi } from "../../src/api/api.js";
 const configParams = {
     LOCAL_FOLDER: "C:\\Samples\\",
     PDF_DOCUMENT_NAME: "sample_encrypted.pdf",
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+    LOCAL_RESULT_DOCUMENT_NAME: "change_password_output_sample.pdf",
     DOCUMENT_PASSWORD: "Owner-Password",
     NEW_USER_PASSWORD: "NEW-User-Password",
     NEW_OWNER_PASSWORD: "NEW-Owner-Password",
@@ -14,7 +14,7 @@ const configParams = {
 
 const pdfApi = new PdfApi(credentials.id, credentials.key);
 
-const pdfPasswordModify = {
+const pdfEncoder = {
     async uploadDocument () {
         const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
         const pdfFileData = await fs.readFile(fileNamePath);
@@ -39,20 +39,19 @@ const pdfPasswordModify = {
         if (response.body.code == 200)
             console.log("change_passwords(): Password in document #'" + configParams.PDF_DOCUMENT_NAME + "' successfully changed.")
         else
-            throw new Error("change_passwords(): Failed to change password in document #'" + configParams.PDF_DOCUMENT_NAME + "'. Response code: {" + response.code + "}")
+            throw new Error("change_passwords(): Failed to decrypt document #'" + configParams.PDF_DOCUMENT_NAME + "'. Response code: {" + response.code + "}")
     },
     
 }
 
 async function main() {
     try {
-        await pdfPasswordModify.uploadDocument();
-        await pdfPasswordModify.change_passwords();
-        await pdfPasswordModify.downloadResult();
+        await pdfEncoder.uploadDocument();
+        await pdfEncoder.change_passwords();
+        await pdfEncoder.downloadResult();
     } catch (error) {
         console.error("Error:", error.message);
     }
 }
-
 
 main();
