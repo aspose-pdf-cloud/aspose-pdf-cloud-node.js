@@ -39,7 +39,7 @@ const pdfPasswordModify = {
         if (response.body.code == 200)
             console.log("change_passwords(): Password in document #'" + configParams.PDF_DOCUMENT_NAME + "' successfully changed.")
         else
-            throw new Error("change_passwords(): Failed to decrypt document #'" + configParams.PDF_DOCUMENT_NAME + "'. Response code: {" + response.code + "}")
+            throw new Error("change_passwords(): Failed to change password in document #'" + configParams.PDF_DOCUMENT_NAME + "'. Response code: {" + response.code + "}")
     },
     
 }
@@ -53,5 +53,6 @@ async function main() {
         console.error("Error:", error.message);
     }
 }
+
 
 main();
