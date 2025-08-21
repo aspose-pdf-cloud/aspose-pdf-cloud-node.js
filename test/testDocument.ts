@@ -235,4 +235,13 @@ describe("Document Tests", () => {
       assert.equal(result.response.statusCode, 200);
     });
   });
+
+  describe("PostDocumentPagesResize Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pages.pdf";
+      await BaseTest.uploadFile(name);
+      const result = await BaseTest.getPdfApi().postDocumentPagesResize(name, 100, 200, "2-3", null, BaseTest.remoteTempFolder)
+      assert.equal(result.response.statusCode, 200);
+    });
+  });
 });
