@@ -212,6 +212,7 @@ Method | HTTP request | Description
 *PdfApi* | [**postDocumentImageStamps**](PdfApi.md#postDocumentImageStamps) | **POST** /pdf/\{name}/stamps/image | Add document pages image stamps.
 *PdfApi* | [**postDocumentImageStampsPageSpecified**](PdfApi.md#postDocumentImageStampsPageSpecified) | **POST** /pdf/\{name}/stamps/image/pagespecified | Add document image stamps to specified pages.
 *PdfApi* | [**postDocumentPageNumberStamps**](PdfApi.md#postDocumentPageNumberStamps) | **POST** /pdf/\{name}/stamps/pagenumber | Add document page number stamps.
+*PdfApi* | [**postDocumentPagesResize**](PdfApi.md#postDocumentPagesResize) | **POST** /pdf/\{name}/resize | Rsize PDF document.
 *PdfApi* | [**postDocumentPagesRotate**](PdfApi.md#postDocumentPagesRotate) | **POST** /pdf/\{name}/rotate | Rotate PDF document.
 *PdfApi* | [**postDocumentTextFooter**](PdfApi.md#postDocumentTextFooter) | **POST** /pdf/\{name}/footer/text | Add document text footer.
 *PdfApi* | [**postDocumentTextHeader**](PdfApi.md#postDocumentTextHeader) | **POST** /pdf/\{name}/header/text | Add document text header.
@@ -5230,6 +5231,32 @@ Name | Type | Description  | Notes
 **stamp** | [**PageNumberStamp**](PageNumberStamp.md) | The stamp. | 
 **startPageNumber** | **number** | The start page number. | [optional]
 **endPageNumber** | **number** | The end page number. | [optional]
+**storage** | **string** | The document storage. | [optional]
+**folder** | **string** | The document folder. | [optional]
+**password** | **string** | Base64 encoded password. | [optional]
+
+### Return type
+
+[**AsposeResponse**](AsposeResponse.md)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="postDocumentPagesResize"></a>
+## **postDocumentPagesResize**
+> postDocumentPagesResize(name, height, width, pages, storage, folder, password)
+
+Rsize PDF document.
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**name** | **string** | The document name. | 
+**height** | **number** | Page Height | 
+**width** | **number** | Page width | 
+**pages** | **string** | Comma separated list of pages and page ranges. (Example: 1,3-5,8) | 
 **storage** | **string** | The document storage. | [optional]
 **folder** | **string** | The document folder. | [optional]
 **password** | **string** | Base64 encoded password. | [optional]

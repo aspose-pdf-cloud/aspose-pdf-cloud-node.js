@@ -13008,6 +13008,93 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Rsize PDF document.
+     * @param name The document name.
+     * @param height Page Height
+     * @param width Page width
+     * @param pages Comma separated list of pages and page ranges. (Example: 1,3-5,8)
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password Base64 encoded password.
+     */
+    public async postDocumentPagesResize (name: string, height: number, width: number, pages: string, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/resize'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postDocumentPagesResize.');
+        }
+
+        // verify required parameter 'height' is not null or undefined
+        if (height === null || height === undefined) {
+            throw new Error('Required parameter height was null or undefined when calling postDocumentPagesResize.');
+        }
+
+        // verify required parameter 'width' is not null or undefined
+        if (width === null || width === undefined) {
+            throw new Error('Required parameter width was null or undefined when calling postDocumentPagesResize.');
+        }
+
+        // verify required parameter 'pages' is not null or undefined
+        if (pages === null || pages === undefined) {
+            throw new Error('Required parameter pages was null or undefined when calling postDocumentPagesResize.');
+        }
+
+        if (height !== undefined && null !== height) {
+            localVarQueryParameters['height'] = ObjectSerializer.serialize(height, "number");
+        }
+
+        if (width !== undefined && null !== width) {
+            localVarQueryParameters['width'] = ObjectSerializer.serialize(width, "number");
+        }
+
+        if (pages !== undefined && null !== pages) {
+            localVarQueryParameters['pages'] = ObjectSerializer.serialize(pages, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Rotate PDF document.
      * @param name The document name.
      * @param rotationAngle Rotation Angle (CKW). Can be 90, 180, 270.
