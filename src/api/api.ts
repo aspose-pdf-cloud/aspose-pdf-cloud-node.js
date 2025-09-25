@@ -13008,6 +13008,80 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Crop PDF document pages.
+     * @param name The document name.
+     * @param pages Comma separated list of pages and page ranges. (Example: 1,3-5,8)
+     * @param rect Rectangle of document area.
+     * @param storage The document storage.
+     * @param folder The document folder.
+     * @param password Base64 encoded password.
+     */
+    public async postDocumentPagesCrop (name: string, pages: string, rect: Rectangle, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/crop'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling postDocumentPagesCrop.');
+        }
+
+        // verify required parameter 'pages' is not null or undefined
+        if (pages === null || pages === undefined) {
+            throw new Error('Required parameter pages was null or undefined when calling postDocumentPagesCrop.');
+        }
+
+        // verify required parameter 'rect' is not null or undefined
+        if (rect === null || rect === undefined) {
+            throw new Error('Required parameter rect was null or undefined when calling postDocumentPagesCrop.');
+        }
+
+        if (pages !== undefined && null !== pages) {
+            localVarQueryParameters['pages'] = ObjectSerializer.serialize(pages, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (password !== undefined && null !== password) {
+            localVarQueryParameters['password'] = ObjectSerializer.serialize(password, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'POST',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ObjectSerializer.serialize(rect, "Rectangle")
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Rsize PDF document.
      * @param name The document name.
      * @param height Page Height
