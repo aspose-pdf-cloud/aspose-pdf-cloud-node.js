@@ -244,4 +244,13 @@ describe("Document Tests", () => {
       assert.equal(result.response.statusCode, 200);
     });
   });
+
+  describe("PostDocumentPagesCrop Test", () => {    
+    it("should return response with code 200", async () => {
+      const name = "4pages.pdf";
+      await BaseTest.uploadFile(name);
+      const result = await BaseTest.getPdfApi().postDocumentPagesCrop(name, "2-3", { lLX: 0, lLY: 0, uRX: 800, uRY: 400 },null, BaseTest.remoteTempFolder)
+      assert.equal(result.response.statusCode, 200);
+    });
+  });
 });
