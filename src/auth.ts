@@ -19,7 +19,7 @@
  *
  */
 
-import request = require("request");
+import * as request from "request";
 import { Configuration } from "./configuration";
 import { invokeApiMethod } from "./requestHelper";
 
@@ -77,8 +77,8 @@ export class OAuth implements IAuthentication {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             form: {
                 grant_type: "client_credentials",
-                client_id: configuration.appSID,
-                client_secret: configuration.appKey,
+                client_id: configuration.clientId,
+                client_secret: configuration.clientSecret,
             },
         };
         

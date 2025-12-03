@@ -1,13 +1,13 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
-const loccalFolder = "C:\\Samples\\";
+const loccalFolder = "testData";
 const pdfDocument = "output_sample.pdf";
 
 // Create PDF Rest API object
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 // Create empty Pdf 
 const pdfResponse = await pdfApi.putCreateDocument(pdfDocument, null, null)
@@ -22,7 +22,7 @@ const pdfResponse = await pdfApi.putCreateDocument(pdfDocument, null, null)
                 console.log("Downloaded: " + filePath);
             });
     })
-    .except((error) => {
+    .catch((error) => {
         // Catch any exceptions
         console.log("Failed to create empty DPDF dcument '" + pdfDocument + "' !")
         console.error("Error:", error.message);

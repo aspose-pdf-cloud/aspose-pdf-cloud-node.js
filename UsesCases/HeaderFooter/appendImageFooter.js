@@ -8,7 +8,7 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
@@ -16,14 +16,14 @@ import { ImageFooter } from "asposepdfcloud/src/models/imageFooter.js";
 import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData/",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     IMAGE_FOOTER_FILE: "sample.png",
     PAGE_NUMBER: 2,     // Your document page number...
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfHederFooter = {
     async uploadFile (fileName) {

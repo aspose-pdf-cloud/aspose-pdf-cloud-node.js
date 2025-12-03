@@ -1,16 +1,16 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample-signed.pdf",
-    SIGNATURE_NAME: 'sign1',
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "adbe.x509.rsa_sha1.valid.pdf",
+    SIGNATURE_NAME: 'Signature1',
 }
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfSignatures = {
     async uploadDocument () {

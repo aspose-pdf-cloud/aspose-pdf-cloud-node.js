@@ -1,25 +1,25 @@
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { Stamp } from "../../../src/models/stamp.js"; 
-import { StampType } from "../../../src/models/stampType.js";
-import { HorizontalAlignment } from "../../../src/models/horizontalAlignment.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import { Stamp } from "asposepdfcloud/src/models/stamp.js"; 
+import { StampType } from "asposepdfcloud/src/models/stampType.js";
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
     IMAGE_STAMP_FILE: "sample.png",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     PAGE_NUMBER: 2,     // Your document page number...
     TEXT_STAMP_VALUE: "NEW TEXT STAMP",
     IMAGE_TEXT_STAMP_VALUE: "NEW IMAGE STAMP",
-    IMAGE_STAMP_LLY: 800,
+    IMAGE_STAMP_LLY: 400,
     IMAGE_STAMP_WIDTH: 24,
     IMAGE_STAMP_HEIGHT: 24,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfStamps = {
     async uploadFile (fileName) {

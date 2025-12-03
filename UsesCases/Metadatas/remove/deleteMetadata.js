@@ -6,7 +6,7 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "./../../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
@@ -14,12 +14,12 @@ import { XmpMetadata } from "asposepdfcloud/src/models/xmpMetadata.js";
 import { XmpMetadataProperty } from "asposepdfcloud/src/models/xmpMetadataProperty.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfMetadatas = {
     async uploadDocument() {
@@ -49,7 +49,7 @@ const pdfMetadatas = {
 
     async deleteMetadata () {
         const prop = new XmpMetadataProperty();
-        prop.key = 'dc:creator';
+        prop.key = 'dc:title';
         prop.value = null;        // null value means delete property...
         prop.namespaceUri = 'http://purl.org/dc/elements/1.1/';
 
@@ -59,7 +59,7 @@ const pdfMetadatas = {
         const response = await pdfApi.postXmpMetadata(configParams.PDF_DOCUMENT_NAME, metadata);
 
         if (response.body.code == 200) {
-            console.log("Dlete metadata '" + prop.key + "' successful!");
+            console.log("Delete metadata '" + prop.key + "' successful!");
             return true;
         }
     },

@@ -7,23 +7,24 @@
 // 7. Download result file after appending Attachment
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
 import { AttachmentInfo } from "asposepdfcloud/src/models/attachmentInfo.js"; 
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    NEW_ATTACHMENT_FILE: "sample_video.mp4",
-    NEW_ATTACHMENT_MIME: "video/mp4",
+    NEW_ATTACHMENT_FILE: "sample.pdf",
+    NEW_ATTACHMENT_MIME: "application/pdf",
     NEW_ATTACHMENT_DECRIPTION: 'This is a sample attachment',
     PAGE_NUMBER: 2,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
+
 
 const pdfAttachments = {
     async uploadFile (fileName) {

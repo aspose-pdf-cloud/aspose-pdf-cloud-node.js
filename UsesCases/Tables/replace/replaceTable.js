@@ -6,28 +6,28 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "../../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../../src/api/api.js";
-import { Table } from "../../../src/models/table.js";
-import { Cell } from "../../../src/models/cell.js";
-import { FontStyles } from "../../../src/models/fontStyles.js";
-import { GraphInfo } from "../../../src/models/graphInfo.js";
-import { Row } from "../../../src/models/row.js";
-import { TextRect } from "../../../src/models/textRect.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import { Table } from "asposepdfcloud/src/models/table.js";
+import { Cell } from "asposepdfcloud/src/models/cell.js";
+import { FontStyles } from "asposepdfcloud/src/models/fontStyles.js";
+import { GraphInfo } from "asposepdfcloud/src/models/graphInfo.js";
+import { Row } from "asposepdfcloud/src/models/row.js";
+import { TextRect } from "asposepdfcloud/src/models/textRect.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithTable.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 2,                                 // Your document page number...
-    TABLE_ID: "GE5TCOZSGAYCYNRQGUWDINZVFQ3DGMA",    // Your table id...
+    PAGE_NUMBER: 1,                                 // Your document page number...
+    TABLE_ID: "GE5TIMJ3HEYCYOBTFQ2TANZMG43TA",    // Your table id...
     TABLE_ROWS: 5,
     TABLE_COLUMNS: 5,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfTables = {
     async uploadDocument () {

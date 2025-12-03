@@ -6,7 +6,7 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" }; // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../settings/credentials.json"  with { type: "json" }; // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
@@ -16,15 +16,15 @@ import { Bookmark } from "asposepdfcloud/src/models/bookmark.js";
 import { Bookmarks } from "asposepdfcloud/src/models/bookmarks.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithBookmarks.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     NEW_BOOKMARK_TITLE: "• Productivity improvement",
     PARENT_BOOKMARK_FOR_APPEND: "",     //The parent bookmark path. Specify an empty string when adding a bookmark to the root.
     NEW_BOOKMARK_PAGE_NUMBER: 2,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfBookmarks = {
     async uploadDocument() {

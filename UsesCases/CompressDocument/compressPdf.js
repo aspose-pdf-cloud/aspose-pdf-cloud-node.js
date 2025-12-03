@@ -1,17 +1,17 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { OptimizeOptions } from "../../src/models/optimizeOptions.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import { OptimizeOptions } from "asposepdfcloud/src/models/optimizeOptions.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
     TEMP_FOLDER : 'TempPdfCloud',
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const PdfCompress = {
     async uploadDocument (fileName, localFolder) {

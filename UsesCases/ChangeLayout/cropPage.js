@@ -7,6 +7,9 @@ const PdfCropPage = {
         if ( pdfApi ) {
             await PdfChangeLayoutHelper.uploadDocument(document, localFolder, tempFolder);  
 
+            console.log(document);
+            console.log(tempFolder);
+            console.log(localFolder);
             var pageSie = await PdfChangeLayoutHelper.getPageInfo(document, pageNumber, tempFolder);
 
             const imageFile = await PdfChangeLayoutHelper.extractPdfPage(document, pageNumber, pageSie.width, pageSie.height, localFolder, tempFolder);

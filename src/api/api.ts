@@ -341,10 +341,10 @@ export class PdfApi {
     constructor(baseUrl: string);
 
     /**
-     * @param appSID App SID.
-     * @param appKey App key.
+     * @param clientId Client Id.
+     * @param clientSecret Client Secret.
      */
-    constructor(appSID: string, appKey: string);
+    constructor(clientId: string, clientSecret: string);
 
     constructor(...arr: string[]){
         if (arr.length === 1) {
