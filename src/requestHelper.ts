@@ -19,10 +19,10 @@
  *
  */
 
-import request = require("request");
+import * as request from "request";
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
-var superagent = require("superagent");
+import * as superagent from "superagent";
 
 /**
  * Invoke api method
@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "25.9.0");
+    sa.set("x-aspose-client-version", "25.10.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};

@@ -30,10 +30,12 @@ XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Enhancements in Version 25.9
-- Implement PDF document page crop functionality using the Pdf.Cloud API library.
+## Enhancements in Version 25.10
 - A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .NET.
 
+## Bugs fixed in Version 25.10
+- Method PutBookmark does not change bookmark color.
+- TextReplace shows hidden text in the output file.
 ## Installation
 
 ### NPM
@@ -63,6 +65,24 @@ $ npm install asposepdfcloud --save
 Create *PdfApi* object with one **baseUrl** parameter:
 ```js
 	const pdfApi = new PdfApi("MY_SELFHOST_URL");
+```
+
+## Use cases
+
+The Aspose.PDF Cloud SDK includes a set of ready-to-run use cases in the "[UsesCases](UsesCases)" directory. These examples illustrate common operations such as managing annotations, attachments, text, and more.
+
+1. Add your API credentials **client_id** and **client_secret** into [settings/credentials.json](settings/credentials.json):
+
+```
+{
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "client_id": "YOUR_CLIENT_ID"
+}
+2. Run ```npm install``` from [UsesCases](UsesCases) directory to install dependencies.
+```
+3. Launch use case from root directory:
+```
+node UsesCases/Compares/comparesLaught.js
 ```
 
 ## Unit Tests
