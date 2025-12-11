@@ -15,14 +15,10 @@ const ParseExportTables = {
                 console.log("ParseExportTables(): Tables successfully extracted!");
 
                 var result = "[\n";
-                await Promise.all(
-                    response.body.tables.list.map(async (table) => {
-                        const responseTable = await pdfApi.getTable(documentName, table.id, null, remoteFolder)
-                            .then(function(responseTable){
-                                result += JSON.stringify(responseTable.body.table) + ",\n\n";
-                            });
-                        })
-                    );
+                for (const table of response.body.tables.list) {
+                    const responseTable = await pdfApi.getTable(documentName, table.id, null, remoteFolder);
+                    result += JSON.stringify(responseTable.body.table) + ",\n\n";
+                }
                 result += "]";
 
                 const filePath = path.join(localFolder, "parsed_tables_output.json");

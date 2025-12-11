@@ -1,18 +1,18 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { DocumentConfig } from "../../src/models/documentConfig.js" 
-import { DocumentProperties } from "../../src/models/documentProperties.js"
-import { DocumentProperty } from "../../src/models/documentProperty.js"
-import { DisplayProperties } from "../../src/models/displayProperties.js"
-import { DefaultPageConfig } from "../../src/models/defaultPageConfig.js"
-import { Direction } from "../../src/models/direction.js";
-import { PageMode } from "../../src/models/pageMode.js";
-import { PageLayout } from "../../src/models/pageLayout.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import { DocumentConfig } from "asposepdfcloud/src/models/documentConfig.js" 
+import { DocumentProperties } from "asposepdfcloud/src/models/documentProperties.js"
+import { DocumentProperty } from "asposepdfcloud/src/models/documentProperty.js"
+import { DisplayProperties } from "asposepdfcloud/src/models/displayProperties.js"
+import { DefaultPageConfig } from "asposepdfcloud/src/models/defaultPageConfig.js"
+import { Direction } from "asposepdfcloud/src/models/direction.js";
+import { PageMode } from "asposepdfcloud/src/models/pageMode.js";
+import { PageLayout } from "asposepdfcloud/src/models/pageLayout.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     TEMP_FOLDER : 'TempPdfCloud',
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     PAGE_WIDTH: 590,
@@ -20,7 +20,7 @@ const configParams = {
     PAGES_COUNT: 5,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const PdfPageChanges = {
     async downloadResult() {

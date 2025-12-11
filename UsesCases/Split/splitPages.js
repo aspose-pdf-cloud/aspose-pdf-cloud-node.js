@@ -1,14 +1,14 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfSplitter = {
     async uploadDocument () {

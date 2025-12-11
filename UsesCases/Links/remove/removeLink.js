@@ -5,20 +5,20 @@
 // 6. Perform some action after successful removing the Link Annotation from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithLinks.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    LINK_REMOVE_ID: "GI5UO32UN5KVESKBMN2GS33OHMZTEMJMGUYDQLBTGYYCYNJSGE",
-    PAGE_NUMBER: 2,     // Your document page number...
+    LINK_REMOVE_ID: "GE5UO32UN5AWG5DJN5XDWOBYFQ3TGMJMGEZTMLBXGQ3A",
+    PAGE_NUMBER: 1,     // Your document page number...
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfLinks = {
    async uploadDocument() {

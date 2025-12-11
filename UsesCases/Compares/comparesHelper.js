@@ -1,9 +1,9 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
-export const pdfApi = new PdfApi(credentials.id, credentials.key);
+export const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 export const pdfComparesHelper = {
     async uploadFile (fileName, localFolder, remoteFolder) {

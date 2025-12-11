@@ -6,7 +6,7 @@
 // 6. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
@@ -18,18 +18,18 @@ import { LinkHighlightingMode} from "asposepdfcloud/src/models/linkHighlightingM
 import { LinkActionType } from "asposepdfcloud/src/models/linkActionType.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithLinks.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     NEW_LINK_ACTION: "https://reference.aspose.cloud/pdf/#/",
-    PAGE_NUMBER: 2,     // Your document page number...
-    LINK_POS_LLX: 244.914,
-    LINK_POS_LLY: 488.622,
-    LINK_POS_URX: 284.776,
-    LINK_POS_URY: 498.588,
+    PAGE_NUMBER: 1,     // Your document page number...
+    LINK_POS_LLX: 70,
+    LINK_POS_LLY: 731.229,
+    LINK_POS_URX: 90,
+    LINK_POS_URY: 745.185,
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfLinks = {
     async uploadDocument() {

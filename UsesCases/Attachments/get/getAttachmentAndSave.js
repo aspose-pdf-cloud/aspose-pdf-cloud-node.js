@@ -7,19 +7,19 @@
 // 7. Perform some action after successful retrieving attachmwent file name using getDownloadDocumentAttachmentByIndex() function
 // 8. Save response body to local file name
 // All values of variables starting with "YOUR_****" should be replaced by real user values
-import credentials from "./credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample_file_with_attachment.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithEmbeddedFiles.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
     ATTACHMENT_PATH: "",    // filed will be setting by using attachments.list[0].links[0].href after call getDocumentAttachments() function
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfAttachments = {
     async uploadDocument() {

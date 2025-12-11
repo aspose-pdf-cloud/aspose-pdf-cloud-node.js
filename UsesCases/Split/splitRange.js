@@ -1,12 +1,12 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { SplitRangePdfOptions } from "../../src/models/splitRangePdfOptions.js";
-import { PageRange } from "../../src/models/pageRange.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import { SplitRangePdfOptions } from "asposepdfcloud/src/models/splitRangePdfOptions.js";
+import { PageRange } from "asposepdfcloud/src/models/pageRange.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     PDF_DOCUMENT_NAME: "sample.pdf",
 };
 
@@ -15,13 +15,13 @@ range_1.from = 1;
 range_1.to = 3;
 
 const range_2 = new PageRange();
-range_2.from = 4;
-range_2.to = 7;
+range_2.from = 2;
+range_2.to = 4;
 
 const splitRangesArray = new SplitRangePdfOptions();
 splitRangesArray.pageRanges = [ range_1, range_2 ];
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfSplitter = {
     async uploadDocument () {

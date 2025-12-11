@@ -1,7 +1,7 @@
 import { PdfChangeLayoutHelper, pdfApi } from "./changeLayoutHelper.js";
 import path from 'node:path';
-import { HtmlDocumentType } from "../../src/models/htmlDocumentType.js";
-import { OutputFormat } from "../../src/models/outputFormat.js"
+import { HtmlDocumentType } from "asposepdfcloud/src/models/htmlDocumentType.js";
+import { OutputFormat } from "asposepdfcloud/src/models/outputFormat.js"
 
 export { PdfResizePages }
 

@@ -316,8 +316,8 @@ import { SquareAnnotation } from "../models/squareAnnotation";
 import { ObjectSerializer } from "../objectSerializer";
 import { Configuration } from "../configuration";
 
-import localVarRequest = require('request');
-import http = require('http');
+import * as localVarRequest from 'request';
+import * as http from 'http';
 import { invokeApiMethod } from "../requestHelper";
 
 let defaultBasePath = 'https://api.aspose.cloud/v3.0';
@@ -341,10 +341,10 @@ export class PdfApi {
     constructor(baseUrl: string);
 
     /**
-     * @param appSID App SID.
-     * @param appKey App key.
+     * @param clientId Client Id.
+     * @param clientSecret Client Secret.
      */
-    constructor(appSID: string, appKey: string);
+    constructor(clientId: string, clientSecret: string);
 
     constructor(...arr: string[]){
         if (arr.length === 1) {

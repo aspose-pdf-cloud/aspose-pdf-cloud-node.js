@@ -18,7 +18,7 @@
  * SOFTWARE.
  *
  */
-import http = require('http');
+import * as http from "http";
 import { PdfApi } from "../src/api/api";
 import { FontStyles } from '../src/models/fontStyles';
 import { Table } from '../src/models/table';
@@ -36,15 +36,15 @@ let pdfApi: PdfApi;
  */
 export function getPdfApi() {
   if (!pdfApi) {
-    let servercreds_json = fs.readFileSync('../../Settings/servercreds.json', 'utf8')
+    let servercreds_json = fs.readFileSync('settings/credentials.json', 'utf8')
     let creds = JSON.parse(servercreds_json)
-    if (!creds.SelfHost) {
-      creds.SelfHost = false
+    if (!creds.self_host) {
+      creds.self_host = false
     }
-    if (creds.SelfHost){
-      pdfApi = new PdfApi(creds.ProductUri);
+    if (creds.self_host){
+      pdfApi = new PdfApi(creds.api_url);
     } else {
-      pdfApi = new PdfApi(creds.AppSID, creds.AppKey);
+      pdfApi = new PdfApi(creds.client_id, creds.client_secret);
     }
     pdfApi.configuration.debugMode = true;
   }

@@ -1,32 +1,32 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
+import credentials from "./../../settings/credentials.json"  with { type: "json" };    // json-file in this format: { "id": "*****", "key": "*******" }
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import { Rotation } from "../../src/models/rotation.js";
-import { DocumentConfig } from "../../src/models/documentConfig.js" 
-import { DocumentProperties } from "../../src/models/documentProperties.js"
-import { DocumentProperty } from "../../src/models/documentProperty.js"
-import { DisplayProperties } from "../../src/models/displayProperties.js"
-import { DefaultPageConfig } from "../../src/models/defaultPageConfig.js"
-import { ImageStamp } from "../../src/models/imageStamp.js"
-import { HorizontalAlignment } from "../../src/models/horizontalAlignment.js"
-import { VerticalAlignment } from "../../src/models/verticalAlignment.js"
-import { HtmlDocumentType } from "../../src/models/htmlDocumentType.js";
-import { OutputFormat } from "../../src/models/outputFormat.js"
+import { PdfApi } from "asposepdfcloud";
+import { Rotation } from "asposepdfcloud/src/models/rotation.js";
+import { DocumentConfig } from "asposepdfcloud/src/models/documentConfig.js" 
+import { DocumentProperties } from "asposepdfcloud/src/models/documentProperties.js"
+import { DocumentProperty } from "asposepdfcloud/src/models/documentProperty.js"
+import { DisplayProperties } from "asposepdfcloud/src/models/displayProperties.js"
+import { ImageStamp } from "asposepdfcloud/src/models/imageStamp.js"
+import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js"
+import { VerticalAlignment } from "asposepdfcloud/src/models/verticalAlignment.js"
+import { HtmlDocumentType } from "asposepdfcloud/src/models/htmlDocumentType.js";
+import { OutputFormat } from "asposepdfcloud/src/models/outputFormat.js"
+import { DefaultPageConfig } from "asposepdfcloud/src/models/defaultPageConfig.js";
 
 export { configParams, pdfApi, PdfChangeLayoutHelper };
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "PdfWithScreenAnnotations.pdf",
     TEMP_FOLDER: 'TempPdfCloud',
     
     ROTATE_ANGLE: Rotation.on90,
-    ROTATE_PAGES: "1-3",
+    ROTATE_PAGES: "1-2",
 
-    CROP_PAGE_TEMP_FILE: "sammple_temp_file.png",
+    CROP_PAGE_TEMP_FILE: "sample_temp_file.png",
     CROP_LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    CROP_PAGE_NUMBER: 3,
+    CROP_PAGE_NUMBER: 1,
     CROP_PAGE_WIDTH: 0,
     CROP_PAGE_HEIGHT: 0,        
     CROP_HEIGHT: 400,
@@ -34,7 +34,7 @@ const configParams = {
     CROP_LLX: 100,
     CROP_LLY: 200,
 
-    RESIZE_PDF_HTML_FILE: "sammple_temp_file.html",
+    RESIZE_PDF_HTML_FILE: "sample_temp_file.html",
     RESIZE_RESULT_DOCUMENT_NAME:"output_sample.pdf",
     RESIZE_PAGE_NUMBER: 2,
     RESIZE_NEW_PAGE_WIDTH: 1000,
@@ -42,7 +42,7 @@ const configParams = {
 
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const PdfChangeLayoutHelper = {
     async uploadFile (fileName, localFolder, tempFolder) {
@@ -66,7 +66,7 @@ const PdfChangeLayoutHelper = {
     },
 
     async getPageInfo (document, pageNumber, tempFolder) {
-        const resultPages = await pdfApi.getPage( document, pageNumber, { folder: tempFolder } );
+        const resultPages = await pdfApi.getPage( document, pageNumber, null, tempFolder );
 
         if (resultPages.body.code == 200 && resultPages.body.page) {
             this.showPages( [ resultPages.body.page ], "page");

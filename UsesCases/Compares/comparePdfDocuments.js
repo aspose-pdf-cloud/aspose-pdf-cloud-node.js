@@ -2,10 +2,10 @@ import path from 'node:path';
 import { pdfComparesHelper, pdfApi } from "../Compares/comparesHelper.js";
 
 export const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
+    LOCAL_FOLDER: "testData",
     REMOTE_FOLDER: "Your_Temp_Pdf_Cloud",
-    PDF_DOCUMENT_1: "sample_compare_1.pdf",
-    PDF_DOCUMENT_2: "sample_compare_2.pdf",
+    PDF_DOCUMENT_1: "sample.pdf",
+    PDF_DOCUMENT_2: "sample_edited.pdf",
     PDF_OUTPUT: "output_compare.pdf",
     REMOTE_FOLDER: "Your_Temp_Pdf_Cloud",
 };
@@ -25,7 +25,7 @@ export const pdfCompares = {
             console.log("Unexpected error!");
         }
         else{
-            console.log("Compare was successful!y finished in '" + output_document + "' file.");
+            console.log("Compare was successfully finished in '" + output_document + "' file.");
             await pdfComparesHelper.downloadResult(output_document, configParams.LOCAL_FOLDER, configParams.REMOTE_FOLDER);
         }
     

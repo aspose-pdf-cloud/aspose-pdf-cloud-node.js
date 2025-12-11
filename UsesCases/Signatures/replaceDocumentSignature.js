@@ -1,27 +1,27 @@
-import credentials from "../../../Credentials/credentials.json"  with { type: "json" };
+import credentials from "./../../settings/credentials.json"  with { type: "json" };
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { PdfApi } from "../../src/api/api.js";
-import {Signature} from "../../src/models/signature.js";
-import {SignatureType} from "../../src/models/signatureType.js";
-import {SignatureField} from "../../src/models/signatureField.js";
+import { PdfApi } from "asposepdfcloud/src/api/api.js";
+import {Signature} from "asposepdfcloud/src/models/signature.js";
+import {SignatureType} from "asposepdfcloud/src/models/signatureType.js";
+import {SignatureField} from "asposepdfcloud/src/models/signatureField.js";
 
 const configParams = {
-    LOCAL_FOLDER: "C:\\Samples\\",
-    PDF_DOCUMENT_NAME: "sample.pdf",
+    LOCAL_FOLDER: "testData",
+    PDF_DOCUMENT_NAME: "adbe.x509.rsa_sha1.valid.pdf",
     LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    LOCAL_SIGNATURE_PATH: "C:\\Samples\\Signatures\\3",
-    SIGNATURE_PFX: "signature.pfx",
-    SIGNATURE_FORM_FIELD: 'Signature_1',
-    SIGNATURE_PASSWORD: 'Password',
+    LOCAL_SIGNATURE_PATH: "testData/",
+    SIGNATURE_PFX: "33226.p12",
+    SIGNATURE_FORM_FIELD: 'Signature1',
+    SIGNATURE_PASSWORD: 'sIikZSmz',
     SIGNATURE_CONTACT: 'Contact',
     SIGNATURE_LOCATION: 'Location',
-    SIGNATURE_AUTHORITY: 'Issuer',
+    SIGNATURE_AUTHORITY: 'Sergey Smal',
     SIGNATURE_DATE: '04/19/2025 12:15:00.000 PM',
-    SIGNATURE_RECT:  { lLx: 100, lLy: 100, uRx: 500, uRy: 500 }
+    SIGNATURE_RECT:  { lLX: 100, lLY: 100, uRX: 0, uRY: 0 }
 };
 
-const pdfApi = new PdfApi(credentials.id, credentials.key);
+const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfSignatures = {
     async uploadFile (folder, fileName) {
@@ -57,6 +57,7 @@ const pdfSignatures = {
             signature.signaturePath = configParams.SIGNATURE_PFX;
             signature.signatureType = SignatureType.PKCS7;
             signature.visible = true;
+            signature.showProperties = true;
 
             const field = new SignatureField();
             field.pageIndex = 1;

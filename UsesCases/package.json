@@ -1,0 +1,8 @@
+{
+    "name": "samples",
+    "type": "module",
+    "dependencies": 
+    {
+        "asposepdfcloud": "^25.9.0"
+    }
+}
