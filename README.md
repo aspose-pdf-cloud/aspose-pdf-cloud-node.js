@@ -30,19 +30,8 @@ XLS, XLSX, PPTX, DOC, DOCX, MobiXML, JPEG, EMF, PNG, BMP, GIF, TIFF, Text
 ## Read PDF Formats
 MHT, PCL, PS, XSLFO, MD
 
-## Breaking Changes in Version 25.10
-**Authentication Parameter Changes**:
-
-    AppId → ClientId
-
-    AppSecret → ClientSecret
-
-## Enhancements in Version 25.10
+## Enhancements in Version 25.11
 - A new version of Aspose.PDF Cloud was prepared using the latest version of Aspose.PDF for .NET.
-
-## Bugs fixed in Version 25.10
-- Method PutBookmark does not change bookmark color.
-- TextReplace shows hidden text in the output file.
 ## Installation
 
 ### NPM
@@ -76,16 +65,16 @@ Create *PdfApi* object with one **baseUrl** parameter:
 
 ## Use cases
 
-The Aspose.PDF Cloud SDK includes a set of ready-to-run use cases in the "[UsesCases](UsesCases)" directory. These examples illustrate common operations such as managing annotations, attachments, text, and more.
+The Aspose.PDF Cloud SDK includes a set of ready-to-run use cases in the "[UsesCases](https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js/tree/master/UsesCases)" directory. These examples illustrate common operations such as managing annotations, attachments, text, and more.
 
-1. Add your API credentials **client_id** and **client_secret** into [settings/credentials.json](settings/credentials.json):
+1. Add your API credentials **client_id** and **client_secret** into [settings/credentials.json](https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js/tree/master/settings/credentials.json):
 
 ```
 {
   "client_secret": "YOUR_CLIENT_SECRET",
   "client_id": "YOUR_CLIENT_ID"
 }
-2. Run ```npm install``` from [UsesCases](UsesCases) directory to install dependencies.
+2. Run ```npm install``` from [UsesCases](https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js/tree/master/UsesCases) directory to install dependencies.
 ```
 3. Launch use case from root directory:
 ```
