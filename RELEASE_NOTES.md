@@ -1,6 +1,6 @@
 # Aspose.PDF Cloud Node.js SDK
 
-## 📦 Version 26.6
+## 📦 Version 26.7
 
 ---
 
