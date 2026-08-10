@@ -1,7 +1,7 @@
 # Aspose.PDF Cloud Node.js SDK — Agent Analysis
 
 > **Repository:** [aspose-pdf-cloud/aspose-pdf-cloud-node.js](https://github.com/aspose-pdf-cloud/aspose-pdf-cloud-node.js)  
-> **Version:** 26.4.0 | **npm Package:** `asposepdfcloud`  
+> **Version:** 26.7.0 | **npm Package:** `asposepdfcloud`  
 > **License:** MIT | **Node.js:** >= 4.8  
 > **API Version:** v3.0 | **Language:** TypeScript (compiled to JavaScript)
 
@@ -73,7 +73,7 @@ aspose-pdf-cloud-node.js/
 | **`src/api/api.ts`** | `PdfApi` class — the main API surface with all REST endpoint methods (385+ methods, ~1.1 MB) |
 | **`src/configuration.ts`** | `Configuration` struct holding `baseUrl`, `clientId`, `clientSecret`, `selfHost` flag, `debugMode`, and `authentication` reference |
 | **`src/auth.ts`** | `IAuthentication` interface and `OAuth` class implementing client credentials flow with access token caching and 401 auto-refresh |
-| **`src/requestHelper.ts`** | HTTP client using `superagent` — handles auth headers (`x-aspose-client: nodejs sdk`, `x-aspose-client-version: 26.4.0`), multipart upload, 401 retry, error response parsing |
+| **`src/requestHelper.ts`** | HTTP client using `superagent` — handles auth headers (`x-aspose-client: nodejs sdk`, `x-aspose-client-version: 26.7.0`), multipart upload, 401 retry, error response parsing |
 | **`src/objectSerializer.ts`** | Type-safe serialization/deserialization with enum map, type map, discriminator support, and primitive type handling |
 
 ---
@@ -365,7 +365,7 @@ The SDK is **auto-generated** from the OpenAPI specification. Evidence:
 | **MIT license header** | Every `.ts` and `.js` file starts with the same license block |
 | **Promise-based returns** | `Promise<{ response: http.IncomingMessage; body: T; }>` for all API methods |
 | **Optional params** | TypeScript optional parameters (`?`) for all optional query/header params |
-| **Custom headers** | `x-aspose-client: nodejs sdk`, `x-aspose-client-version: 26.4.0` |
+| **Custom headers** | `x-aspose-client: nodejs sdk`, `x-aspose-client-version: 26.7.0` |
 | **Self-host support** | Constructor overload: single `baseUrl` param for self-host, two params for OAuth |
 | **Auth** | OAuth2 client credentials flow with automatic token caching and 401 retry |
 | **Enums** | String-based enums defined as const objects with value maps |
